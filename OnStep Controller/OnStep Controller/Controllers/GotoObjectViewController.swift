@@ -14,6 +14,8 @@ import MathUtil
 
 class GotoObjectViewController: UIViewController {
 
+    var delegate: TriggerConnectionDelegate?
+    
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
     
@@ -61,7 +63,6 @@ class GotoObjectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         setupLabelData()
         setupUserInterface()
         fetchUserCurrentLocation()
@@ -275,6 +276,24 @@ class GotoObjectViewController: UIViewController {
                 destination.navigationItem.hidesBackButton = true
             }
         }
+        
+    }
+    
+    @IBAction func moveToNorth(_ sender: UIButton) {
+        delegate?.triggerConnection(cmd: ":Mn#")
+    }
+    
+    @IBAction func moveToSouth(_ sender: UIButton) {
+    }
+    
+    @IBAction func moveToWest(_ sender: UIButton) {
+    }
+    
+    @IBAction func moveToEast(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func reverseNSActiom(_ sender: UIButton) {
         
     }
     

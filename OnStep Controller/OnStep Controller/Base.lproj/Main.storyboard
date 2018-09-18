@@ -21,7 +21,7 @@
         <!--Landing View Controller-->
         <scene sceneID="2Zh-m2-8Rz">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" id="Dh4-cw-Mo4" customClass="LandingViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" autoresizesArchivedViewToFullSize="NO" id="Dh4-cw-Mo4" customClass="LandingViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="25E-ys-vLu"/>
                         <viewControllerLayoutGuide type="bottom" id="XGo-vn-E6t"/>
@@ -1751,6 +1751,9 @@
                                 <state key="normal" title="Rev. NS">
                                     <color key="titleColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="reverseNSActiom:" destination="3qm-Df-FnM" eventType="touchUpInside" id="vm4-Be-BMz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYO-r0-hWd">
                                 <rect key="frame" x="135.5" y="476.5" width="104" height="46.5"/>
@@ -1780,6 +1783,9 @@
                                 <state key="normal" title="North">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="moveToNorth:" destination="3qm-Df-FnM" eventType="touchUpInside" id="XgX-xY-ugw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE6-Nu-JiQ">
                                 <rect key="frame" x="243" y="476.5" width="104" height="46.5"/>
@@ -1788,6 +1794,9 @@
                                 <state key="normal" title="East">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="moveToEast:" destination="3qm-Df-FnM" eventType="touchUpInside" id="uix-Mr-9wq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5V-Zq-4sz">
                                 <rect key="frame" x="28" y="476.5" width="104" height="46.5"/>
@@ -1796,6 +1805,9 @@
                                 <state key="normal" title="West">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="moveToWest:" destination="3qm-Df-FnM" eventType="touchUpInside" id="MJZ-TH-jNE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndV-ff-rhI">
                                 <rect key="frame" x="135.5" y="527.5" width="104" height="46.5"/>
@@ -1804,6 +1816,9 @@
                                 <state key="normal" title="South">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="moveToSouth:" destination="3qm-Df-FnM" eventType="touchUpInside" id="nH2-39-7Rk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfz-YU-KAr">
                                 <rect key="frame" x="28" y="597.5" width="30" height="30"/>

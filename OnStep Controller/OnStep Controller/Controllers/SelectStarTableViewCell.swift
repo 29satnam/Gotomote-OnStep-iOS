@@ -12,11 +12,15 @@ import SwiftyJSON
 
 class SelectStarTableViewController: UITableViewController {
 
+    var instance: LandingViewController = LandingViewController()
+    
     var jsonObj: JSON = JSON()
     var alignType: Int = Int()
     var vcTitle: String = String()
     var slctdObj: JSON = JSON()
     var slctdObjIndex: Int = Int()
+    
+    var delegate: TriggerConnectionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +35,7 @@ class SelectStarTableViewController: UITableViewController {
         let abortAlig = UIBarButtonItem(title: "Abort", style: .plain , target: self, action: #selector(abortAlignment))
         abortAlig.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.navigationItem.rightBarButtonItem = abortAlig
-
-    
+        
     }
     @objc func abortAlignment(){
         print("clicked")
@@ -45,7 +48,8 @@ class SelectStarTableViewController: UITableViewController {
 
             destination.alignTypePassed = alignType
             destination.vcTitlePassed = vcTitle
-            destination.passedSlctdObjIndex = slctdObjIndex 
+            destination.passedSlctdObjIndex = slctdObjIndex
+            destination.delegate = self.delegate
         }
     }
     

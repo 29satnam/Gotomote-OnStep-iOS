@@ -52,7 +52,7 @@ class InitializeViewController: UIViewController {
     // Start Alignment
     @IBAction func startAlignAct(_ sender: UIButton) {
 
-        // delegate?.triggerConnection(cmd: ":A1#")
+         delegate?.triggerConnection(cmd: ":A1#")
         self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
     }
     
@@ -61,7 +61,7 @@ class InitializeViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#")
-     //   delegate?.triggerConnection(cmd: ":SL\(dateFormatter.string(from: NSDate() as Date))#")
+        delegate?.triggerConnection(cmd: ":SL\(dateFormatter.string(from: NSDate() as Date))#")
     }
     
     // Mark: Select a Start
@@ -162,6 +162,7 @@ class InitializeViewController: UIViewController {
             print("Init:", alignTypeInit)
             destination.alignType = alignTypeInit
             destination.vcTitle = "FIRST STAR"
+            destination.delegate = self.delegate
             
         }
     }
