@@ -52,7 +52,7 @@ class InitializeViewController: UIViewController {
     // Start Alignment
     @IBAction func startAlignAct(_ sender: UIButton) {
 
-         delegate?.triggerConnection(cmd: ":A1#")
+        delegate?.triggerConnection(cmd: ":A1#")
         self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
     }
     

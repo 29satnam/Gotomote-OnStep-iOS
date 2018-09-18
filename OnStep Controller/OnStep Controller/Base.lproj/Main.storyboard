@@ -852,7 +852,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1UF-dw-wAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="1021"/>
+            <point key="canvasLocation" x="1031" y="1108"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8D0-VY-aww">
@@ -1784,7 +1784,8 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="moveToNorth:" destination="3qm-Df-FnM" eventType="touchUpInside" id="XgX-xY-ugw"/>
+                                    <action selector="moveToNorthDown:" destination="3qm-Df-FnM" eventType="touchDown" id="uMz-WC-kPT"/>
+                                    <action selector="moveToNorthExit:" destination="3qm-Df-FnM" eventType="touchDragExit" id="TlW-54-ei2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE6-Nu-JiQ">

@@ -187,7 +187,7 @@ class GotoObjectViewController: UIViewController {
         speedSlider.tintColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
         
         // Do any additional setup after loading the view.
-        
+
         navigationItem.title = vcTitlePassed
       //  navigationItem.hidesBackButton = true
         
@@ -248,6 +248,7 @@ class GotoObjectViewController: UIViewController {
     }
 
     @IBAction func alignAction(_ sender: UIButton) {
+        delegate?.triggerConnection(cmd: ":A+#")
         alignTypePassed = alignTypePassed - 1
         print("this:", alignTypePassed)
         if alignTypePassed <= 0 {
@@ -279,22 +280,30 @@ class GotoObjectViewController: UIViewController {
         
     }
     
-    @IBAction func moveToNorth(_ sender: UIButton) {
+    @IBAction func moveToNorthDown(_ sender: UIButton) {
         delegate?.triggerConnection(cmd: ":Mn#")
+    }
+
+    @IBAction func moveToNorthExit(_ sender: UIButton) {
+        delegate?.triggerConnection(cmd: ":Qn#")
     }
     
     @IBAction func moveToSouth(_ sender: UIButton) {
+        delegate?.triggerConnection(cmd: ":Mn#")
     }
     
     @IBAction func moveToWest(_ sender: UIButton) {
+        delegate?.triggerConnection(cmd: ":Mn#")
     }
     
     @IBAction func moveToEast(_ sender: UIButton) {
+        delegate?.triggerConnection(cmd: ":Mn#")
     }
-    
     
     @IBAction func reverseNSActiom(_ sender: UIButton) {
         
+        delegate?.triggerConnection(cmd: ":Qn#")
+
     }
     
     override func didReceiveMemoryWarning() {
