@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "0.4.0",
+  "iOS" : [
+    {
+      "name" : "MathUtil",
+      "hash" : "6cee79e2716f0f3f862f865eb832f2d8a9b56855d1e42fcafb653b18c21d02a9"
+    }
+  ]
+}

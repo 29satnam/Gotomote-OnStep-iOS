@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "0.3.1",
+  "iOS" : [
+    {
+      "name" : "SpaceTime",
+      "hash" : "f7455ceb73cb683de8af51a3bb63d60dd2137ebb8dd6483a763708c22de26af3"
+    }
+  ]
+}
