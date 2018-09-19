@@ -71,6 +71,9 @@ class GotoObjectViewController: UIViewController {
         displayLink.add(to: .main, forMode: RunLoop.Mode.default)
         
 
+        northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
+        northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
+
     }
     
     func fetchUserCurrentLocation() {
@@ -280,12 +283,23 @@ class GotoObjectViewController: UIViewController {
         
     }
     
-    @IBAction func moveToNorthDown(_ sender: UIButton) {
-        delegate?.triggerConnection(cmd: ":Mn#")
+let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
+    @objc func moveToNorth() {
+        
+        concurrentQueue.sync {
+            delegate?.triggerConnection(cmd: ":Mn#")
+            print("down")
+        }
+        
     }
 
-    @IBAction func moveToNorthExit(_ sender: UIButton) {
-        delegate?.triggerConnection(cmd: ":Qn#")
+    @objc func stopToNorth(_ sender: UIButton) {
+        
+        concurrentQueue.sync {
+            delegate?.triggerConnection(cmd: ":Qn#")
+            print("exit")
+        }
+
     }
     
     @IBAction func moveToSouth(_ sender: UIButton) {

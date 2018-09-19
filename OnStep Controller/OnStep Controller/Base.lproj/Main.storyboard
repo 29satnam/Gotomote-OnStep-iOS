@@ -1751,9 +1751,6 @@
                                 <state key="normal" title="Rev. NS">
                                     <color key="titleColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="reverseNSActiom:" destination="3qm-Df-FnM" eventType="touchUpInside" id="vm4-Be-BMz"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYO-r0-hWd">
                                 <rect key="frame" x="135.5" y="476.5" width="104" height="46.5"/>
@@ -1783,10 +1780,6 @@
                                 <state key="normal" title="North">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveToNorthDown:" destination="3qm-Df-FnM" eventType="touchDown" id="uMz-WC-kPT"/>
-                                    <action selector="moveToNorthExit:" destination="3qm-Df-FnM" eventType="touchDragExit" id="TlW-54-ei2"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE6-Nu-JiQ">
                                 <rect key="frame" x="243" y="476.5" width="104" height="46.5"/>
