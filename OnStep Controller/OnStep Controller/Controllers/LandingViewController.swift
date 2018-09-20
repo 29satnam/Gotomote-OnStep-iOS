@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import MathUtil
 import SwiftyJSON
+import CocoaAsyncSocket
+
 
 protocol TriggerConnectionDelegate {
     func triggerConnection(cmd: String)
@@ -19,10 +21,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
 
     var socketConnector: SocketDataManager!
     
-    func triggerConnection(cmd: String) {
-        socketConnector.connectWith(socket: DataSocket(ip: "192.168.0.1", port: "9999"))
-        send(message: cmd)
-    }
     
     var initJSONData: JSON = JSON()
     var tableViewTitle: String = String()
@@ -41,12 +39,38 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBOutlet var moreOptionsBtn: UIBarButtonItem!
     
+    var clientSocket: GCDAsyncSocket!
+
+    
     override func viewDidLoad() {
         
-      //  print(objects.count)
+        setupUserInteface()
         
-      
-        
+        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+
+    }
+    
+    func triggerConnection(cmd: String) {
+        do {
+          //  try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16()!, withTimeout: -1)
+            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: -1)
+            
+            let data = cmd.data(using: .utf8)
+            
+            // timeout -1: 无穷大，一直等
+            // tag: 消息标记
+            clientSocket.write(data!, withTimeout: -1, tag: 0)
+            
+            print("connection succeeded")
+        } catch {
+            
+            print("Connection failed")
+        }
+    }
+    
+    func setupUserInteface() {
+        //  print(objects.count)
+
         addBtnProperties(button: initParkBtn)
         addBtnProperties(button: pecBtn)
         addBtnProperties(button: guideBtn)
@@ -60,29 +84,27 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         addBtnProperties(button: userCatalogBtn)
         
         // Do any additional setup after loading the view.
-        socketConnector = SocketDataManager(with: self)
-
-        resetUIWithConnection(status: false)
+        
         
         //----------------------------------
         /*
-        let soc = DataSocket(ip: "192.168.0.1", port: "9999")
-
-        socketConnector.connectWith(socket: soc)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        send(message: ":SC\(Date().string(with: "MM/dd/yy"))#") //Set date
-        send(message: ":SL\(dateFormatter.string(from: NSDate() as Date))#") //Set time (Local)
-        
-        send(message: ":A1#") //Set date
-        */
+         let soc = DataSocket(ip: "192.168.0.1", port: "9999")
+         
+         socketConnector.connectWith(socket: soc)
+         
+         let dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = "HH:mm:ss"
+         send(message: ":SC\(Date().string(with: "MM/dd/yy"))#") //Set date
+         send(message: ":SL\(dateFormatter.string(from: NSDate() as Date))#") //Set time (Local)
+         
+         send(message: ":A1#") //Set date
+         */
         
         self.view.backgroundColor = .black
-
+        
         navigationItem.title = "ONSTEP CONTROLLER"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
-
+        
     }
     
 
@@ -192,31 +214,6 @@ extension Array where Element: Equatable {
     }
 }
 
-extension LandingViewController: PresenterProtocol {
-    
-    func update(message: String) {
-        print("Reply - ", message)
-    }
-    
-    
-    func send(message: String){
-        socketConnector.send(message: message)
-    }
-    
-    func resetUIWithConnection(status: Bool){
-        if (status){
-            updateStatusViewWith(status: "Connected")
-        }else{
-            updateStatusViewWith(status: "Disconnected")
-        }
-    }
-    
-    func updateStatusViewWith(status: String) {
-        print("Status:", status)
-    }
-    
-}
-
 /*
  Set date - :SCMM/DD/YY#
  Set time (Local) - :SLHH:MM:SS#
@@ -226,3 +223,28 @@ extension LandingViewController: PresenterProtocol {
  Align, three-star*4 - :A3#
  Align, accept*4 - :A+#
  */
+
+extension LandingViewController: GCDAsyncSocketDelegate {
+    // 断开连接
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        
+        print("withError:", "Disconnected-----")
+    }
+    // 连接成功
+    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        
+        let address = "Server IP：" + "\(host)"
+        
+        print("didConnectToHost:", address)
+        
+        clientSocket.readData(withTimeout: -1, tag: 0)
+        clientSocket.disconnect()
+
+    }
+    // 接收到消息
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let text = String(data: data, encoding: .utf8)
+        print("didRead:", text!)
+        clientSocket.readData(withTimeout: -1, tag: 0)
+    }
+}

@@ -16,6 +16,8 @@ class GotoObjectViewController: UIViewController {
 
     var delegate: TriggerConnectionDelegate?
     
+let anotherQueue = DispatchQueue(label: "com.appcoda.anotherQueue", qos: .userInitiated, attributes: [.concurrent, .initiallyInactive])
+    
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
     
@@ -286,19 +288,19 @@ class GotoObjectViewController: UIViewController {
 let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
     @objc func moveToNorth() {
         
-        concurrentQueue.sync {
+   //     concurrentQueue.sync {
             delegate?.triggerConnection(cmd: ":Mn#")
             print("down")
-        }
+     //   }
         
     }
 
     @objc func stopToNorth(_ sender: UIButton) {
         
-        concurrentQueue.sync {
+   //     concurrentQueue.sync {
             delegate?.triggerConnection(cmd: ":Qn#")
             print("exit")
-        }
+   //     }
 
     }
     

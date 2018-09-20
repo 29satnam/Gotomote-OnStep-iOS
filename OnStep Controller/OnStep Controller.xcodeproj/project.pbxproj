@@ -10,6 +10,9 @@
 		D7028C00214BD6F1007D6B7C /* MathUtil.framework in Sources */ = {isa = PBXBuildFile; fileRef = D7E526DE214BD68900376F5E /* MathUtil.framework */; };
 		D7028C01214BD6F1007D6B7C /* SwiftyJSON.framework in Sources */ = {isa = PBXBuildFile; fileRef = D7E526DF214BD68900376F5E /* SwiftyJSON.framework */; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
+		D784C6252153698100DFB54E /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; };
+		D784C6262153698100DFB54E /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D784C6272153699F00DFB54E /* CocoaAsyncSocket.framework in Sources */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; };
 		D7A23D7B214F6D7C0011D932 /* FetchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A23D7A214F6D7C0011D932 /* FetchLocation.swift */; };
 		D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52681214BD41D00376F5E /* AppDelegate.swift */; };
 		D7E52687214BD41D00376F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E52685214BD41D00376F5E /* Main.storyboard */; };
@@ -60,6 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D784C6262153698100DFB54E /* CocoaAsyncSocket.framework in Embed Frameworks */,
 				D7E526E3214BD68900376F5E /* SwiftyJSON.framework in Embed Frameworks */,
 				D7E526E1214BD68900376F5E /* MathUtil.framework in Embed Frameworks */,
 			);
@@ -72,6 +76,7 @@
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D764E0AB214E5BDD0070314E /* OnStep Controller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnStep Controller-Bridging-Header.h"; sourceTree = "<group>"; };
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
+		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D7A23D7A214F6D7C0011D932 /* FetchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchLocation.swift; sourceTree = "<group>"; };
 		D7E5267E214BD41D00376F5E /* OnStep Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnStep Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E52681214BD41D00376F5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D784C6252153698100DFB54E /* CocoaAsyncSocket.framework in Frameworks */,
 				D7E526E2214BD68900376F5E /* SwiftyJSON.framework in Frameworks */,
 				D7E526E0214BD68900376F5E /* MathUtil.framework in Frameworks */,
 			);
@@ -133,6 +139,7 @@
 		D764E0AC214E5EC00070314E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */,
 				D764E0B3214E5F750070314E /* SpaceTime.framework */,
 				D7E526DE214BD68900376F5E /* MathUtil.framework */,
 				D7E526DF214BD68900376F5E /* SwiftyJSON.framework */,
@@ -333,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D784C6272153699F00DFB54E /* CocoaAsyncSocket.framework in Sources */,
 				D7028C00214BD6F1007D6B7C /* MathUtil.framework in Sources */,
 				D7028C01214BD6F1007D6B7C /* SwiftyJSON.framework in Sources */,
 				D7E526DA214BD57F00376F5E /* EclipticUtil.swift in Sources */,

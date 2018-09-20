@@ -1,3 +1,4 @@
 github "DJBen/MathUtil" ~> 0.4.0
 github "SwiftyJSON/SwiftyJSON" ~> 4.0
 github "DJBen/SpaceTime"
+github "robbiehanson/CocoaAsyncSocket" "master"

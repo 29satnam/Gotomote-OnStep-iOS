@@ -78,10 +78,10 @@ class SocketDataManager: NSObject, StreamDelegate {
             print("Stream opened")
         case .hasBytesAvailable:
             if aStream == inputStream {
-                var dataBuffer = Array<UInt8>(repeating: 0, count: 1024)
+                var dataBuffer = Array<UInt8>(repeating: 0, count: 1)
                 var len: Int
                 while (inputStream?.hasBytesAvailable)! {
-                    len = (inputStream?.read(&dataBuffer, maxLength: 1024))!
+                    len = (inputStream?.read(&dataBuffer, maxLength: 1))!
                     if len > 0 {
                         let output = String(bytes: dataBuffer, encoding: .ascii)
                         if nil != output {
