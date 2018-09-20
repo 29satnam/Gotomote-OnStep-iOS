@@ -62,6 +62,8 @@ class InitializeViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm:ss"
         delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#")
         delegate?.triggerConnection(cmd: ":SL\(dateFormatter.string(from: NSDate() as Date))#")
+        delegate?.triggerConnection(cmd: ":GC#")
+
     }
     
     // Mark: Select a Start

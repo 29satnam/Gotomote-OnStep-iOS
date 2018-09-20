@@ -46,30 +46,23 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         
         setupUserInteface()
         
-        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
 
     }
     
     func triggerConnection(cmd: String) {
+        
+        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+        
         do {
-          //  try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16()!, withTimeout: -1)
-            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: -1)
-            
+            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
-            
-            // timeout -1: 无穷大，一直等
-            // tag: 消息标记
-            clientSocket.write(data!, withTimeout: -1, tag: 0)
-            
-            print("connection succeeded")
+            clientSocket.write(data!, withTimeout: 1.5, tag: 0)
         } catch {
-            
-            print("Connection failed")
         }
+        
     }
-    
+
     func setupUserInteface() {
-        //  print(objects.count)
 
         addBtnProperties(button: initParkBtn)
         addBtnProperties(button: pecBtn)
@@ -82,23 +75,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         addBtnProperties(button: herschelBtn)
         addBtnProperties(button: brightStarsBtn)
         addBtnProperties(button: userCatalogBtn)
-        
-        // Do any additional setup after loading the view.
-        
-        
-        //----------------------------------
-        /*
-         let soc = DataSocket(ip: "192.168.0.1", port: "9999")
-         
-         socketConnector.connectWith(socket: soc)
-         
-         let dateFormatter = DateFormatter()
-         dateFormatter.dateFormat = "HH:mm:ss"
-         send(message: ":SC\(Date().string(with: "MM/dd/yy"))#") //Set date
-         send(message: ":SL\(dateFormatter.string(from: NSDate() as Date))#") //Set time (Local)
-         
-         send(message: ":A1#") //Set date
-         */
         
         self.view.backgroundColor = .black
         
@@ -225,26 +201,33 @@ extension Array where Element: Equatable {
  */
 
 extension LandingViewController: GCDAsyncSocketDelegate {
-    // 断开连接
+
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        
-        print("withError:", "Disconnected-----")
+        print("Disconnected Called: ", err?.localizedDescription as Any)
     }
-    // 连接成功
+
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         
         let address = "Server IP：" + "\(host)"
-        
         print("didConnectToHost:", address)
         
-        clientSocket.readData(withTimeout: -1, tag: 0)
-        clientSocket.disconnect()
-
+        switch sock.isConnected {
+        case true:
+            print("Connected")
+        case false:
+            print("Disconnected")
+        default:
+            print("Default")
+        }
+        
+        clientSocket.readData(withTimeout: 1.5, tag: 0)
+     //   clientSocket.disconnect()
+        
     }
     // 接收到消息
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let text = String(data: data, encoding: .utf8)
         print("didRead:", text!)
-        clientSocket.readData(withTimeout: -1, tag: 0)
+        clientSocket.readData(withTimeout: 1.5, tag: 0)
     }
 }

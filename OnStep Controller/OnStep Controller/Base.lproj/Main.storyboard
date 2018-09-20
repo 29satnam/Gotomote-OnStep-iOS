@@ -1788,9 +1788,6 @@
                                 <state key="normal" title="East">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveToEast:" destination="3qm-Df-FnM" eventType="touchUpInside" id="uix-Mr-9wq"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5V-Zq-4sz">
                                 <rect key="frame" x="28" y="476.5" width="104" height="46.5"/>
@@ -1799,9 +1796,6 @@
                                 <state key="normal" title="West">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveToWest:" destination="3qm-Df-FnM" eventType="touchUpInside" id="MJZ-TH-jNE"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndV-ff-rhI">
                                 <rect key="frame" x="135.5" y="527.5" width="104" height="46.5"/>
@@ -1810,9 +1804,6 @@
                                 <state key="normal" title="South">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="moveToSouth:" destination="3qm-Df-FnM" eventType="touchUpInside" id="nH2-39-7Rk"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfz-YU-KAr">
                                 <rect key="frame" x="28" y="597.5" width="30" height="30"/>
@@ -1841,6 +1832,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipc-IN-6S5">
+                                <rect key="frame" x="135" y="230" width="104" height="46.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Stop">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopScope:" destination="3qm-Df-FnM" eventType="touchUpInside" id="x2Z-Z6-8Pk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -2129,7 +2132,7 @@
         <image name="solarSystem" width="11" height="11"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bq7-Sv-zkc"/>
+        <segue reference="bHG-Mh-3zn"/>
         <segue reference="nQ6-u1-rE8"/>
     </inferredMetricsTieBreakers>
 </document>

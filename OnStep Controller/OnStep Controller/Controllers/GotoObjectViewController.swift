@@ -16,8 +16,6 @@ class GotoObjectViewController: UIViewController {
 
     var delegate: TriggerConnectionDelegate?
     
-let anotherQueue = DispatchQueue(label: "com.appcoda.anotherQueue", qos: .userInitiated, attributes: [.concurrent, .initiallyInactive])
-    
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
     
@@ -75,7 +73,6 @@ let anotherQueue = DispatchQueue(label: "com.appcoda.anotherQueue", qos: .userIn
 
         northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
         northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
-
     }
     
     func fetchUserCurrentLocation() {
@@ -285,41 +282,49 @@ let anotherQueue = DispatchQueue(label: "com.appcoda.anotherQueue", qos: .userIn
         
     }
     
-let concurrentQueue = DispatchQueue(label: "queuename", attributes: .concurrent)
+    // North
     @objc func moveToNorth() {
-        
-   //     concurrentQueue.sync {
-            delegate?.triggerConnection(cmd: ":Mn#")
-            print("down")
-     //   }
-        
+        delegate?.triggerConnection(cmd: ":Mn#")
+        print("moveToNorth")
     }
 
     @objc func stopToNorth(_ sender: UIButton) {
-        
-   //     concurrentQueue.sync {
-            delegate?.triggerConnection(cmd: ":Qn#")
-            print("exit")
-   //     }
-
-    }
-    
-    @IBAction func moveToSouth(_ sender: UIButton) {
-        delegate?.triggerConnection(cmd: ":Mn#")
-    }
-    
-    @IBAction func moveToWest(_ sender: UIButton) {
-        delegate?.triggerConnection(cmd: ":Mn#")
-    }
-    
-    @IBAction func moveToEast(_ sender: UIButton) {
-        delegate?.triggerConnection(cmd: ":Mn#")
-    }
-    
-    @IBAction func reverseNSActiom(_ sender: UIButton) {
-        
         delegate?.triggerConnection(cmd: ":Qn#")
-
+        print("stopToNorth")
+    }
+    
+    // South
+    @objc func moveToSouth() {
+        delegate?.triggerConnection(cmd: ":Ms#")
+        print("moveToSouth")
+    }
+    
+    @objc func stopToSouth() {
+        delegate?.triggerConnection(cmd: ":Qs#")
+        print("stopToSouth")
+    }
+    // West
+    @objc func moveToWest() {
+        delegate?.triggerConnection(cmd: ":Mw#")
+        print("moveToWest")
+    }
+    
+    @objc func stopToWest() {
+        delegate?.triggerConnection(cmd: ":Qw#")
+    }
+    
+    // East
+    
+    @objc func MoveToEast() {
+        delegate?.triggerConnection(cmd: ":Me#")
+    }
+    
+    @objc func stopToEast() {
+        delegate?.triggerConnection(cmd: ":Qe#")
+    }
+    
+    @IBAction func stopScope(_ sender: Any) {
+        delegate?.triggerConnection(cmd: ":Q#")
     }
     
     override func didReceiveMemoryWarning() {
