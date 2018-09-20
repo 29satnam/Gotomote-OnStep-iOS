@@ -23,14 +23,20 @@ class OBSSiteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupUserInterface()
+        
+    }
+
+    func setupUserInterface() {
         addBtnProperties(button: uploadBtn)
         addBtnProperties(button: useLocat)
-
+        
         addTFProperties(tf: siteNaTF, placeholder: "")
         addTFProperties(tf: latTF, placeholder: "")
         addTFProperties(tf: longTF, placeholder: "")
         addTFProperties(tf: utcTF, placeholder: "")
-
+        
         
         segmentControl.itemTitles = ["Site 1","Site 2","Site 3", "Site 4"]
         segmentControl.allowChangeThumbWidth = false
@@ -59,9 +65,8 @@ class OBSSiteViewController: UIViewController {
         let item = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
         
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
