@@ -17,10 +17,10 @@ protocol TriggerConnectionDelegate {
     func triggerConnection(cmd: String)
 }
 
+
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate, TriggerConnectionDelegate {
 
     var socketConnector: SocketDataManager!
-    
     
     var initJSONData: JSON = JSON()
     var tableViewTitle: String = String()
@@ -63,6 +63,9 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     }
 
     func setupUserInteface() {
+        
+        self.triggerConnection(cmd: ":SMSITE00#") // set
+        self.triggerConnection(cmd: ":GM#") // get
 
         addBtnProperties(button: initParkBtn)
         addBtnProperties(button: pecBtn)
@@ -141,6 +144,12 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
             if let destination = segue.destination as? SelectObjectTableViewController {
                 destination.title = tableViewTitle
                 destination.jsonObj = initJSONData
+            }
+        } else if segue.identifier == "obsSite" {
+            // Site selection
+            if let destination = segue.destination as? OBSSiteViewController {
+              //  destination.delegate = self
+                destination.title = "SITE SELECTION"
             }
         }
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -221,13 +230,12 @@ extension LandingViewController: GCDAsyncSocketDelegate {
         }
         
         clientSocket.readData(withTimeout: 1.5, tag: 0)
-     //   clientSocket.disconnect()
-        
     }
-    // 接收到消息
+
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let text = String(data: data, encoding: .utf8)
         print("didRead:", text!)
-        clientSocket.readData(withTimeout: 1.5, tag: 0)
+        clientSocket.readData(withTimeout: -1, tag: 0)
     }
+    
 }

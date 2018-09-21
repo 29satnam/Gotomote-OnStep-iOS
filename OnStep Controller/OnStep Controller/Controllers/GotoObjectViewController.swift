@@ -87,7 +87,6 @@ class GotoObjectViewController: UIViewController {
             }
             
             if let userLocation = userCoordinates as? CLLocationCoordinate2D {
-                print(userLocation.latitude, userLocation.longitude)
                 self.userCoords = userLocation
             }
         }
@@ -156,8 +155,9 @@ class GotoObjectViewController: UIViewController {
             azimuth.text = "Azimuth: " + String(format: "%.3f", vegaAziAlt.azimuth.wrappedValue).replacingOccurrences(of: ".", with: "° ") + "'"
             
             aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
-
             
+            print("latitude:", location.coordinate.latitude,"longitude:", location.coordinate.longitude)
+
         }
     }
     
