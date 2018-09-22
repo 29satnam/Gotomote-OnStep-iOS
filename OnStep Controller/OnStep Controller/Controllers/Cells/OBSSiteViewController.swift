@@ -8,6 +8,7 @@
 
 import UIKit
 import CocoaAsyncSocket
+import CoreLocation
 
 class OBSSiteViewController: UIViewController {
     
@@ -19,20 +20,29 @@ class OBSSiteViewController: UIViewController {
     @IBOutlet var latTF: CustomTextField!
     @IBOutlet var longTF: CustomTextField!
     @IBOutlet var utcTF: CustomTextField!
+    
+    // Location Manager Singleton Call
+    var userCoords = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var managerInstance = FetchLocation.SharedManager
 
     @IBOutlet var uploadBtn: UIButton!
     @IBOutlet var useLocat: UIButton!
     
     var selectedIndex: Int = Int()
-    
     var readerText: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupUserInterface()
     }
     
+    @IBAction func useCurrentLocation(_ sender: UIButton) {
+
+        if let location = managerInstance.locationManager.location {
+            print("latitude:", location.coordinate.latitude,"longitude:", location.coordinate.longitude)
+        }
+
+    }
     
     func triggerConnection(cmd: String, setTag: Int) {
         
