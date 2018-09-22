@@ -25,9 +25,27 @@ class OBSSiteViewController: UIViewController {
     
     var selectedIndex: Int = Int()
     
+    var readerText: String = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupUserInterface()
+    }
+    
+    
+    func triggerConnection(cmd: String, setTag: Int) {
+        
+        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+        
+        do {
+            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
+            let data = cmd.data(using: .utf8)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
+        } catch {
+        }
+        
     }
 
     func setupUserInterface() {
@@ -64,11 +82,7 @@ class OBSSiteViewController: UIViewController {
         segmentControl.selectItemAt(index: 0, animated: true)
         selectedIndex = 0
         
-        self.triggerConnection(cmd: ":W0#", setTag: 0) // Select site 0 (0-3)
-        self.triggerConnection(cmd: ":GM#", setTag: 1) // Get site 0 name
-        self.triggerConnection(cmd: ":Gt#", setTag: 2) // Get Latitude (for current site)
-        self.triggerConnection(cmd: ":Gg#", setTag: 3) // Get Longitude (for current site)
-        self.triggerConnection(cmd: ":GG#", setTag: 4) // Get UTC Offset(for current site)
+        self.triggerConnection(cmd: ":W0#:GM#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 0
 
         segmentControl.didSelectItemWith = { index, title in
             self.selectedIndex = index
@@ -76,32 +90,52 @@ class OBSSiteViewController: UIViewController {
             switch self.selectedIndex {
             case 0:
                 print("0")
-                self.triggerConnection(cmd: ":W0#", setTag: 0) // Select site 0 (0-3)
-                self.triggerConnection(cmd: ":GM#", setTag: 1) // Get site 0 name
-                self.triggerConnection(cmd: ":Gt#", setTag: 2) // Get Latitude (for current site) - stays same
-                self.triggerConnection(cmd: ":Gg#", setTag: 3) // Get Longitude (for current site) - stays same
-                self.triggerConnection(cmd: ":GG#", setTag: 4) // Get UTC Offset(for current site) - stays same
+                self.readerText = ""
+                DispatchQueue.main.async {
+                    self.siteNaTF.text = ""
+                    self.latTF.text = ""
+                    self.longTF.text = ""
+                    self.utcTF.text = ""
+                }
+                self.triggerConnection(cmd: ":W0#:GM#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 0
+
             case 1:
                 print("1")
-                self.triggerConnection(cmd: ":W1#", setTag: 0) // Select site 1 (0-3)
-                self.triggerConnection(cmd: ":GN#", setTag: 5) // Get site 1 name
-                self.triggerConnection(cmd: ":Gt#", setTag: 6) // Get Latitude (for current site) - stays same
-                self.triggerConnection(cmd: ":Gg#", setTag: 7) // Get Longitude (for current site) - stays same
-                self.triggerConnection(cmd: ":GG#", setTag: 8) // Get UTC Offset(for current site) - stays same
+                self.readerText = ""
+                DispatchQueue.main.async {
+                    self.siteNaTF.text = ""
+                    self.latTF.text = ""
+                    self.longTF.text = ""
+                    self.utcTF.text = ""
+                }
+                
+                self.triggerConnection(cmd: ":W1#:GN#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 1
+
+                
             case 2:
                 print("2")
-                self.triggerConnection(cmd: ":W2#", setTag: 0) // Select site 2 (0-3)
-                self.triggerConnection(cmd: ":G0#", setTag: 9) // Get site 1 name
-                self.triggerConnection(cmd: ":Gt#", setTag: 10) // Get Latitude (for current site) - stays same
-                self.triggerConnection(cmd: ":Gg#", setTag: 11) // Get Longitude (for current site) - stays same
-                self.triggerConnection(cmd: ":GG#", setTag: 12) // Get UTC Offset(for current site) - stays same
+                self.readerText = ""
+                DispatchQueue.main.async {
+                    self.siteNaTF.text = ""
+                    self.latTF.text = ""
+                    self.longTF.text = ""
+                    self.utcTF.text = ""
+                }
+
+                self.triggerConnection(cmd: ":W2#:GO#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 2
+
             case 3:
                 print("3")
-                self.triggerConnection(cmd: ":W3#", setTag: 0) // Select site 3 (0-3)
-                self.triggerConnection(cmd: ":GP#", setTag: 13) // Get site 3 name
-                self.triggerConnection(cmd: ":Gt#", setTag: 14) // Get Latitude (for current site) - stays same
-                self.triggerConnection(cmd: ":Gg#", setTag: 15) // Get Longitude (for current site) - stays same
-                self.triggerConnection(cmd: ":GG#", setTag: 16) // Get UTC Offset(for current site) - stays same
+                self.readerText = ""
+                DispatchQueue.main.async {
+                    self.siteNaTF.text = ""
+                    self.latTF.text = ""
+                    self.longTF.text = ""
+                    self.utcTF.text = ""
+                }
+                
+                self.triggerConnection(cmd: ":W3#:GP#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 3
+
             default:
                 print("do something default")
             }
@@ -119,107 +153,34 @@ class OBSSiteViewController: UIViewController {
 
 extension OBSSiteViewController: GCDAsyncSocketDelegate {
     
-    
-    func triggerConnection(cmd: String, setTag: Int) {
-        
-        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
-        
-        do {
-            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
-            let data = cmd.data(using: .utf8)
-            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
-            clientSocket.readData(withTimeout: 1.5, tag: setTag)
-        } catch {
-        }
-        
-    }
-    
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let gettext = String(data: data, encoding: .utf8)
         
         switch tag {
         case 0:
-            print("Select site 0 (0-3)", gettext!) // common for all "Sites"
+            readerText += "\(gettext!)"
+            
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            
+            DispatchQueue.main.async {
+                self.siteNaTF.text = index[optional: 0]
+                self.latTF.text = index[optional: 1]
+                self.longTF.text = index[optional: 2]
+                self.utcTF.text = index[optional: 3]
+            }
+            
+
             
         case 1:
             siteNaTF.text = gettext!
             print("Get site 0 name", gettext!)
-        case 2:
-            latTF.text = gettext!
-            print("Get Latitude (for current site)", gettext!)
-        case 3:
-            longTF.text = gettext!
-            print("Get Longitude (for current site)", gettext!)
-        case 4:
-            utcTF.text = gettext!
-            print("Get UTC Offset(for current site)", gettext!)
-            
-        case 5:
-            siteNaTF.text = gettext!
-            print("Get site 0 name", gettext!)
-        case 6:
-            latTF.text = gettext!
-            print("Get Latitude (for current site)", gettext!)
-        case 7:
-            longTF.text = gettext!
-            print("Get Longitude (for current site)", gettext!)
-        case 8:
-            utcTF.text = gettext!
-            print("Get UTC Offset(for current site)", gettext!)
-            
-        case 9:
-            siteNaTF.text = gettext!
-            print("Get site 0 name", gettext!)
-        case 10:
-            latTF.text = gettext!
-            print("Get Latitude (for current site)", gettext!)
-        case 11:
-            longTF.text = gettext!
-            print("Get Longitude (for current site)", gettext!)
-        case 12:
-            utcTF.text = gettext!
-            print("Get UTC Offset(for current site)", gettext!)
-            
-        case 13:
-            siteNaTF.text = gettext!
-            print("Get site 0 name", gettext!)
-        case 14:
-            latTF.text = gettext!
-            print("Get Latitude (for current site)", gettext!)
-        case 15:
-            longTF.text = gettext!
-            print("Get Longitude (for current site)", gettext!)
-        case 16:
-            utcTF.text = gettext!
-            print("Get UTC Offset(for current site)", gettext!)
             
         default:
             print("def")
         }
-        
+        clientSocket.readData(withTimeout: -1, tag: tag)
+       // clientSocket.disconnect()
 
-    /*    if tag == 0 {
-            print("Select site 0 (0-3)", gettext!)
-           // siteNaTF.text = gettext!
-        } else if tag == 1 {
-            print("Get site 0 name", gettext!)
-            siteNaTF.text = gettext!
-
-        } else if tag == 2 {
-            print("Get Latitude (for current site)", gettext!)
-            latTF.text = gettext!
-
-        } else if tag == 3 {
-            print("Get Longitude (for current site)", gettext!)
-            longTF.text = gettext!
-
-        } else if tag == 4 {
-            print("Get UTC Offset(for current site)", gettext!)
-            utcTF.text = gettext!
-
-        } else {
-            print("else", gettext!)
-        } */
     }
     
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
@@ -235,10 +196,20 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
+        
+
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         print("Disconnected Called: ", err?.localizedDescription as Any)
+    }
+    
+}
+
+extension Collection {
+    
+    subscript(optional i: Index) -> Iterator.Element? {
+        return self.indices.contains(i) ? self[i] : nil
     }
     
 }

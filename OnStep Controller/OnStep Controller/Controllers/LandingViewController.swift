@@ -50,7 +50,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     }
     
     func triggerConnection(cmd: String) {
-        
+
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
         do {
@@ -64,8 +64,12 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
 
     func setupUserInteface() {
         
-        self.triggerConnection(cmd: ":SMSITE00#") // set
-        self.triggerConnection(cmd: ":GM#") // get
+    //    self.triggerConnection(cmd: ":SMSITE00#") // set
+    //    self.triggerConnection(cmd: ":GM#") // get
+        
+    //    self.triggerConnection(cmd: ":W0#:GM#:Gt#:Gg#:GG#") // Select site 0 (0-3)
+
+        
 
         addBtnProperties(button: initParkBtn)
         addBtnProperties(button: pecBtn)
