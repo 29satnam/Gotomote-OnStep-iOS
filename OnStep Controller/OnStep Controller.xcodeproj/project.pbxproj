@@ -14,7 +14,6 @@
 		D784C6262153698100DFB54E /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D784C6272153699F00DFB54E /* CocoaAsyncSocket.framework in Sources */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; };
 		D79A7FCE2156ADE600E9C711 /* UserDefaults+CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A7FCD2156ADE600E9C711 /* UserDefaults+CLLocation.swift */; };
-		D7A23D7B214F6D7C0011D932 /* FetchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A23D7A214F6D7C0011D932 /* FetchLocation.swift */; };
 		D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52681214BD41D00376F5E /* AppDelegate.swift */; };
 		D7E52687214BD41D00376F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E52685214BD41D00376F5E /* Main.storyboard */; };
 		D7E5268C214BD41E00376F5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E5268A214BD41E00376F5E /* LaunchScreen.storyboard */; };
@@ -79,7 +78,6 @@
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
 		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D79A7FCD2156ADE600E9C711 /* UserDefaults+CLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+CLLocation.swift"; sourceTree = "<group>"; };
-		D7A23D7A214F6D7C0011D932 /* FetchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchLocation.swift; sourceTree = "<group>"; };
 		D7E5267E214BD41D00376F5E /* OnStep Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnStep Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E52681214BD41D00376F5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E52686214BD41D00376F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 				D7E5269A214BD49600376F5E /* Messier.json */,
 				D7E52698214BD49600376F5E /* QUASR Quasar.json */,
 				D7E52699214BD49600376F5E /* TTSegmentedControl.swift */,
-				D7A23D7A214F6D7C0011D932 /* FetchLocation.swift */,
 				D79A7FCD2156ADE600E9C711 /* UserDefaults+CLLocation.swift */,
 			);
 			path = Resources;
@@ -205,6 +202,7 @@
 			children = (
 				D7E526B9214BD4D500376F5E /* Cells */,
 				D7E526A9214BD4D100376F5E /* BacklashViewController.swift */,
+				D7E526AA214BD4D100376F5E /* OBSSiteViewController.swift */,
 				D7E526A8214BD4D100376F5E /* LandingViewController.swift */,
 				D7E526A3214BD4D100376F5E /* GotoMRViewController.swift */,
 				D7E526AD214BD4D100376F5E /* GotoObjectViewController.swift */,
@@ -221,7 +219,6 @@
 		D7E526B9214BD4D500376F5E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				D7E526AA214BD4D100376F5E /* OBSSiteViewController.swift */,
 				D7E526BB214BD4E000376F5E /* ObjectListTableViewCell.swift */,
 				D7E526BA214BD4E000376F5E /* StarListTableViewCell.swift */,
 			);
@@ -367,7 +364,6 @@
 				D7E526B2214BD4D100376F5E /* MoreOptionsTableViewController.swift in Sources */,
 				D7E526B8214BD4D100376F5E /* GotoObjectViewController.swift in Sources */,
 				D7E526D9214BD57F00376F5E /* EclipticCoordinate.swift in Sources */,
-				D7A23D7B214F6D7C0011D932 /* FetchLocation.swift in Sources */,
 				D7E5269D214BD49600376F5E /* Constants.swift in Sources */,
 				D7E526C3214BD50200376F5E /* SocketDataManager.swift in Sources */,
 				D7E526B3214BD4D100376F5E /* LandingViewController.swift in Sources */,

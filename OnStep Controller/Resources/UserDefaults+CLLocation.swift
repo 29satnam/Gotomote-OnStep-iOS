@@ -10,7 +10,7 @@
 Swift 3 Helper extension:
 usage example:
 Store: UserDefaults.standard.set(location:myLocation, forKey:"myLocation")
-Retreive: UserDefaults.standad.location(forKey:"myLocation")
+Retreive: UserDefaults.standard.location(forKey:"myLocation")
 */
 
 import CoreLocation

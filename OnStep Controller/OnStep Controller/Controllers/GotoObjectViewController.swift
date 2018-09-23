@@ -53,19 +53,26 @@ class GotoObjectViewController: UIViewController {
     
     var slctdJSONObj = grabJSONData(resource: "Bright Stars")
     
-    // Location Manager Singleton Call
-    var userCoords = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-    var managerInstance = FetchLocation.SharedManager
-    
     
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let path = Bundle.main.path(forResource: "Bright Stars", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                let jsonObj = try JSON(data: data)
+                print("jsonData:\(jsonObj[passedSlctdObjIndex]["RA"])")
+            } catch let error {
+                print("parse error: \(error.localizedDescription)")
+            }
+        } else {
+            print("Invalid filename/path.")
+        }
+        
         setupLabelData()
         setupUserInterface()
-        fetchUserCurrentLocation()
         
         let displayLink = CADisplayLink(target: self, selector: #selector(screenUpdate))
         displayLink.add(to: .main, forMode: RunLoop.Mode.default)
@@ -73,23 +80,6 @@ class GotoObjectViewController: UIViewController {
 
         northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
         northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
-    }
-    
-    func fetchUserCurrentLocation() {
-        
-        let locationFetch = FetchLocation.SharedManager
-        locationFetch.parentObject = self
-        locationFetch.startUpdatingLocation()
-        locationFetch.completionBlock = { [unowned self] (userCoordinates, error) in
-            
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-            }
-            
-            if let userLocation = userCoordinates as? CLLocationCoordinate2D {
-                self.userCoords = userLocation
-            }
-        }
     }
     
 
@@ -141,24 +131,38 @@ class GotoObjectViewController: UIViewController {
     @objc func screenUpdate() {
         
         let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue.split(separator: " ")
-        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].stringValue
+        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
         
-        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raStr[0])!, minute: Double(raStr[1])!, second: 34), declination: DegreeAngle(Double(decStr)!), distance: 1)
+
+        
+        
+        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raStr[0])!, minute: Double(raStr[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
         
         let date = Date()
-        if let location = managerInstance.locationManager.location {
-            
-            let locTime = ObserverLocationTime(location: location, timestamp: JulianDay(date: date))
-            let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
-            
-            altitude.text = "Altitude: " + String(format: "%.3f", vegaAziAlt.altitude.wrappedValue).replacingOccurrences(of: ".", with: "° ") + "'"
-            azimuth.text = "Azimuth: " + String(format: "%.3f", vegaAziAlt.azimuth.wrappedValue).replacingOccurrences(of: ".", with: "° ") + "'"
-            
-            aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
-            
-            print("latitude:", location.coordinate.latitude,"longitude:", location.coordinate.longitude)
+        
 
+        //let locTime = ObserverLocationTime(location: location!, timestamp: JulianDay(date: date))
+        
+        let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
+        
+        let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
+        
+        self.altitude.text = "Altitude: " + "\(vegaAziAlt.altitude.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'" //String(format: "%.3f", vegaAziAlt.altitude.wrappedValue).replacingOccurrences(of: ".", with: "° ") + "'"
+        self.azimuth.text = "Azimuth: " + "\(vegaAziAlt.azimuth.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'" //String(format: "%.3f", vegaAziAlt.azimuth.wrappedValue).replacingOccurrences(of: ".", with: "° ") + "'"
+        
+        self.aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
+        
+     //   print("latitude:", locTime.coordinate.latitude,"longitude:", location!.coordinate.longitude)
+            
+    }
+    
+    func alertMessage(message:String,buttonText:String,completionHandler:(()->())?) {
+        let alert = UIAlertController(title: "Location", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: buttonText, style: .default) { (action:UIAlertAction) in
+            completionHandler?()
         }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func replace(myString: String, _ index: Int, _ newChar: Character) -> String {
