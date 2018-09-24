@@ -53,7 +53,6 @@ class GotoObjectViewController: UIViewController {
     
     var slctdJSONObj = grabJSONData(resource: "Bright Stars")
     
-    
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     override func viewDidLoad() {
@@ -191,7 +190,7 @@ class GotoObjectViewController: UIViewController {
         eastBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
         
         speedSlider.tintColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
-        
+
         // Do any additional setup after loading the view.
 
         navigationItem.title = vcTitlePassed
@@ -267,6 +266,7 @@ class GotoObjectViewController: UIViewController {
         }
     }
 
+    // Align the Star
     @IBAction func alignAction(_ sender: UIButton) {
         delegate?.triggerConnection(cmd: ":A+#")
         alignTypePassed = alignTypePassed - 1
@@ -321,6 +321,7 @@ class GotoObjectViewController: UIViewController {
         delegate?.triggerConnection(cmd: ":Qs#")
         print("stopToSouth")
     }
+    
     // West
     @objc func moveToWest() {
         delegate?.triggerConnection(cmd: ":Mw#")
@@ -332,7 +333,6 @@ class GotoObjectViewController: UIViewController {
     }
     
     // East
-    
     @objc func MoveToEast() {
         delegate?.triggerConnection(cmd: ":Me#")
     }
@@ -341,8 +341,71 @@ class GotoObjectViewController: UIViewController {
         delegate?.triggerConnection(cmd: ":Qe#")
     }
     
+    // Stop
     @IBAction func stopScope(_ sender: Any) {
         delegate?.triggerConnection(cmd: ":Q#")
+    }
+    
+    // Mark: Reverse North-South buttons
+    @IBAction func reverseNS(_ sender: UIButton) {
+        DispatchQueue.main.async {
+            if self.northBtn.currentTitle == "North" {
+                self.northBtn.setTitle("South", for: .normal)
+                self.southBtn.setTitle("North", for: .normal)
+
+            } else {
+                self.northBtn.setTitle("North", for: .normal)
+                self.southBtn.setTitle("South", for: .normal)
+
+            }
+        }
+        
+    }
+    
+    // Mark: Reverse East-West buttons
+    @IBAction func reverseEW(_ sender: UIButton) {
+        DispatchQueue.main.async {
+            if self.westBtn.currentTitle == "West" {
+                self.westBtn.setTitle("East", for: .normal)
+                self.eastBtn.setTitle("West", for: .normal)
+                
+            } else {
+                self.westBtn.setTitle("West", for: .normal)
+                self.eastBtn.setTitle("East", for: .normal)
+                
+            }
+        }
+        
+    }
+    
+    // Mark: Lock Buttons
+    @IBAction func lockButtons(_ sender: UIButton) {
+        
+        if leftArrowBtn.isUserInteractionEnabled == true {
+            buttonTextAlpha(alpha: 0.25, activate: false)
+        } else {
+            buttonTextAlpha(alpha: 1.0, activate: true)
+        }
+        
+    }
+    
+    func buttonTextAlpha(alpha: CGFloat, activate: Bool) {
+        DispatchQueue.main.async {
+            self.revEWBtn.alpha = alpha
+            self.revNSBtn.alpha = alpha
+            self.alignBtn.alpha = alpha
+            self.leftArrowBtn.alpha = alpha
+            self.rightArrowBtn.alpha = alpha
+            self.speedSlider.alpha = alpha
+            
+            self.leftArrowBtn.isUserInteractionEnabled = activate
+            self.rightArrowBtn.isUserInteractionEnabled = activate
+            self.revNSBtn.isUserInteractionEnabled = activate
+            self.revEWBtn.isUserInteractionEnabled = activate
+            self.alignBtn.isUserInteractionEnabled = activate
+            self.speedSlider.isUserInteractionEnabled = activate
+
+        }
     }
     
     override func didReceiveMemoryWarning() {
