@@ -224,25 +224,39 @@ class GotoObjectViewController: UIViewController {
         if (slctdJSONObj[passedSlctdObjIndex]["RA"]) == "" {
             ra.text = "RA = N/A "
         } else {
-            ra.text = "RA = \(slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue.replacingOccurrences(of: " ", with: "h "))" + "m"
+            ra.text = "RA = " + (slctdJSONObj[passedSlctdObjIndex]["RA"].string?.replacingOccurrences(of: " ", with: "h "))! + "m"
             
         }
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
         
         // DEC
         if (slctdJSONObj[passedSlctdObjIndex]["DEC"]) == "" {
             dec.text = "DEC = N/A "
         } else {
-            dec.text = "DEC = \(slctdJSONObj[passedSlctdObjIndex]["DEC"].stringValue.replacingOccurrences(of: ".", with: "° "))" + "'"
             
-            let raStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].stringValue.split(separator: " ")
-            print(raStr)
+            if slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue.truncatingRemainder(dividingBy: 1) == 0 {
+                print("it's an intege")
+                dec.text = "DEC = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["DEC"].numberValue)!)" + "°"
+
+            } else {
+                dec.text = "DEC = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["DEC"].numberValue)!.replacingOccurrences(of: ".", with: "° "))" + "'"
+
+            }
+            
+            let value = (slctdJSONObj[passedSlctdObjIndex]["DEC"]).numberValue
+            let int = floor(Double(truncating: value))
+            let decimal = Double(truncating: value).truncatingRemainder(dividingBy: 1)
+            print("int:", int, "deci:", decimal)
+            
         }
         
         // VMag
         if (slctdJSONObj[passedSlctdObjIndex]["VMAG"]) == "" {
             vMag.text = "Visual Magnitude = N/A"
         } else {
-            vMag.text = "Visual Magnitude = \(slctdJSONObj[passedSlctdObjIndex]["VMAG"].doubleValue) "
+            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["VMAG"].numberValue)!) "
         }
         
         // Distance

@@ -86,7 +86,7 @@
 		D7E52694214BD49600376F5E /* GALXY Galaxy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GALXY Galaxy.json"; sourceTree = "<group>"; };
 		D7E52695214BD49600376F5E /* BRTNB Bright Nebula.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "BRTNB Bright Nebula.json"; sourceTree = "<group>"; };
 		D7E52696214BD49600376F5E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D7E52697214BD49600376F5E /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; };
+		D7E52697214BD49600376F5E /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; tabWidth = 2; };
 		D7E52698214BD49600376F5E /* QUASR Quasar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "QUASR Quasar.json"; sourceTree = "<group>"; };
 		D7E52699214BD49600376F5E /* TTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTSegmentedControl.swift; sourceTree = "<group>"; };
 		D7E5269A214BD49600376F5E /* Messier.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Messier.json; sourceTree = "<group>"; };
