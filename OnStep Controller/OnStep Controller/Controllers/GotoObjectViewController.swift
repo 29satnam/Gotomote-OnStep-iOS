@@ -58,32 +58,27 @@ class GotoObjectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let path = Bundle.main.path(forResource: "Bright Stars", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                let jsonObj = try JSON(data: data)
-                print("jsonData:\(jsonObj[passedSlctdObjIndex]["RA"])")
-            } catch let error {
-                print("parse error: \(error.localizedDescription)")
-            }
-        } else {
-            print("Invalid filename/path.")
-        }
+        northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
+        northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
+        
+        southBtn.addTarget(self, action: #selector(moveToSouth), for: UIControl.Event.touchDown)
+        southBtn.addTarget(self, action: #selector(stopToSouth), for: UIControl.Event.touchUpInside)
+        
+        westBtn.addTarget(self, action: #selector(moveToWest), for: UIControl.Event.touchDown)
+        westBtn.addTarget(self, action: #selector(stopToWest), for: UIControl.Event.touchUpInside)
+        
+        eastBtn.addTarget(self, action: #selector(moveToEast), for: UIControl.Event.touchDown)
+        eastBtn.addTarget(self, action: #selector(stopToEast), for: UIControl.Event.touchUpInside)
         
         setupLabelData()
         setupUserInterface()
         
         let displayLink = CADisplayLink(target: self, selector: #selector(screenUpdate))
         displayLink.add(to: .main, forMode: RunLoop.Mode.default)
-        
 
-        northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
-        northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
     }
     
 
-    //Mark: Show next object action
-    //Mark: Show next object action
     //Mark: Show next object action
     @IBAction func nextObject(_ sender: UIButton) {
    //     print("passedSlctdObjIndex:", passedSlctdObjIndex, "slctdJSONObj.count:", slctdJSONObj.count - 1)
@@ -131,10 +126,7 @@ class GotoObjectViewController: UIViewController {
         
         let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue.split(separator: " ")
         let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
-        
-
-        
-        
+            
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raStr[0])!, minute: Double(raStr[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
         
         let date = Date()
@@ -194,7 +186,6 @@ class GotoObjectViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         navigationItem.title = vcTitlePassed
-      //  navigationItem.hidesBackButton = true
         
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         
@@ -274,6 +265,8 @@ class GotoObjectViewController: UIViewController {
         if alignTypePassed <= 0 {
             performSegue(withIdentifier: "backToInitialize", sender: self)
         } else {
+            
+            
             performSegue(withIdentifier: "backToStarList", sender: self)
         }
     }
@@ -285,13 +278,24 @@ class GotoObjectViewController: UIViewController {
             destination.alignType = alignTypePassed
             
             if vcTitlePassed == "FIRST STAR" {
+                
+                // Start second star alignment.
+                print("start third")
+                delegate?.triggerConnection(cmd: ":A2#")
                 destination.vcTitle = "SECOND STAR"
+                
             } else if vcTitlePassed ==  "SECOND STAR" {
+                
+                // Start third star alignment.
+                print("start third")
+                delegate?.triggerConnection(cmd: ":A3#")
                 destination.vcTitle = "THIRD STAR"
+                
             } else {
                 destination.vcTitle = "STAR ALIGNMENT"
             }
         } else if segue.identifier == "initialize" {
+            
             // trigger delegate socket values
             if let destination = segue.destination as? InitializeViewController {
                 destination.navigationItem.hidesBackButton = true
@@ -330,32 +334,57 @@ class GotoObjectViewController: UIViewController {
     
     @objc func stopToWest() {
         delegate?.triggerConnection(cmd: ":Qw#")
+        print("stopToWest")
     }
     
     // East
-    @objc func MoveToEast() {
+    @objc func moveToEast() {
         delegate?.triggerConnection(cmd: ":Me#")
+        print("moveToEast")
     }
     
     @objc func stopToEast() {
         delegate?.triggerConnection(cmd: ":Qe#")
+        print("stopToEast")
     }
     
     // Stop
     @IBAction func stopScope(_ sender: Any) {
         delegate?.triggerConnection(cmd: ":Q#")
+        print("stopScope")
     }
+    
     
     // Mark: Reverse North-South buttons
     @IBAction func reverseNS(_ sender: UIButton) {
+        self.northBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.southBtn.removeTarget(nil, action: nil, for: .allEvents)
         DispatchQueue.main.async {
+            
             if self.northBtn.currentTitle == "North" {
+                
                 self.northBtn.setTitle("South", for: .normal)
                 self.southBtn.setTitle("North", for: .normal)
+                
+                //south targets north
+                self.southBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
+                self.southBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
+                
+                //north targets south
+                self.northBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
+                self.northBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
 
             } else {
                 self.northBtn.setTitle("North", for: .normal)
                 self.southBtn.setTitle("South", for: .normal)
+                
+                //north targets north
+                self.northBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
+                self.northBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
+                
+                //south targets south
+                self.southBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
+                self.southBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
 
             }
         }
@@ -364,14 +393,34 @@ class GotoObjectViewController: UIViewController {
     
     // Mark: Reverse East-West buttons
     @IBAction func reverseEW(_ sender: UIButton) {
+        self.westBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.eastBtn.removeTarget(nil, action: nil, for: .allEvents)
         DispatchQueue.main.async {
+            
             if self.westBtn.currentTitle == "West" {
+                
                 self.westBtn.setTitle("East", for: .normal)
                 self.eastBtn.setTitle("West", for: .normal)
+                
+                //east targets west
+                self.eastBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
+                self.eastBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
+                
+                //west targets east
+                self.westBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
+                self.westBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
                 
             } else {
                 self.westBtn.setTitle("West", for: .normal)
                 self.eastBtn.setTitle("East", for: .normal)
+                
+                //west targets west
+                self.westBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
+                self.westBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
+                
+                //east targets east
+                self.eastBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
+                self.eastBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
                 
             }
         }

@@ -51,9 +51,11 @@ class InitializeViewController: UIViewController {
     
     // Start Alignment
     @IBAction func startAlignAct(_ sender: UIButton) {
-
+        // Start first star alignment.
+        print("start first")
         delegate?.triggerConnection(cmd: ":A1#")
         self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
+        
     }
     
     // Mark: Set Date Time
@@ -64,52 +66,6 @@ class InitializeViewController: UIViewController {
         delegate?.triggerConnection(cmd: ":SL\(dateFormatter.string(from: NSDate() as Date))#")
         delegate?.triggerConnection(cmd: ":GC#")
 
-    }
-    
-    // Mark: Select a Start
-    
-    // At Home/Reset
-    @IBAction func atHomeAct(_ sender: UIButton) {
-        // :hC#
-        delegate?.triggerConnection(cmd: ":hC#")
-    }
-    
-    // Return Home
-    @IBAction func returnHomeAct(_ sender: UIButton) {
-        // :hF#
-        delegate?.triggerConnection(cmd: ":hF#")
-    }
-    
-    // Park
-    @IBAction func parkAct(_ sender: UIButton) {
-        // :hP#
-        delegate?.triggerConnection(cmd: ":hP#")
-    }
-    
-    // Un-Park
-    @IBAction func unParkAct(_ sender: UIButton) {
-        // :hR#
-        delegate?.triggerConnection(cmd: ":hR#")
-    }
-
-    // Set-Park
-    @IBAction func setParkAct(_ sender: UIButton) {
-        // :hQ#
-        delegate?.triggerConnection(cmd: ":hQ#")
-    }
-    
-    // Mark: Reticule
-    
-    // Dimmer
-    @IBAction func dimmerAct(_ sender: UIButton) {
-        // :B-#
-        delegate?.triggerConnection(cmd: ":B-#")
-    }
-    
-    //Brighter
-    @IBAction func BrighterAct(_ sender: UIButton) {
-        // :B+#
-        delegate?.triggerConnection(cmd: ":B+#")
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,6 +113,51 @@ class InitializeViewController: UIViewController {
         addBtnProperties(button: brighterBtn)
     }
     
+    // Mark: Select a Start
+    
+    // At Home/Reset
+    @IBAction func atHomeAct(_ sender: UIButton) {
+        // :hC#
+        delegate?.triggerConnection(cmd: ":hC#")
+    }
+    
+    // Return Home
+    @IBAction func returnHomeAct(_ sender: UIButton) {
+        // :hF#
+        delegate?.triggerConnection(cmd: ":hF#")
+    }
+    
+    // Park
+    @IBAction func parkAct(_ sender: UIButton) {
+        // :hP#
+        delegate?.triggerConnection(cmd: ":hP#")
+    }
+    
+    // Un-Park
+    @IBAction func unParkAct(_ sender: UIButton) {
+        // :hR#
+        delegate?.triggerConnection(cmd: ":hR#")
+    }
+    
+    // Set-Park
+    @IBAction func setParkAct(_ sender: UIButton) {
+        // :hQ#
+        delegate?.triggerConnection(cmd: ":hQ#")
+    }
+    
+    // Mark: Reticule
+    
+    // Dimmer
+    @IBAction func dimmerAct(_ sender: UIButton) {
+        // :B-#
+        delegate?.triggerConnection(cmd: ":B-#")
+    }
+    
+    //Brighter
+    @IBAction func BrighterAct(_ sender: UIButton) {
+        // :B+#
+        delegate?.triggerConnection(cmd: ":B+#")
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

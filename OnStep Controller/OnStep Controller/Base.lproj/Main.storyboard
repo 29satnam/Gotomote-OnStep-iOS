@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6I8-YW-EOC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6I8-YW-EOC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -327,7 +326,6 @@
                             <constraint firstItem="PqK-Ji-7gQ" firstAttribute="trailing" secondItem="vHU-b4-68D" secondAttribute="trailing" id="tV2-af-h5V"/>
                             <constraint firstItem="PqK-Ji-7gQ" firstAttribute="leading" secondItem="xSK-T0-fQY" secondAttribute="leading" id="uIE-10-gep"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="62n-iS-lTT"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="MYo-94-Rwf">
@@ -515,7 +513,6 @@
                             <constraint firstItem="LUd-pX-gRC" firstAttribute="leading" secondItem="yXj-ib-qlh" secondAttribute="leading" id="zd8-TN-RT2"/>
                             <constraint firstItem="2CA-Jo-onY" firstAttribute="centerY" secondItem="oJF-WI-Gq2" secondAttribute="centerY" multiplier="0.757475" id="zpy-yx-bHa"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="qNN-tp-5aJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="oBc-Aw-IsW"/>
                     <connections>
@@ -630,7 +627,6 @@
                             <constraint firstItem="wWS-gK-dtj" firstAttribute="top" secondItem="m81-kI-8RQ" secondAttribute="bottom" constant="1" id="yHr-sw-PPH"/>
                             <constraint firstItem="m81-kI-8RQ" firstAttribute="centerY" secondItem="Qj2-VS-Qur" secondAttribute="centerY" multiplier="0.13289" id="zci-US-RIf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ygd-BR-rOG"/>
                     </view>
                     <navigationItem key="navigationItem" id="GJa-KP-Tf2"/>
                     <connections>
@@ -836,7 +832,6 @@
                             <constraint firstItem="VV2-Sn-f4n" firstAttribute="centerY" secondItem="geM-Wr-bdU" secondAttribute="centerY" multiplier="0.72093" id="yyJ-xN-m8P"/>
                             <constraint firstItem="Aq4-Z5-RLb" firstAttribute="width" secondItem="uiN-KI-bXD" secondAttribute="width" id="zi5-j4-1N0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Y1C-9h-Nt7"/>
                     </view>
                     <navigationItem key="navigationItem" id="N6H-5R-sQX"/>
                     <connections>
@@ -1389,7 +1384,6 @@
                             <constraint firstItem="ij5-lW-vrc" firstAttribute="centerY" secondItem="ZtN-kW-12L" secondAttribute="centerY" multiplier="1.82392" id="xn0-DB-4KN"/>
                             <constraint firstItem="f8P-lp-Dbw" firstAttribute="centerX" secondItem="ZtN-kW-12L" secondAttribute="centerX" id="z66-bf-cPZ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="k9n-DJ-Ifm"/>
                     </view>
                     <navigationItem key="navigationItem" id="ff9-DM-mdT"/>
                     <connections>
@@ -1481,7 +1475,6 @@
                             <constraint firstItem="1ii-NF-1DV" firstAttribute="height" secondItem="Fc4-fi-Qco" secondAttribute="height" multiplier="0.0697674" id="z89-bU-fJD"/>
                             <constraint firstItem="obH-cn-63Z" firstAttribute="height" secondItem="Fc4-fi-Qco" secondAttribute="height" multiplier="0.0332226" id="zpk-x6-M1k"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="a1f-Vq-eGN"/>
                     </view>
                     <navigationItem key="navigationItem" id="B15-Qg-gz3"/>
                     <connections>
@@ -1560,7 +1553,6 @@
                             <constraint firstItem="XVv-v7-IJE" firstAttribute="centerY" secondItem="vcH-Vg-fCw" secondAttribute="centerY" multiplier="0.348837" id="wce-PT-K5W"/>
                             <constraint firstItem="9w1-kU-mi8" firstAttribute="centerY" secondItem="vcH-Vg-fCw" secondAttribute="centerY" multiplier="0.212625" id="xEn-3U-FS4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2M0-MF-Wwk"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nv9-6U-ffz"/>
                     <connections>
@@ -1648,7 +1640,6 @@
                             <constraint firstItem="ZKa-Vd-tGp" firstAttribute="centerY" secondItem="jmm-Yd-kmh" secondAttribute="centerY" multiplier="0.212625" id="xGY-ki-ovD"/>
                             <constraint firstItem="xvw-kf-yHH" firstAttribute="centerY" secondItem="ZKa-Vd-tGp" secondAttribute="centerY" id="xwB-rl-9th"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hbg-7l-YDe"/>
                     </view>
                     <navigationItem key="navigationItem" id="9cA-Ge-XHn"/>
                     <connections>
@@ -1702,7 +1693,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Visual Magnitude = -1.46" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ga-df-sen">
-                                <rect key="frame" x="28" y="144" width="134" height="14"/>
+                                <rect key="frame" x="28" y="193" width="134" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1714,13 +1705,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance = 9 ly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-fh-YJH">
-                                <rect key="frame" x="28" y="166.5" width="94.5" height="14"/>
+                                <rect key="frame" x="28" y="139.5" width="94.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Above Horizon? =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4L-1n-qgw">
-                                <rect key="frame" x="28" y="193" width="94.5" height="14"/>
+                                <rect key="frame" x="28" y="166.5" width="94.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1845,7 +1836,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipc-IN-6S5">
-                                <rect key="frame" x="135" y="230" width="104" height="46.5"/>
+                                <rect key="frame" x="323" y="12" width="42" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
@@ -1861,10 +1852,9 @@
                         <constraints>
                             <constraint firstItem="Ahg-m5-uxw" firstAttribute="width" secondItem="T5V-Zq-4sz" secondAttribute="width" id="0J6-LL-jrs"/>
                             <constraint firstItem="yCP-4g-hdq" firstAttribute="trailing" secondItem="jKg-Hk-9Zj" secondAttribute="trailing" id="19a-5f-uGu"/>
-                            <constraint firstItem="O4L-1n-qgw" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="0.6" id="1Gu-YB-Urv"/>
+                            <constraint firstItem="O4L-1n-qgw" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="0.52" id="1Gu-YB-Urv"/>
                             <constraint firstItem="Jfz-YU-KAr" firstAttribute="leading" secondItem="Ahg-m5-uxw" secondAttribute="leading" id="1PQ-IZ-r56"/>
                             <constraint firstItem="yCP-4g-hdq" firstAttribute="centerY" secondItem="zKZ-CB-3SS" secondAttribute="centerY" id="2My-D0-cFA"/>
-                            <constraint firstItem="CJ0-eo-OoP" firstAttribute="centerY" secondItem="okE-m7-ylK" secondAttribute="centerY" id="30d-zU-7Z5"/>
                             <constraint firstItem="T5V-Zq-4sz" firstAttribute="height" secondItem="4tc-Nd-t8p" secondAttribute="height" id="36Y-tL-d5t"/>
                             <constraint firstItem="yCP-4g-hdq" firstAttribute="width" secondItem="zKZ-CB-3SS" secondAttribute="width" id="5QS-3u-JvT"/>
                             <constraint firstItem="C8g-ry-4Cw" firstAttribute="trailing" secondItem="yCP-4g-hdq" secondAttribute="trailing" id="5cT-5M-Na4"/>
@@ -1872,15 +1862,15 @@
                             <constraint firstItem="yCP-4g-hdq" firstAttribute="height" secondItem="zKZ-CB-3SS" secondAttribute="height" id="6zZ-mJ-852"/>
                             <constraint firstItem="4tc-Nd-t8p" firstAttribute="leading" secondItem="zKZ-CB-3SS" secondAttribute="leading" id="8pk-vx-CEZ"/>
                             <constraint firstItem="bE6-Nu-JiQ" firstAttribute="height" secondItem="C8g-ry-4Cw" secondAttribute="height" id="91Y-lt-CgE"/>
-                            <constraint firstItem="6xh-fh-YJH" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="0.52" id="BWo-0v-ilH"/>
+                            <constraint firstItem="6xh-fh-YJH" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="0.44" id="BWo-0v-ilH"/>
                             <constraint firstItem="okE-m7-ylK" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="0.28" id="Cyc-yi-Nco"/>
                             <constraint firstItem="zKZ-CB-3SS" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="1.06977" id="DGM-8B-rdX"/>
                             <constraint firstItem="4tc-Nd-t8p" firstAttribute="width" secondItem="2bg-AP-dS9" secondAttribute="width" multiplier="0.277333" id="DlH-B7-cbl"/>
                             <constraint firstItem="0Hf-lh-9ip" firstAttribute="centerX" secondItem="2bg-AP-dS9" secondAttribute="centerX" id="EBG-cc-FMe"/>
                             <constraint firstItem="Ahg-m5-uxw" firstAttribute="height" secondItem="T5V-Zq-4sz" secondAttribute="height" id="FLM-sj-x8K"/>
-                            <constraint firstItem="7Ga-df-sen" firstAttribute="centerY" secondItem="TUx-1R-Zt8" secondAttribute="centerY" multiplier="0.44" id="Gr2-5t-thE"/>
                             <constraint firstItem="1oF-tx-TNi" firstAttribute="centerY" secondItem="jKg-Hk-9Zj" secondAttribute="centerY" id="He8-vh-nSa"/>
                             <constraint firstItem="zKZ-CB-3SS" firstAttribute="centerX" secondItem="2bg-AP-dS9" secondAttribute="centerX" multiplier="0.562667" id="HpH-3t-KTN"/>
+                            <constraint firstItem="2gZ-O1-qcF" firstAttribute="centerY" secondItem="x1W-xk-Jrw" secondAttribute="centerY" id="I78-RR-PJk"/>
                             <constraint firstItem="zKZ-CB-3SS" firstAttribute="width" secondItem="2bg-AP-dS9" secondAttribute="width" multiplier="0.413333" id="I9b-gZ-CCf"/>
                             <constraint firstItem="x1W-xk-Jrw" firstAttribute="trailing" secondItem="CJ0-eo-OoP" secondAttribute="trailing" id="Klq-LP-0YW"/>
                             <constraint firstItem="ndV-ff-rhI" firstAttribute="centerX" secondItem="kYO-r0-hWd" secondAttribute="centerX" id="LDU-Ew-Z8F"/>
@@ -1922,15 +1912,15 @@
                             <constraint firstItem="0Hf-lh-9ip" firstAttribute="height" secondItem="4tc-Nd-t8p" secondAttribute="height" id="oyR-KX-FKq"/>
                             <constraint firstItem="O4L-1n-qgw" firstAttribute="trailing" secondItem="6xh-fh-YJH" secondAttribute="trailing" id="qL7-GU-v9g"/>
                             <constraint firstItem="kYO-r0-hWd" firstAttribute="centerY" secondItem="T5V-Zq-4sz" secondAttribute="centerY" id="rlJ-Hl-1Wb"/>
+                            <constraint firstItem="okE-m7-ylK" firstAttribute="centerY" secondItem="CJ0-eo-OoP" secondAttribute="centerY" id="s74-oh-jNx"/>
                             <constraint firstItem="CJ0-eo-OoP" firstAttribute="trailing" secondItem="jKg-Hk-9Zj" secondAttribute="trailing" id="trk-pI-bdQ"/>
                             <constraint firstItem="fb8-jM-Jgg" firstAttribute="width" secondItem="2bg-AP-dS9" secondAttribute="width" multiplier="0.549333" id="uTM-QG-rM5"/>
                             <constraint firstItem="kYO-r0-hWd" firstAttribute="centerX" secondItem="0Hf-lh-9ip" secondAttribute="centerX" id="uZO-RJ-e4q"/>
                             <constraint firstItem="bE6-Nu-JiQ" firstAttribute="centerY" secondItem="kYO-r0-hWd" secondAttribute="centerY" id="w02-cC-1Du"/>
                             <constraint firstItem="aq8-uu-0aR" firstAttribute="centerX" secondItem="bE6-Nu-JiQ" secondAttribute="centerX" id="x78-sV-NHX"/>
                             <constraint firstItem="Jfz-YU-KAr" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="1.83721" id="xbH-Dw-dTd"/>
-                            <constraint firstItem="x1W-xk-Jrw" firstAttribute="centerY" secondItem="2gZ-O1-qcF" secondAttribute="centerY" id="za5-M4-D5k"/>
+                            <constraint firstItem="7Ga-df-sen" firstAttribute="centerY" secondItem="2bg-AP-dS9" secondAttribute="centerY" multiplier="0.6" id="zpV-E8-MmA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="TUx-1R-Zt8"/>
                     </view>
                     <navigationItem key="navigationItem" id="rFl-sc-Ais"/>
                     <connections>
@@ -1961,7 +1951,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZq-OO-uSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="2635"/>
+            <point key="canvasLocation" x="261.60000000000002" y="2634.3328335832084"/>
         </scene>
         <!--Select Object Table View Controller-->
         <scene sceneID="Vzi-Hg-Twp">
@@ -2144,7 +2134,7 @@
         <image name="solarSystem" width="11" height="11"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bq7-Sv-zkc"/>
+        <segue reference="bHG-Mh-3zn"/>
         <segue reference="nQ6-u1-rE8"/>
     </inferredMetricsTieBreakers>
 </document>

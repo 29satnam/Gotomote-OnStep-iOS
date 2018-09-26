@@ -56,7 +56,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         do {
             try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
-            clientSocket.write(data!, withTimeout: 1.5, tag: 0)
+            clientSocket.write(data!, withTimeout: -1, tag: 0)
         } catch {
         }
         
@@ -233,7 +233,7 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             print("Default")
         }
         
-        clientSocket.readData(withTimeout: 1.5, tag: 0)
+        clientSocket.readData(withTimeout: -1, tag: 0)
     }
 
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
