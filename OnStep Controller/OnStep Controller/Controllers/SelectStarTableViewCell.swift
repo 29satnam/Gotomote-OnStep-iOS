@@ -49,7 +49,6 @@ class SelectStarTableViewController: UITableViewController {
             destination.alignTypePassed = alignType
             destination.vcTitlePassed = vcTitle
             destination.passedSlctdObjIndex = slctdObjIndex
-            destination.delegate = self.delegate
         }
     }
     

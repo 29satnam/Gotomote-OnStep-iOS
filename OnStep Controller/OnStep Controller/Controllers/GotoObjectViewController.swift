@@ -11,11 +11,13 @@ import SwiftyJSON
 import CoreLocation
 import SpaceTime
 import MathUtil
+import CocoaAsyncSocket
 
 class GotoObjectViewController: UIViewController {
 
-    var delegate: TriggerConnectionDelegate?
-    
+    var socketConnector: SocketDataManager!
+    var clientSocket: GCDAsyncSocket!
+
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
     
@@ -54,6 +56,19 @@ class GotoObjectViewController: UIViewController {
     var slctdJSONObj = grabJSONData(resource: "Bright Stars")
     
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    func triggerConnection(cmd: String) {
+        
+        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+        
+        do {
+            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
+            let data = cmd.data(using: .utf8)
+            clientSocket.write(data!, withTimeout: -1, tag: 0)
+        } catch {
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -259,7 +274,7 @@ class GotoObjectViewController: UIViewController {
 
     // Align the Star
     @IBAction func alignAction(_ sender: UIButton) {
-        delegate?.triggerConnection(cmd: ":A+#")
+        triggerConnection(cmd: ":A+#")
         alignTypePassed = alignTypePassed - 1
         print("this:", alignTypePassed)
         if alignTypePassed <= 0 {
@@ -281,14 +296,14 @@ class GotoObjectViewController: UIViewController {
                 
                 // Start second star alignment.
                 print("start third")
-                delegate?.triggerConnection(cmd: ":A2#")
+                triggerConnection(cmd: ":A2#")
                 destination.vcTitle = "SECOND STAR"
                 
             } else if vcTitlePassed ==  "SECOND STAR" {
                 
                 // Start third star alignment.
                 print("start third")
-                delegate?.triggerConnection(cmd: ":A3#")
+                triggerConnection(cmd: ":A3#")
                 destination.vcTitle = "THIRD STAR"
                 
             } else {
@@ -306,51 +321,51 @@ class GotoObjectViewController: UIViewController {
     
     // North
     @objc func moveToNorth() {
-        delegate?.triggerConnection(cmd: ":Mn#")
+        triggerConnection(cmd: ":Mn#")
         print("moveToNorth")
     }
 
     @objc func stopToNorth(_ sender: UIButton) {
-        delegate?.triggerConnection(cmd: ":Qn#")
+        triggerConnection(cmd: ":Qn#")
         print("stopToNorth")
     }
     
     // South
     @objc func moveToSouth() {
-        delegate?.triggerConnection(cmd: ":Ms#")
+        triggerConnection(cmd: ":Ms#")
         print("moveToSouth")
     }
     
     @objc func stopToSouth() {
-        delegate?.triggerConnection(cmd: ":Qs#")
+       triggerConnection(cmd: ":Qs#")
         print("stopToSouth")
     }
     
     // West
     @objc func moveToWest() {
-        delegate?.triggerConnection(cmd: ":Mw#")
+        triggerConnection(cmd: ":Mw#")
         print("moveToWest")
     }
     
     @objc func stopToWest() {
-        delegate?.triggerConnection(cmd: ":Qw#")
+       triggerConnection(cmd: ":Qw#")
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-        delegate?.triggerConnection(cmd: ":Me#")
+       triggerConnection(cmd: ":Me#")
         print("moveToEast")
     }
     
     @objc func stopToEast() {
-        delegate?.triggerConnection(cmd: ":Qe#")
+        triggerConnection(cmd: ":Qe#")
         print("stopToEast")
     }
     
     // Stop
     @IBAction func stopScope(_ sender: Any) {
-        delegate?.triggerConnection(cmd: ":Q#")
+        triggerConnection(cmd: ":Q#")
         print("stopScope")
     }
     
@@ -461,4 +476,36 @@ class GotoObjectViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+
+extension GotoObjectViewController: GCDAsyncSocketDelegate {
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        print("Disconnected Called: ", err?.localizedDescription as Any)
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        
+        let address = "Server IP：" + "\(host)"
+        print("didConnectToHost:", address)
+        
+        switch sock.isConnected {
+        case true:
+            print("Connected")
+        case false:
+            print("Disconnected")
+        default:
+            print("Default")
+        }
+        
+        clientSocket.readData(withTimeout: -1, tag: 0)
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let text = String(data: data, encoding: .utf8)
+        print("didRead:", text!)
+        clientSocket.readData(withTimeout: -1, tag: 0)
+    }
+    
 }
