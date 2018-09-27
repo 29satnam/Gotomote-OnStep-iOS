@@ -21,8 +21,8 @@ protocol TriggerConnectionDelegate {
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate, TriggerConnectionDelegate {
 
     @IBAction func pec(_ sender: UIButton) {
-        triggerConnection(cmd: ":Sas23:12:12#")
-//triggerConnection(cmd: ":Gr#:Gd#")
+     //   triggerConnection(cmd: ":Sd-23:12:12#")
+        triggerConnection(cmd: ":Sa-23:12:12#")
       //  triggerConnection(cmd: ":Gd#")
         //  triggerConnection(cmd: ":Sr12:05:45#")
     }

@@ -55,7 +55,109 @@ class GotoObjectViewController: UIViewController {
     
     var slctdJSONObj = grabJSONData(resource: "Bright Stars")
     
+    var raStr: String = String()
+    var decStr: Double = Double()
+
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    @objc func screenUpdate() {
+        
+        raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
+        var raSepa = raStr.split(separator: " ")
+        decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
+        
+        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
+        
+        let date = Date()
+        let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
+        
+        let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
+        
+        self.altitude.text = "Altitude: " + "\(vegaAziAlt.altitude.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'"
+        self.azimuth.text = "Azimuth: " + "\(vegaAziAlt.azimuth.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'"
+        
+        self.aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
+        
+    }
+    
+    @IBAction func gotoBtn(_ sender: UIButton) {
+        //   triggerConnection(cmd: ":Sd-23:12:12#")
+        // triggerConnection(cmd: ":Sa-23:12:12#")
+        //  triggerConnection(cmd: ":Gd#")
+        //  triggerConnection(cmd: ":Sr12:05:45#")
+    //    print("raStr", raStr, "decStr", decStr)
+//        raStr 05 17 decStr 46.0
+        let raArray = raStr.split(separator: " ")
+        let decRep = "\(decStr)".replacingOccurrences(of: ".", with: ":")
+        
+        
+        
+        let decArray = "\(decStr)".split(separator: ".")
+        print("first:", decArray[opt: 0]!, "seconf:", decArray[opt: 1]!)
+        
+        if "\(decArray[opt: 0]!)".count < 10 && "\(decArray[opt: 0]!)".count  {
+            print("")
+        }
+        
+        if (decStr < 0) {
+       //     print("negative")
+                triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep).0#") //Set target RA # Set target Dec
+            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sd\(decRep)#")
+        } else if (decStr == 0) {
+         //   print("zero")
+        } else {
+            print("positive")
+           // triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)0#") //Set target RA # Set target Dec
+            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sd+\(decRep)#") // :Sr14:07#:Sd-36:4#
+
+        }
+        
+        
+        
+        
+        
+        
+      //  print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sds\(decRep)#") // :SrHH:MM#:Sd
+      //  triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:SdsDD:MM:SS#") //Set target RA # Set target Dec
+
+    }
+    
+    // Mark: Slider - Increase Speed
+    
+    @IBAction func abortBtn(_ sender: UIButton) {
+        triggerConnection(cmd: ":Q#")
+    }
+    
+    // Mark: Slider - Increase Speed
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+
+        switch Int(sender.value) {
+        case 0:
+            triggerConnection(cmd: ":R0#")
+        case 1:
+            triggerConnection(cmd: ":R1#")
+        case 2:
+            triggerConnection(cmd: ":R2#")
+        case 3:
+            triggerConnection(cmd: ":R3#")
+        case 4:
+            triggerConnection(cmd: ":R4#")
+        case 5:
+            triggerConnection(cmd: ":R5#")
+        case 6:
+            triggerConnection(cmd: ":R6#")
+        case 7:
+            triggerConnection(cmd: ":R7#")
+        case 8:
+            triggerConnection(cmd: ":R8#")
+        case 9:
+            triggerConnection(cmd: ":R9#")
+        default:
+            print("sero")
+        }
+
+    }
+    
     
     func triggerConnection(cmd: String) {
         
@@ -72,6 +174,10 @@ class GotoObjectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        speedSlider.minimumValue = 0
+        speedSlider.maximumValue = 9
+        speedSlider.isContinuous = true
         
         northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
         northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
@@ -135,32 +241,6 @@ class GotoObjectViewController: UIViewController {
         }
     }
     
-    
-    
-    @objc func screenUpdate() {
-        
-        let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue.split(separator: " ")
-        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
-            
-        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raStr[0])!, minute: Double(raStr[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
-        
-        let date = Date()
-        
-
-        //let locTime = ObserverLocationTime(location: location!, timestamp: JulianDay(date: date))
-        
-        let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
-        
-        let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
-        
-        self.altitude.text = "Altitude: " + "\(vegaAziAlt.altitude.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'" //String(format: "%.3f", vegaAziAlt.altitude.wrappedValue).replacingOccurrences(of: ".", with: "° ") + "'"
-        self.azimuth.text = "Azimuth: " + "\(vegaAziAlt.azimuth.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'" //String(format: "%.3f", vegaAziAlt.azimuth.wrappedValue).replacingOccurrences(of: ".", with: "° ") + "'"
-        
-        self.aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
-        
-     //   print("latitude:", locTime.coordinate.latitude,"longitude:", location!.coordinate.longitude)
-            
-    }
     
     func alertMessage(message:String,buttonText:String,completionHandler:(()->())?) {
         let alert = UIAlertController(title: "Location", message: message, preferredStyle: .alert)
@@ -366,7 +446,10 @@ class GotoObjectViewController: UIViewController {
     // Stop
     @IBAction func stopScope(_ sender: Any) {
         triggerConnection(cmd: ":Q#")
-        print("stopScope")
+     //   print("stopScope")
+        //    :T+#
+       //    triggerConnection(cmd: ":R9#")
+
     }
     
     

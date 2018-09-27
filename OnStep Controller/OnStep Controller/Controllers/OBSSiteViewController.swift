@@ -196,8 +196,6 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
 
                     }*/
                     
-
-                    
                     
                 }
                 self.triggerConnection(cmd: ":W0#:GM#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 0
@@ -266,10 +264,10 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
             
             DispatchQueue.main.async {
-                self.siteNaTF.text = index[optional: 0]
-                self.latTF.text = index[optional: 1]
-                self.longTF.text = index[optional: 2]
-                self.utcTF.text = index[optional: 3]
+                self.siteNaTF.text = index[opt: 0]
+                self.latTF.text = index[opt: 1]
+                self.longTF.text = index[opt: 2]
+                self.utcTF.text = index[opt: 3]
             }
             
             
@@ -311,7 +309,7 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
 
 extension Collection {
     
-    subscript(optional i: Index) -> Iterator.Element? {
+    subscript(opt i: Index) -> Iterator.Element? {
         return self.indices.contains(i) ? self[i] : nil
     }
     
