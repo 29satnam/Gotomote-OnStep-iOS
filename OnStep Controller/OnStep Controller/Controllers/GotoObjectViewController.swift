@@ -80,6 +80,8 @@ class GotoObjectViewController: UIViewController {
         
     }
     
+    //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
+
     @IBAction func gotoBtn(_ sender: UIButton) {
         //   triggerConnection(cmd: ":Sd-23:12:12#")
         // triggerConnection(cmd: ":Sa-23:12:12#")
@@ -87,31 +89,71 @@ class GotoObjectViewController: UIViewController {
         //  triggerConnection(cmd: ":Sr12:05:45#")
     //    print("raStr", raStr, "decStr", decStr)
 //        raStr 05 17 decStr 46.0
+        
+        // RA =     :SrHH:MM:SS# *
+        // DEC =    :SdsDD:MM:SS# *
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+      //  print("cleanValue", String(format: "%.0f", decStr))
+        let decDD = String(format: "%.0f", decStr) // -17
+        
+        
+        
+        
+        let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
+        var decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
+
+        var decDropNeg = Double(decformmDecimal)
+
+        
+        
+        
+        // drop negative sign
+        if (decDropNeg! < 0) {
+            print("decMM", 0 - decDropNeg!) // negative
+            decDropNeg! = 0 - decDropNeg!
+        } else if (decDropNeg! == 0) {
+            decDropNeg! = decDropNeg!
+        } else {
+            decDropNeg! = decDropNeg!
+        }
+        print("decMM!", decDropNeg!)
+        
+        
+        
         let raArray = raStr.split(separator: " ")
-        let decRep = "\(decStr)".replacingOccurrences(of: ".", with: ":")
         
-        
+        let decFormat = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
+        let decRep = "\(decFormat)".replacingOccurrences(of: ".", with: ":")
         
         let decArray = "\(decStr)".split(separator: ".")
-        print("first:", decArray[opt: 0]!, "seconf:", decArray[opt: 1]!)
+      //  print("first:", decArray[opt: 0]!, "seconf:", decArray[opt: 1]!)
         
-        if "\(decArray[opt: 0]!)".count < 10 && "\(decArray[opt: 0]!)".count  {
-            print("")
-        }
         
+
+        
+        
+        
+        // Add neg/pos sign then execute
         if (decStr < 0) {
-       //     print("negative")
-                triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep).0#") //Set target RA # Set target Dec
-            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sd\(decRep)#")
+            print("negative")
+            triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#") //Set target RA # Set target Dec
+            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#")
         } else if (decStr == 0) {
          //   print("zero")
         } else {
             print("positive")
-           // triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)0#") //Set target RA # Set target Dec
-            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sd+\(decRep)#") // :Sr14:07#:Sd-36:4#
-
+            triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#") //Set target RA # Set target Dec
+            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#")
         }
         
+        //:Sr05:17.0# :Sd+46:00# right
+        //:Sr05:15.0# :Sd-08:20#
+        //
+        
+        
+        //:Sr12:48.0# :Sd-59:70#
         
         
         
@@ -591,4 +633,25 @@ extension GotoObjectViewController: GCDAsyncSocketDelegate {
         clientSocket.readData(withTimeout: -1, tag: 0)
     }
     
+}
+
+
+extension Double {
+    func formatNumber(minimumIntegerDigits: Int, minimumFractionDigits: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumIntegerDigits = minimumIntegerDigits
+        numberFormatter.minimumFractionDigits = minimumFractionDigits
+        
+        return numberFormatter.string(for: self) ?? ""
+    }
+}
+
+
+extension Float
+{
+    var cleanValue: String
+    {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
 }
