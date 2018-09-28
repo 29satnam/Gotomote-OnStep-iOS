@@ -64,7 +64,9 @@ class GotoObjectViewController: UIViewController {
         
         raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
         var raSepa = raStr.split(separator: " ")
-        decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
+      //  decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
+        
+        decStr = 156.742 //+01:06:00
         
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
         
@@ -102,6 +104,8 @@ class GotoObjectViewController: UIViewController {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         
+        
+        
         let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         
         // get whole number for degree value
@@ -116,6 +120,7 @@ class GotoObjectViewController: UIViewController {
         
         //seperate degree's decimal and change to minutes
         let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
+            print("decStrDecimal", decStrDecimal) // 9.4940613925
         
         // format the mintutes value (precision correction)
         let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
@@ -136,16 +141,31 @@ class GotoObjectViewController: UIViewController {
         // double value to integer for minutes value
         let decMM = doubleToInteger(data: decDropNeg!)
         
-        // ------------------
+        // ------------------ seconds
 
         //seperate degree's decimal and change to minutes
-        let decStrDeciSec = decDropNeg!.truncatingRemainder(dividingBy: 1) * 60
+        let decStrDeciSec = decStrDecimal.truncatingRemainder(dividingBy: 1) * 60
         
         // format the mintutes value (precision correction)
         let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
+        print("decStrDeciSecPart", decStrDeciSecPart)
+        
+        
+        // drop negative sign for seconds value
+        var y = Double(decStrDeciSecPart)
+        if (y! < 0) {
+            y! = 0 - y!
+            print("dec min is neg", 0 - y!) // negative
+        } else if (y! == 0) {
+            y! = y!
+        } else {
+            y! = y! // postive
+        }
+        
+        print("yyy", y!)
         
         // double value to integer for minutes value
-        let decSS = doubleToInteger(data: Double(decStrDeciSecPart)!)
+        let decSS = doubleToInteger(data: Double(y!))
         
         // adjust formatting if degrees single value is negative
         let x = decDD
