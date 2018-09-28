@@ -11,9 +11,14 @@ import SwiftyJSON
 
 
 class SelectObjectTableViewController: UITableViewController {
-
-    var jsonObj: JSON = JSON()
     
+    // To pass
+    var jsonObj: JSON = JSON()
+    var alignType: Int = Int()
+    var vcTitle: String = String()
+    var slctdObjIndex: Int = Int()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,16 +26,33 @@ class SelectObjectTableViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black
         
-        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(goBack))
-        navigationItem.leftBarButtonItem = backButton
+      //  let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(goBack))
+      //  navigationItem.leftBarButtonItem = backButton
+        
+        let abortAlig = UIBarButtonItem(title: "Abort", style: .plain , target: self, action: #selector(abortAlignment))
+        abortAlig.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        self.navigationItem.rightBarButtonItem = abortAlig
     }
     
-    @objc func goBack(){
-        dismiss(animated: true, completion: nil)
+    @objc func abortAlignment(){
+        print("clicked")
+        self.navigationController?.popToRootViewController(animated: true)
     }
+    
+   /* @objc func goBack(){
+        dismiss(animated: true, completion: nil)
+    } */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        if let destination = segue.destination as? GotoObjectViewController {
+            
+            destination.alignTypePassed = alignType
+            destination.vcTitlePassed = vcTitle
+            destination.passedSlctdObjIndex = slctdObjIndex
+            destination.slctdJSONObj = jsonObj
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,44 +171,10 @@ class SelectObjectTableViewController: UITableViewController {
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "gotoSegue", sender: self)
+        
+        slctdObjIndex = indexPath.row
+        self.performSegue(withIdentifier: "gotoObjectSyncSegue", sender: self)
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
 
 

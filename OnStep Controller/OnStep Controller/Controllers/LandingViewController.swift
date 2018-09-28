@@ -106,6 +106,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
 
     
     @IBAction func toMessierTableView(_ sender: UIButton) {
+        
         initJSONData = grabJSONData(resource: "Messier")
         tableViewTitle = "MESSIER OBJECTS"
         self.performSegue(withIdentifier: "objectListingTableView", sender: self)
@@ -157,7 +158,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
                 destination.navigationItem.hidesBackButton = true
             }
         } else if segue.identifier == "objectListingTableView" {
-            // Pass MESSIER OBJECTS data to SelectObjectTableViewController
+            // Pass MESSIER OBJECTS data to SelectStarTableViewController
             if let destination = segue.destination as? SelectObjectTableViewController {
                 destination.title = tableViewTitle
                 destination.jsonObj = initJSONData

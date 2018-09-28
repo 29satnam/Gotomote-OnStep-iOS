@@ -10,6 +10,7 @@
 		D7028C00214BD6F1007D6B7C /* MathUtil.framework in Sources */ = {isa = PBXBuildFile; fileRef = D7E526DE214BD68900376F5E /* MathUtil.framework */; };
 		D7028C01214BD6F1007D6B7C /* SwiftyJSON.framework in Sources */ = {isa = PBXBuildFile; fileRef = D7E526DF214BD68900376F5E /* SwiftyJSON.framework */; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
+		D73BA41B215E337300913604 /* GotoObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73BA41A215E337300913604 /* GotoObjectViewController.swift */; };
 		D784C6252153698100DFB54E /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; };
 		D784C6262153698100DFB54E /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D784C6272153699F00DFB54E /* CocoaAsyncSocket.framework in Sources */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; };
@@ -32,9 +33,9 @@
 		D7E526B3214BD4D100376F5E /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526A8214BD4D100376F5E /* LandingViewController.swift */; };
 		D7E526B4214BD4D100376F5E /* BacklashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526A9214BD4D100376F5E /* BacklashViewController.swift */; };
 		D7E526B5214BD4D100376F5E /* OBSSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526AA214BD4D100376F5E /* OBSSiteViewController.swift */; };
-		D7E526B6214BD4D100376F5E /* SelectStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526AB214BD4D100376F5E /* SelectStarTableViewCell.swift */; };
+		D7E526B6214BD4D100376F5E /* SelectStarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526AB214BD4D100376F5E /* SelectStarTableViewController.swift */; };
 		D7E526B7214BD4D100376F5E /* InitiaizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526AC214BD4D100376F5E /* InitiaizeViewController.swift */; };
-		D7E526B8214BD4D100376F5E /* GotoObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526AD214BD4D100376F5E /* GotoObjectViewController.swift */; };
+		D7E526B8214BD4D100376F5E /* GotoStarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526AD214BD4D100376F5E /* GotoStarViewController.swift */; };
 		D7E526BC214BD4E000376F5E /* StarListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526BA214BD4E000376F5E /* StarListTableViewCell.swift */; };
 		D7E526BD214BD4E000376F5E /* ObjectListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526BB214BD4E000376F5E /* ObjectListTableViewCell.swift */; };
 		D7E526C2214BD50200376F5E /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526BF214BD50200376F5E /* PresenterProtocol.swift */; };
@@ -74,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D73BA41A215E337300913604 /* GotoObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoObjectViewController.swift; sourceTree = "<group>"; };
 		D764E0AB214E5BDD0070314E /* OnStep Controller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnStep Controller-Bridging-Header.h"; sourceTree = "<group>"; };
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
 		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
@@ -98,9 +100,9 @@
 		D7E526A8214BD4D100376F5E /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		D7E526A9214BD4D100376F5E /* BacklashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacklashViewController.swift; sourceTree = "<group>"; };
 		D7E526AA214BD4D100376F5E /* OBSSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBSSiteViewController.swift; sourceTree = "<group>"; };
-		D7E526AB214BD4D100376F5E /* SelectStarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectStarTableViewCell.swift; sourceTree = "<group>"; };
+		D7E526AB214BD4D100376F5E /* SelectStarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectStarTableViewController.swift; sourceTree = "<group>"; };
 		D7E526AC214BD4D100376F5E /* InitiaizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiaizeViewController.swift; sourceTree = "<group>"; };
-		D7E526AD214BD4D100376F5E /* GotoObjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GotoObjectViewController.swift; sourceTree = "<group>"; };
+		D7E526AD214BD4D100376F5E /* GotoStarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GotoStarViewController.swift; sourceTree = "<group>"; };
 		D7E526BA214BD4E000376F5E /* StarListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarListTableViewCell.swift; sourceTree = "<group>"; };
 		D7E526BB214BD4E000376F5E /* ObjectListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectListTableViewCell.swift; sourceTree = "<group>"; };
 		D7E526BF214BD50200376F5E /* PresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
@@ -136,6 +138,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D73BA41C215E37CA00913604 /* AlignAStar */ = {
+			isa = PBXGroup;
+			children = (
+				D7E526AD214BD4D100376F5E /* GotoStarViewController.swift */,
+				D7E526AB214BD4D100376F5E /* SelectStarTableViewController.swift */,
+			);
+			path = AlignAStar;
+			sourceTree = "<group>";
+		};
 		D764E0AC214E5EC00070314E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,14 +213,14 @@
 			children = (
 				D7E526B9214BD4D500376F5E /* Cells */,
 				D7E526A9214BD4D100376F5E /* BacklashViewController.swift */,
+				D73BA41C215E37CA00913604 /* AlignAStar */,
+				D7E526A4214BD4D100376F5E /* SelectObjectTableViewController.swift */,
+				D73BA41A215E337300913604 /* GotoObjectViewController.swift */,
 				D7E526AA214BD4D100376F5E /* OBSSiteViewController.swift */,
 				D7E526A8214BD4D100376F5E /* LandingViewController.swift */,
 				D7E526A3214BD4D100376F5E /* GotoMRViewController.swift */,
-				D7E526AD214BD4D100376F5E /* GotoObjectViewController.swift */,
 				D7E526AC214BD4D100376F5E /* InitiaizeViewController.swift */,
 				D7E526A7214BD4D100376F5E /* MoreOptionsTableViewController.swift */,
-				D7E526A4214BD4D100376F5E /* SelectObjectTableViewController.swift */,
-				D7E526AB214BD4D100376F5E /* SelectStarTableViewCell.swift */,
 				D7E526A5214BD4D100376F5E /* SettingsViewController.swift */,
 				D7E526A6214BD4D100376F5E /* TrackingViewController.swift */,
 			);
@@ -219,8 +230,8 @@
 		D7E526B9214BD4D500376F5E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				D7E526BB214BD4E000376F5E /* ObjectListTableViewCell.swift */,
 				D7E526BA214BD4E000376F5E /* StarListTableViewCell.swift */,
+				D7E526BB214BD4E000376F5E /* ObjectListTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -348,6 +359,7 @@
 				D7E526AE214BD4D100376F5E /* GotoMRViewController.swift in Sources */,
 				D7E526B4214BD4D100376F5E /* BacklashViewController.swift in Sources */,
 				D7E526C4214BD50200376F5E /* DataSocket.swift in Sources */,
+				D73BA41B215E337300913604 /* GotoObjectViewController.swift in Sources */,
 				D7E526D8214BD57F00376F5E /* SiderealTime.swift in Sources */,
 				D7E526A0214BD49600376F5E /* TTSegmentedControl.swift in Sources */,
 				D7E526BC214BD4E000376F5E /* StarListTableViewCell.swift in Sources */,
@@ -355,14 +367,14 @@
 				D7E526B5214BD4D100376F5E /* OBSSiteViewController.swift in Sources */,
 				D7E526D5214BD57F00376F5E /* JulianDay.swift in Sources */,
 				D7E526DC214BD57F00376F5E /* CLLocation+Transform.swift in Sources */,
-				D7E526B6214BD4D100376F5E /* SelectStarTableViewCell.swift in Sources */,
+				D7E526B6214BD4D100376F5E /* SelectStarTableViewController.swift in Sources */,
 				D7E526AF214BD4D100376F5E /* SelectObjectTableViewController.swift in Sources */,
 				D7E526B7214BD4D100376F5E /* InitiaizeViewController.swift in Sources */,
 				D7E526DD214BD57F00376F5E /* LocationAndTime.swift in Sources */,
 				D7E526C2214BD50200376F5E /* PresenterProtocol.swift in Sources */,
 				D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */,
 				D7E526B2214BD4D100376F5E /* MoreOptionsTableViewController.swift in Sources */,
-				D7E526B8214BD4D100376F5E /* GotoObjectViewController.swift in Sources */,
+				D7E526B8214BD4D100376F5E /* GotoStarViewController.swift in Sources */,
 				D7E526D9214BD57F00376F5E /* EclipticCoordinate.swift in Sources */,
 				D7E5269D214BD49600376F5E /* Constants.swift in Sources */,
 				D7E526C3214BD50200376F5E /* SocketDataManager.swift in Sources */,

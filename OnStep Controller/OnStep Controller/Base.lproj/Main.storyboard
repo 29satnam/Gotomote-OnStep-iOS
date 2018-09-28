@@ -748,7 +748,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select an alignment type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nD-br-a5a">
-                                <rect key="frame" x="27.5" y="134" width="136" height="14"/>
+                                <rect key="frame" x="27.5" y="134" width="135" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -856,7 +856,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1UF-dw-wAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031" y="1108"/>
+            <point key="canvasLocation" x="790" y="2625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8D0-VY-aww">
@@ -1114,7 +1114,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWJ-bt-yZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="839"/>
+            <point key="canvasLocation" x="262" y="-183"/>
         </scene>
         <!--Tracking View Controller-->
         <scene sceneID="2mt-v6-D3f">
@@ -1658,10 +1658,10 @@
             </objects>
             <point key="canvasLocation" x="4084" y="1159.9700149925038"/>
         </scene>
-        <!--Goto Object View Controller-->
+        <!--Goto Star View Controller-->
         <scene sceneID="Xuj-Gs-MHa">
             <objects>
-                <viewController id="3qm-Df-FnM" customClass="GotoObjectViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3qm-Df-FnM" customClass="GotoStarViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aKS-IT-vnR"/>
                         <viewControllerLayoutGuide type="bottom" id="BeM-XG-g62"/>
@@ -1966,7 +1966,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZq-OO-uSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261.60000000000002" y="2634.3328335832084"/>
+            <point key="canvasLocation" x="382" y="3481"/>
         </scene>
         <!--Select Object Table View Controller-->
         <scene sceneID="Vzi-Hg-Twp">
@@ -2040,10 +2040,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="TfT-tK-Clu"/>
+                    <connections>
+                        <segue destination="AKt-JE-OEK" kind="show" identifier="gotoObjectSyncSegue" id="hUV-zh-x1C"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdq-ZU-k1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1802" y="1022"/>
+            <point key="canvasLocation" x="228" y="688"/>
         </scene>
         <!--Select Star Table View Controller-->
         <scene sceneID="H2e-N7-Oi9">
@@ -2132,7 +2135,315 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiQ-Kv-6Jj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1522" y="1779"/>
+            <point key="canvasLocation" x="1641" y="2625"/>
+        </scene>
+        <!--Goto Object View Controller-->
+        <scene sceneID="VF6-kO-mgG">
+            <objects>
+                <viewController id="AKt-JE-OEK" customClass="GotoObjectViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PDQ-Yn-fSm"/>
+                        <viewControllerLayoutGuide type="bottom" id="ktS-ua-ynQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vB5-Iq-P6P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orF-m3-2ad">
+                                <rect key="frame" x="28" y="301.5" width="155" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="GOTO">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="gotoBtn:" destination="AKt-JE-OEK" eventType="touchUpInside" id="3Qa-al-1r3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAN-q6-N45">
+                                <rect key="frame" x="192" y="301.5" width="155" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Abort">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="abortBtn:" destination="AKt-JE-OEK" eventType="touchUpInside" id="hKR-Zk-8r9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alpha Canis Majoris" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-17-xOO">
+                                <rect key="frame" x="28" y="43" width="110.5" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="DEC = -16.7" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNG-oe-Xc0">
+                                <rect key="frame" x="28" y="101.5" width="64" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Visual Magnitude = -1.46" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQO-R8-8ml">
+                                <rect key="frame" x="28" y="174" width="134" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Altitude" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOa-Zo-EET">
+                                <rect key="frame" x="306" y="77.5" width="41" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance = 9 ly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRk-F3-hVq">
+                                <rect key="frame" x="28" y="125.5" width="94.5" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Above Horizon? =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCc-Ub-dXU">
+                                <rect key="frame" x="28" y="150" width="94.5" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMe-KM-6R7">
+                                <rect key="frame" x="72" y="547" width="37.5" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sirius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffr-3p-E2t">
+                                <rect key="frame" x="315.5" y="43" width="31.5" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGA-58-zzp">
+                                <rect key="frame" x="28" y="384.5" width="104" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" image="leftArrow">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="previousObject:" destination="AKt-JE-OEK" eventType="touchUpInside" id="CpI-uf-WHa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h6-s8-NZP">
+                                <rect key="frame" x="28" y="477" width="104" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Rev. NS">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reverseNS:" destination="AKt-JE-OEK" eventType="touchUpInside" id="awz-b2-obV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u17-nf-QlL">
+                                <rect key="frame" x="135.5" y="430.5" width="104" height="42.5"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Sync">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="alignAction:" destination="AKt-JE-OEK" eventType="touchUpInside" id="n9j-Ko-Th9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QV9-qN-jpy">
+                                <rect key="frame" x="243" y="384.5" width="104" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" image="rightArrow">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextObject:" destination="AKt-JE-OEK" eventType="touchUpInside" id="6We-IJ-J7p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvJ-to-rfh">
+                                <rect key="frame" x="135.5" y="384.5" width="104" height="42"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="North">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pvq-oQ-uao">
+                                <rect key="frame" x="243" y="430.5" width="104" height="42.5"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="East">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uyg-Wh-iHq">
+                                <rect key="frame" x="28" y="430.5" width="104" height="42.5"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="West">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYh-ad-lqX">
+                                <rect key="frame" x="135.5" y="477" width="104" height="42"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="South">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftT-AM-Um2">
+                                <rect key="frame" x="28" y="539" width="30" height="30"/>
+                                <state key="normal" image="lock"/>
+                                <connections>
+                                    <action selector="lockButtons:" destination="AKt-JE-OEK" eventType="touchUpInside" id="8FL-Ga-E27"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="CTh-qj-XQp">
+                                <rect key="frame" x="139" y="539" width="210" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="AKt-JE-OEK" eventType="valueChanged" id="laj-cf-JoL"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlO-2O-cqM">
+                                <rect key="frame" x="243" y="477" width="104" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Rev. EW">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="reverseEW:" destination="AKt-JE-OEK" eventType="touchUpInside" id="uGr-0B-OVw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="RA = 06h 45m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2b-kq-aax">
+                                <rect key="frame" x="28" y="77.5" width="78" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Azimuth" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjv-VB-SCS">
+                                <rect key="frame" x="303" y="101.5" width="44" height="14"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krX-md-ILU">
+                                <rect key="frame" x="323" y="12" width="42" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Stop">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopScope:" destination="AKt-JE-OEK" eventType="touchUpInside" id="pwf-Fy-n8c"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kYh-ad-lqX" firstAttribute="centerX" secondItem="u17-nf-QlL" secondAttribute="centerX" id="1KA-Ad-9zL"/>
+                            <constraint firstItem="WGA-58-zzp" firstAttribute="width" secondItem="vB5-Iq-P6P" secondAttribute="width" multiplier="0.277333" id="1MS-YL-8wx"/>
+                            <constraint firstItem="xlO-2O-cqM" firstAttribute="width" secondItem="Pvq-oQ-uao" secondAttribute="width" id="1TV-tF-Ase"/>
+                            <constraint firstItem="LQO-R8-8ml" firstAttribute="leading" secondItem="hNG-oe-Xc0" secondAttribute="leading" id="2ye-8x-odL"/>
+                            <constraint firstItem="2h6-s8-NZP" firstAttribute="width" secondItem="Uyg-Wh-iHq" secondAttribute="width" id="3jh-iN-BFv"/>
+                            <constraint firstItem="kMe-KM-6R7" firstAttribute="centerY" secondItem="ftT-AM-Um2" secondAttribute="centerY" id="4q8-9W-tZk"/>
+                            <constraint firstItem="O2b-kq-aax" firstAttribute="leading" secondItem="Yfg-17-xOO" secondAttribute="leading" id="59P-21-QQ7"/>
+                            <constraint firstItem="Pvq-oQ-uao" firstAttribute="width" secondItem="QV9-qN-jpy" secondAttribute="width" id="6Qd-9P-b7j"/>
+                            <constraint firstItem="orF-m3-2ad" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="1.06977" id="6bQ-RT-JYB"/>
+                            <constraint firstItem="hNG-oe-Xc0" firstAttribute="leading" secondItem="O2b-kq-aax" secondAttribute="leading" id="6qg-Hh-itt"/>
+                            <constraint firstItem="Uyg-Wh-iHq" firstAttribute="width" secondItem="WGA-58-zzp" secondAttribute="width" id="87R-wt-vrn"/>
+                            <constraint firstItem="QV9-qN-jpy" firstAttribute="width" secondItem="bvJ-to-rfh" secondAttribute="width" id="87f-bp-Ghd"/>
+                            <constraint firstItem="u17-nf-QlL" firstAttribute="centerY" secondItem="Uyg-Wh-iHq" secondAttribute="centerY" id="945-iA-LJT"/>
+                            <constraint firstItem="WGA-58-zzp" firstAttribute="height" secondItem="orF-m3-2ad" secondAttribute="height" id="9TQ-ub-gGe"/>
+                            <constraint firstItem="CTh-qj-XQp" firstAttribute="width" secondItem="vB5-Iq-P6P" secondAttribute="width" multiplier="0.549333" id="B1o-7H-FRb"/>
+                            <constraint firstItem="xlO-2O-cqM" firstAttribute="centerX" secondItem="Pvq-oQ-uao" secondAttribute="centerX" id="CGv-oo-OHC"/>
+                            <constraint firstItem="Yfg-17-xOO" firstAttribute="centerY" secondItem="Ffr-3p-E2t" secondAttribute="centerY" id="DDs-KW-5de"/>
+                            <constraint firstItem="bvJ-to-rfh" firstAttribute="width" secondItem="WGA-58-zzp" secondAttribute="width" id="DFJ-oC-cd7"/>
+                            <constraint firstItem="orF-m3-2ad" firstAttribute="width" secondItem="vB5-Iq-P6P" secondAttribute="width" multiplier="0.413333" id="Ddx-09-od5"/>
+                            <constraint firstItem="orF-m3-2ad" firstAttribute="centerX" secondItem="vB5-Iq-P6P" secondAttribute="centerX" multiplier="0.562667" id="Du8-Uq-Dka"/>
+                            <constraint firstItem="JCc-Ub-dXU" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="0.52" id="FDp-Gr-Pmk"/>
+                            <constraint firstItem="kMe-KM-6R7" firstAttribute="leading" secondItem="ftT-AM-Um2" secondAttribute="trailing" constant="14" id="HWN-Ro-igV"/>
+                            <constraint firstItem="kYh-ad-lqX" firstAttribute="centerY" secondItem="2h6-s8-NZP" secondAttribute="centerY" id="HWS-qj-zhY"/>
+                            <constraint firstItem="u17-nf-QlL" firstAttribute="width" secondItem="bvJ-to-rfh" secondAttribute="width" id="Jpl-OQ-IWm"/>
+                            <constraint firstItem="QV9-qN-jpy" firstAttribute="trailing" secondItem="lAN-q6-N45" secondAttribute="trailing" id="K4J-u4-DXB"/>
+                            <constraint firstItem="O2b-kq-aax" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="0.28" id="LEp-8G-bcg"/>
+                            <constraint firstItem="Yfg-17-xOO" firstAttribute="leading" secondItem="orF-m3-2ad" secondAttribute="leading" id="LiI-US-vUF"/>
+                            <constraint firstItem="kYh-ad-lqX" firstAttribute="width" secondItem="u17-nf-QlL" secondAttribute="width" id="NLF-PS-62M"/>
+                            <constraint firstItem="QV9-qN-jpy" firstAttribute="height" secondItem="bvJ-to-rfh" secondAttribute="height" id="OaG-16-1G2"/>
+                            <constraint firstItem="lAN-q6-N45" firstAttribute="width" secondItem="orF-m3-2ad" secondAttribute="width" id="OmR-uk-tJK"/>
+                            <constraint firstItem="Pvq-oQ-uao" firstAttribute="centerX" secondItem="QV9-qN-jpy" secondAttribute="centerX" id="P7V-VN-Yw5"/>
+                            <constraint firstItem="u17-nf-QlL" firstAttribute="centerX" secondItem="bvJ-to-rfh" secondAttribute="centerX" id="PJe-V5-mjc"/>
+                            <constraint firstItem="CTh-qj-XQp" firstAttribute="centerY" secondItem="ftT-AM-Um2" secondAttribute="centerY" id="PcC-gk-YnO"/>
+                            <constraint firstItem="2h6-s8-NZP" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="1.65116" id="PxW-DJ-Y56"/>
+                            <constraint firstItem="gjv-VB-SCS" firstAttribute="trailing" secondItem="UOa-Zo-EET" secondAttribute="trailing" id="Ql5-J6-wv5"/>
+                            <constraint firstItem="hNG-oe-Xc0" firstAttribute="centerY" secondItem="gjv-VB-SCS" secondAttribute="centerY" id="S9l-KO-1m6"/>
+                            <constraint firstItem="hNG-oe-Xc0" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="0.36" id="Tu0-DV-5p5"/>
+                            <constraint firstItem="lAN-q6-N45" firstAttribute="centerY" secondItem="orF-m3-2ad" secondAttribute="centerY" id="UVO-hW-hkP"/>
+                            <constraint firstItem="bvJ-to-rfh" firstAttribute="height" secondItem="WGA-58-zzp" secondAttribute="height" id="Ub9-H4-Em5"/>
+                            <constraint firstItem="Uyg-Wh-iHq" firstAttribute="centerX" secondItem="WGA-58-zzp" secondAttribute="centerX" id="V0Q-xH-nrB"/>
+                            <constraint firstItem="xlO-2O-cqM" firstAttribute="height" secondItem="Pvq-oQ-uao" secondAttribute="height" id="Wc6-eX-LPO"/>
+                            <constraint firstItem="2h6-s8-NZP" firstAttribute="height" secondItem="Uyg-Wh-iHq" secondAttribute="height" id="X7Q-Ek-OcS"/>
+                            <constraint firstItem="lAN-q6-N45" firstAttribute="height" secondItem="orF-m3-2ad" secondAttribute="height" id="XKn-Ah-X8d"/>
+                            <constraint firstItem="bvJ-to-rfh" firstAttribute="centerY" secondItem="WGA-58-zzp" secondAttribute="centerY" id="XLQ-NY-Ayv"/>
+                            <constraint firstItem="O2b-kq-aax" firstAttribute="centerY" secondItem="UOa-Zo-EET" secondAttribute="centerY" id="Xow-C4-RJh"/>
+                            <constraint firstItem="Uyg-Wh-iHq" firstAttribute="height" secondItem="WGA-58-zzp" secondAttribute="height" id="Xqk-4n-zab"/>
+                            <constraint firstItem="Pvq-oQ-uao" firstAttribute="centerY" secondItem="u17-nf-QlL" secondAttribute="centerY" id="Yb7-R2-oZr"/>
+                            <constraint firstItem="cRk-F3-hVq" firstAttribute="leading" secondItem="LQO-R8-8ml" secondAttribute="leading" id="ZPH-bB-3Gc"/>
+                            <constraint firstItem="Uyg-Wh-iHq" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="1.49834" id="agl-dU-9W1"/>
+                            <constraint firstItem="ftT-AM-Um2" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="1.83721" id="btR-tA-2HT"/>
+                            <constraint firstItem="lAN-q6-N45" firstAttribute="trailing" secondItem="Ffr-3p-E2t" secondAttribute="trailing" id="dCP-qp-RKD"/>
+                            <constraint firstItem="kYh-ad-lqX" firstAttribute="height" secondItem="u17-nf-QlL" secondAttribute="height" id="g2R-Yp-agH"/>
+                            <constraint firstItem="WGA-58-zzp" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="1.34551" id="h6A-gj-bgW"/>
+                            <constraint firstItem="Pvq-oQ-uao" firstAttribute="height" secondItem="QV9-qN-jpy" secondAttribute="height" id="hMt-qS-sKX"/>
+                            <constraint firstItem="JCc-Ub-dXU" firstAttribute="leading" secondItem="cRk-F3-hVq" secondAttribute="leading" id="i3d-CP-ZbK"/>
+                            <constraint firstItem="QV9-qN-jpy" firstAttribute="centerY" secondItem="bvJ-to-rfh" secondAttribute="centerY" id="i48-k0-cct"/>
+                            <constraint firstItem="lAN-q6-N45" firstAttribute="centerX" secondItem="vB5-Iq-P6P" secondAttribute="centerX" multiplier="1.43733" id="iLo-Lf-smb"/>
+                            <constraint firstItem="bvJ-to-rfh" firstAttribute="centerX" secondItem="vB5-Iq-P6P" secondAttribute="centerX" id="kpJ-5n-XWt"/>
+                            <constraint firstItem="2h6-s8-NZP" firstAttribute="centerX" secondItem="Uyg-Wh-iHq" secondAttribute="centerX" id="m23-6H-Rkw"/>
+                            <constraint firstItem="ftT-AM-Um2" firstAttribute="leading" secondItem="2h6-s8-NZP" secondAttribute="leading" id="mnk-AL-Nmt"/>
+                            <constraint firstItem="xlO-2O-cqM" firstAttribute="centerY" secondItem="kYh-ad-lqX" secondAttribute="centerY" id="n3W-0Y-Ieg"/>
+                            <constraint firstItem="UOa-Zo-EET" firstAttribute="trailing" secondItem="Ffr-3p-E2t" secondAttribute="trailing" id="oqE-0q-G7e"/>
+                            <constraint firstItem="orF-m3-2ad" firstAttribute="height" secondItem="vB5-Iq-P6P" secondAttribute="height" multiplier="0.0697674" id="pw7-WV-ZD7"/>
+                            <constraint firstItem="u17-nf-QlL" firstAttribute="height" secondItem="bvJ-to-rfh" secondAttribute="height" id="rmf-T5-sJX"/>
+                            <constraint firstItem="JCc-Ub-dXU" firstAttribute="trailing" secondItem="cRk-F3-hVq" secondAttribute="trailing" id="rs4-pp-JQu"/>
+                            <constraint firstItem="Yfg-17-xOO" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="0.166113" id="u3R-zz-4B8"/>
+                            <constraint firstItem="LQO-R8-8ml" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="0.6" id="wsa-BR-ZGa"/>
+                            <constraint firstItem="WGA-58-zzp" firstAttribute="leading" secondItem="orF-m3-2ad" secondAttribute="leading" id="xkE-um-gjP"/>
+                            <constraint firstItem="cRk-F3-hVq" firstAttribute="centerY" secondItem="vB5-Iq-P6P" secondAttribute="centerY" multiplier="0.44" id="ybq-EA-HF4"/>
+                            <constraint firstItem="CTh-qj-XQp" firstAttribute="trailing" secondItem="Pvq-oQ-uao" secondAttribute="trailing" id="zoE-xk-gad"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yh6-cN-nhY"/>
+                    <connections>
+                        <outlet property="abortBtn" destination="lAN-q6-N45" id="too-g7-KKD"/>
+                        <outlet property="aboveHorizon" destination="JCc-Ub-dXU" id="AyX-qM-cro"/>
+                        <outlet property="alignBtn" destination="u17-nf-QlL" id="Y2g-SA-LTd"/>
+                        <outlet property="altitude" destination="UOa-Zo-EET" id="Fee-2y-WJL"/>
+                        <outlet property="azimuth" destination="gjv-VB-SCS" id="CHT-j6-LEf"/>
+                        <outlet property="dec" destination="hNG-oe-Xc0" id="3cm-0r-NY7"/>
+                        <outlet property="dist" destination="cRk-F3-hVq" id="1t3-qq-eGX"/>
+                        <outlet property="eastBtn" destination="Pvq-oQ-uao" id="8aB-cu-6Pg"/>
+                        <outlet property="gotoBtn" destination="orF-m3-2ad" id="QwB-hN-r0w"/>
+                        <outlet property="leftArrowBtn" destination="WGA-58-zzp" id="bAs-QR-9nR"/>
+                        <outlet property="longName" destination="Yfg-17-xOO" id="bD4-pS-i76"/>
+                        <outlet property="northBtn" destination="bvJ-to-rfh" id="NzE-BX-zgI"/>
+                        <outlet property="ra" destination="O2b-kq-aax" id="kfZ-DS-IXt"/>
+                        <outlet property="revEWBtn" destination="xlO-2O-cqM" id="qKj-v0-Ga6"/>
+                        <outlet property="revNSBtn" destination="2h6-s8-NZP" id="YCu-ft-VnJ"/>
+                        <outlet property="rightArrowBtn" destination="QV9-qN-jpy" id="rJZ-eN-83A"/>
+                        <outlet property="shortName" destination="Ffr-3p-E2t" id="Azy-MO-URZ"/>
+                        <outlet property="southBtn" destination="kYh-ad-lqX" id="Kb3-4L-9YU"/>
+                        <outlet property="speedSlider" destination="CTh-qj-XQp" id="NNv-1B-W9c"/>
+                        <outlet property="vMag" destination="LQO-R8-8ml" id="zFZ-BE-4ar"/>
+                        <outlet property="westBtn" destination="Uyg-Wh-iHq" id="TiA-BH-v4W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pxW-sO-Eah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="262" y="1437"/>
         </scene>
     </scenes>
     <resources>

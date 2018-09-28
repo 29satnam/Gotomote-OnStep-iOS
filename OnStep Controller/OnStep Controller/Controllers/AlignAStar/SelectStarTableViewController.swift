@@ -44,7 +44,7 @@ class SelectStarTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        if let destination = segue.destination as? GotoObjectViewController {
+        if let destination = segue.destination as? GotoStarViewController {
 
             destination.alignTypePassed = alignType
             destination.vcTitlePassed = vcTitle

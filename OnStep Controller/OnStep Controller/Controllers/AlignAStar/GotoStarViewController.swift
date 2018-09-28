@@ -1,5 +1,5 @@
 //
-//  GotoObjectViewController.swift
+//  GotoStarViewController.swift
 //  OnStep Controller
 //
 //  Created by Satnam on 7/28/18.
@@ -13,11 +13,11 @@ import SpaceTime
 import MathUtil
 import CocoaAsyncSocket
 
-class GotoObjectViewController: UIViewController {
-    
+class GotoStarViewController: UIViewController {
+
     var socketConnector: SocketDataManager!
     var clientSocket: GCDAsyncSocket!
-    
+
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
     
@@ -26,7 +26,7 @@ class GotoObjectViewController: UIViewController {
     @IBOutlet var revNSBtn: UIButton!
     @IBOutlet var revEWBtn: UIButton!
     @IBOutlet var alignBtn: UIButton!
-    
+
     @IBOutlet var northBtn: UIButton!
     @IBOutlet var southBtn: UIButton!
     @IBOutlet var westBtn: UIButton!
@@ -53,10 +53,11 @@ class GotoObjectViewController: UIViewController {
     @IBOutlet var dist: UILabel!
     @IBOutlet var aboveHorizon: UILabel!
     
-    var slctdJSONObj: JSON = JSON()
+    var slctdJSONObj = grabJSONData(resource: "Bright Stars")
+    
     var raStr: String = String()
     var decStr: Double = Double()
-    
+
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     @objc func screenUpdate() {
@@ -81,9 +82,9 @@ class GotoObjectViewController: UIViewController {
     }
     
     //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
-    
+
     @IBAction func gotoBtn(_ sender: UIButton) {
-        
+
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         
@@ -92,11 +93,11 @@ class GotoObjectViewController: UIViewController {
         let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         
         // get whole number for degree value
-        // let decDD = floor(Double(decForm)!)
+       // let decDD = floor(Double(decForm)!)
         let decDD = doubleToInteger(data: (Double(decForm)!))
+
         
-        
-        //     print("decStr", decStr, "decForm", decForm, "decDD", decDD)
+   //     print("decStr", decStr, "decForm", decForm, "decDD", decDD)
         
         
         //----------------
@@ -108,13 +109,13 @@ class GotoObjectViewController: UIViewController {
         // format the mintutes value (precision correction)
         let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
         
-        //     print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+   //     print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
         
         // drop negative sign for minute value
         var x = Double(decformmDecimal)
         if (x! < 0) {
             x! = 0 - x!
-            //   print("dec min is neg", 0 - x!) // negative
+         //   print("dec min is neg", 0 - x!) // negative
         } else if (x! == 0) {
             x! = x!
         } else {
@@ -125,27 +126,27 @@ class GotoObjectViewController: UIViewController {
         let decMM = doubleToInteger(data: x!)
         
         // ------------------ seconds
-        
+
         //seperate degree's decimal and change to minutes
         let decStrDeciSec = decStrDecimal.truncatingRemainder(dividingBy: 1) * 60
         
         // format the mintutes value (precision correction)
         let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
-        //  print("decStrDeciSecPart", decStrDeciSecPart)
+      //  print("decStrDeciSecPart", decStrDeciSecPart)
         
         
         // drop negative sign for seconds value
         var y = Double(decStrDeciSecPart)
         if (y! < 0) {
             y! = 0 - y!
-            //   print("dec min is neg", 0 - y!) // negative
+         //   print("dec min is neg", 0 - y!) // negative
         } else if (y! == 0) {
             y! = y!
         } else {
             y! = y! // postive
         }
         
-        //  print("yyy", y!)
+      //  print("yyy", y!)
         var decString: String = String()
         // double value to integer for minutes value
         let decSS = doubleToInteger(data: Double(y!.rounded())) // round off
@@ -154,59 +155,59 @@ class GotoObjectViewController: UIViewController {
         let z = decDD
         if (z < 0) {
             decString = String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)
-            //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
+        //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
         } else if (z == 0) {
             decString = String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
-            //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+        //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
         } else {
             decString = String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
-            //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
-            
+         //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
+
         }
         
         //-------------------
         
         let raArray = raStr.split(separator: " ")
         
-        /*      let decFormat = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
-         let decRep = "\(decFormat)".replacingOccurrences(of: ".", with: ":")
-         
-         let decArray = "\(decStr)".split(separator: ".")
-         
-         */
+  /*      let decFormat = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
+        let decRep = "\(decFormat)".replacingOccurrences(of: ".", with: ":")
+        
+        let decArray = "\(decStr)".split(separator: ".")
+ 
+        */
         
         triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#") //Set target RA # Set target Dec
         print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#")
         
         
         
-        /*       // Add neg/pos sign then execute
-         if (decStr < 0) {
-         print("negative")
-         triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#") //Set target RA # Set target Dec
-         print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#")
-         } else if (decStr == 0) {
+ /*       // Add neg/pos sign then execute
+        if (decStr < 0) {
+            print("negative")
+            triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#") //Set target RA # Set target Dec
+            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#")
+        } else if (decStr == 0) {
          //   print("zero")
-         } else {
-         print("positive")
-         triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#") //Set target RA # Set target Dec
-         print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#")
-         }
-         
-         //:Sr05:17.0# :Sd+46:00# right
-         //:Sr05:15.0# :Sd-08:20#
-         //
-         
-         
-         //:Sr12:48.0# :Sd-59:70#
-         
-         
-         
-         
-         
-         //  print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sds\(decRep)#") // :SrHH:MM#:Sd
-         //  triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:SdsDD:MM:SS#") //Set target RA # Set target Dec
-         */
+        } else {
+            print("positive")
+            triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#") //Set target RA # Set target Dec
+            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#")
+        }
+        
+        //:Sr05:17.0# :Sd+46:00# right
+        //:Sr05:15.0# :Sd-08:20#
+        //
+        
+        
+        //:Sr12:48.0# :Sd-59:70#
+        
+        
+        
+        
+        
+      //  print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sds\(decRep)#") // :SrHH:MM#:Sd
+      //  triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:SdsDD:MM:SS#") //Set target RA # Set target Dec
+*/
     }
     
     // Mark: Slider - Increase Speed
@@ -217,7 +218,7 @@ class GotoObjectViewController: UIViewController {
     
     // Mark: Slider - Increase Speed
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        
+
         switch Int(sender.value) {
         case 0:
             triggerConnection(cmd: ":R0#")
@@ -242,7 +243,7 @@ class GotoObjectViewController: UIViewController {
         default:
             print("sero")
         }
-        
+
     }
     
     
@@ -283,13 +284,13 @@ class GotoObjectViewController: UIViewController {
         
         let displayLink = CADisplayLink(target: self, selector: #selector(screenUpdate))
         displayLink.add(to: .main, forMode: RunLoop.Mode.default)
-        
+
     }
     
-    
+
     //Mark: Show next object action
     @IBAction func nextObject(_ sender: UIButton) {
-        //     print("passedSlctdObjIndex:", passedSlctdObjIndex, "slctdJSONObj.count:", slctdJSONObj.count - 1)
+   //     print("passedSlctdObjIndex:", passedSlctdObjIndex, "slctdJSONObj.count:", slctdJSONObj.count - 1)
         if passedSlctdObjIndex >= slctdJSONObj.count - 1 {
             
             let alertController = UIAlertController(title: "Wait!", message: "You've reached at end of list.", preferredStyle: UIAlertController.Style.alert)
@@ -364,9 +365,9 @@ class GotoObjectViewController: UIViewController {
         eastBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
         
         speedSlider.tintColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
-        
+
         // Do any additional setup after loading the view.
-        
+
         navigationItem.title = vcTitlePassed
         
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
@@ -385,11 +386,11 @@ class GotoObjectViewController: UIViewController {
         }
         
         // Short Name
-        if (slctdJSONObj[passedSlctdObjIndex]["OBJECT"]) == "" {
+        if (slctdJSONObj[passedSlctdObjIndex]["NAME"]) == "" {
             shortName.text = "N/A "
             
         } else {
-            shortName.text = "\(slctdJSONObj[passedSlctdObjIndex]["OBJECT"].stringValue) "
+            shortName.text = "\(slctdJSONObj[passedSlctdObjIndex]["NAME"].stringValue) "
         }
         
         // RA
@@ -411,32 +412,32 @@ class GotoObjectViewController: UIViewController {
             if slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue.truncatingRemainder(dividingBy: 1) == 0 {
                 print("it's an intege")
                 dec.text = "DEC = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["DEC"].numberValue)!)" + "°"
-                
+
             } else {
                 dec.text = "DEC = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["DEC"].numberValue)!.replacingOccurrences(of: ".", with: "° "))" + "'"
-                
+
             }
             
             let value = (slctdJSONObj[passedSlctdObjIndex]["DEC"]).numberValue
             let int = floor(Double(truncating: value))
             let decimal = Double(truncating: value).truncatingRemainder(dividingBy: 1)
             print("int:", int, "deci:", decimal)
-            
+
             // round off fix
         }
         
         // VMag
-        if (slctdJSONObj[passedSlctdObjIndex]["MAG"]) == "" {
+        if (slctdJSONObj[passedSlctdObjIndex]["VMAG"]) == "" {
             vMag.text = "Visual Magnitude = N/A"
         } else {
-            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["MAG"].numberValue)!) "
+            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["VMAG"].numberValue)!) "
         }
         
         // Distance
-        if (slctdJSONObj[passedSlctdObjIndex]["CLASS"]) == "" {
-            dist.text = "CLASS = N/A "
+        if (slctdJSONObj[passedSlctdObjIndex]["DISTLY"]) == "" {
+            dist.text = "Distance = N/A "
         } else {
-            dist.text = "CLASS = \(slctdJSONObj[passedSlctdObjIndex]["CLASS"].doubleValue)"
+            dist.text = "Distance = \(slctdJSONObj[passedSlctdObjIndex]["DISTLY"].doubleValue) ly"
         }
     }
     
@@ -446,7 +447,7 @@ class GotoObjectViewController: UIViewController {
         
         return stringToInteger
     }
-    
+
     // Align the Star
     @IBAction func alignAction(_ sender: UIButton) {
         triggerConnection(cmd: ":A+#")
@@ -499,7 +500,7 @@ class GotoObjectViewController: UIViewController {
         triggerConnection(cmd: ":Mn#")
         print("moveToNorth")
     }
-    
+
     @objc func stopToNorth(_ sender: UIButton) {
         triggerConnection(cmd: ":Qn#")
         print("stopToNorth")
@@ -512,7 +513,7 @@ class GotoObjectViewController: UIViewController {
     }
     
     @objc func stopToSouth() {
-        triggerConnection(cmd: ":Qs#")
+       triggerConnection(cmd: ":Qs#")
         print("stopToSouth")
     }
     
@@ -523,13 +524,13 @@ class GotoObjectViewController: UIViewController {
     }
     
     @objc func stopToWest() {
-        triggerConnection(cmd: ":Qw#")
+       triggerConnection(cmd: ":Qw#")
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-        triggerConnection(cmd: ":Me#")
+       triggerConnection(cmd: ":Me#")
         print("moveToEast")
     }
     
@@ -541,10 +542,10 @@ class GotoObjectViewController: UIViewController {
     // Stop
     @IBAction func stopScope(_ sender: Any) {
         triggerConnection(cmd: ":Q#")
-        //   print("stopScope")
+     //   print("stopScope")
         //    :T+#
-        //    triggerConnection(cmd: ":R9#")
-        
+       //    triggerConnection(cmd: ":R9#")
+
     }
     
     
@@ -566,7 +567,7 @@ class GotoObjectViewController: UIViewController {
                 //north targets south
                 self.northBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
                 self.northBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
-                
+
             } else {
                 self.northBtn.setTitle("North", for: .normal)
                 self.southBtn.setTitle("South", for: .normal)
@@ -578,7 +579,7 @@ class GotoObjectViewController: UIViewController {
                 //south targets south
                 self.southBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
                 self.southBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
-                
+
             }
         }
         
@@ -646,7 +647,7 @@ class GotoObjectViewController: UIViewController {
             self.revEWBtn.isUserInteractionEnabled = activate
             self.alignBtn.isUserInteractionEnabled = activate
             self.speedSlider.isUserInteractionEnabled = activate
-            
+
         }
     }
     
@@ -657,7 +658,7 @@ class GotoObjectViewController: UIViewController {
 }
 
 
-extension GotoObjectViewController: GCDAsyncSocketDelegate {
+extension GotoStarViewController: GCDAsyncSocketDelegate {
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         print("Disconnected Called: ", err?.localizedDescription as Any)
@@ -679,10 +680,57 @@ extension GotoObjectViewController: GCDAsyncSocketDelegate {
         
         clientSocket.readData(withTimeout: -1, tag: 0)
     }
-
+    
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let text = String(data: data, encoding: .utf8)
         print("didRead:", text!)
         clientSocket.readData(withTimeout: -1, tag: 0)
     }
+    
+}
+
+
+extension Double {
+    func formatNumber(minimumIntegerDigits: Int, minimumFractionDigits: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumIntegerDigits = minimumIntegerDigits
+        numberFormatter.minimumFractionDigits = minimumFractionDigits
+        
+        return numberFormatter.string(for: self) ?? ""
+    }
+}
+
+
+extension Float
+{
+    var cleanValue: String
+    {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+}
+
+
+extension Double {
+    
+    func splitIntoParts(decimalPlaces: Int, round: Bool) -> (leftPart: Int, rightPart: Int) {
+        
+        var number = self
+        if round {
+            //round to specified number of decimal places:
+            let divisor = pow(10.0, Double(decimalPlaces))
+            number = Darwin.round(self * divisor) / divisor
+        }
+        
+        //convert to string and split on decimal point:
+        let parts = String(number).components(separatedBy: ".")
+        
+        //extract left and right parts:
+        let leftPart = Int(parts[0]) ?? 0
+        let rightPart = Int(parts[1]) ?? 0
+        
+        return(leftPart, rightPart)
+        
+    }
+    
 }
