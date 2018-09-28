@@ -83,6 +83,13 @@ class GotoObjectViewController: UIViewController {
     //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
 
     @IBAction func gotoBtn(_ sender: UIButton) {
+        
+        /*
+        let number:Double = 45
+        let parts = number.splitIntoParts(decimalPlaces: 3, round: false)
+        let more = String(format: "%02d", parts.leftPart)
+        print("LeftPart: \(more) RightPart: \(parts.rightPart)")
+        */
         //   triggerConnection(cmd: ":Sd-23:12:12#")
         // triggerConnection(cmd: ":Sa-23:12:12#")
         //  triggerConnection(cmd: ":Gd#")
@@ -95,32 +102,63 @@ class GotoObjectViewController: UIViewController {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         
-      //  print("cleanValue", String(format: "%.0f", decStr))
-        let decDD = String(format: "%.0f", decStr) // -17
+        let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
+        
+        // get whole number for degree value
+       // let decDD = floor(Double(decForm)!)
+        let decDD = doubleToInteger(data: (Double(decForm)!))
+
+        
+        print("decStr", decStr, "decForm", decForm, "decDD", decDD)
         
         
+        //----------------
         
-        
+        //seperate degree's decimal and change to minutes
         let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
-        var decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
-
+        
+        // format the mintutes value (precision correction)
+        let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
+        
+        print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+        
+        // drop negative sign for minute value
         var decDropNeg = Double(decformmDecimal)
-
-        
-        
-        
-        // drop negative sign
         if (decDropNeg! < 0) {
-            print("decMM", 0 - decDropNeg!) // negative
             decDropNeg! = 0 - decDropNeg!
+            print("dec min is neg", 0 - decDropNeg!) // negative
         } else if (decDropNeg! == 0) {
             decDropNeg! = decDropNeg!
         } else {
-            decDropNeg! = decDropNeg!
+            decDropNeg! = decDropNeg! // postive
         }
-        print("decMM!", decDropNeg!)
         
+        // double value to integer for minutes value
+        let decMM = doubleToInteger(data: decDropNeg!)
         
+        // ------------------
+
+        //seperate degree's decimal and change to minutes
+        let decStrDeciSec = decDropNeg!.truncatingRemainder(dividingBy: 1) * 60
+        
+        // format the mintutes value (precision correction)
+        let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
+        
+        // double value to integer for minutes value
+        let decSS = doubleToInteger(data: Double(decStrDeciSecPart)!)
+        
+        // adjust formatting if degrees single value is negative
+        let x = decDD
+        if (x < 0) {
+            print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
+        } else if (x == 0) {
+            print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+        } else {
+            print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
+
+        }
+        
+        //-------------------
         
         let raArray = raStr.split(separator: " ")
         
@@ -128,7 +166,6 @@ class GotoObjectViewController: UIViewController {
         let decRep = "\(decFormat)".replacingOccurrences(of: ".", with: ":")
         
         let decArray = "\(decStr)".split(separator: ".")
-      //  print("first:", decArray[opt: 0]!, "seconf:", decArray[opt: 1]!)
         
         
 
@@ -376,7 +413,8 @@ class GotoObjectViewController: UIViewController {
             let int = floor(Double(truncating: value))
             let decimal = Double(truncating: value).truncatingRemainder(dividingBy: 1)
             print("int:", int, "deci:", decimal)
-            
+
+            // round off fix
         }
         
         // VMag
@@ -392,6 +430,13 @@ class GotoObjectViewController: UIViewController {
         } else {
             dist.text = "Distance = \(slctdJSONObj[passedSlctdObjIndex]["DISTLY"].doubleValue) ly"
         }
+    }
+    
+    func doubleToInteger(data:Double)-> Int {
+        let doubleToString = "\(data)"
+        let stringToInteger = (doubleToString as NSString).integerValue
+        
+        return stringToInteger
     }
 
     // Align the Star
@@ -654,4 +699,29 @@ extension Float
     {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }
+}
+
+
+extension Double {
+    
+    func splitIntoParts(decimalPlaces: Int, round: Bool) -> (leftPart: Int, rightPart: Int) {
+        
+        var number = self
+        if round {
+            //round to specified number of decimal places:
+            let divisor = pow(10.0, Double(decimalPlaces))
+            number = Darwin.round(self * divisor) / divisor
+        }
+        
+        //convert to string and split on decimal point:
+        let parts = String(number).components(separatedBy: ".")
+        
+        //extract left and right parts:
+        let leftPart = Int(parts[0]) ?? 0
+        let rightPart = Int(parts[1]) ?? 0
+        
+        return(leftPart, rightPart)
+        
+    }
+    
 }
