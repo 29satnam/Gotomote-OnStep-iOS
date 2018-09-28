@@ -64,9 +64,8 @@ class GotoObjectViewController: UIViewController {
         
         raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
         var raSepa = raStr.split(separator: " ")
-      //  decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
+        decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
         
-        decStr = 156.742 //+01:06:00
         
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
         
@@ -85,22 +84,7 @@ class GotoObjectViewController: UIViewController {
     //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
 
     @IBAction func gotoBtn(_ sender: UIButton) {
-        
-        /*
-        let number:Double = 45
-        let parts = number.splitIntoParts(decimalPlaces: 3, round: false)
-        let more = String(format: "%02d", parts.leftPart)
-        print("LeftPart: \(more) RightPart: \(parts.rightPart)")
-        */
-        //   triggerConnection(cmd: ":Sd-23:12:12#")
-        // triggerConnection(cmd: ":Sa-23:12:12#")
-        //  triggerConnection(cmd: ":Gd#")
-        //  triggerConnection(cmd: ":Sr12:05:45#")
-    //    print("raStr", raStr, "decStr", decStr)
-//        raStr 05 17 decStr 46.0
-        
-        // RA =     :SrHH:MM:SS# *
-        // DEC =    :SdsDD:MM:SS# *
+
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         
@@ -113,33 +97,33 @@ class GotoObjectViewController: UIViewController {
         let decDD = doubleToInteger(data: (Double(decForm)!))
 
         
-        print("decStr", decStr, "decForm", decForm, "decDD", decDD)
+   //     print("decStr", decStr, "decForm", decForm, "decDD", decDD)
         
         
         //----------------
         
         //seperate degree's decimal and change to minutes
         let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
-            print("decStrDecimal", decStrDecimal) // 9.4940613925
+        //    print("decStrDecimal", decStrDecimal) // 9.4940613925
         
         // format the mintutes value (precision correction)
         let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
         
-        print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+   //     print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
         
         // drop negative sign for minute value
-        var decDropNeg = Double(decformmDecimal)
-        if (decDropNeg! < 0) {
-            decDropNeg! = 0 - decDropNeg!
-            print("dec min is neg", 0 - decDropNeg!) // negative
-        } else if (decDropNeg! == 0) {
-            decDropNeg! = decDropNeg!
+        var x = Double(decformmDecimal)
+        if (x! < 0) {
+            x! = 0 - x!
+         //   print("dec min is neg", 0 - x!) // negative
+        } else if (x! == 0) {
+            x! = x!
         } else {
-            decDropNeg! = decDropNeg! // postive
+            x! = x! // postive
         }
         
         // double value to integer for minutes value
-        let decMM = doubleToInteger(data: decDropNeg!)
+        let decMM = doubleToInteger(data: x!)
         
         // ------------------ seconds
 
@@ -148,33 +132,36 @@ class GotoObjectViewController: UIViewController {
         
         // format the mintutes value (precision correction)
         let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
-        print("decStrDeciSecPart", decStrDeciSecPart)
+      //  print("decStrDeciSecPart", decStrDeciSecPart)
         
         
         // drop negative sign for seconds value
         var y = Double(decStrDeciSecPart)
         if (y! < 0) {
             y! = 0 - y!
-            print("dec min is neg", 0 - y!) // negative
+         //   print("dec min is neg", 0 - y!) // negative
         } else if (y! == 0) {
             y! = y!
         } else {
             y! = y! // postive
         }
         
-        print("yyy", y!)
-        
+      //  print("yyy", y!)
+        var decString: String = String()
         // double value to integer for minutes value
-        let decSS = doubleToInteger(data: Double(y!))
+        let decSS = doubleToInteger(data: Double(y!.rounded())) // round off
         
         // adjust formatting if degrees single value is negative
-        let x = decDD
-        if (x < 0) {
-            print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
-        } else if (x == 0) {
-            print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+        let z = decDD
+        if (z < 0) {
+            decString = String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+        //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
+        } else if (z == 0) {
+            decString = String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+        //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
         } else {
-            print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
+            decString = String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+         //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
 
         }
         
@@ -182,17 +169,19 @@ class GotoObjectViewController: UIViewController {
         
         let raArray = raStr.split(separator: " ")
         
-        let decFormat = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
+  /*      let decFormat = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         let decRep = "\(decFormat)".replacingOccurrences(of: ".", with: ":")
         
         let decArray = "\(decStr)".split(separator: ".")
+ 
+        */
+        
+        triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#") //Set target RA # Set target Dec
+        print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#")
         
         
-
         
-        
-        
-        // Add neg/pos sign then execute
+ /*       // Add neg/pos sign then execute
         if (decStr < 0) {
             print("negative")
             triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#") //Set target RA # Set target Dec
@@ -218,7 +207,7 @@ class GotoObjectViewController: UIViewController {
         
       //  print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sds\(decRep)#") // :SrHH:MM#:Sd
       //  triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:SdsDD:MM:SS#") //Set target RA # Set target Dec
-
+*/
     }
     
     // Mark: Slider - Increase Speed
