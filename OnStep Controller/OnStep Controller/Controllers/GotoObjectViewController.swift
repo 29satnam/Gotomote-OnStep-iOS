@@ -53,9 +53,14 @@ class GotoObjectViewController: UIViewController {
     @IBOutlet var dist: UILabel!
     @IBOutlet var aboveHorizon: UILabel!
     
+    // retrieved
     var slctdJSONObj: JSON = JSON()
     var raStr: String = String()
     var decStr: Double = Double()
+    
+    let formatter = NumberFormatter()
+    
+    // formed
     
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -99,7 +104,7 @@ class GotoObjectViewController: UIViewController {
         //     print("decStr", decStr, "decForm", decForm, "decDD", decDD)
         
         
-        //----------------
+        //---------------- Dec
         
         //seperate degree's decimal and change to minutes
         let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
@@ -163,50 +168,25 @@ class GotoObjectViewController: UIViewController {
             //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
             
         }
-        
-        //-------------------
-        
+
+        //------------------- RA
+
         let raArray = raStr.split(separator: " ")
         
-        /*      let decFormat = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
-         let decRep = "\(decFormat)".replacingOccurrences(of: ".", with: ":")
-         
-         let decArray = "\(decStr)".split(separator: ".")
-         
-         */
+        let raHH = raArray[0]
+        let raMM = doubleToInteger(data: (Double(raArray[1])!))
         
-        triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#") //Set target RA # Set target Dec
-        print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#")
+        // seperate minutes's decimal and change to second
+        let raMMSecSepa = Double(raArray[1])!.truncatingRemainder(dividingBy: 1) * 60
         
+        // format the mintutes value (precision correction)
+        let raSS = formatter.string(from: NSNumber(value:Int(raMMSecSepa)))!
         
-        
-        /*       // Add neg/pos sign then execute
-         if (decStr < 0) {
-         print("negative")
-         triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#") //Set target RA # Set target Dec
-         print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#")
-         } else if (decStr == 0) {
-         //   print("zero")
-         } else {
-         print("positive")
-         triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#") //Set target RA # Set target Dec
-         print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#")
-         }
-         
-         //:Sr05:17.0# :Sd+46:00# right
-         //:Sr05:15.0# :Sd-08:20#
-         //
-         
-         
-         //:Sr12:48.0# :Sd-59:70#
-         
-         
-         
-         
-         
-         //  print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sds\(decRep)#") // :SrHH:MM#:Sd
-         //  triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:SdsDD:MM:SS#") //Set target RA # Set target Dec
-         */
+        print("raMMSecSepa", raMMSecSepa, "raHH", raHH, "raMM", raMM, "raSS", raSS)
+        var raHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
+
+    //     triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#") //Set target RA # Set target Dec
+         print("this -> :Sr\(raHHMMSS)#:Sd\(decString)#")
     }
     
     // Mark: Slider - Increase Speed
@@ -396,11 +376,29 @@ class GotoObjectViewController: UIViewController {
         if (slctdJSONObj[passedSlctdObjIndex]["RA"]) == "" {
             ra.text = "RA = N/A "
         } else {
-            ra.text = "RA = " + (slctdJSONObj[passedSlctdObjIndex]["RA"].string?.replacingOccurrences(of: " ", with: "h "))! + "m"
+            
+            raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
+            formatter.numberStyle = .decimal
+            print("raStr", raStr)
+            let raArray = raStr.split(separator: " ")
+            let raHH = raArray[0]
+            let raMM = doubleToInteger(data: (Double(raArray[1])!))
+            
+            // seperate minutes's decimal and change to second
+            let raMMSecSepa = Double(raArray[1])!.truncatingRemainder(dividingBy: 1) * 60
+            
+            // format the mintutes value (precision correction)
+            let raSS = formatter.string(from: NSNumber(value:Int(raMMSecSepa)))!
+            
+            print("raHH", raHH, "raMM", raMM, "raSS", raSS)
+            let raHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
+            
+            var splitRA = raHHMMSS.split(separator: ":")
+            print("splitRA", splitRA.count)
+            ra.text = "RA = \(splitRA[0])h \(splitRA[1])m \(splitRA[2])s"  //+ (slctdJSONObj[passedSlctdObjIndex]["RA"].string?.replacingOccurrences(of: " ", with: "h "))! + "m"
             
         }
         
-        let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         
         // DEC
