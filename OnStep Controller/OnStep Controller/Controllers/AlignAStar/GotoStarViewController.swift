@@ -87,11 +87,6 @@ class GotoStarViewController: UIViewController {
     //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
 
     @IBAction func gotoBtn(_ sender: UIButton) {
-
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        
-        
         
         let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         
@@ -132,7 +127,8 @@ class GotoStarViewController: UIViewController {
 
         //seperate degree's decimal and change to minutes
         let decStrDeciSec = decStrDecimal.truncatingRemainder(dividingBy: 1) * 60
-        
+        formatter.numberStyle = .decimal
+
         // format the mintutes value (precision correction)
         let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
       //  print("decStrDeciSecPart", decStrDeciSecPart)
@@ -434,9 +430,8 @@ class GotoStarViewController: UIViewController {
 */
             } else {
 
-            let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
-            
+
             decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
 
             
@@ -458,7 +453,8 @@ class GotoStarViewController: UIViewController {
             
             // format the mintutes value (precision correction)
             let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
-            
+            formatter.numberStyle = .decimal
+
             //     print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
             
             // drop negative sign for minute value
@@ -482,6 +478,8 @@ class GotoStarViewController: UIViewController {
             
             // format the mintutes value (precision correction)
             let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
+            formatter.numberStyle = .decimal
+
             //  print("decStrDeciSecPart", decStrDeciSecPart)
             
             
@@ -524,9 +522,6 @@ class GotoStarViewController: UIViewController {
 
 
       //      }
-            
-            let value = (slctdJSONObj[passedSlctdObjIndex]["DEC"]).numberValue
-
 
             // round off fix
         }
