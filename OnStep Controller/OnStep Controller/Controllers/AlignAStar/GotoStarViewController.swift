@@ -88,32 +88,42 @@ class GotoStarViewController: UIViewController {
 
     @IBAction func gotoBtn(_ sender: UIButton) {
         
+
+        formatter.numberStyle = .decimal
+        
+        decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
+        
+        
         let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         
         // get whole number for degree value
-       // let decDD = floor(Double(decForm)!)
+        // let decDD = floor(Double(decForm)!)
         let decDD = doubleToInteger(data: (Double(decForm)!))
-
         
-   //     print("decStr", decStr, "decForm", decForm, "decDD", decDD)
+        
+        print("decStr", decStr, "decForm", decForm, "decDD", decDD)
         
         
         //----------------
         
         //seperate degree's decimal and change to minutes
         let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
-        //    print("decStrDecimal", decStrDecimal) // 9.4940613925
+        print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
         
         // format the mintutes value (precision correction)
-        let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
+        let frmtr = NumberFormatter()
+        frmtr.numberStyle = .decimal
         
-   //     print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+        let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
+        
+        
+        print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
         
         // drop negative sign for minute value
         var x = Double(decformmDecimal)
         if (x! < 0) {
             x! = 0 - x!
-         //   print("dec min is neg", 0 - x!) // negative
+            //   print("dec min is neg", 0 - x!) // negative
         } else if (x! == 0) {
             x! = x!
         } else {
@@ -124,28 +134,29 @@ class GotoStarViewController: UIViewController {
         let decMM = doubleToInteger(data: x!)
         
         // ------------------ seconds
-
+        
         //seperate degree's decimal and change to minutes
-        let decStrDeciSec = decStrDecimal.truncatingRemainder(dividingBy: 1) * 60
-        formatter.numberStyle = .decimal
-
+        let decStrDeciSec = decStrDecimal.rounded().truncatingRemainder(dividingBy: 1) * 60
+        
         // format the mintutes value (precision correction)
         let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
-      //  print("decStrDeciSecPart", decStrDeciSecPart)
+        formatter.numberStyle = .decimal
+        
+        print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
         
         
         // drop negative sign for seconds value
         var y = Double(decStrDeciSecPart)
         if (y! < 0) {
             y! = 0 - y!
-         //   print("dec min is neg", 0 - y!) // negative
+            //   print("dec min is neg", 0 - y!) // negative
         } else if (y! == 0) {
             y! = y!
         } else {
             y! = y! // postive
         }
         
-      //  print("yyy", y!)
+        //  print("yyy", y!)
         var decString: String = String()
         // double value to integer for minutes value
         let decSS = doubleToInteger(data: Double(y!.rounded())) // round off
@@ -154,16 +165,15 @@ class GotoStarViewController: UIViewController {
         let z = decDD
         if (z < 0) {
             decString = String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)
-        //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
+            //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
         } else if (z == 0) {
             decString = String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
-        //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+            //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
         } else {
             decString = String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
-         //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
-
+            //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
+            
         }
-        
         //-------------------
         
         let raArray = raStr.split(separator: " ")
@@ -442,20 +452,23 @@ class GotoStarViewController: UIViewController {
             let decDD = doubleToInteger(data: (Double(decForm)!))
             
             
-            //     print("decStr", decStr, "decForm", decForm, "decDD", decDD)
+                 print("decStr", decStr, "decForm", decForm, "decDD", decDD)
             
             
             //----------------
             
             //seperate degree's decimal and change to minutes
             let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
-            //    print("decStrDecimal", decStrDecimal) // 9.4940613925
+                print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
             
             // format the mintutes value (precision correction)
-            let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal)))!
-            formatter.numberStyle = .decimal
+            let frmtr = NumberFormatter()
+            frmtr.numberStyle = .decimal
 
-            //     print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+            let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
+            
+
+                 print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
             
             // drop negative sign for minute value
             var x = Double(decformmDecimal)
@@ -474,13 +487,13 @@ class GotoStarViewController: UIViewController {
             // ------------------ seconds
             
             //seperate degree's decimal and change to minutes
-            let decStrDeciSec = decStrDecimal.truncatingRemainder(dividingBy: 1) * 60
+            let decStrDeciSec = decStrDecimal.rounded().truncatingRemainder(dividingBy: 1) * 60
             
             // format the mintutes value (precision correction)
             let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
             formatter.numberStyle = .decimal
 
-            //  print("decStrDeciSecPart", decStrDeciSecPart)
+              print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
             
             
             // drop negative sign for seconds value
