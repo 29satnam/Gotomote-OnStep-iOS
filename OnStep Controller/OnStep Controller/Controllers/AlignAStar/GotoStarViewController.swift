@@ -88,46 +88,29 @@ class GotoStarViewController: UIViewController {
 
     @IBAction func gotoBtn(_ sender: UIButton) {
         
-
+        //--------------------- DEC
+        
         formatter.numberStyle = .decimal
-        
         decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
-        
-        
         let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         
         // get whole number for degree value
-        // let decDD = floor(Double(decForm)!)
         let decDD = doubleToInteger(data: (Double(decForm)!))
-        
-        
-        print("decStr", decStr, "decForm", decForm, "decDD", decDD)
-        
-        
-        //----------------
         
         //seperate degree's decimal and change to minutes
         let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
-        print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
         
         // format the mintutes value (precision correction)
-        let frmtr = NumberFormatter()
-        frmtr.numberStyle = .decimal
-        
-        let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
-        
-        
-        print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+        let decformmDecimal = formatter.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
         
         // drop negative sign for minute value
         var x = Double(decformmDecimal)
         if (x! < 0) {
             x! = 0 - x!
-            //   print("dec min is neg", 0 - x!) // negative
         } else if (x! == 0) {
             x! = x!
         } else {
-            x! = x! // postive
+            x! = x!
         }
         
         // double value to integer for minutes value
@@ -142,18 +125,14 @@ class GotoStarViewController: UIViewController {
         let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
         formatter.numberStyle = .decimal
         
-        print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
-        
-        
         // drop negative sign for seconds value
         var y = Double(decStrDeciSecPart)
         if (y! < 0) {
             y! = 0 - y!
-            //   print("dec min is neg", 0 - y!) // negative
         } else if (y! == 0) {
             y! = y!
         } else {
-            y! = y! // postive
+            y! = y!
         }
         
         //  print("yyy", y!)
@@ -174,49 +153,14 @@ class GotoStarViewController: UIViewController {
             //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
             
         }
-        //-------------------
+        
+        //------------------- RA
         
         let raArray = raStr.split(separator: " ")
         
-  /*      let decFormat = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
-        let decRep = "\(decFormat)".replacingOccurrences(of: ".", with: ":")
-        
-        let decArray = "\(decStr)".split(separator: ".")
- 
-        */
-        
         triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#") //Set target RA # Set target Dec
-        print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#")
+        print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!):00#:Sd\(decString)#:MS#")
         
-        
-        
- /*       // Add neg/pos sign then execute
-        if (decStr < 0) {
-            print("negative")
-            triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#") //Set target RA # Set target Dec
-            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decRep)#")
-        } else if (decStr == 0) {
-         //   print("zero")
-        } else {
-            print("positive")
-            triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#") //Set target RA # Set target Dec
-            print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd+\(decRep)#")
-        }
-        
-        //:Sr05:17.0# :Sd+46:00# right
-        //:Sr05:15.0# :Sd-08:20#
-        //
-        
-        
-        //:Sr12:48.0# :Sd-59:70#
-        
-        
-        
-        
-        
-      //  print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:Sds\(decRep)#") // :SrHH:MM#:Sd
-      //  triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!)#:SdsDD:MM:SS#") //Set target RA # Set target Dec
-*/
     }
     
     // Mark: Slider - Increase Speed
