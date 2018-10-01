@@ -21,8 +21,14 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     @IBOutlet var siteNaTF: CustomTextField!
-    @IBOutlet var latTF: CustomTextField!
-    @IBOutlet var longTF: CustomTextField!
+  //  @IBOutlet var latTF: CustomTextField!
+    
+    @IBOutlet var latDDTF: CustomTextField!
+    @IBOutlet var latMMTF: CustomTextField!
+    
+    @IBOutlet var longDDTF: CustomTextField!
+    @IBOutlet var longMMTF: CustomTextField!
+    
     @IBOutlet var utcTF: CustomTextField!
     
     @IBOutlet var uploadBtn: UIButton!
@@ -30,6 +36,9 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     
     var selectedIndex: Int = Int()
     var readerText: String = String()
+    
+    let d: String? = "°"
+    let m: String? = "'"
     
     @IBAction func userCurrentLocation(_ sender: UIButton) {
         
@@ -41,8 +50,39 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                 print("Access")
                 locationManager.startUpdatingLocation()
                 if locationManager.location != nil {
-                    latTF.text = "\(locationManager.location!.coordinate.latitude.roundedDecimal(to: 2))"
-                    longTF.text = "\(locationManager.location!.coordinate.longitude.roundedDecimal(to: 2))"
+                    let latSplit = "\(locationManager.location!.coordinate.latitude.roundedDecimal(to: 2))".split(separator: ".")
+                    let longSplit = "\(locationManager.location!.coordinate.longitude.roundedDecimal(to: 2))".split(separator: ".")
+                    print("locationManager.location!.coordinate", locationManager.location!.coordinate)
+                    
+                    // fix symbol for latitude degrees
+                    let z = Int(latSplit[opt: 0]!)!
+                    if (z < 0) {
+                      //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
+                        latDDTF.text = String(format: "%03d", Int(latSplit[opt: 0]!)!) //neg
+                    } else if (z == 0) {
+                        //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+                        latDDTF.text = String(format: "%02d", Int(latSplit[opt: 0]!)!)
+                    } else {
+                        latDDTF.text = String(format: "+%02d", Int(latSplit[opt: 0]!)!) //pos
+                    }
+                    
+                    latMMTF.text = String(format: "%02d", Int(latSplit[opt: 1]!)!)
+                    
+                    let y = Int(longSplit[opt: 0]!)!
+                    if (y < 0) {
+                        //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
+                        longDDTF.text = String(format: "%04d", Int(longSplit[opt: 0]!)!) //neg
+                    } else if (y == 0) {
+                        longDDTF.text = String(format: "%03d", Int(longSplit[opt: 0]!)!)
+                    } else {
+                        longDDTF.text = String(format: "+%03d", Int(longSplit[opt: 0]!)!) //pos
+                    }
+                    
+                    longMMTF.text = String(format: "%02d", Int(latSplit[opt: 1]!)!)
+                    
+                    utcTF.text = TimeZone.current.offsetInHours()
+                    
+                    
                 }
 
             }
@@ -156,8 +196,13 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
         addBtnProperties(button: useLocat)
         
         addTFProperties(tf: siteNaTF, placeholder: "")
-        addTFProperties(tf: latTF, placeholder: "")
-        addTFProperties(tf: longTF, placeholder: "")
+        
+        addTFProperties(tf: latDDTF, placeholder: "")
+        addTFProperties(tf: latMMTF, placeholder: "")
+
+        addTFProperties(tf: longDDTF, placeholder: "")
+        addTFProperties(tf: longMMTF, placeholder: "")
+
         addTFProperties(tf: utcTF, placeholder: "")
         
         segmentControl.itemTitles = ["Site 0","Site 1","Site 2", "Site 3"]
@@ -186,8 +231,10 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                 self.readerText = ""
                 DispatchQueue.main.async {
                     self.siteNaTF.text = ""
-                    self.latTF.text = ""
-                    self.longTF.text = ""
+                    self.latDDTF.text = ""
+                    self.latMMTF.text = ""
+                    self.longDDTF.text = ""
+                    self.longMMTF.text = ""
                     self.utcTF.text = ""
                     
                   /*  if self.latTF.text!.isEmpty && self.latTF.text!.isEmpty != true {
@@ -205,8 +252,10 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                 self.readerText = ""
                 DispatchQueue.main.async {
                     self.siteNaTF.text = ""
-                    self.latTF.text = ""
-                    self.longTF.text = ""
+                    self.latDDTF.text = ""
+                    self.latMMTF.text = ""
+                    self.longDDTF.text = ""
+                    self.longMMTF.text = ""
                     self.utcTF.text = ""
                 }
                 
@@ -218,8 +267,10 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                 self.readerText = ""
                 DispatchQueue.main.async {
                     self.siteNaTF.text = ""
-                    self.latTF.text = ""
-                    self.longTF.text = ""
+                    self.latDDTF.text = ""
+                    self.latMMTF.text = ""
+                    self.longDDTF.text = ""
+                    self.longMMTF.text = ""
                     self.utcTF.text = ""
                 }
                 
@@ -230,8 +281,10 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                 self.readerText = ""
                 DispatchQueue.main.async {
                     self.siteNaTF.text = ""
-                    self.latTF.text = ""
-                    self.longTF.text = ""
+                    self.latDDTF.text = ""
+                    self.latMMTF.text = ""
+                    self.longDDTF.text = ""
+                    self.longMMTF.text = ""
                     self.utcTF.text = ""
                 }
                 
@@ -243,6 +296,19 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
             
             
         }
+    }
+    
+    // Upload content to server
+    @IBAction func uploadAction(_ sender: UIButton) {
+        
+        switch selectedIndex {
+        case 0:
+            let frtLat = utcTF.text!.split(separator: ":")
+            self.triggerConnection(cmd: ":W0#:SM\(siteNaTF.text!)#:StsDD*MM#", setTag: 0) // select site 0 // site name //
+        default:
+            print("default")
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -262,15 +328,20 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
             readerText += "\(gettext!)"
             
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-            
+            print(index)
             DispatchQueue.main.async {
                 self.siteNaTF.text = index[opt: 0]
-                self.latTF.text = index[opt: 1]
-                self.longTF.text = index[opt: 2]
+                
+                
+                self.latDDTF.text = index[opt: 1]?.components(separatedBy: "*")[0]
+                self.latMMTF.text = index[opt: 1]?.components(separatedBy: "*")[1]
+                self.longDDTF.text = index[opt: 2]?.components(separatedBy: "*")[0]
+                self.longMMTF.text = index[opt: 2]?.components(separatedBy: "*")[1]
+                
+             //   self.latTF.text =
+                
                 self.utcTF.text = index[opt: 3]
             }
-            
-            
             
         case 1:
             siteNaTF.text = gettext!
@@ -298,36 +369,10 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
             print("Default")
         }
         
-        
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         print("Disconnected Called: ", err?.localizedDescription as Any)
     }
     
-}
-
-extension Collection {
-    
-    subscript(opt i: Index) -> Iterator.Element? {
-        return self.indices.contains(i) ? self[i] : nil
-    }
-    
-}
-
-
-extension Double {
-    /// Convert `Double` to `Decimal`, rounding it to `scale` decimal places.
-    ///
-    /// - Parameters:
-    ///   - scale: How many decimal places to round to. Defaults to `0`.
-    ///   - mode:  The preferred rounding mode. Defaults to `.plain`.
-    /// - Returns: The rounded `Decimal` value.
-    
-    func roundedDecimal(to scale: Int = 0, mode: NSDecimalNumber.RoundingMode = .plain) -> Decimal {
-        var decimalValue = Decimal(self)
-        var result = Decimal()
-        NSDecimalRound(&result, &decimalValue, scale, mode)
-        return result
-    }
 }

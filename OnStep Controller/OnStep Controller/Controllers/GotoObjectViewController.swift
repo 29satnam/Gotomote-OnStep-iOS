@@ -70,7 +70,6 @@ class GotoObjectViewController: UIViewController {
         var raSepa = raStr.split(separator: " ")
         decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
         
-        
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
         
         let date = Date()
@@ -121,7 +120,7 @@ class GotoObjectViewController: UIViewController {
         
         let RAHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
 
-        triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:MS#") //Set target RA # Set target Dec
+        triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#") //Set target RA # Set target Dec
          print("this -> :Sr\(RAHHMMSS)#:Sd\(decString):00#:MS#")
     }
     
@@ -371,49 +370,20 @@ class GotoObjectViewController: UIViewController {
     }
     
     // Align the Star
-    @IBAction func alignAction(_ sender: UIButton) {
+    @IBAction func syncAction(_ sender: UIButton) {
         triggerConnection(cmd: ":A+#")
-        alignTypePassed = alignTypePassed - 1
-        print("this:", alignTypePassed)
-        if alignTypePassed <= 0 {
+      //  alignTypePassed = alignTypePassed - 1
+      //  print("this:", alignTypePassed)
+     /*   if alignTypePassed <= 0 {
             performSegue(withIdentifier: "backToInitialize", sender: self)
         } else {
             
-            
             performSegue(withIdentifier: "backToStarList", sender: self)
-        }
+        } */
     }
     
     // Pass Int back to controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        if let destination = segue.destination as? SelectStarTableViewController {
-            destination.alignType = alignTypePassed
-            
-            if vcTitlePassed == "FIRST STAR" {
-                
-                // Start second star alignment.
-                print("start third")
-                triggerConnection(cmd: ":A2#")
-                destination.vcTitle = "SECOND STAR"
-                
-            } else if vcTitlePassed ==  "SECOND STAR" {
-                
-                // Start third star alignment.
-                print("start third")
-                triggerConnection(cmd: ":A3#")
-                destination.vcTitle = "THIRD STAR"
-                
-            } else {
-                destination.vcTitle = "STAR ALIGNMENT"
-            }
-        } else if segue.identifier == "initialize" {
-            
-            // trigger delegate socket values
-            if let destination = segue.destination as? InitializeViewController {
-                destination.navigationItem.hidesBackButton = true
-            }
-        }
         
     }
     

@@ -29,9 +29,9 @@ class SelectObjectTableViewController: UITableViewController {
       //  let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(goBack))
       //  navigationItem.leftBarButtonItem = backButton
         
-        let abortAlig = UIBarButtonItem(title: "Abort", style: .plain , target: self, action: #selector(abortAlignment))
+   /*     let abortAlig = UIBarButtonItem(title: "Abort", style: .plain , target: self, action: #selector(abortAlignment))
         abortAlig.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        self.navigationItem.rightBarButtonItem = abortAlig
+        self.navigationItem.rightBarButtonItem = abortAlig */
     }
     
     @objc func abortAlignment(){
