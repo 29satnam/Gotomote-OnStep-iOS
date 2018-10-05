@@ -393,7 +393,7 @@ class GotoObjectViewController: UIViewController {
         print("moveToNorth")
     }
     
-    @objc func stopToNorth(_ sender: UIButton) {
+    @objc func stopToNorth() {
         triggerConnection(cmd: ":Qn#")
         print("stopToNorth")
     }
@@ -410,7 +410,7 @@ class GotoObjectViewController: UIViewController {
     }
     
     // West
-    @objc func moveToWest() {
+    @objc func moveToWest(_ sender: UIButton) {
         triggerConnection(cmd: ":Mw#")
         print("moveToWest")
     }

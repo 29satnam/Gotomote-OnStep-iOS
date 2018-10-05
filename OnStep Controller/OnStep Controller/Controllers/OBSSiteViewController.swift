@@ -29,16 +29,14 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var longDDTF: CustomTextField!
     @IBOutlet var longMMTF: CustomTextField!
     
-    @IBOutlet var utcTF: CustomTextField!
-    
+    @IBOutlet var utcHHTF: CustomTextField!
+    @IBOutlet var utcMMTF: CustomTextField!
+
     @IBOutlet var uploadBtn: UIButton!
     @IBOutlet var useLocat: UIButton!
     
     var selectedIndex: Int = Int()
     var readerText: String = String()
-    
-    let d: String? = "°"
-    let m: String? = "'"
     
     @IBAction func userCurrentLocation(_ sender: UIButton) {
         
@@ -78,11 +76,11 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                         longDDTF.text = String(format: "+%03d", Int(longSplit[opt: 0]!)!) //pos
                     }
                     
-                    longMMTF.text = String(format: "%02d", Int(latSplit[opt: 1]!)!)
+                    longMMTF.text = String(format: "%02d", Int(longSplit[opt: 1]!)!)
                     
-                    utcTF.text = TimeZone.current.offsetInHours()
-                    
-                    
+                    let utc = TimeZone.current.offsetInHours().components(separatedBy: ":")
+                    utcHHTF.text = utc[opt: 0]
+                    utcMMTF.text = utc[opt: 1]
                 }
 
             }
@@ -203,8 +201,9 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
         addTFProperties(tf: longDDTF, placeholder: "")
         addTFProperties(tf: longMMTF, placeholder: "")
 
-        addTFProperties(tf: utcTF, placeholder: "")
-        
+        addTFProperties(tf: utcHHTF, placeholder: "")
+        addTFProperties(tf: utcMMTF, placeholder: "")
+
         segmentControl.itemTitles = ["Site 0","Site 1","Site 2", "Site 3"]
         
         segmentControl.allowChangeThumbWidth = false
@@ -235,8 +234,9 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                     self.latMMTF.text = ""
                     self.longDDTF.text = ""
                     self.longMMTF.text = ""
-                    self.utcTF.text = ""
-                    
+                    self.utcHHTF.text = ""
+                    self.utcMMTF.text = ""
+
                   /*  if self.latTF.text!.isEmpty && self.latTF.text!.isEmpty != true {
                                             UserDefaults.standard.set(location:CLLocation(latitude: Double(self.latTF.text!)!, longitude: Double(self.latTF.text!)!), forKey:"myLocation")
                         print("lol:", UserDefaults.standard.location(forKey:"myLocation")!)
@@ -256,7 +256,8 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                     self.latMMTF.text = ""
                     self.longDDTF.text = ""
                     self.longMMTF.text = ""
-                    self.utcTF.text = ""
+                    self.utcHHTF.text = ""
+                    self.utcMMTF.text = ""
                 }
                 
                 self.triggerConnection(cmd: ":W1#:GN#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 1
@@ -271,8 +272,8 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                     self.latMMTF.text = ""
                     self.longDDTF.text = ""
                     self.longMMTF.text = ""
-                    self.utcTF.text = ""
-                }
+                    self.utcHHTF.text = ""
+                    self.utcMMTF.text = ""                }
                 
                 self.triggerConnection(cmd: ":W2#:GO#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 2
                 
@@ -285,7 +286,9 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                     self.latMMTF.text = ""
                     self.longDDTF.text = ""
                     self.longMMTF.text = ""
-                    self.utcTF.text = ""
+                    self.utcHHTF.text = ""
+                    self.utcMMTF.text = ""
+                    
                 }
                 
                 self.triggerConnection(cmd: ":W3#:GP#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 3
@@ -301,10 +304,13 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     // Upload content to server
     @IBAction func uploadAction(_ sender: UIButton) {
         
+        
         switch selectedIndex {
         case 0:
-            let frtLat = utcTF.text!.split(separator: ":")
-            self.triggerConnection(cmd: ":W0#:SM\(siteNaTF.text!)#:StsDD*MM#", setTag: 0) // select site 0 // site name //
+            print("upload")
+            
+            self.triggerConnection(cmd: ":W\(0)#:SM\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text!   + ":" + self.utcMMTF.text!)#", setTag: 1) // select site 0 // site name //
+            print(":W\(0)#:SM\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text! + ":" + self.utcMMTF.text!)#")
         default:
             print("default")
         }
@@ -322,30 +328,34 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let gettext = String(data: data, encoding: .utf8)
-        
+        print("got:", gettext)
         switch tag {
         case 0:
             readerText += "\(gettext!)"
             
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-            print(index)
+          //    print(index)
             DispatchQueue.main.async {
                 self.siteNaTF.text = index[opt: 0]
                 
                 
-                self.latDDTF.text = index[opt: 1]?.components(separatedBy: "*")[0]
-                self.latMMTF.text = index[opt: 1]?.components(separatedBy: "*")[1]
-                self.longDDTF.text = index[opt: 2]?.components(separatedBy: "*")[0]
-                self.longMMTF.text = index[opt: 2]?.components(separatedBy: "*")[1]
-                
+                self.latDDTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 0]
+                self.latMMTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 1]
+                self.longDDTF.text = index[opt: 2]?.components(separatedBy: "*")[opt: 0]
+                self.longMMTF.text = index[opt: 2]?.components(separatedBy: "*")[opt: 1]
+                // save retrieved location
+    //            UserDefaults.standard.set(location:CLLocation(latitude: CLLocationDegrees(Double(self.latDDTF.text! + "." + self.latMMTF.text!)!), longitude: CLLocationDegrees(Double(self.longDDTF.text! + "." + self.longMMTF.text!)!)), forKey:"myLocation")
+   //             print("yaay:", UserDefaults.standard.location(forKey:"myLocation")
+//)
              //   self.latTF.text =
                 
-                self.utcTF.text = index[opt: 3]
+                self.utcHHTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 0]
+                self.utcMMTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 1]
+
             }
             
         case 1:
-            siteNaTF.text = gettext!
-            print("Get site 0 name", gettext!)
+            print("Tag 1:", gettext!)
             
         default:
             print("def")

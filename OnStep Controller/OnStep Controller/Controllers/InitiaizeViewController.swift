@@ -60,10 +60,12 @@ class InitializeViewController: UIViewController {
     
     // Mark: Set Date Time
     @IBAction func setDateTimeAct(_ sender: UIButton) {
+        // Todo: Fix time
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
-     //   delegate?.triggerConnection(cmd: ":GC#")
+        print("this:", ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
+        
 
     }
 
