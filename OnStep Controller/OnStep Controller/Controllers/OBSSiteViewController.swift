@@ -236,13 +236,6 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                     self.longMMTF.text = ""
                     self.utcHHTF.text = ""
                     self.utcMMTF.text = ""
-
-                  /*  if self.latTF.text!.isEmpty && self.latTF.text!.isEmpty != true {
-                                            UserDefaults.standard.set(location:CLLocation(latitude: Double(self.latTF.text!)!, longitude: Double(self.latTF.text!)!), forKey:"myLocation")
-                        print("lol:", UserDefaults.standard.location(forKey:"myLocation")!)
-
-                    }*/
-                    
                     
                 }
                 self.triggerConnection(cmd: ":W0#:GM#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 0
@@ -273,7 +266,8 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                     self.longDDTF.text = ""
                     self.longMMTF.text = ""
                     self.utcHHTF.text = ""
-                    self.utcMMTF.text = ""                }
+                    self.utcMMTF.text = ""
+                }
                 
                 self.triggerConnection(cmd: ":W2#:GO#:Gt#:Gg#:GG#", setTag: 0) // Reader for Site 2
                 

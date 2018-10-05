@@ -154,7 +154,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         } else if segue.identifier == "initialize" {
             // trigger delegate socket values
             if let destination = segue.destination as? InitializeViewController {
-                destination.delegate = self
+               // destination.delegate = self
                 destination.navigationItem.hidesBackButton = true
             }
         } else if segue.identifier == "objectListingTableView" {

@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CocoaAsyncSocket
 
 class InitializeViewController: UIViewController {
+    
+    var clientSocket: GCDAsyncSocket!
+    var readerText: String = String()
 
     @IBOutlet var segmentControl: TTSegmentedControl!
     var alignTypeInit: Int = Int()
+    
+    var utcString: String =  String()
     
     @IBOutlet weak var setDateTimeBtn: UIButton!
     @IBOutlet weak var starAlignmentBtn: UIButton!
@@ -23,8 +29,6 @@ class InitializeViewController: UIViewController {
     
     @IBOutlet weak var dimmerBtn: UIButton!
     @IBOutlet weak var brighterBtn: UIButton!
-
-    var delegate: TriggerConnectionDelegate?
     
     @objc func backBtn() {
         print("tapped")
@@ -46,6 +50,9 @@ class InitializeViewController: UIViewController {
         self.view.backgroundColor = .black
         
         setupUserInterface()
+        
+        triggerConnection(cmd:":GG#", setTag: 1)
+
     }
 
     
@@ -53,7 +60,7 @@ class InitializeViewController: UIViewController {
     @IBAction func startAlignAct(_ sender: UIButton) {
         // Start first star alignment.
         print("start first")
-        delegate?.triggerConnection(cmd: ":A1#")
+        triggerConnection(cmd: ":A1#", setTag: 0)
         self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
         
     }
@@ -63,8 +70,24 @@ class InitializeViewController: UIViewController {
         // Todo: Fix time
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
-        delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
-        print("this:", ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
+        
+        var utcHH: String = String()
+        
+        let y = Int(utcString.components(separatedBy: ":")[0])
+        if (y! < 0) {
+           //neg
+            utcHH = String(format: "+%02d:\(utcString.components(separatedBy: ":")[opt: 1]!)", Int(utcString.components(separatedBy: ":")[opt: 0]!.dropFirst())!)
+            print("HH:", utcHH)
+        } else if (y! == 0) {
+        } else {
+            //pos
+            utcHH = String(format: "-%02d:\(utcString.components(separatedBy: ":")[opt: 1]!)", Int(utcString.components(separatedBy: ":")[opt: 0]!.dropFirst())!)
+            print("HH:", utcHH)
+        }
+        
+        
+       // delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
+       // print("this:", ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
         
 
     }
@@ -119,31 +142,31 @@ class InitializeViewController: UIViewController {
     // At Home/Reset
     @IBAction func atHomeAct(_ sender: UIButton) {
         // :hC#
-        delegate?.triggerConnection(cmd: ":hC#")
+        triggerConnection(cmd: ":hC#", setTag: 0)
     }
     
     // Return Home
     @IBAction func returnHomeAct(_ sender: UIButton) {
         // :hF#
-        delegate?.triggerConnection(cmd: ":hF#")
+        triggerConnection(cmd: ":hF#", setTag: 0)
     }
     
     // Park
     @IBAction func parkAct(_ sender: UIButton) {
         // :hP#
-        delegate?.triggerConnection(cmd: ":hP#")
+        triggerConnection(cmd: ":hP#", setTag: 0)
     }
     
     // Un-Park
     @IBAction func unParkAct(_ sender: UIButton) {
         // :hR#
-        delegate?.triggerConnection(cmd: ":hR#")
+        triggerConnection(cmd: ":hR#", setTag: 0)
     }
     
     // Set-Park
     @IBAction func setParkAct(_ sender: UIButton) {
         // :hQ#
-        delegate?.triggerConnection(cmd: ":hQ#")
+        triggerConnection(cmd: ":hQ#", setTag: 0)
     }
     
     // Mark: Reticule
@@ -151,13 +174,13 @@ class InitializeViewController: UIViewController {
     // Dimmer
     @IBAction func dimmerAct(_ sender: UIButton) {
         // :B-#
-        delegate?.triggerConnection(cmd: ":B-#")
+       triggerConnection(cmd: ":B-#", setTag: 0)
     }
     
     //Brighter
     @IBAction func BrighterAct(_ sender: UIButton) {
         // :B+#
-        delegate?.triggerConnection(cmd: ":B+#")
+        triggerConnection(cmd: ":B+#", setTag: 0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -166,9 +189,64 @@ class InitializeViewController: UIViewController {
             print("Init:", alignTypeInit)
             destination.alignType = alignTypeInit
             destination.vcTitle = "FIRST STAR"
-            destination.delegate = self.delegate
+          //  destination.delegate = self
             
         }
     }
+    
+    func triggerConnection(cmd: String, setTag: Int) {
+        
+        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+        
+        do {
+            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
+            let data = cmd.data(using: .utf8)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
+        } catch {
+        }
+        
+    }
 }
 
+
+extension InitializeViewController: GCDAsyncSocketDelegate {
+    
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let gettext = String(data: data, encoding: .utf8)
+        print("got:", gettext)
+        switch tag {
+        case 0:
+            print("Tag 0")
+        case 1:
+            print("Tag 1:", gettext!)
+            utcString = gettext!
+        default:
+            print("def")
+        }
+        clientSocket.readData(withTimeout: -1, tag: tag)
+        // clientSocket.disconnect()
+        
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        
+        let address = "Server IP：" + "\(host)"
+        print("didConnectToHost:", address)
+        
+        switch sock.isConnected {
+        case true:
+            print("Connected")
+        case false:
+            print("Disconnected")
+        default:
+            print("Default")
+        }
+        
+    }
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        print("Disconnected Called: ", err?.localizedDescription as Any)
+    }
+    
+}
