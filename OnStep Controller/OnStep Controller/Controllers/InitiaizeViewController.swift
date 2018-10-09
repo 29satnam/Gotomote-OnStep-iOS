@@ -110,15 +110,15 @@ class InitializeViewController: UIViewController {
         TimeZone.ReferenceType.default = TimeZone(secondsFromGMT: Int(hourInSec)! + min)! // 2018-10-09 10:16
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.ReferenceType.default
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let strDate = formatter.string(from: Date())
-        
- 
+        formatter.dateFormat = "MM/dd/yy HH:mm:ss"
+        let strDate = formatter.string(from: Date()).components(separatedBy: " ") // TODO: crash with offline
+        print("strDate", strDate)
+        print(NSDate() as Date)
         
         // 2018-10-09 03:00:24 +0000
         
-        // delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
-        // print("this:", ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
+        triggerConnection(cmd: ":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#", setTag: 1)
+         print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#")
     }
     
     /// Formats the input date to Date in specific timezone
