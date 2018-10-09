@@ -64,18 +64,61 @@ class InitializeViewController: UIViewController {
         self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
         
     }
-    
+    func doubleToInteger(data:Double)-> Int {
+        let doubleToString = "\(data)"
+        let stringToInteger = (doubleToString as NSString).integerValue
+        
+        return stringToInteger
+    }
     // Mark: Set Date Time
     @IBAction func setDateTimeAct(_ sender: UIButton) {
         // Todo: Returns nil if not connected
+        
+        var utcStr: String = String()
 
-        TimeZone.ReferenceType.default = TimeZone(secondsFromGMT: 19800)!
+        if let character = utcString.character(at: 0) {
+            if character == "-" {
+                utcStr =  "+\(utcString.dropFirst())"
+            } else if character == "+" {
+                utcStr =  "-\(utcString.dropFirst())"
+            }
+            utcStr = String(utcStr.dropLast().replacingOccurrences(of: ":", with: "."))
+            
+         //   print(String(format: "%02d:%02d", utcStr.components(separatedBy: ":")[opt: 0]!, utcStr.components(separatedBy: ":")[opt: 1]!))
+
+        }
+
+        let hour = doubleToInteger(data: (Double(utcStr)!))
+        let hourInSec = String(hour * 3600)
+        
+        let minExt = Double(utcStr)!.truncatingRemainder(dividingBy: 1)
+
+        // Precision fix
+        
+        let formatterNum = NumberFormatter()
+        formatterNum.numberStyle = NumberFormatter.Style.decimal
+        formatterNum.roundingMode = NumberFormatter.RoundingMode.halfUp
+        formatterNum.maximumFractionDigits = 2
+        
+        let minutesInSec = formatterNum.string(from: NSNumber(value: minExt))!//.replacingOccurrences(of: "-", with: "")
+        
+        
+        let min:Int = Int(((Double(minutesInSec)!/60)*100)*3600)  // Int(((minutesInSec) / 60)*100)*3600)!
+        print("minutesInSec", minutesInSec, "min", min, "Int(hourInSec)! + min)", Int(hourInSec)! + min)
+
+        
+        TimeZone.ReferenceType.default = TimeZone(secondsFromGMT: Int(hourInSec)! + min)! // 2018-10-09 10:16
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.ReferenceType.default
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         let strDate = formatter.string(from: Date())
-        print(strDate)
         
+ 
+        
+        // 2018-10-09 03:00:24 +0000
+        
+        // delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
+        // print("this:", ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
     }
     
     /// Formats the input date to Date in specific timezone
@@ -252,6 +295,6 @@ extension String {
         guard position >= 0, let indexPosition = index(at: position) else {
             return nil
         }
-        return self[indexPosition]
+        return self[opt: indexPosition]
     }
 }
