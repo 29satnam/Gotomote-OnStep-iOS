@@ -67,30 +67,18 @@ class InitializeViewController: UIViewController {
     
     // Mark: Set Date Time
     @IBAction func setDateTimeAct(_ sender: UIButton) {
-        // Todo: Fix time
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        
-        var utcHH: String = String()
-        
-        let y = Int(utcString.components(separatedBy: ":")[0])
-        if (y! < 0) {
-           //neg
-            utcHH = String(format: "+%02d:\(utcString.components(separatedBy: ":")[opt: 1]!)", Int(utcString.components(separatedBy: ":")[opt: 0]!.dropFirst())!)
-            print("HH:", utcHH)
-        } else if (y! == 0) {
-        } else {
-            //pos
-            utcHH = String(format: "-%02d:\(utcString.components(separatedBy: ":")[opt: 1]!)", Int(utcString.components(separatedBy: ":")[opt: 0]!.dropFirst())!)
-            print("HH:", utcHH)
-        }
-        
-        
-       // delegate?.triggerConnection(cmd: ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
-       // print("this:", ":SC\(Date().string(with: "MM/dd/yy"))#:SL\(dateFormatter.string(from: NSDate() as Date))#:GC#:GL#")
-        
+        // Todo: Returns nil if not connected
 
+        TimeZone.ReferenceType.default = TimeZone(secondsFromGMT: 19800)!
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.ReferenceType.default
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let strDate = formatter.string(from: Date())
+        print(strDate)
+        
     }
+    
+    /// Formats the input date to Date in specific timezone
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -249,4 +237,21 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
         print("Disconnected Called: ", err?.localizedDescription as Any)
     }
     
+    
+}
+
+
+extension String {
+    
+    func index(at position: Int, from start: Index? = nil) -> Index? {
+        let startingIndex = start ?? startIndex
+        return index(startingIndex, offsetBy: position, limitedBy: endIndex)
+    }
+    
+    func character(at position: Int) -> Character? {
+        guard position >= 0, let indexPosition = index(at: position) else {
+            return nil
+        }
+        return self[indexPosition]
+    }
 }
