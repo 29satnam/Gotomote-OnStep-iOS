@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaAsyncSocket
 
 class TrackingViewController: UIViewController {
     
@@ -14,13 +15,11 @@ class TrackingViewController: UIViewController {
     @IBOutlet var trLunarBtn: UIButton!
     @IBOutlet var trSolarBtn: UIButton!
     
-    
     @IBOutlet var coFullBtn: UIButton!
     @IBOutlet var coReftBrn: UIButton!
     @IBOutlet var coDualAxBtn: UIButton!
     @IBOutlet var coSnglAxBtn: UIButton!
     @IBOutlet var coOffBtn: UIButton!
-    
     
     @IBOutlet var raSlowerBtn: UIButton!
     @IBOutlet var raFasterBtn: UIButton!
@@ -28,10 +27,11 @@ class TrackingViewController: UIViewController {
     
     @IBOutlet var TrCoStopBtn: UIButton!
     @IBOutlet var TrCoStartBtn: UIButton!
-    
 
 
-    var delegate: TriggerConnectionDelegate?
+    var socketConnector: SocketDataManager!
+    var clientSocket: GCDAsyncSocket!
+    var readerText: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,24 +62,39 @@ class TrackingViewController: UIViewController {
         
 
     }
+    
+    func triggerConnection(cmd: String, setTag: Int) {
+        
+        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+        
+        do {
+            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
+            let data = cmd.data(using: .utf8)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
+        } catch {
+        }
+        
+    }
+    
     //Mark - Tracking Rate
     
     // - Sidereal Rate
     @IBAction func sSiderealAct(_ sender: UIButton) {
         // :STdd.ddddd# // TODO
-        delegate?.triggerConnection(cmd: ":TQ")
+        self.triggerConnection(cmd: ":TQ", setTag: 0)
     }
     
     // - Lunar Rate
     @IBAction func sLunarAct(_ sender: UIButton) {
         // :TL#
-        delegate?.triggerConnection(cmd: ":TL#")
+        self.triggerConnection(cmd: ":TL#", setTag: 0)
     }
     
     // - Solar Rate
     @IBAction func sSolarrateAct(_ sender: UIButton) {
         // :TS#
-        delegate?.triggerConnection(cmd: ":TS#")
+        self.triggerConnection(cmd: ":TS#", setTag: 0)
     }
     
     //Mark - Compensated Tracking:
@@ -87,31 +102,31 @@ class TrackingViewController: UIViewController {
     // - Full
     @IBAction func cFullAct(_ sender: UIButton) {
         // TODO -- Confirm
-        delegate?.triggerConnection(cmd: ":To#")
+        self.triggerConnection(cmd: ":To#", setTag: 0)
     }
     
     // - Refraction
     @IBAction func cReftAct(_ sender: UIButton) {
         //:Tr#
-        delegate?.triggerConnection(cmd: ":Tr#")
+        self.triggerConnection(cmd: ":Tr#", setTag: 0)
     }
     
     // - Dual
     @IBAction func cDualAct(_ sender: UIButton) {
         // TODO
-        delegate?.triggerConnection(cmd: "") // -------------
+        self.triggerConnection(cmd: "", setTag: 0) // -------------
     }
 
     // - Single
     @IBAction func cSingleAct(_ sender: UIButton) {
         // TODO
-        delegate?.triggerConnection(cmd: "") // --------------
+        self.triggerConnection(cmd: "", setTag: 0) // --------------
     }
     
     // - Off
     @IBAction func cOffAct(_ sender: UIButton) {
         // TODO
-        delegate?.triggerConnection(cmd: ":Tn#")
+        self.triggerConnection(cmd: ":Tn#", setTag: 0)
     }
     
     //Mark - Adjust Rate by 0.1Hz:
@@ -119,31 +134,31 @@ class TrackingViewController: UIViewController {
     // - Slower
     @IBAction func aSlowerAct(_ sender: UIButton) {
         // Track rate decrease 0.02Hz TODO - Run 5x
-        delegate?.triggerConnection(cmd: ":T-#")
+        self.triggerConnection(cmd: ":T-#:T-#:T-#:T-#:T-#", setTag: 0)
     }
     
     // - Faster
     @IBAction func aFasterAct(_ sender: UIButton) {
         // Track rate increase 0.02Hz TODO - Run 5x
-        delegate?.triggerConnection(cmd: ":T+#")
+        self.triggerConnection(cmd: ":T+#:T+#:T+#:T+#:T+#", setTag: 0)
     }
     
     // - Reset
     @IBAction func aRestAct(_ sender: UIButton) {
         // :TR#
-        delegate?.triggerConnection(cmd: ":TR#")
+        self.triggerConnection(cmd: ":TR#", setTag: 0)
     }
     
     // - Tracking Control
     @IBAction func tStopAct(_ sender: UIButton) {
         // :Te#
-        delegate?.triggerConnection(cmd: ":Td#")
+        self.triggerConnection(cmd: ":Td#", setTag: 0)
     }
     
     // - Start
     @IBAction func tStartAct(_ sender: UIButton) {
         // :Te#
-        delegate?.triggerConnection(cmd: ":Te#")
+        self.triggerConnection(cmd: ":Te#", setTag: 0)
     }
     
     
@@ -163,4 +178,42 @@ class TrackingViewController: UIViewController {
     }
     */
 
+}
+
+extension TrackingViewController: GCDAsyncSocketDelegate {
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        print("Disconnected Called: ", err?.localizedDescription as Any)
+
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        
+        let address = "Server IP：" + "\(host)"
+        print("didConnectToHost:", address)
+        
+        switch sock.isConnected {
+        case true:
+            print("Connected")
+        case false:
+            print("Disconnected")
+        default:
+            print("Default")
+        }
+        clientSocket.readData(withTimeout: -1, tag: 0)
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        
+        let getText = String(data: data, encoding: .utf8)
+        print("got:", getText!)
+        switch tag {
+        case 0:
+            readerText += "\(getText!)"
+        case 1:
+            print("Tag 1:", getText!)
+        default:
+            print("def")
+        }
+    }
 }

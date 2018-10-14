@@ -569,7 +569,6 @@ extension GotoObjectViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
         clientSocket.readData(withTimeout: -1, tag: 0)
     }
 

@@ -176,7 +176,6 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
             clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
-        
     }
     
     func setupUserInterface() {

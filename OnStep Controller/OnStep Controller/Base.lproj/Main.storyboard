@@ -154,7 +154,7 @@
                                                 <fragment content="Bright Nebula--">
                                                     <attributes>
                                                         <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="14" name="SFUIDisplay-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                             <tabStops/>
                                                         </paragraphStyle>
@@ -223,7 +223,7 @@
                                                 <fragment content="Quasar--">
                                                     <attributes>
                                                         <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="14" name="SFUIDisplay-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                             <tabStops/>
                                                         </paragraphStyle>
@@ -262,7 +262,7 @@
                                                 <fragment content="User Catalog">
                                                     <attributes>
                                                         <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="14" name="SFUIDisplay-Regular"/>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" defaultTabInterval="28" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                             <tabStops/>
                                                         </paragraphStyle>
@@ -679,7 +679,7 @@
                                     <fragment content="1.4 deg/sec">
                                         <attributes>
                                             <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="12" name="SFUIDisplay-Bold"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>

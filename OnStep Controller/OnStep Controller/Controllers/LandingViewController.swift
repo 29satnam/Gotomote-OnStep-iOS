@@ -149,7 +149,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         if segue.identifier == "tracking" {
             // trigger delegate socket values
             if let destination = segue.destination as? TrackingViewController {
-                destination.delegate = self
+              //  destination.delegate = self
             }
         } else if segue.identifier == "initialize" {
             // trigger delegate socket values
