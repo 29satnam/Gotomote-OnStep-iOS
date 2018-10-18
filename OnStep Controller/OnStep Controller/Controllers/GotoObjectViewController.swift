@@ -18,6 +18,8 @@ class GotoObjectViewController: UIViewController {
     var socketConnector: SocketDataManager!
     var clientSocket: GCDAsyncSocket!
     
+    var filteredJSON: JSON = JSON()
+    
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
     
@@ -63,7 +65,6 @@ class GotoObjectViewController: UIViewController {
     // formed
     
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
     @objc func screenUpdate() {
         
         raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
@@ -81,8 +82,8 @@ class GotoObjectViewController: UIViewController {
         self.azimuth.text = "Azimuth: " + "\(vegaAziAlt.azimuth.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'"
         
         self.aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
-        
     }
+
     
     //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
     
@@ -176,6 +177,8 @@ class GotoObjectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print("filteredJSON:", filteredJSON)
         
         speedSlider.minimumValue = 0
         speedSlider.maximumValue = 9
@@ -576,5 +579,22 @@ extension GotoObjectViewController: GCDAsyncSocketDelegate {
         let text = String(data: data, encoding: .utf8)
         print("didRead:", text!)
         clientSocket.readData(withTimeout: -1, tag: 0)
+    }
+}
+
+
+extension JSON{
+    mutating func appendIfArray(json:JSON){
+        if var arr = self.array{
+            arr.append(json)
+            self = JSON(arr);
+        }
+    }
+    
+    mutating func appendIfDictionary(key:String,json:JSON){
+        if var dict = self.dictionary{
+            dict[key] = json;
+            self = JSON(dict);
+        }
     }
 }
