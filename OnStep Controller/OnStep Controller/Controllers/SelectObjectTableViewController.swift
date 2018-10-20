@@ -24,6 +24,34 @@ class SelectObjectTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for (key, entry) in jsonObj {
+            print("key0:", key, "entryValue:", entry)
+            
+          /*  var raStr = jsonObj["RA"].stringValue
+            //  print("raStr:", raStr.stringValue.split(separator: " "))
+            
+            var raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
+            var decStr = jsonObj["DEC"].stringValue
+            
+            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(raSepa[0])!), distance: 1)
+            
+            let date = Date()
+            let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
+            
+            let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
+            
+            if vegaAziAlt.altitude.wrappedValue > 0 {
+                let filt = JSON(jsonObj)
+                filteredJSON.append(filt)
+            } */
+        }
+        
+
+        
+        
+        
+        
+        
        // navigationItem.title = "SELECT FIRST STAR"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black
@@ -38,6 +66,7 @@ class SelectObjectTableViewController: UITableViewController {
     
     @objc func abortAlignment(){
         print("clicked")
+        print("filteredJSON", filteredJSON)
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -74,46 +103,10 @@ class SelectObjectTableViewController: UITableViewController {
         return self.jsonObj.count
     }
 
-    var filteredJSON: [[String : Any]] = [[String : Any]]()
+    var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        
-        var raStr = jsonObj[indexPath.row]["RA"].stringValue
-      //  print("raStr:", raStr.stringValue.split(separator: " "))
-        
-        var raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
-        var decStr = jsonObj[indexPath.row]["DEC"].stringValue
-        
-        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(raSepa[0])!), distance: 1)
-        
-        let date = Date()
-        let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
-        
-        let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
-      //  self.aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
-
-
-     /*   let jobj = jsonObj.arrayValue
-        if !jobj.isEmpty {
-            let j = jobj.filter({ (json) -> Bool in
-                return json["OTHER"].stringValue == "M 12"; })
-            print ("filterdData: \(j)")
-        } */
-        
-        if vegaAziAlt.altitude.wrappedValue > 0 {
-        //    filteredJSON.append //.append(jsonObj[indexPath.row])
-           // filteredJSON = JSON(filteredJSON. .append(jsonObj[indexPath.row])) // appendIfArray(json: jsonObj[indexPath.row]))
-            
-         //   var filteredJSON = JSON(filteredJSON.arrayObject?.append(jsonObj[indexPath.row])) //.merge(with: jsonObj[indexPath.row]) // append(jsonObj[indexPath.row].array)
-          //  print(jsonObj[indexPath.row].object)
-            
-            let filt = JSON(jsonObj[indexPath.row])
-           // filteredJSON.arrayObject?.append(filt) // null
-            filteredJSON.append(filt) //append(filt.arrayObject)
-        }
-        print("filteredJSON", filteredJSON)
+    
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ObjectListTableViewCell
         
