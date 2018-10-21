@@ -25,16 +25,17 @@ class SelectObjectTableViewController: UITableViewController {
         super.viewDidLoad()
         
         for (key, entry) in jsonObj {
-            print("key0:", key, "entryValue:", entry)
+            print("key:", key, "entryValue:", entry)
             
-          /*  var raStr = jsonObj["RA"].stringValue
+            var raStr = jsonObj[Int(key)!]["RA"].stringValue
             //  print("raStr:", raStr.stringValue.split(separator: " "))
             
             var raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
-            var decStr = jsonObj["DEC"].stringValue
+            var decStr = jsonObj[Int(key)!]["DEC"].stringValue
+            //TODO convert decStr to hour minutes
             
-            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(raSepa[0])!), distance: 1)
-            
+            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)!), distance: 1)
+
             let date = Date()
             let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
             
@@ -43,9 +44,9 @@ class SelectObjectTableViewController: UITableViewController {
             if vegaAziAlt.altitude.wrappedValue > 0 {
                 let filt = JSON(jsonObj)
                 filteredJSON.append(filt)
-            } */
+            }
         }
-        
+        print("filteredJSON:", filteredJSON)
 
         
         
