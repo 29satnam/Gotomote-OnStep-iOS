@@ -24,17 +24,24 @@ class SelectObjectTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for (key, entry) in jsonObj {
-            print("key:", key, "entryValue:", entry)
+      //  for (key, entry) in jsonObj {
+      //      print("key:", key, "entryValue:", entry)
             
-            var raStr = jsonObj[Int(key)!]["RA"].stringValue
+            var raStr = jsonObj[0]["RA"].stringValue
             //  print("raStr:", raStr.stringValue.split(separator: " "))
             
             var raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
-            var decStr = jsonObj[Int(key)!]["DEC"].stringValue
+            var decStr = jsonObj[0]["DEC"].stringValue
+        
+        print("raStr:", raStr, "decStr:", decStr)
+        
+        // raStr: 05 34.5 decStr: +22 01
+        //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
+        //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
+            // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
             //TODO convert decStr to hour minutes
             
-            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)!), distance: 1)
+       /*     let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)!), distance: 1)
 
             let date = Date()
             let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
@@ -45,10 +52,10 @@ class SelectObjectTableViewController: UITableViewController {
                 let filt = JSON(jsonObj)
                 filteredJSON.append(filt)
             }
-        }
-        print("filteredJSON:", filteredJSON)
+    //    }
+    //    print("filteredJSON:", filteredJSON)
 
-        
+        */
         
         
         
