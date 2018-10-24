@@ -20,46 +20,54 @@ class SelectObjectTableViewController: UITableViewController {
     var vcTitle: String = String()
     var slctdObjIndex: Int = Int()
 
+    var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      //  for (key, entry) in jsonObj {
-      //      print("key:", key, "entryValue:", entry)
+        for (key, entry) in jsonObj {
+            print("key:", key, "entryValue:", entry)
             
-            var raStr = jsonObj[0]["RA"].stringValue
-            //  print("raStr:", raStr.stringValue.split(separator: " "))
+            let raStr = jsonObj[Int(key)!]["RA"].stringValue //raStr: 05 34.5
+            let raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
             
-            var raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
-            var decStr = jsonObj[0]["DEC"].stringValue
-        
-        print("raStr:", raStr, "decStr:", decStr)
-        
-        // raStr: 05 34.5 decStr: +22 01
-        //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
-        //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
+            let raHH = Double(raSepa[opt: 0]!)!
+            let raSepaMM = raSepa[opt: 1]!.components(separatedBy: ".")  // ["34", "5"]
+            
+            let raMM = Double(raSepaMM[opt: 0]!)! // "34"
+            let raSS = Double(raSepaMM[opt: 1]!)!/10*(60)
+            
+            
+            let decStr = jsonObj[Int(key)!]["DEC"].stringValue //  decStr: +22 01
+            let decSepa = decStr.components(separatedBy: " ")
+            
+            let decDD = Double(decSepa[opt: 0]!)! // 22.0
+            let decMM = String(format: "%02d", Int(decSepa[opt: 1]!)! as CVarArg)// Double()! // 22.0
+            
+            print("decMM:", decMM)
+            
+            print("raStr:", raStr, "decStr:", decStr)
+            
+            //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
+            //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
+            
             // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
-            //TODO convert decStr to hour minutes
-            
-       /*     let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)!), distance: 1)
 
+            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: raSS), declination: DegreeAngle(degree: decDD, minute: Double(decMM)!, second: 0.0), distance: 1)
+            print(vegaCoord.declination, vegaCoord.rightAscension)
             let date = Date()
             let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
             
             let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
             
             if vegaAziAlt.altitude.wrappedValue > 0 {
-                let filt = JSON(jsonObj)
+                let filt = jsonObj[Int(key)!]
                 filteredJSON.append(filt)
+                print("ya")
             }
-    //    }
-    //    print("filteredJSON:", filteredJSON)
-
-        */
-        
-        
-        
-        
+        }
+        print("filteredJSON:", filteredJSON)
+        tableView.reloadData()
        // navigationItem.title = "SELECT FIRST STAR"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black
@@ -108,10 +116,8 @@ class SelectObjectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.jsonObj.count
+        return filteredJSON.count
     }
-
-    var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
@@ -119,34 +125,34 @@ class SelectObjectTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ObjectListTableViewCell
         
         // Object Empty Check
-        if (self.jsonObj[indexPath.row]["OBJECT"]) == "" {
+        if (self.filteredJSON[indexPath.row]["OBJECT"]) == "" {
             cell.objectLabel.text = "N/A /"
         } else {
-            cell.objectLabel.text = "\(self.jsonObj[indexPath.row]["OBJECT"].stringValue) / "
+            cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["OBJECT"].stringValue) / "
         }
         
         // Other Empty Check
-        if (self.jsonObj[indexPath.row]["OTHER"]) == "" {
+        if (self.filteredJSON[indexPath.row]["OTHER"]) == "" {
             cell.otherLabel.text = "N/A"
         } else {
-            cell.otherLabel.text = "\(self.jsonObj[indexPath.row]["OTHER"].stringValue)"
+            cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
         }
         
         // Magnitude Empty Check
-        if (self.jsonObj[indexPath.row]["MAG"]) == "" {
+        if (self.filteredJSON[indexPath.row]["MAG"]) == "" {
                 cell.magLabel.text = "N/A"
         } else {
-            cell.magLabel.text = "\(self.jsonObj[indexPath.row]["MAG"].doubleValue) Mv"
+            cell.magLabel.text = "\(self.filteredJSON[indexPath.row]["MAG"].doubleValue) Mv"
         }
         
         
         // Type Empty Check
-        if (self.jsonObj[indexPath.row]["TYPE"]) == "" {
+        if (self.filteredJSON[indexPath.row]["TYPE"]) == "" {
             cell.typeLabel.text = "N/A"
         } else {
           //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
             
-            switch (self.jsonObj[indexPath.row]["TYPE"].stringValue) {
+            switch (self.filteredJSON[indexPath.row]["TYPE"].stringValue) {
             case "ASTER":
                 cell.typeLabel.text = "Asterism"
             case "BRTNB":
