@@ -25,6 +25,8 @@ class SelectObjectTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        filteredJSON.removeAll()
+        
         for (key, entry) in jsonObj {
             print("key:", key, "entryValue:", entry)
             
@@ -36,7 +38,6 @@ class SelectObjectTableViewController: UITableViewController {
             
             let raMM = Double(raSepaMM[opt: 0]!)! // "34"
             let raSS = Double(raSepaMM[opt: 1]!)!/10*(60)
-            
             
             let decStr = jsonObj[Int(key)!]["DEC"].stringValue //  decStr: +22 01
             let decSepa = decStr.components(separatedBy: " ")
@@ -56,7 +57,7 @@ class SelectObjectTableViewController: UITableViewController {
             let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: raSS), declination: DegreeAngle(degree: decDD, minute: Double(decMM)!, second: 0.0), distance: 1)
             print(vegaCoord.declination, vegaCoord.rightAscension)
             let date = Date()
-            let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
+            let locTime = ObserverLocationTime(location: CLLocation(latitude: 30.9090157, longitude: 75.851601), timestamp: JulianDay(date: date))
             
             let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
             
@@ -68,6 +69,7 @@ class SelectObjectTableViewController: UITableViewController {
         }
         print("filteredJSON:", filteredJSON)
         tableView.reloadData()
+        
        // navigationItem.title = "SELECT FIRST STAR"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black

@@ -8,6 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import CoreLocation
+import SpaceTime
+import MathUtil
 
 
 class SelectStarTableViewController: UITableViewController {
@@ -22,6 +25,8 @@ class SelectStarTableViewController: UITableViewController {
     
     var delegate: TriggerConnectionDelegate?
     
+    var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         jsonObj = grabJSONData(resource: "Bright Stars")
@@ -35,6 +40,56 @@ class SelectStarTableViewController: UITableViewController {
         let abortAlig = UIBarButtonItem(title: "Abort", style: .plain , target: self, action: #selector(abortAlignment))
         abortAlig.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.navigationItem.rightBarButtonItem = abortAlig
+        
+        
+        filteredJSON.removeAll()
+        
+        for (key, entry) in jsonObj {
+            print("key:", key, "entryValue:", entry)
+            
+            //  Right Ascension in hours and minutes for epoch 2000. // "RA": "06 45"
+            //  Declination in degrees for epoch 2000.               // "DEC": -16.7
+            
+            let raStr = jsonObj[Int(key)!]["RA"].stringValue // "RA": "06 45",
+            let raSepa = raStr.components(separatedBy: " ")
+            
+            let raHH = Double(raSepa[opt: 0]!)!
+            let raSepaMM = raSepa[opt: 1]!.components(separatedBy: ".")  // "DEC": -16.7
+            
+            let raMM = Double(raSepaMM[opt: 0]!)! // "34"
+      //      let raSS = Double(raSepaMM[opt: 1]!)!/10*(60)
+            
+            let decStr = jsonObj[Int(key)!]["DEC"].doubleValue //  decStr: +22 01
+            let decSepa = "\(decStr)".components(separatedBy: ".")
+            
+            let decDD = Double(decSepa[opt: 0]!)! // 22.0
+            let decMM = Int(decSepa[opt: 1]!)! // Double()! // 22.0
+            
+            print("decMM:", decMM)
+            
+            print("raStr:", raStr, "decStr:", decStr)
+            
+            //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
+            //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
+            
+            // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
+            
+            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: 0.0), declination: DegreeAngle(degree: decDD, minute: Double(decMM), second: 0.0), distance: 1)
+            print(vegaCoord.declination, vegaCoord.rightAscension)
+            let date = Date()
+            let locTime = ObserverLocationTime(location: CLLocation(latitude: 30.9090157, longitude: 75.851601), timestamp: JulianDay(date: date))
+            
+            let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
+            
+            if vegaAziAlt.altitude.wrappedValue > 0 {
+                let filt = jsonObj[Int(key)!]
+                filteredJSON.append(filt)
+                print("ya")
+            }
+        }
+        print("filteredJSON:", filteredJSON)
+        tableView.reloadData()
+        
         
     }
     @objc func abortAlignment(){
@@ -66,7 +121,7 @@ class SelectStarTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.jsonObj.count
+        return self.filteredJSON.count
     }
     
     
@@ -75,38 +130,38 @@ class SelectStarTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! StarListTableViewCell
         
         // Number Empty Check
-        if (self.jsonObj[indexPath.row]["NUMBER"]) == "" {
+        if (self.filteredJSON[indexPath.row]["NUMBER"]) == "" {
             cell.numberLabel.text = "N/A "
         } else {
-            cell.numberLabel.text = "\(self.jsonObj[indexPath.row]["NUMBER"].stringValue) "
+            cell.numberLabel.text = "\(self.filteredJSON[indexPath.row]["NUMBER"].stringValue) "
         }
         
         // Name Empty Check
-        if (self.jsonObj[indexPath.row]["NAME"]) == "" {
+        if (self.filteredJSON[indexPath.row]["NAME"]) == "" {
             cell.objectLabel.text = "N/A / "
         } else {
-            cell.objectLabel.text = "\(self.jsonObj[indexPath.row]["NAME"].stringValue) / "
+            cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["NAME"].stringValue) / "
         }
         
         // Other Empty Check
-        if (self.jsonObj[indexPath.row]["OTHER"]) == "" {
+        if (self.filteredJSON[indexPath.row]["OTHER"]) == "" {
             cell.otherLabel.text = "N/A"
         } else {
-            cell.otherLabel.text = "\(self.jsonObj[indexPath.row]["OTHER"].stringValue)"
+            cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
         }
         
         // Distance Empty Check
-        if (self.jsonObj[indexPath.row]["DISTLY"]) == "" {
+        if (self.filteredJSON[indexPath.row]["DISTLY"]) == "" {
             cell.magLabel.text = "N/A"
         } else {
-            cell.magLabel.text = "Distance: \(self.jsonObj[indexPath.row]["DISTLY"].doubleValue) ly"
+            cell.magLabel.text = "Distance: \(self.filteredJSON[indexPath.row]["DISTLY"].doubleValue) ly"
         }
         
         // Visual Magnitude Empty Check
-        if (self.jsonObj[indexPath.row]["VMAG"]) == "" {
+        if (self.filteredJSON[indexPath.row]["VMAG"]) == "" {
             cell.typeLabel.text = "N/A"
         } else {
-            cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["VMAG"].doubleValue) Mv"
+            cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["VMAG"].doubleValue) Mv"
         }
         
         return cell
@@ -114,7 +169,7 @@ class SelectStarTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        slctdObj = jsonObj[indexPath.row]
+        slctdObj = filteredJSON[indexPath.row]
         slctdObjIndex = indexPath.row
 
         self.performSegue(withIdentifier: "gotoSegue", sender: self)

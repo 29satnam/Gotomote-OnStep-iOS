@@ -88,7 +88,9 @@ class InitializeViewController: UIViewController {
 
         }
 
-        let hour = doubleToInteger(data: (Double(utcStr)!))
+     //   let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
+        let hour = doubleToInteger(data: (Double(+05.30)))
+
         let hourInSec = String(hour * 3600)
         
         let minExt = Double(utcStr)!.truncatingRemainder(dividingBy: 1)
