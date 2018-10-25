@@ -2548,7 +2548,6 @@
         <image name="solarSystem" width="11" height="11"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KR7-JG-2rw"/>
         <segue reference="bq7-Sv-zkc"/>
         <segue reference="nQ6-u1-rE8"/>
     </inferredMetricsTieBreakers>

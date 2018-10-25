@@ -88,8 +88,8 @@ class InitializeViewController: UIViewController {
 
         }
 
-     //   let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
-        let hour = doubleToInteger(data: (Double(+05.30)))
+        let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
+     //   let hour = doubleToInteger(data: (Double(+05.30)))
 
         let hourInSec = String(hour * 3600)
         
@@ -238,10 +238,8 @@ class InitializeViewController: UIViewController {
             clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
-        
     }
 }
-
 
 extension InitializeViewController: GCDAsyncSocketDelegate {
     

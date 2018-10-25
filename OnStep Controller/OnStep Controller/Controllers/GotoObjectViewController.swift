@@ -66,12 +66,42 @@ class GotoObjectViewController: UIViewController {
     
     // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
     @objc func screenUpdate() {
-        
+        /*
         raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
         var raSepa = raStr.split(separator: " ")
         decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
         
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
+        
+        */
+        
+        
+        let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue //raStr: 05 34.5
+        let raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
+        
+        let raHH = Double(raSepa[opt: 0]!)!
+        let raSepaMM = raSepa[opt: 1]!.components(separatedBy: ".")  // ["34", "5"]
+        
+        let raMM = Double(raSepaMM[opt: 0]!)! // "34"
+        let raSS = Double(raSepaMM[opt: 1]!)!/10*(60)
+        
+        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].stringValue //  decStr: +22 01
+        let decSepa = decStr.components(separatedBy: " ")
+        
+        let decDD = Double(decSepa[opt: 0]!)! // 22.0
+        let decMM = String(format: "%02d", Int(decSepa[opt: 1]!)! as CVarArg)// Double()! // 22.0
+        
+        print("decMM:", decMM)
+        
+        print("raStr:", raStr, "decStr:", decStr)
+        
+        //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
+        //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
+        
+        // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
+        
+        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: raSS), declination: DegreeAngle(degree: decDD, minute: Double(decMM)!, second: 0.0), distance: 1)
+        print("lolol:", raHH, raMM, raSS, decDD, Double(decMM)!)
         
         let date = Date()
         let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))

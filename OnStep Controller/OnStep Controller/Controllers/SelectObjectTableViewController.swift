@@ -56,6 +56,7 @@ class SelectObjectTableViewController: UITableViewController {
 
             let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: raSS), declination: DegreeAngle(degree: decDD, minute: Double(decMM)!, second: 0.0), distance: 1)
             print(vegaCoord.declination, vegaCoord.rightAscension)
+            
             let date = Date()
             let locTime = ObserverLocationTime(location: CLLocation(latitude: 30.9090157, longitude: 75.851601), timestamp: JulianDay(date: date))
             
