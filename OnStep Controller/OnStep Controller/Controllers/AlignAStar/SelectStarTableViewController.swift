@@ -31,7 +31,7 @@ class SelectStarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         jsonObj = grabJSONData(resource: "Bright Stars")
-        print("coordinates", coordinates)
+        print("coordinates", coordinates, coordinates.count, coordinates[0])
         navigationItem.title = vcTitle
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
@@ -78,7 +78,7 @@ class SelectStarTableViewController: UITableViewController {
             let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: 0.0), declination: DegreeAngle(degree: decDD, minute: Double(decMM), second: 0.0), distance: 1)
 
             let date = Date()
-            let locTime = ObserverLocationTime(location: CLLocation(latitude: 30.9090157, longitude: 75.851601), timestamp: JulianDay(date: date))
+            let locTime = ObserverLocationTime(location: CLLocation(latitude: Double(coordinates[0])!, longitude: Double(coordinates[1])!), timestamp: JulianDay(date: date))
             
             let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
             
