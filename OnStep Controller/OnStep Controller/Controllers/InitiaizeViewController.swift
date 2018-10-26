@@ -13,6 +13,7 @@ class InitializeViewController: UIViewController {
     
     var clientSocket: GCDAsyncSocket!
     var readerText: String = String()
+    var coordinatesToPass: [String] = [String]()
 
     @IBOutlet var segmentControl: TTSegmentedControl!
     var alignTypeInit: Int = Int()
@@ -34,7 +35,7 @@ class InitializeViewController: UIViewController {
         print("tapped")
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -51,17 +52,19 @@ class InitializeViewController: UIViewController {
         
         setupUserInterface()
         
-        triggerConnection(cmd:":GG#", setTag: 1)
-
+       // triggerConnection(cmd:":GG#", setTag: 1)
     }
 
-    
     // Start Alignment
     @IBAction func startAlignAct(_ sender: UIButton) {
         // Start first star alignment.
         print("start first")
-        triggerConnection(cmd: ":A1#", setTag: 0)
-        self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
+        self.readerText = ""
+        
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
+        
+       // triggerConnection(cmd: ":A1#", setTag: 0)
+       // self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
         
     }
     func doubleToInteger(data:Double)-> Int {
@@ -83,9 +86,7 @@ class InitializeViewController: UIViewController {
                 utcStr =  "-\(utcString.dropFirst())"
             }
             utcStr = String(utcStr.dropLast().replacingOccurrences(of: ":", with: "."))
-            
          //   print(String(format: "%02d:%02d", utcStr.components(separatedBy: ":")[opt: 0]!, utcStr.components(separatedBy: ":")[opt: 1]!))
-
         }
 
         let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
@@ -215,13 +216,14 @@ class InitializeViewController: UIViewController {
         // :B+#
         triggerConnection(cmd: ":B+#", setTag: 0)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         if let destination = segue.destination as? SelectStarTableViewController {
             print("Init:", alignTypeInit)
             destination.alignType = alignTypeInit
             destination.vcTitle = "FIRST STAR"
+            destination.coordinates = coordinatesToPass
           //  destination.delegate = self
             
         }
@@ -245,13 +247,26 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let gettext = String(data: data, encoding: .utf8)
-        print("got:", gettext)
+      //  print("got:", gettext)
         switch tag {
         case 0:
-            print("Tag 0")
+            print("Tag 0:", gettext!)
+            readerText += "\(gettext!)"
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+                print(index)
         case 1:
             print("Tag 1:", gettext!)
             utcString = gettext!
+        case 2:
+            print("Tag 2:", gettext!)
+            readerText += "\(gettext!)"
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            print(index)
+            if index.isEmpty == false && index.count == 2 {
+                coordinatesToPass = index
+                self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
+            }
+
         default:
             print("def")
         }
@@ -273,13 +288,11 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         print("Disconnected Called: ", err?.localizedDescription as Any)
     }
-    
     
 }
 

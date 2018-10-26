@@ -944,7 +944,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1UF-dw-wAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="790" y="2625"/>
+            <point key="canvasLocation" x="1409" y="948"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8D0-VY-aww">
@@ -2054,7 +2054,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZq-OO-uSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="382" y="3481"/>
+            <point key="canvasLocation" x="662" y="2410"/>
         </scene>
         <!--Select Object Table View Controller-->
         <scene sceneID="Vzi-Hg-Twp">
@@ -2223,7 +2223,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiQ-Kv-6Jj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641" y="2625"/>
+            <point key="canvasLocation" x="1409" y="1648"/>
         </scene>
         <!--Goto Object View Controller-->
         <scene sceneID="VF6-kO-mgG">
@@ -2531,7 +2531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxW-sO-Eah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="1437"/>
+            <point key="canvasLocation" x="-498" y="688"/>
         </scene>
     </scenes>
     <resources>
@@ -2548,7 +2548,7 @@
         <image name="solarSystem" width="11" height="11"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bq7-Sv-zkc"/>
+        <segue reference="bHG-Mh-3zn"/>
         <segue reference="nQ6-u1-rE8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
 
     @IBAction func pec(_ sender: UIButton) {
      //   triggerConnection(cmd: ":Sd-23:12:12#")
-        triggerConnection(cmd: ":Sa-23:12:12#")
+    //    triggerConnection(cmd: ":Sa-23:12:12#")
       //  triggerConnection(cmd: ":Gd#")
         //  triggerConnection(cmd: ":Sr12:05:45#")
     }

@@ -327,7 +327,7 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
             readerText += "\(gettext!)"
             
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-          //    print(index)
+              print(index)
             DispatchQueue.main.async {
                 self.siteNaTF.text = index[opt: 0]
                 

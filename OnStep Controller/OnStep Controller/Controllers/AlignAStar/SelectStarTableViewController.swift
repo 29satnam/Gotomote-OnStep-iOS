@@ -14,7 +14,6 @@ import MathUtil
 
 
 class SelectStarTableViewController: UITableViewController {
-
     var instance: LandingViewController = LandingViewController()
     
     var jsonObj: JSON = JSON()
@@ -23,14 +22,16 @@ class SelectStarTableViewController: UITableViewController {
     var slctdObj: JSON = JSON()
     var slctdObjIndex: Int = Int()
     
-    var delegate: TriggerConnectionDelegate?
+    var coordinates:[String] = [String]()
+    
+    var readerText: String = String()
     
     var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         jsonObj = grabJSONData(resource: "Bright Stars")
-
+        print("coordinates", coordinates)
         navigationItem.title = vcTitle
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
@@ -41,11 +42,11 @@ class SelectStarTableViewController: UITableViewController {
         abortAlig.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.navigationItem.rightBarButtonItem = abortAlig
         
-        
+
         filteredJSON.removeAll()
         
         for (key, entry) in jsonObj {
-            print("key:", key, "entryValue:", entry)
+        //    print("key:", key, "entryValue:", entry)
             
             //  Right Ascension in hours and minutes for epoch 2000. // "RA": "06 45"
             //  Declination in degrees for epoch 2000.               // "DEC": -16.7
@@ -65,9 +66,9 @@ class SelectStarTableViewController: UITableViewController {
             let decDD = Double(decSepa[opt: 0]!)! // 22.0
             let decMM = Int(decSepa[opt: 1]!)! // Double()! // 22.0
             
-            print("decMM:", decMM)
+       //     print("decMM:", decMM)
             
-            print("raStr:", raStr, "decStr:", decStr)
+         //   print("raStr:", raStr, "decStr:", decStr)
             
             //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
             //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
@@ -75,7 +76,7 @@ class SelectStarTableViewController: UITableViewController {
             // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
             
             let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: 0.0), declination: DegreeAngle(degree: decDD, minute: Double(decMM), second: 0.0), distance: 1)
-            print(vegaCoord.declination, vegaCoord.rightAscension)
+
             let date = Date()
             let locTime = ObserverLocationTime(location: CLLocation(latitude: 30.9090157, longitude: 75.851601), timestamp: JulianDay(date: date))
             
@@ -84,10 +85,10 @@ class SelectStarTableViewController: UITableViewController {
             if vegaAziAlt.altitude.wrappedValue > 0 {
                 let filt = jsonObj[Int(key)!]
                 filteredJSON.append(filt)
-                print("ya")
+           //     print("ya")
             }
         }
-        print("filteredJSON:", filteredJSON)
+     //   print("filteredJSON:", filteredJSON)
         tableView.reloadData()
         
         
@@ -163,7 +164,6 @@ class SelectStarTableViewController: UITableViewController {
         } else {
             cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["VMAG"].doubleValue) Mv"
         }
-        
         return cell
     }
     

@@ -20,7 +20,7 @@ class GotoStarViewController: UIViewController {
 
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
-    
+
     @IBOutlet var leftArrowBtn: UIButton!
     @IBOutlet var rightArrowBtn: UIButton!
     @IBOutlet var revNSBtn: UIButton!
@@ -68,11 +68,9 @@ class GotoStarViewController: UIViewController {
         raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
         var raSepa = raStr.split(separator: " ")
         decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
-        
-        
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second: 34), declination: DegreeAngle(Double(decStr)), distance: 1)
         */
-        
+
         let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue // "RA": "06 45",
         let raSepa = raStr.components(separatedBy: " ")
         
