@@ -19,7 +19,8 @@ class InitializeViewController: UIViewController {
     var alignTypeInit: Int = Int()
     
     var utcString: String =  String()
-    
+    var utcStr: String = String()
+
     @IBOutlet weak var setDateTimeBtn: UIButton!
     @IBOutlet weak var starAlignmentBtn: UIButton!
     @IBOutlet weak var atHomeBtn: UIButton!
@@ -52,7 +53,7 @@ class InitializeViewController: UIViewController {
         
         setupUserInterface()
         
-       // triggerConnection(cmd:":GG#", setTag: 1)
+        triggerConnection(cmd:":GG#", setTag: 1)
     }
 
     // Start Alignment
@@ -76,8 +77,6 @@ class InitializeViewController: UIViewController {
     // Mark: Set Date Time
     @IBAction func setDateTimeAct(_ sender: UIButton) {
         // Todo: Returns nil if not connected
-        
-        var utcStr: String = String()
 
         if let character = utcString.character(at: 0) {
             if character == "-" {
@@ -86,10 +85,11 @@ class InitializeViewController: UIViewController {
                 utcStr =  "-\(utcString.dropFirst())"
             }
             utcStr = String(utcStr.dropLast().replacingOccurrences(of: ":", with: "."))
-         //   print(String(format: "%02d:%02d", utcStr.components(separatedBy: ":")[opt: 0]!, utcStr.components(separatedBy: ":")[opt: 1]!))
+//            print(String(format: "%02d:%02d", utcStr.components(separatedBy: ":")[opt: 0]!, utcStr.components(separatedBy: ":")[opt: 1]!))
         }
 
         let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
+        print("hour", hour)
      //   let hour = doubleToInteger(data: (Double(+05.30)))
 
         let hourInSec = String(hour * 3600)
@@ -247,7 +247,6 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let gettext = String(data: data, encoding: .utf8)
-      //  print("got:", gettext)
         switch tag {
         case 0:
             print("Tag 0:", gettext!)
