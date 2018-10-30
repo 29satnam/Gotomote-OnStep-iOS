@@ -260,7 +260,9 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             readerText += "\(gettext!)"
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
          //   print(index)
+
             if index.isEmpty == false && index.count == 2 {
+                triggerConnection(cmd: ":A1#", setTag: 0) // start align
                 coordinatesToPass = index
                 self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
             }

@@ -77,8 +77,15 @@
                                     <constraint firstAttribute="height" constant="1" id="YA1-5J-o0w"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NL7-7S-E8n">
+                                <rect key="frame" x="112.5" y="314.5" width="150" height="1"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="vyd-Bh-tt1"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzY-rL-iZA">
-                                <rect key="frame" x="28" y="313.5" width="155" height="120.5"/>
+                                <rect key="frame" x="28" y="337.5" width="155" height="102.5"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <state key="normal" title="Messier">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,7 +95,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dR9-0Z-ylh">
-                                <rect key="frame" x="193.5" y="444.5" width="155" height="121"/>
+                                <rect key="frame" x="193.5" y="450.5" width="155" height="103"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Quasar">
@@ -107,7 +114,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GYg-EW-d71">
-                                <rect key="frame" x="193.5" y="313.5" width="155" height="120.5"/>
+                                <rect key="frame" x="193.5" y="337.5" width="155" height="102.5"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Bright Nebula">
@@ -126,7 +133,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFC-8H-ZrI">
-                                <rect key="frame" x="28" y="444.5" width="155" height="121"/>
+                                <rect key="frame" x="28" y="450.5" width="155" height="103"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <state key="normal" title="Galaxy">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -140,8 +147,9 @@
                         <constraints>
                             <constraint firstItem="xzY-rL-iZA" firstAttribute="width" secondItem="xSK-T0-fQY" secondAttribute="width" id="1UM-gx-vrp"/>
                             <constraint firstItem="xSK-T0-fQY" firstAttribute="centerY" secondItem="vHU-b4-68D" secondAttribute="centerY" id="2eq-bZ-Oyu"/>
+                            <constraint firstItem="NL7-7S-E8n" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="1.04485" id="3W8-Bs-fze"/>
                             <constraint firstItem="PqK-Ji-7gQ" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="0.853821" id="6dp-vl-6b8"/>
-                            <constraint firstItem="EFC-8H-ZrI" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="1.675" id="6kC-cT-q9z"/>
+                            <constraint firstItem="EFC-8H-ZrI" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="1.665" id="6kC-cT-q9z"/>
                             <constraint firstItem="xSK-T0-fQY" firstAttribute="height" secondItem="vHU-b4-68D" secondAttribute="height" id="9Fk-BP-W21"/>
                             <constraint firstItem="EFC-8H-ZrI" firstAttribute="width" secondItem="xzY-rL-iZA" secondAttribute="width" id="9qz-Dy-PxJ"/>
                             <constraint firstItem="dR9-0Z-ylh" firstAttribute="height" secondItem="EFC-8H-ZrI" secondAttribute="height" id="BAm-qx-yGf"/>
@@ -152,16 +160,18 @@
                             <constraint firstItem="vHU-b4-68D" firstAttribute="centerX" secondItem="eDN-ks-DYV" secondAttribute="centerX" multiplier="1.44652" id="IqD-ZD-YC0"/>
                             <constraint firstItem="EFC-8H-ZrI" firstAttribute="height" secondItem="xzY-rL-iZA" secondAttribute="height" id="IyW-h5-XLt"/>
                             <constraint firstItem="dR9-0Z-ylh" firstAttribute="centerY" secondItem="EFC-8H-ZrI" secondAttribute="centerY" id="JjA-p2-Rn9"/>
+                            <constraint firstItem="NL7-7S-E8n" firstAttribute="height" secondItem="RGq-fw-XgX" secondAttribute="height" id="Kgk-9f-18R"/>
                             <constraint firstItem="xSK-T0-fQY" firstAttribute="width" secondItem="eDN-ks-DYV" secondAttribute="width" multiplier="0.413333" id="LNp-cc-6Ch"/>
                             <constraint firstItem="ygg-Oh-nGY" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="0.471761" id="MLW-nV-kO2"/>
-                            <constraint firstItem="xzY-rL-iZA" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="1.24" id="OmN-4v-CjA"/>
+                            <constraint firstItem="xzY-rL-iZA" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="1.29" id="OmN-4v-CjA"/>
                             <constraint firstItem="ygg-Oh-nGY" firstAttribute="trailing" secondItem="vHU-b4-68D" secondAttribute="trailing" id="VWc-hd-2Ds"/>
                             <constraint firstItem="xSK-T0-fQY" firstAttribute="centerX" secondItem="eDN-ks-DYV" secondAttribute="centerX" multiplier="0.562667" id="Vjj-J8-soW"/>
                             <constraint firstItem="GYg-EW-d71" firstAttribute="width" secondItem="xzY-rL-iZA" secondAttribute="width" id="Vtc-Dr-VcY"/>
                             <constraint firstItem="GYg-EW-d71" firstAttribute="height" secondItem="xzY-rL-iZA" secondAttribute="height" id="Xdy-7N-xJg"/>
+                            <constraint firstItem="NL7-7S-E8n" firstAttribute="centerX" secondItem="eDN-ks-DYV" secondAttribute="centerX" id="ZLa-CH-iV7"/>
                             <constraint firstItem="xSK-T0-fQY" firstAttribute="height" secondItem="eDN-ks-DYV" secondAttribute="height" multiplier="0.116279" id="aEP-25-aes"/>
                             <constraint firstItem="RGq-fw-XgX" firstAttribute="width" secondItem="eDN-ks-DYV" secondAttribute="width" multiplier="0.4" id="cOS-Wt-mIx"/>
-                            <constraint firstItem="xzY-rL-iZA" firstAttribute="height" secondItem="eDN-ks-DYV" secondAttribute="height" multiplier="0.2" id="cz6-N6-Y0q"/>
+                            <constraint firstItem="xzY-rL-iZA" firstAttribute="height" secondItem="eDN-ks-DYV" secondAttribute="height" multiplier="0.17" id="cz6-N6-Y0q"/>
                             <constraint firstItem="xSK-T0-fQY" firstAttribute="centerY" secondItem="eDN-ks-DYV" secondAttribute="centerY" multiplier="0.20598" id="hKq-uH-eud"/>
                             <constraint firstItem="EFC-8H-ZrI" firstAttribute="centerX" secondItem="xzY-rL-iZA" secondAttribute="centerX" id="hc4-8W-0fh"/>
                             <constraint firstItem="xzY-rL-iZA" firstAttribute="trailing" secondItem="xSK-T0-fQY" secondAttribute="trailing" id="jQY-CO-DHn"/>
@@ -174,6 +184,7 @@
                             <constraint firstItem="PqK-Ji-7gQ" firstAttribute="leading" secondItem="xSK-T0-fQY" secondAttribute="leading" id="uIE-10-gep"/>
                             <constraint firstItem="GYg-EW-d71" firstAttribute="centerX" secondItem="vHU-b4-68D" secondAttribute="centerX" id="vZN-qX-6Dv"/>
                             <constraint firstItem="dR9-0Z-ylh" firstAttribute="width" secondItem="EFC-8H-ZrI" secondAttribute="width" id="xEj-1Z-x4T"/>
+                            <constraint firstItem="NL7-7S-E8n" firstAttribute="width" secondItem="RGq-fw-XgX" secondAttribute="width" id="zNo-GX-qNP"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>

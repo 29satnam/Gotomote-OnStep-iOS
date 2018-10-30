@@ -104,30 +104,34 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBAction func toMessierTableView(_ sender: UIButton) {
         self.readerText = ""
-        
-        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
-        
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "Messier")
         tableViewTitle = "MESSIER OBJECTS"
        // self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     @IBAction func toGalaxyTableView(_ sender: UIButton) {
+        self.readerText = ""
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "GALXY Galaxy")
         tableViewTitle = "GALAXIES"
-        self.performSegue(withIdentifier: "objectListingTableView", sender: self)
+       // self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     @IBAction func toBrightNebulaTableView(_ sender: UIButton) {
+        self.readerText = ""
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "BRTNB Bright Nebula")
         tableViewTitle = "BRIGHT NEBULA"
-        self.performSegue(withIdentifier: "objectListingTableView", sender: self)
+       // self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     @IBAction func toQuasarTableView(_ sender: UIButton) {
+        self.readerText = ""
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "QUASR Quasar")
         tableViewTitle = "Quasar"
-        self.performSegue(withIdentifier: "objectListingTableView", sender: self)
+        //self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
