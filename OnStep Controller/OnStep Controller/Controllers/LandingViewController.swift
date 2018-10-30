@@ -43,12 +43,10 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     @IBOutlet weak var guideBtn: UIButton!
     @IBOutlet weak var enterCoBtn: UIButton!
     
-    @IBOutlet weak var solarSystemBtn: UIButton!
     @IBOutlet weak var messierBtn: UIButton!
     @IBOutlet weak var ngcicBtn: UIButton!
     @IBOutlet weak var herschelBtn: UIButton!
     @IBOutlet weak var brightStarsBtn: UIButton!
-    @IBOutlet weak var userCatalogBtn: UIButton!
     
     @IBOutlet var moreOptionsBtn: UIBarButtonItem!
     
@@ -90,12 +88,10 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         addBtnProperties(button: guideBtn)
         addBtnProperties(button: enterCoBtn)
         
-        addBtnProperties(button: solarSystemBtn)
         addBtnProperties(button: messierBtn)
         addBtnProperties(button: ngcicBtn)
         addBtnProperties(button: herschelBtn)
         addBtnProperties(button: brightStarsBtn)
-        addBtnProperties(button: userCatalogBtn)
         
         self.view.backgroundColor = .black
         

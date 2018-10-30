@@ -77,7 +77,6 @@ class GotoObjectViewController: UIViewController {
         
         */
         
-        
         let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue //raStr: 05 34.5
         let raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
         
