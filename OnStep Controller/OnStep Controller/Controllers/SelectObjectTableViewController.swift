@@ -103,7 +103,10 @@ class SelectObjectTableViewController: UITableViewController {
             destination.alignTypePassed = alignType
             destination.vcTitlePassed = vcTitle
             destination.passedSlctdObjIndex = slctdObjIndex
-            destination.slctdJSONObj = jsonObj
+            destination.slctdJSONObj = filteredJSON
+            destination.passedCoordinates = coordinates
+            
+
             
         }
     }

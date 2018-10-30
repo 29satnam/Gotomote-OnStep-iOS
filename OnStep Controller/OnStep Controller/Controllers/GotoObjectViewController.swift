@@ -15,10 +15,12 @@ import CocoaAsyncSocket
 
 class GotoObjectViewController: UIViewController {
     
+    var passedCoordinates:[String] = [String]()
+    
     var socketConnector: SocketDataManager!
     var clientSocket: GCDAsyncSocket!
     
-    var filteredJSON: JSON = JSON()
+    var filteredJSON: [JSON] = [JSON()]
     
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
@@ -56,7 +58,7 @@ class GotoObjectViewController: UIViewController {
     @IBOutlet var aboveHorizon: UILabel!
     
     // retrieved
-    var slctdJSONObj: JSON = JSON()
+    var slctdJSONObj: [JSON] = [JSON()]
     var raStr: String = String()
     var decStr: Double = Double()
     
@@ -104,8 +106,8 @@ class GotoObjectViewController: UIViewController {
         print("lolol:", raHH, raMM, raSS, decDD, Double(decMM)!)
         
         let date = Date()
-        let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
-        
+        let locTime = ObserverLocationTime(location: CLLocation(latitude: Double(passedCoordinates[0])!, longitude: Double(passedCoordinates[1])!), timestamp: JulianDay(date: date))
+
         let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
         
         self.altitude.text = "Altitude: " + "\(vegaAziAlt.altitude.wrappedValue.roundedDecimal(to: 3))".replacingOccurrences(of: ".", with: "° ") + "'"
@@ -113,7 +115,6 @@ class GotoObjectViewController: UIViewController {
         
         self.aboveHorizon.text = "Above Horizon? = \(vegaAziAlt.altitude.wrappedValue > 0 ? "Yes" : "No")"
     }
-
     
     //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
     
@@ -208,7 +209,7 @@ class GotoObjectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("filteredJSON:", filteredJSON)
+        print("passedCoordinatesss:", passedCoordinates)
         
         speedSlider.minimumValue = 0
         speedSlider.maximumValue = 9
