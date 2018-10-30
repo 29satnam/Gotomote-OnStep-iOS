@@ -36,7 +36,7 @@ class InitializeViewController: UIViewController {
         print("tapped")
         self.navigationController?.popToRootViewController(animated: true)
     }
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,7 +52,6 @@ class InitializeViewController: UIViewController {
         self.view.backgroundColor = .black
         
         setupUserInterface()
-        
         triggerConnection(cmd:":GG#", setTag: 1)
     }
 

@@ -14,6 +14,8 @@ import MathUtil
 
 class SelectObjectTableViewController: UITableViewController {
     
+    var coordinates:[String] = [String]()
+    
     // To pass
     var jsonObj: JSON = JSON()
     var alignType: Int = Int()
@@ -24,6 +26,7 @@ class SelectObjectTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("coordinatesss", coordinates)
         
         filteredJSON.removeAll()
         
@@ -58,8 +61,8 @@ class SelectObjectTableViewController: UITableViewController {
             print(vegaCoord.declination, vegaCoord.rightAscension)
             
             let date = Date()
-            let locTime = ObserverLocationTime(location: CLLocation(latitude: 30.9090157, longitude: 75.851601), timestamp: JulianDay(date: date))
-            
+            let locTime = ObserverLocationTime(location: CLLocation(latitude: Double(coordinates[0])!, longitude: Double(coordinates[1])!), timestamp: JulianDay(date: date))
+
             let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
             
             if vegaAziAlt.altitude.wrappedValue > 0 {

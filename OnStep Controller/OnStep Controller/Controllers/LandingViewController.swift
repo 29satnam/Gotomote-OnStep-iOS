@@ -12,13 +12,13 @@ import MathUtil
 import SwiftyJSON
 import CocoaAsyncSocket
 
-
+/*
 protocol TriggerConnectionDelegate {
     func triggerConnection(cmd: String)
 }
+*/
 
-
-class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate, TriggerConnectionDelegate {
+class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
 
     @IBAction func pec(_ sender: UIButton) {
      //   triggerConnection(cmd: ":Sd-23:12:12#")
@@ -29,7 +29,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     
     
     @IBAction func guide(_ sender: Any) {
-        triggerConnection(cmd: ":#")
+        triggerConnection(cmd: ":#", setTag: 3)
     }
     
     
@@ -53,26 +53,27 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     @IBOutlet var moreOptionsBtn: UIBarButtonItem!
     
     var clientSocket: GCDAsyncSocket!
-
+    var readerText: String = String()
+    var coordinatesToPass: [String] = [String]()
+    
+    var utcString: String =  String()
+    var utcStr: String = String()
     
     override func viewDidLoad() {
-        
         setupUserInteface()
-        
-
     }
     
-    func triggerConnection(cmd: String) {
-
+    func triggerConnection(cmd: String, setTag: Int) {
+        
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
         do {
             try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
-            clientSocket.write(data!, withTimeout: -1, tag: 0)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
-        
     }
 
     func setupUserInteface() {
@@ -106,10 +107,13 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
 
     
     @IBAction func toMessierTableView(_ sender: UIButton) {
+        self.readerText = ""
+        
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
         
         initJSONData = grabJSONData(resource: "Messier")
         tableViewTitle = "MESSIER OBJECTS"
-        self.performSegue(withIdentifier: "objectListingTableView", sender: self)
+       // self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     @IBAction func toGalaxyTableView(_ sender: UIButton) {
@@ -162,6 +166,8 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
             if let destination = segue.destination as? SelectObjectTableViewController {
                 destination.title = tableViewTitle
                 destination.jsonObj = initJSONData
+                destination.coordinates = coordinatesToPass
+
             }
         } else if segue.identifier == "obsSite" {
             // Site selection
@@ -228,11 +234,37 @@ extension Array where Element: Equatable {
  */
 
 extension LandingViewController: GCDAsyncSocketDelegate {
-
-    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
+    
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let gettext = String(data: data, encoding: .utf8)
+        switch tag {
+        case 0:
+            print("Tag 0:", gettext!)
+            readerText += "\(gettext!)"
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            print(index)
+        case 1:
+            print("Tag 1:", gettext!)
+            utcString = gettext!
+        case 2:
+            print("Tag 2:", gettext!)
+            readerText += "\(gettext!)"
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
+            //   print(index)
+            if index.isEmpty == false && index.count == 2 {
+                coordinatesToPass = index
+                self.performSegue(withIdentifier: "objectListingTableView", sender: self)
+            }
+        case 3:
+            print("Tag 3:", gettext!)
+        default:
+            print("def")
+        }
+        clientSocket.readData(withTimeout: -1, tag: tag)
+        // clientSocket.disconnect()
+        
     }
-
+    
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         
         let address = "Server IP：" + "\(host)"
@@ -246,14 +278,10 @@ extension LandingViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
-        clientSocket.readData(withTimeout: -1, tag: 0)
     }
-
-    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let text = String(data: data, encoding: .utf8)
-        print("didRead:", text!)
-        clientSocket.readData(withTimeout: -1, tag: 0)
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        print("Disconnected Called: ", err?.localizedDescription as Any)
     }
     
 }
