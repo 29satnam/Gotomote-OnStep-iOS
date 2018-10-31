@@ -6,6 +6,8 @@
 //  Copyright © 2018 Satnam Singh. All rights reserved.
 //
 
+let addressPort:UserDefaults = UserDefaults.standard
+
 import UIKit
 
 class SettingsViewController: UIViewController {
@@ -16,15 +18,37 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         addBtnProperties(button: uploadBtn)
-        addTFProperties(tf: ipAddTF, placeholder: "192.168.1.1")
+        addTFProperties(tf: ipAddTF, placeholder: "192.168.0.1")
         addTFProperties(tf: portTF, placeholder: "9999")
         
         navigationItem.title = "BACKLASH"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black
         
+        // Populate data
+        if addressPort.value(forKey: "addressPort") as? String == nil {
+            addressPort.set("192.168.0.1:9999", forKey: "addressPort")
+            addressPort.synchronize()
+        } else {
+            let addrPort = (addressPort.value(forKey: "addressPort") as? String)?.components(separatedBy: ":")
+
+            self.ipAddTF.text = addrPort![opt: 0]
+            self.portTF.text = addrPort![opt: 1]
+        }
+        
+    }
+    
+    @IBAction func saveAddress(_ sender: UIButton) {
+        if !ipAddTF.text!.isEmpty || !portTF.text!.isEmpty {
+            addressPort.set("\(ipAddTF.text!):\(portTF.text!)", forKey: "addressPort")
+            addressPort.synchronize()
+            
+            print(addressPort.value(forKey: "addressPort") as! String)
+        } else {
+            print("address or port can't be empty.")
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -70,9 +70,9 @@ class InitializeViewController: UIViewController {
     func doubleToInteger(data:Double)-> Int {
         let doubleToString = "\(data)"
         let stringToInteger = (doubleToString as NSString).integerValue
-        
         return stringToInteger
     }
+    
     // Mark: Set Date Time
     @IBAction func setDateTimeAct(_ sender: UIButton) {
         // Todo: Returns nil if not connected
@@ -233,7 +233,24 @@ class InitializeViewController: UIViewController {
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
         do {
-            try clientSocket.connect(toHost: "192.168.0.1", onPort: UInt16(9999), withTimeout: 1.5)
+            var addr = "192.168.0.1"
+            var port: UInt16 = 9999
+            
+            // Populate data
+            if addressPort.value(forKey: "addressPort") as? String == nil {
+                
+                addressPort.set("192.168.0.1:9999", forKey: "addressPort")
+                addressPort.synchronize()  // Initialize
+                
+            } else {
+                let addrPort = (addressPort.value(forKey: "addressPort") as? String)?.components(separatedBy: ":")
+                
+                addr = addrPort![opt: 0]!
+                port = UInt16(addrPort![opt: 1]!)!
+                print("thi")
+            }
+
+            try clientSocket.connect(toHost: addr, onPort: port, withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
             clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
             clientSocket.readData(withTimeout: 1.5, tag: setTag)
