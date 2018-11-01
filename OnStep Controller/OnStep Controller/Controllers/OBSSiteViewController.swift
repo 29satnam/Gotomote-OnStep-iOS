@@ -65,7 +65,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     
                     latMMTF.text = String(format: "%02d", doubleToInteger(data: ((Double(latSplit[opt: 1]!)!/100)*60).rounded()))
-                    // goto: change to minutes
+
                     let y = Int(longSplit[opt: 0]!)!
                     if (y < 0) {
                         //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
@@ -323,10 +323,21 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
         
         switch selectedIndex {
         case 0:
-            print("upload")
+            print("upload 0")
             
             self.triggerConnection(cmd: ":W\(0)#:SM\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text!   + ":" + self.utcMMTF.text!)#", setTag: 1) // select site 0 // site name //
-            print(":W\(0)#:SM\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text! + ":" + self.utcMMTF.text!)#")
+        case 1:
+            print("upload 1")
+            
+            self.triggerConnection(cmd: ":W\(1)#:SN\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text!   + ":" + self.utcMMTF.text!)#", setTag: 1) // select site 0 // site name //
+        case 2:
+            print("upload 2")
+            
+            self.triggerConnection(cmd: ":W\(2)#:SO\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text!   + ":" + self.utcMMTF.text!)#", setTag: 1) // select site 0 // site name //
+        case 3:
+            print("upload 3")
+            
+            self.triggerConnection(cmd: ":W\(3)#:SP\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text!   + ":" + self.utcMMTF.text!)#", setTag: 1) // select site 0 // site name //
         default:
             print("default")
         }
