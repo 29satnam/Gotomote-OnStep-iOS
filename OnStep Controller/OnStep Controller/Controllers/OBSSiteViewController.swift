@@ -64,8 +64,8 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                         latDDTF.text = String(format: "+%02d", Int(latSplit[opt: 0]!)!) //pos
                     }
                     
-                    latMMTF.text = String(format: "%02d", Int(latSplit[opt: 1]!)!)
-                    
+                    latMMTF.text = String(format: "%02d", doubleToInteger(data: ((Double(latSplit[opt: 1]!)!/100)*60).rounded()))
+                    // goto: change to minutes
                     let y = Int(longSplit[opt: 0]!)!
                     if (y < 0) {
                         //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
@@ -76,7 +76,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                         longDDTF.text = String(format: "+%03d", Int(longSplit[opt: 0]!)!) //pos
                     }
                     
-                    longMMTF.text = String(format: "%02d", Int(longSplit[opt: 1]!)!)
+                    longMMTF.text = String(format: "%02d", doubleToInteger(data: ((Double(longSplit[opt: 1]!)!/100)*60).rounded()))
                     
                     let utc = TimeZone.current.offsetInHours().components(separatedBy: ":")
                     utcHHTF.text = utc[opt: 0]
@@ -89,6 +89,13 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
             showLocationDisabledPopUp()
         }
         
+    }
+    
+    func doubleToInteger(data:Double)-> Int {
+        let doubleToString = "\(data)"
+        let stringToInteger = (doubleToString as NSString).integerValue
+        
+        return stringToInteger
     }
     
     override func viewDidLoad() {
