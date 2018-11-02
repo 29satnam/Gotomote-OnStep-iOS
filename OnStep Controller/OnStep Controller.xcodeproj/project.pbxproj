@@ -15,6 +15,7 @@
 		D784C6262153698100DFB54E /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D784C6272153699F00DFB54E /* CocoaAsyncSocket.framework in Sources */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; };
 		D79A7FCE2156ADE600E9C711 /* UserDefaults+CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A7FCD2156ADE600E9C711 /* UserDefaults+CLLocation.swift */; };
+		D7B494B7218B595B007BFDD3 /* SetOverHeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */; };
 		D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52681214BD41D00376F5E /* AppDelegate.swift */; };
 		D7E52687214BD41D00376F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E52685214BD41D00376F5E /* Main.storyboard */; };
 		D7E5268C214BD41E00376F5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E5268A214BD41E00376F5E /* LaunchScreen.storyboard */; };
@@ -80,6 +81,7 @@
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
 		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D79A7FCD2156ADE600E9C711 /* UserDefaults+CLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+CLLocation.swift"; sourceTree = "<group>"; };
+		D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetOverHeadViewController.swift; sourceTree = "<group>"; };
 		D7E5267E214BD41D00376F5E /* OnStep Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnStep Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E52681214BD41D00376F5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E52686214BD41D00376F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				D7E526A7214BD4D100376F5E /* MoreOptionsTableViewController.swift */,
 				D7E526A5214BD4D100376F5E /* SettingsViewController.swift */,
 				D7E526A6214BD4D100376F5E /* TrackingViewController.swift */,
+				D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				D7E526B1214BD4D100376F5E /* TrackingViewController.swift in Sources */,
 				D7E526B5214BD4D100376F5E /* OBSSiteViewController.swift in Sources */,
 				D7E526D5214BD57F00376F5E /* JulianDay.swift in Sources */,
+				D7B494B7218B595B007BFDD3 /* SetOverHeadViewController.swift in Sources */,
 				D7E526DC214BD57F00376F5E /* CLLocation+Transform.swift in Sources */,
 				D7E526B6214BD4D100376F5E /* SelectStarTableViewController.swift in Sources */,
 				D7E526AF214BD4D100376F5E /* SelectObjectTableViewController.swift in Sources */,

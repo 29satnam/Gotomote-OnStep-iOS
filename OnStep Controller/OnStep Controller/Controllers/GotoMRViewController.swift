@@ -9,7 +9,7 @@
 import UIKit
 
 class GotoMRViewController: UIViewController {
-    
+    // GOTO: Asked
     @IBOutlet var fastestBtn: UIButton!
     @IBOutlet var fasterBtn: UIButton!
     @IBOutlet var defaultBtn: UIButton!

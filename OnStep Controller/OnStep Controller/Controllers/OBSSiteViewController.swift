@@ -91,7 +91,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    func doubleToInteger(data:Double)-> Int {
+    func doubleToInteger(data:Double) -> Int {
         let doubleToString = "\(data)"
         let stringToInteger = (doubleToString as NSString).integerValue
         

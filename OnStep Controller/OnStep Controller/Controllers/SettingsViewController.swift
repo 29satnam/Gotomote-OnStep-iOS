@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController {
             
             print(addressPort.value(forKey: "addressPort") as! String)
         } else {
-            print("address or port can't be empty.")
+            print("address or port can't be empty.") // TODO
         }
     }
 
