@@ -214,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				D7E526B9214BD4D500376F5E /* Cells */,
-				D7E526A9214BD4D100376F5E /* BacklashViewController.swift */,
 				D73BA41C215E37CA00913604 /* AlignAStar */,
 				D7E526A4214BD4D100376F5E /* SelectObjectTableViewController.swift */,
 				D73BA41A215E337300913604 /* GotoObjectViewController.swift */,
@@ -226,6 +225,7 @@
 				D7E526A5214BD4D100376F5E /* SettingsViewController.swift */,
 				D7E526A6214BD4D100376F5E /* TrackingViewController.swift */,
 				D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */,
+				D7E526A9214BD4D100376F5E /* BacklashViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

@@ -43,7 +43,6 @@ class SetOverHeadViewController: UIViewController {
             
             // Populate data
             if addressPort.value(forKey: "addressPort") as? String == nil {
-                
                 addressPort.set("192.168.0.1:9999", forKey: "addressPort")
                 addressPort.synchronize()  // Initialize
                 
