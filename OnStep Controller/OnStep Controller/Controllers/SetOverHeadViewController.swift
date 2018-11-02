@@ -16,6 +16,7 @@ class SetOverHeadViewController: UIViewController {
     
     @IBOutlet var overHeadLimitBtn: CustomTextField!
     @IBOutlet var horizonLimitBtn: CustomTextField!
+    @IBOutlet var uploadBtn: UIButton!
     
     @IBAction func uploadAction(_ sender: UIButton) {
         if !overHeadLimitBtn.text!.isEmpty || !horizonLimitBtn.text!.isEmpty {
@@ -29,7 +30,16 @@ class SetOverHeadViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        addBtnProperties(button: uploadBtn)
+        
+        addTFProperties(tf: overHeadLimitBtn, placeholder: "85")
+        addTFProperties(tf: horizonLimitBtn, placeholder: "30 ")
+        
+        navigationItem.title = "SET OVERHEAD LIMITS"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
+        
+        self.view.backgroundColor = .black
         // Do any additional setup after loading the view.
     }
     

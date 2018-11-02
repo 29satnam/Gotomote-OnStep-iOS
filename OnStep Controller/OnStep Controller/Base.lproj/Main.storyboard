@@ -1372,8 +1372,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="action:" destination="fMR-BN-U6v" eventType="touchUpInside" id="Ybi-Eq-b4s"/>
-                                    <action selector="uploadAction:" destination="fMR-BN-U6v" eventType="touchUpInside" id="hxE-LV-Oan"/>
+                                    <action selector="uploadAction:" destination="fMR-BN-U6v" eventType="touchUpInside" id="I5A-cy-lwU"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horizon Limit: (+/-30)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEQ-oX-YeN">
@@ -1425,11 +1424,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="B15-Qg-gz3"/>
                     <connections>
-                        <outlet property="horLimTF" destination="Ap0-sO-9bo" id="PyC-Pc-5YW"/>
-                        <outlet property="horizonLimitBtn" destination="Ap0-sO-9bo" id="aVB-QB-lVZ"/>
-                        <outlet property="overHeadLimitBtn" destination="obH-cn-63Z" id="Ef6-f4-rqK"/>
-                        <outlet property="overhdLimTF" destination="obH-cn-63Z" id="OUb-qy-Fqv"/>
-                        <outlet property="uploadBtn" destination="1ii-NF-1DV" id="fXZ-bb-M5f"/>
+                        <outlet property="horizonLimitBtn" destination="Ap0-sO-9bo" id="Yyt-QJ-kIi"/>
+                        <outlet property="overHeadLimitBtn" destination="obH-cn-63Z" id="TzB-Yq-m3z"/>
+                        <outlet property="uploadBtn" destination="1ii-NF-1DV" id="xAk-dN-vJD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8DD-bz-ura" userLabel="First Responder" sceneMemberID="firstResponder"/>
