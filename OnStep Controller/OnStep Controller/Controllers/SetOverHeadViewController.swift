@@ -19,13 +19,19 @@ class SetOverHeadViewController: UIViewController {
     @IBOutlet var uploadBtn: UIButton!
     
     @IBAction func uploadAction(_ sender: UIButton) {
-        if !overHeadLimitBtn.text!.isEmpty || !horizonLimitBtn.text!.isEmpty {
-            // TODO
-            self.triggerConnection(cmd: ":ShsDD#:SoDD#", setTag: 0)
-            // Set horizon limit // Set overhead limit 
+        if !overHeadLimitBtn.text!.isEmpty && !horizonLimitBtn.text!.isEmpty {
+            
+            if !(60...90).contains(Int(overHeadLimitBtn.text!)!) || !(-30...30).contains(Int(horizonLimitBtn.text!)!) {
+                print("not success")
+            } else {
+                print("success")
+                   self.triggerConnection(cmd: ":ShsDD#:SoDD#", setTag: 0)
+                // Set horizon limit // Set overhead limit
+            }
+            
         } else {
             print("Backlash RA or Backlash Dec can't be empty.")
-        }
+        } 
     }
     
     override func viewDidLoad() {
