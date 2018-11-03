@@ -19,37 +19,6 @@ class SetOverHeadViewController: UIViewController {
     
     @IBOutlet var uploadBtn: UIButton!
     
-    @IBAction func uploadAction(_ sender: UIButton) {
-        if !overHeadLimitBtn.text!.isEmpty && !horizonLimitBtn.text!.isEmpty {
-            
-            if !(60...90).contains(Int(overHeadLimitBtn.text!)!) || !(-30...30).contains(Int(horizonLimitBtn.text!)!) {
-                print("not success")
-            } else {
-                print("success")
-                
-                // add symbol and format horizon limit
-                let x = (Int(horizonLimitBtn.text!)!)
-                var y: String = String()
-                
-                if x > 0 {
-                    y = String(format: "+%02d", x) // positive
-                    print("pos", Int(String(format: "+%02d", x))!)
-                } else if x == 0 {
-                    y = String(format: "+%02d", x) // non-zero
-                    print("non-zero", Int(String(format: "+%02d", x))!)
-                } else {
-                    y = String(format: "%03d", x) // neg
-                    print("neg", String(format: "%03d", x))
-                }
-
-                self.triggerConnection(cmd: ":Sh\(y)#:So\(overHeadLimitBtn.text!)#", setTag: 1)
-                // Set horizon limit -/+ 30 // Set overhead limit 60 to 90
-            }
-        } else {
-            print("Backlash RA or Backlash Dec can't be empty.")
-        } 
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +32,10 @@ class SetOverHeadViewController: UIViewController {
         
         self.view.backgroundColor = .black
         // Do any additional setup after loading the view.
+        
+        self.triggerConnection(cmd: ":Sh\(y)#:So\(overHeadLimitBtn.text!)#", setTag: 1)
+
+        
     }
     
     func triggerConnection(cmd: String, setTag: Int) {
@@ -93,15 +66,37 @@ class SetOverHeadViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func uploadAction(_ sender: UIButton) {
+        if !overHeadLimitBtn.text!.isEmpty && !horizonLimitBtn.text!.isEmpty {
+            
+            if !(60...90).contains(Int(overHeadLimitBtn.text!)!) || !(-30...30).contains(Int(horizonLimitBtn.text!)!) {
+                print("not success")
+            } else {
+                print("success")
+                
+                // add symbol and format horizon limit
+                let x = (Int(horizonLimitBtn.text!)!)
+                var y: String = String()
+                
+                if x > 0 {
+                    y = String(format: "+%02d", x) // positive
+                    print("pos", Int(String(format: "+%02d", x))!)
+                } else if x == 0 {
+                    y = String(format: "+%02d", x) // zero
+                    print("zero", Int(String(format: "+%02d", x))!)
+                } else {
+                    y = String(format: "%03d", x) // neg
+                    print("neg", String(format: "%03d", x))
+                }
+                
+                self.triggerConnection(cmd: ":Sh\(y)#:So\(overHeadLimitBtn.text!)#", setTag: 1)
+                // Set horizon limit -/+ 30 // Set overhead limit 60 to 90
+            }
+        } else {
+            print("Backlash RA or Backlash Dec can't be empty.")
+        }
     }
-    */
 
 }
 
