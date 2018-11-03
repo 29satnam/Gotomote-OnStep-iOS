@@ -13,9 +13,10 @@ class SetOverHeadViewController: UIViewController {
     
     var clientSocket: GCDAsyncSocket!
     var readerText: String = String()
-    
-    @IBOutlet var overHeadLimitBtn: CustomTextField!
+
     @IBOutlet var horizonLimitBtn: CustomTextField!
+    @IBOutlet var overHeadLimitBtn: CustomTextField!
+    
     @IBOutlet var uploadBtn: UIButton!
     
     @IBAction func uploadAction(_ sender: UIButton) {
@@ -25,10 +26,25 @@ class SetOverHeadViewController: UIViewController {
                 print("not success")
             } else {
                 print("success")
-                   self.triggerConnection(cmd: ":ShsDD#:SoDD#", setTag: 0)
-                // Set horizon limit // Set overhead limit
+                
+                // add symbol and format horizon limit
+                let x = (Int(horizonLimitBtn.text!)!)
+                var y: String = String()
+                
+                if x > 0 {
+                    y = String(format: "+%02d", x) // positive
+                    print("pos", Int(String(format: "+%02d", x))!)
+                } else if x == 0 {
+                    y = String(format: "+%02d", x) // non-zero
+                    print("non-zero", Int(String(format: "+%02d", x))!)
+                } else {
+                    y = String(format: "%03d", x) // neg
+                    print("neg", String(format: "%03d", x))
+                }
+
+                self.triggerConnection(cmd: ":Sh\(y)#:So\(overHeadLimitBtn.text!)#", setTag: 1)
+                // Set horizon limit -/+ 30 // Set overhead limit 60 to 90
             }
-            
         } else {
             print("Backlash RA or Backlash Dec can't be empty.")
         } 
@@ -104,7 +120,7 @@ extension SetOverHeadViewController: GCDAsyncSocketDelegate {
             }
             
         case 1:
-            print("Tag 1:", gettext!)
+            print("Tag 1:", gettext!) // 0, 1 for both -> check success
             
         default:
             print("def")
