@@ -354,11 +354,11 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
 extension OBSSiteViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let gettext = String(data: data, encoding: .utf8)
-        print("got:", gettext)
+        let getText = String(data: data, encoding: .utf8)
+        print("got:", getText)
         switch tag {
         case 0:
-            readerText += "\(gettext!)"
+            readerText += "\(getText!)"
             
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
               print(index)
@@ -382,7 +382,7 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
             }
             
         case 1:
-            print("Tag 1:", gettext!)
+            print("Tag 1:", getText!)
             
         default:
             print("def")

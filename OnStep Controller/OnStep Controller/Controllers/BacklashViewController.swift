@@ -37,7 +37,6 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func uploadAction(_ sender: UIButton) {
-        
         if !backRaTF.text!.isEmpty || !backDecTF.text!.isEmpty {
             print("do stuff")
             self.triggerConnection(cmd: ":$BR\(backRaTF.text!)#:$BD\(backDecTF.text!)#", setTag: 0)
@@ -45,7 +44,6 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
         } else {
             print("show error")
         }
-        
     }
     
     
@@ -117,19 +115,20 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
 extension BacklashViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let gettext = String(data: data, encoding: .utf8)
-        print("got:", gettext)
+        let getText = String(data: data, encoding: .utf8)
+        print("got:", getText)
         switch tag {
         case 0:
-            readerText += "\(gettext!)"
+            readerText += "\(getText!)"
             
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            let index = readerText.components(separatedBy: ",")
             print(index, readerText)
+            
             DispatchQueue.main.async {
             }
             
         case 1:
-            print("Tag 1:", gettext!)
+            print("Tag 1:", getText!)
             
         default:
             print("def")

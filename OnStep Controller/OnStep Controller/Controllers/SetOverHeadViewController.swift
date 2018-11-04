@@ -102,11 +102,11 @@ class SetOverHeadViewController: UIViewController {
 extension SetOverHeadViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let gettext = String(data: data, encoding: .utf8)
-        print("got:", gettext)
+        let getText = String(data: data, encoding: .utf8)
+        print("got:", getText)
         switch tag {
         case 0:
-            readerText += "\(gettext!)"
+            readerText += "\(getText!)"
             
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: "").components(separatedBy: ",")
             print(index, readerText) // ["-10*", "80*"]
@@ -117,7 +117,7 @@ extension SetOverHeadViewController: GCDAsyncSocketDelegate {
             }
             
         case 1:
-            print("Tag 1:", gettext!) // 0, 1 for both -> check success
+            print("Tag 1:", getText!) // 0, 1 for both -> check success
             
         default:
             print("def")

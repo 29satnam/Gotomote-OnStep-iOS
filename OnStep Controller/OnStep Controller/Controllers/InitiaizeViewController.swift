@@ -262,19 +262,19 @@ class InitializeViewController: UIViewController {
 extension InitializeViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let gettext = String(data: data, encoding: .utf8)
+        let getText = String(data: data, encoding: .utf8)
         switch tag {
         case 0:
-            print("Tag 0:", gettext!)
-            readerText += "\(gettext!)"
+            print("Tag 0:", getText!)
+            readerText += "\(getText!)"
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
                 print(index)
         case 1:
-            print("Tag 1:", gettext!)
-            utcString = gettext!
+            print("Tag 1:", getText!)
+            utcString = getText!
         case 2:
-            print("Tag 2:", gettext!)
-            readerText += "\(gettext!)"
+            print("Tag 2:", getText!)
+            readerText += "\(getText!)"
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
          //   print(index)
 
