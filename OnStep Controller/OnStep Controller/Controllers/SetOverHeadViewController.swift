@@ -33,9 +33,8 @@ class SetOverHeadViewController: UIViewController {
         self.view.backgroundColor = .black
         // Do any additional setup after loading the view.
         
-        self.triggerConnection(cmd: ":Sh\(y)#:So\(overHeadLimitBtn.text!)#", setTag: 1)
-
-        
+        self.triggerConnection(cmd: ":GhsDD#:GoDD#", setTag: 0)
+        // Get horizon limit // Get overhead limit // ["-10*", "80*"]
     }
     
     func triggerConnection(cmd: String, setTag: Int) {
@@ -109,9 +108,12 @@ extension SetOverHeadViewController: GCDAsyncSocketDelegate {
         case 0:
             readerText += "\(gettext!)"
             
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-            print(index, readerText)
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: "").components(separatedBy: ",")
+            print(index, readerText) // ["-10*", "80*"]
             DispatchQueue.main.async {
+                
+                self.horizonLimitBtn.text = index[opt: 0]
+                self.overHeadLimitBtn.text = index[opt: 1]
             }
             
         case 1:
@@ -138,7 +140,6 @@ extension SetOverHeadViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
