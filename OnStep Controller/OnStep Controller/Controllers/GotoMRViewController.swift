@@ -40,48 +40,46 @@ class GotoMRViewController: UIViewController {
         
         self.view.backgroundColor = .black
         readerText = ""
-        self.triggerConnection(cmd: ":GX93#:VS#:GX92#", setTag: 1)   // 32 // DefaultMaxRate // stepsPerSec
-     //   self.triggerConnection(cmd: ":GX92#", setTag: 1)   // 64 // CurrentMaxRate
-  //      self.triggerConnection(cmd: ":VS#", setTag: 1) // 241.279860 // StepsPerSecond
-        
-// ((1.0 / (16 / 1000000.0)) /241.279860 ) / 240.0 -> fastest
-        // ((1.0 / (64 / 1000000.0)) /241.279860 ) / 240.0 -> fastest
-
-//((1.0d / (MaxRateActivity.this.CurrentMaxRate / 1000000.0d)) / MaxRateActivity.this.StepsPerSecond) / 240.0d;
+        self.triggerConnection(cmd: ":GX93#:VS#:GX92#", setTag: 1)   // DefaultMaxRate // stepsPerSec // StepsPerSecond
     }
     
     // Mark: Change goto rate
     @IBAction func fastestAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!/2.0)#", setTag: 0)
-        rateLabel.text = "\((((1.0/(Double(defaultRate)!/2.0/1000000.0))/(Double(stepsPerSec)!))/240.0))" + " deg/sec"
+        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
+
+
     }
     
     @IBAction func fasterAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!/1.5)#", setTag: 0)
-        rateLabel.text = "\((((1.0/(Double(defaultRate)!/1.5/1000000.0))/(Double(stepsPerSec)!))/240.0))" + " deg/sec"
+        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
+
 
     }
     
     @IBAction func defaultAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!*1.0)#", setTag: 0)
-        rateLabel.text = "\((((1.0/(Double(defaultRate)!*1.0/1000000.0))/(Double(stepsPerSec)!))/240.0))" + " deg/sec"
+        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
 
     }
     
     @IBAction func slowerAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!*1.5)#", setTag: 0)
-        rateLabel.text = "\((((1.0/(Double(defaultRate)!*1.5/1000000.0))/(Double(stepsPerSec)!))/240.0))" + " deg/sec"
+        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
+
 
     }
     
     @IBAction func slowestAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!*2.0)#", setTag: 0)
-        rateLabel.text = "\((((1.0/(Double(defaultRate)!*2.0/1000000.0))/(Double(stepsPerSec)!))/240.0))" + " deg/sec"
+        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
+
 
     }
     
@@ -131,29 +129,22 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
             let index = readerText.components(separatedBy: ",")
             print(index)
             
-         //   self.triggerConnection(cmd: ":GX92#", setTag: 2)   // 64 // CurrentMaxRate
-            
-          //  DispatchQueue.main.async {
-          //  }
-            
         case 1:
             print("Tag 1:", getText!)
             readerText += "\(getText!)"
             
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
 
-            print("ind", index) // 32, 241.279860 // DefaultMaxRate // stepsPerSec
+            print("ind", index)
             defaultRate = index[opt: 0] ?? "0"
             stepsPerSec = index[opt: 1] ?? "0"
             currentRate = index[opt: 2] ?? "0"
-            rateLabel.text = "\((((1.0/(Double(index[opt: 2] ?? "0")!*1.0/1000000.0))/(Double(index[opt: 1] ?? "0")!))/240.0))" + " deg/sec"
+            rateLabel.text = String(format: "%.02f", ((1.0/(Double(index[opt: 2] ?? "0")!*1.0/1000000.0))/(Double(index[opt: 1] ?? "0")!))/240.0) + " deg/sec"
 
         case 2:
             print("Tag 2:", getText!)
           //  currentRate = String(getText!.dropLast())
-            
-            
-            
+                        
         default:
             print("def")
         }
