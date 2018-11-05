@@ -29,7 +29,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     
     
     @IBAction func guide(_ sender: Any) {
-        triggerConnection(cmd: ":#", setTag: 3)
     }
     
     

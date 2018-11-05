@@ -129,14 +129,14 @@ class TrackingViewController: UIViewController {
     
     // - Dual
     @IBAction func cDualAct(_ sender: UIButton) {
-        // TODO
-        self.triggerConnection(cmd: "", setTag: 0) // -------------
+        // TODO- :T2#
+        self.triggerConnection(cmd: ":T2#", setTag: 0) // -------------
     }
 
     // - Single
     @IBAction func cSingleAct(_ sender: UIButton) {
-        // TODO
-        self.triggerConnection(cmd: "", setTag: 0) // --------------
+        // TODO- :T1#
+        self.triggerConnection(cmd: ":T1#", setTag: 0) // --------------
     }
     
     // - Off
