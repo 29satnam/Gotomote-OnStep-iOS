@@ -143,8 +143,8 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
 
             print("ind", index) // 32, 241.279860 // DefaultMaxRate // stepsPerSec
-            defaultRate = index[opt: 0] ?? ""
-            stepsPerSec = index[opt: 1] ?? ""
+            defaultRate = index[opt: 0] ?? "0"
+            stepsPerSec = index[opt: 1] ?? "0"
             currentRate = index[opt: 2] ?? "0"
             rateLabel.text = "\((((1.0/(Double(index[opt: 2] ?? "0")!*1.0/1000000.0))/(Double(index[opt: 1] ?? "0")!))/240.0))" + " deg/sec"
 
