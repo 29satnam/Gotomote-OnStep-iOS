@@ -244,10 +244,9 @@ class GotoObjectViewController: UIViewController {
         
         setupLabelData()
         setupUserInterface()
-        
+
         let displayLink = CADisplayLink(target: self, selector: #selector(screenUpdate))
         displayLink.add(to: .main, forMode: RunLoop.Mode.default)
-        
     }
     
     
