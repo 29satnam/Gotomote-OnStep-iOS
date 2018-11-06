@@ -29,6 +29,7 @@ class GuideCenterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setupUserInterface()
     }
     func setupUserInterface() {
 
@@ -264,7 +265,6 @@ class GuideCenterViewController: UIViewController {
             self.revEWBtn.isUserInteractionEnabled = activate
             self.syncBtn.isUserInteractionEnabled = activate
             self.speedSlider.isUserInteractionEnabled = activate
-            
         }
     }
     
