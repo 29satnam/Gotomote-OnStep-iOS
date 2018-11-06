@@ -420,15 +420,9 @@ class GotoObjectViewController: UIViewController {
     
     // Align the Star
     @IBAction func syncAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":A+#")
-      //  alignTypePassed = alignTypePassed - 1
-      //  print("this:", alignTypePassed)
-     /*   if alignTypePassed <= 0 {
-            performSegue(withIdentifier: "backToInitialize", sender: self)
-        } else {
-            
-            performSegue(withIdentifier: "backToStarList", sender: self)
-        } */
+        triggerConnection(cmd: ":CM#")
+        ////  :CM#   Synchonize the telescope with the current database object (as above)
+        //         Returns: "N/A#" on success, "En#" on failure where n is the error code per the :MS# command
     }
     
     // Pass Int back to controller
