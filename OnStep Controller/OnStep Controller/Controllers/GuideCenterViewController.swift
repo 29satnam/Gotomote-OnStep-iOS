@@ -14,6 +14,8 @@ class GuideCenterViewController: UIViewController {
     var socketConnector: SocketDataManager!
     var clientSocket: GCDAsyncSocket!
     
+    var readerText: String = String()
+    
     @IBOutlet var revNSBtn: UIButton!
     @IBOutlet var revEWBtn: UIButton!
     @IBOutlet var syncBtn: UIButton!
@@ -30,6 +32,7 @@ class GuideCenterViewController: UIViewController {
     @IBOutlet var SEBtn: UIButton!
     @IBOutlet var SWBtn: UIButton!
     
+    @IBOutlet var speedLbl: UILabel!
     var flippedSN: Bool = Bool()
     var flippedEW: Bool = Bool()
 
@@ -39,12 +42,18 @@ class GuideCenterViewController: UIViewController {
         flippedSN = false
         flippedEW = false
         setupUserInterface()
+        
+        speedSlider.minimumValue = 0
+        speedSlider.maximumValue = 9
+        speedSlider.isContinuous = true
     }
     
     func setupUserInterface() {
 
         addBtnProperties(button: revNSBtn)
         addBtnProperties(button: revEWBtn)
+        
+        addBtnProperties(button: syncBtn)
         
         addBtnProperties(button: SEBtn)
         SEBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
@@ -75,9 +84,38 @@ class GuideCenterViewController: UIViewController {
         
         self.view.backgroundColor = .black
         navigationItem.title = "GUIDE/CENTER"
+        
+        self.northBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
+        self.northBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
+        
+        self.southBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
+        self.southBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
+        
+        self.eastBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
+        self.eastBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
+        
+        self.westBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
+        self.westBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
+        
+        
+        self.NEBtn.addTarget(self, action: #selector(self.moveToNE), for: UIControl.Event.touchDown)
+        self.NEBtn.addTarget(self, action: #selector(self.stopToNE), for: UIControl.Event.touchUpInside)
+        
+        self.SEBtn.addTarget(self, action: #selector(self.moveToSE), for: UIControl.Event.touchDown)
+        self.SEBtn.addTarget(self, action: #selector(self.stopToSE), for: UIControl.Event.touchUpInside)
+        
+        self.NWBtn.addTarget(self, action: #selector(self.moveToNW), for: UIControl.Event.touchDown)
+        self.NWBtn.addTarget(self, action: #selector(self.stopToNW), for: UIControl.Event.touchUpInside)
+        
+        self.SWBtn.addTarget(self, action: #selector(self.moveToSW), for: UIControl.Event.touchDown)
+        self.SWBtn.addTarget(self, action: #selector(self.stopToSW), for: UIControl.Event.touchUpInside)
 
     }
     
+    
+    @IBAction func syncAction(_ sender: UIButton) {
+        triggerConnection(cmd: ":CM#")
+    }
     
     // Mark: Slider - Increase Speed
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -458,11 +496,23 @@ class GuideCenterViewController: UIViewController {
             self.revNSBtn.alpha = alpha
             self.syncBtn.alpha = alpha
             self.speedSlider.alpha = alpha
+            self.speedLbl.alpha = alpha
+            
+            
+            self.NEBtn.alpha = alpha
+            self.NWBtn.alpha = alpha
+            self.SEBtn.alpha = alpha
+            self.SWBtn.alpha = alpha
 
             self.revNSBtn.isUserInteractionEnabled = activate
             self.revEWBtn.isUserInteractionEnabled = activate
             self.syncBtn.isUserInteractionEnabled = activate
             self.speedSlider.isUserInteractionEnabled = activate
+            
+            self.NEBtn.isUserInteractionEnabled = activate
+            self.NWBtn.isUserInteractionEnabled = activate
+            self.SEBtn.isUserInteractionEnabled = activate
+            self.SWBtn.isUserInteractionEnabled = activate
         }
     }
     

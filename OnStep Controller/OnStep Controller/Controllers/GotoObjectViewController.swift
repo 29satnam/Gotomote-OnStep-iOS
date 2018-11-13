@@ -218,7 +218,6 @@ class GotoObjectViewController: UIViewController {
             clientSocket.write(data!, withTimeout: -1, tag: 0)
         } catch {
         }
-        
     }
     
     override func viewDidLoad() {

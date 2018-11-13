@@ -16,7 +16,6 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     
     var clientSocket: GCDAsyncSocket!
     
-    
     // Used to start getting the users location
     let locationManager = CLLocationManager()
     
@@ -364,7 +363,6 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
               print(index)
             DispatchQueue.main.async {
                 self.siteNaTF.text = index[opt: 0]
-                
                 
                 self.latDDTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 0]
                 self.latMMTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 1]

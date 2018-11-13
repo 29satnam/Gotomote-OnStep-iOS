@@ -788,7 +788,6 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
     
 }
 
-
 extension Double {
     func formatNumber(minimumIntegerDigits: Int, minimumFractionDigits: Int) -> String {
         let numberFormatter = NumberFormatter()
@@ -801,10 +800,8 @@ extension Double {
 }
 
 
-extension Float
-{
-    var cleanValue: String
-    {
+extension Float {
+    var cleanValue: String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }
 }
@@ -829,7 +826,5 @@ extension Double {
         let rightPart = Int(parts[1]) ?? 0
         
         return(leftPart, rightPart)
-        
     }
-    
 }
