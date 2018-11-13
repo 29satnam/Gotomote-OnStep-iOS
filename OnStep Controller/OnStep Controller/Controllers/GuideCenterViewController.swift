@@ -24,18 +24,40 @@ class GuideCenterViewController: UIViewController {
     @IBOutlet var eastBtn: UIButton!
     
     @IBOutlet var speedSlider: UISlider!
+    
+    @IBOutlet var NEBtn: UIButton!
+    @IBOutlet var NWBtn: UIButton!
+    @IBOutlet var SEBtn: UIButton!
+    @IBOutlet var SWBtn: UIButton!
+    
+    var flippedSN: Bool = Bool()
+    var flippedEW: Bool = Bool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        flippedSN = false
+        flippedEW = false
         setupUserInterface()
     }
+    
     func setupUserInterface() {
 
         addBtnProperties(button: revNSBtn)
         addBtnProperties(button: revEWBtn)
         
+        addBtnProperties(button: SEBtn)
+        SEBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
+        
+        addBtnProperties(button: SWBtn)
+        SWBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
+        
+        addBtnProperties(button: NEBtn)
+        NEBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
+
+        addBtnProperties(button: NWBtn)
+        NWBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
+
         addBtnProperties(button: northBtn)
         northBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
         addBtnProperties(button: southBtn)
@@ -115,7 +137,50 @@ class GuideCenterViewController: UIViewController {
         }
         
     }
+
+    // NE
+    @objc func moveToNE() {
+        triggerConnection(cmd: ":Mn#:Me#")
+        print("moveToNE")
+    }
+
+    @objc func stopToNE() {
+        triggerConnection(cmd: ":Qn#:Qe#")
+        print("stopToNE")
+    }
     
+    // NW
+    @objc func moveToNW() {
+        triggerConnection(cmd: ":Mn#:Mw#")
+        print("moveToNW")
+    }
+    
+    @objc func stopToNW() {
+        triggerConnection(cmd: ":Qn#:Qw#")
+        print("stopToNW")
+    }
+    
+    // SE
+    @objc func moveToSE() {
+        triggerConnection(cmd: ":Ms#:Me#")
+        print("moveToSE")
+    }
+    
+    @objc func stopToSE() {
+        triggerConnection(cmd: ":Qs#:Qe#")
+        print("stopToSE")
+    }
+
+    // SW
+    @objc func moveToSW() {
+        triggerConnection(cmd: ":Ms#:Mw#")
+        print("moveToSW")
+    }
+    
+    @objc func stopToSW() {
+        triggerConnection(cmd: ":Qs#:Qw#")
+        print("stopToSW")
+    }
     
     // North
     @objc func moveToNorth() {
@@ -140,7 +205,7 @@ class GuideCenterViewController: UIViewController {
     }
     
     // West
-    @objc func moveToWest(_ sender: UIButton) {
+    @objc func moveToWest() {
         triggerConnection(cmd: ":Mw#")
         print("moveToWest")
     }
@@ -164,83 +229,216 @@ class GuideCenterViewController: UIViewController {
     // Stop
     @IBAction func stopScope(_ sender: Any) {
         triggerConnection(cmd: ":Q#")
-        //   print("stopScope")
-        //    :T+#
-        //    triggerConnection(cmd: ":R9#")
-        
     }
     
     
-    // Mark: Reverse North-South buttons
-    @IBAction func reverseNS(_ sender: UIButton) {
+    func flip() {
+        
         self.northBtn.removeTarget(nil, action: nil, for: .allEvents)
         self.southBtn.removeTarget(nil, action: nil, for: .allEvents)
-        DispatchQueue.main.async {
-            
-            if self.northBtn.currentTitle == "North" {
+        self.eastBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.westBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.NEBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.SEBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.NWBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.SWBtn.removeTarget(nil, action: nil, for: .allEvents)
+        
+        if flippedSN == false && flippedEW == false {
+            DispatchQueue.main.async {
+                print("flippedSN == false && flippedEW == false 0")
+                self.northBtn.setTitle("North", for: .normal)
+                self.southBtn.setTitle("South", for: .normal)
+                self.eastBtn.setTitle("East", for: .normal)
+                self.westBtn.setTitle("West", for: .normal)
                 
+                self.NEBtn.setTitle("NE", for: .normal)
+                self.SEBtn.setTitle("SE", for: .normal)
+                self.NWBtn.setTitle("NW", for: .normal)
+                self.SWBtn.setTitle("SW", for: .normal)
+
+                
+                self.northBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
+                self.northBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
+
+                self.southBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
+                self.southBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
+
+                self.eastBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
+                self.eastBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
+
+                self.westBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
+                self.westBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
+
+                
+                self.NEBtn.addTarget(self, action: #selector(self.moveToNE), for: UIControl.Event.touchDown)
+                self.NEBtn.addTarget(self, action: #selector(self.stopToNE), for: UIControl.Event.touchUpInside)
+
+                self.SEBtn.addTarget(self, action: #selector(self.moveToSE), for: UIControl.Event.touchDown)
+                self.SEBtn.addTarget(self, action: #selector(self.stopToSE), for: UIControl.Event.touchUpInside)
+
+                self.NWBtn.addTarget(self, action: #selector(self.moveToNW), for: UIControl.Event.touchDown)
+                self.NWBtn.addTarget(self, action: #selector(self.stopToNW), for: UIControl.Event.touchUpInside)
+
+                self.SWBtn.addTarget(self, action: #selector(self.moveToSW), for: UIControl.Event.touchDown)
+                self.SWBtn.addTarget(self, action: #selector(self.stopToSW), for: UIControl.Event.touchUpInside)
+
+
+            }
+        } else if flippedSN == true && flippedEW == false {
+            DispatchQueue.main.async {
+                print("flippedSN == true && flippedEW == false 1")
                 self.northBtn.setTitle("South", for: .normal)
                 self.southBtn.setTitle("North", for: .normal)
+                self.eastBtn.setTitle("East", for: .normal)
+                self.westBtn.setTitle("West", for: .normal)
                 
-                //south targets north
-                self.southBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
-                self.southBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
+                self.NEBtn.setTitle("SE", for: .normal)
+                self.SEBtn.setTitle("NE", for: .normal)
+                self.NWBtn.setTitle("SW", for: .normal)
+                self.SWBtn.setTitle("NW", for: .normal)
                 
-                //north targets south
                 self.northBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
                 self.northBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
                 
-            } else {
-                self.northBtn.setTitle("North", for: .normal)
-                self.southBtn.setTitle("South", for: .normal)
+                self.southBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
+                self.southBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
                 
-                //north targets north
-                self.northBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
-                self.northBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
-                
-                //south targets south
-                self.southBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
-                self.southBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
-                
-            }
-        }
-        
-    }
-    
-    // Mark: Reverse East-West buttons
-    @IBAction func reverseEW(_ sender: UIButton) {
-        self.westBtn.removeTarget(nil, action: nil, for: .allEvents)
-        self.eastBtn.removeTarget(nil, action: nil, for: .allEvents)
-        DispatchQueue.main.async {
-            
-            if self.westBtn.currentTitle == "West" {
-                
-                self.westBtn.setTitle("East", for: .normal)
-                self.eastBtn.setTitle("West", for: .normal)
-                
-                //east targets west
-                self.eastBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
-                self.eastBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
-                
-                //west targets east
-                self.westBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
-                self.westBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
-                
-            } else {
-                self.westBtn.setTitle("West", for: .normal)
-                self.eastBtn.setTitle("East", for: .normal)
-                
-                //west targets west
-                self.westBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
-                self.westBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
-                
-                //east targets east
                 self.eastBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
                 self.eastBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
                 
+                self.westBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
+                self.westBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
+                
+                
+                self.NEBtn.addTarget(self, action: #selector(self.moveToSE), for: UIControl.Event.touchDown)
+                self.NEBtn.addTarget(self, action: #selector(self.stopToSE), for: UIControl.Event.touchUpInside)
+                
+                self.SEBtn.addTarget(self, action: #selector(self.moveToNE), for: UIControl.Event.touchDown)
+                self.SEBtn.addTarget(self, action: #selector(self.stopToNE), for: UIControl.Event.touchUpInside)
+                
+                self.NWBtn.addTarget(self, action: #selector(self.moveToSW), for: UIControl.Event.touchDown)
+                self.NWBtn.addTarget(self, action: #selector(self.stopToSW), for: UIControl.Event.touchUpInside)
+                
+                self.SWBtn.addTarget(self, action: #selector(self.moveToNW), for: UIControl.Event.touchDown)
+                self.SWBtn.addTarget(self, action: #selector(self.stopToNW), for: UIControl.Event.touchUpInside)
+            }
+
+        } else if flippedSN == false && flippedEW == true {
+            DispatchQueue.main.async {
+                print("flippedSN == false && flippedEW == true) 2")
+                self.northBtn.setTitle("North", for: .normal)
+                self.southBtn.setTitle("South", for: .normal)
+                self.eastBtn.setTitle("West", for: .normal)
+                self.westBtn.setTitle("East", for: .normal)
+                
+                self.NEBtn.setTitle("NW", for: .normal)
+                self.SEBtn.setTitle("SW", for: .normal)
+                self.NWBtn.setTitle("NE", for: .normal)
+                self.SWBtn.setTitle("SE", for: .normal)
+                
+                self.northBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
+                self.northBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
+                
+                self.southBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
+                self.southBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
+                
+                self.eastBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
+                self.eastBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
+                
+                self.westBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
+                self.westBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
+                
+                
+                self.NEBtn.addTarget(self, action: #selector(self.moveToNW), for: UIControl.Event.touchDown)
+                self.NEBtn.addTarget(self, action: #selector(self.stopToNW), for: UIControl.Event.touchUpInside)
+                
+                self.SEBtn.addTarget(self, action: #selector(self.moveToSW), for: UIControl.Event.touchDown)
+                self.SEBtn.addTarget(self, action: #selector(self.stopToSW), for: UIControl.Event.touchUpInside)
+                
+                self.NWBtn.addTarget(self, action: #selector(self.moveToNE), for: UIControl.Event.touchDown)
+                self.NWBtn.addTarget(self, action: #selector(self.stopToNE), for: UIControl.Event.touchUpInside)
+                
+                self.SWBtn.addTarget(self, action: #selector(self.moveToSE), for: UIControl.Event.touchDown)
+                self.SWBtn.addTarget(self, action: #selector(self.stopToSE), for: UIControl.Event.touchUpInside)
+            }
+        } else if flippedSN == true && flippedEW == true {
+            DispatchQueue.main.async {
+                print("flippedSN == true && flippedEW == true 3")
+                self.northBtn.setTitle("South", for: .normal)
+                self.southBtn.setTitle("North", for: .normal)
+                self.eastBtn.setTitle("West", for: .normal)
+                self.westBtn.setTitle("East", for: .normal)
+                
+                self.NEBtn.setTitle("SW", for: .normal)
+                self.SEBtn.setTitle("NW", for: .normal)
+                self.NWBtn.setTitle("SE", for: .normal)
+                self.SWBtn.setTitle("NE", for: .normal)
+                
+                self.northBtn.addTarget(self, action: #selector(self.moveToSouth), for: UIControl.Event.touchDown)
+                self.northBtn.addTarget(self, action: #selector(self.stopToSouth), for: UIControl.Event.touchUpInside)
+                
+                self.southBtn.addTarget(self, action: #selector(self.moveToNorth), for: UIControl.Event.touchDown)
+                self.southBtn.addTarget(self, action: #selector(self.stopToNorth), for: UIControl.Event.touchUpInside)
+                
+                self.eastBtn.addTarget(self, action: #selector(self.moveToWest), for: UIControl.Event.touchDown)
+                self.eastBtn.addTarget(self, action: #selector(self.stopToWest), for: UIControl.Event.touchUpInside)
+                
+                self.westBtn.addTarget(self, action: #selector(self.moveToEast), for: UIControl.Event.touchDown)
+                self.westBtn.addTarget(self, action: #selector(self.stopToEast), for: UIControl.Event.touchUpInside)
+                
+                
+                self.NEBtn.addTarget(self, action: #selector(self.moveToSW), for: UIControl.Event.touchDown)
+                self.NEBtn.addTarget(self, action: #selector(self.stopToSW), for: UIControl.Event.touchUpInside)
+                
+                self.SEBtn.addTarget(self, action: #selector(self.moveToSE), for: UIControl.Event.touchDown)
+                self.SEBtn.addTarget(self, action: #selector(self.stopToSE), for: UIControl.Event.touchUpInside)
+                
+                self.NWBtn.addTarget(self, action: #selector(self.moveToSE), for: UIControl.Event.touchDown)
+                self.NWBtn.addTarget(self, action: #selector(self.stopToSE), for: UIControl.Event.touchUpInside)
+                
+                self.SWBtn.addTarget(self, action: #selector(self.moveToNE), for: UIControl.Event.touchDown)
+                self.SWBtn.addTarget(self, action: #selector(self.stopToNE), for: UIControl.Event.touchUpInside)
             }
         }
+    }
+    
+    // Mark: Reverse North-South buttons
+    @IBAction func reverseNS(_ sender: UIButton) {
+        if flippedSN == false {
+            flippedSN = true
+            flip()
+            self.revNSBtn.setTitle("Re-flip North-South", for: .normal)
+        } else if flippedSN == true {
+            flippedSN = false
+            flip()
+            self.revNSBtn.setTitle("Flip North-South", for: .normal)
+        }
         
+    }
+
+    @IBAction func reverseEW(_ sender: UIButton) {
+        
+        self.northBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.southBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.eastBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.westBtn.removeTarget(nil, action: nil, for: .allEvents)
+        
+        self.NEBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.SEBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.NWBtn.removeTarget(nil, action: nil, for: .allEvents)
+        self.SWBtn.removeTarget(nil, action: nil, for: .allEvents)
+        
+        if flippedEW == false {
+            flippedEW = true
+            flip()
+            self.revEWBtn.setTitle("Re-flip East-West", for: .normal)
+
+        } else if flippedEW == true {
+            flippedEW = false
+            flip()
+            self.revEWBtn.setTitle("Flip East-West", for: .normal)
+
+        }
     }
     
     // Mark: Lock Buttons

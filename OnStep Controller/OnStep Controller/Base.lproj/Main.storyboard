@@ -233,7 +233,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opposite of a time-zone value, this is for Standard Time (not Daylight Time)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CA-Jo-onY">
-                                <rect key="frame" x="27.5" y="214.5" width="320" height="28"/>
+                                <rect key="frame" x="27.5" y="214" width="320" height="29"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -261,7 +261,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UTC Offset:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d64-7I-NhW">
-                                <rect key="frame" x="27.5" y="181.5" width="63.5" height="14"/>
+                                <rect key="frame" x="27.5" y="181.5" width="62.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -279,13 +279,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Site Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pg8-rZ-uIj">
-                                <rect key="frame" x="27.5" y="106" width="59.5" height="14"/>
+                                <rect key="frame" x="27.5" y="106" width="58" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MVg-8R-4O6" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="103" y="103" width="244.5" height="20"/>
+                                <rect key="frame" x="101.5" y="103" width="246" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
@@ -332,7 +332,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Site selection:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEe-EZ-f9p">
-                                <rect key="frame" x="27.5" y="32" width="75.5" height="14"/>
+                                <rect key="frame" x="27.5" y="32" width="74.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -856,7 +856,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVR-XB-kTI">
-                                                    <rect key="frame" x="16" y="13" width="56.5" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="57.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -882,7 +882,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Site Selection" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFV-2r-RIf">
-                                                    <rect key="frame" x="16" y="13" width="92.5" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="91" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -908,7 +908,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goto Speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyU-Pl-Vc2">
-                                                    <rect key="frame" x="16" y="13" width="81.5" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="79" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -934,7 +934,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goto Limits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPU-Z5-8cT">
-                                                    <rect key="frame" x="16" y="13" width="78" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="76" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1012,7 +1012,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lock Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3q5-is-fls">
-                                                    <rect key="frame" x="16" y="13" width="84" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="82.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1038,7 +1038,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep Screen On" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olP-Wm-HdJ">
-                                                    <rect key="frame" x="16" y="13" width="110.5" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="107.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1656,13 +1656,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alpha Canis Majoris" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oF-tx-TNi">
-                                <rect key="frame" x="28" y="48.5" width="110.5" height="14"/>
+                                <rect key="frame" x="28" y="48.5" width="107" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="DEC = -16.7" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gZ-O1-qcF">
-                                <rect key="frame" x="28" y="113" width="64" height="14"/>
+                                <rect key="frame" x="28" y="113" width="66.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1680,25 +1680,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance = 9 ly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-fh-YJH">
-                                <rect key="frame" x="28" y="139.5" width="94.5" height="14"/>
+                                <rect key="frame" x="28" y="139.5" width="96.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Above Horizon? =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4L-1n-qgw">
-                                <rect key="frame" x="28" y="166.5" width="94.5" height="14"/>
+                                <rect key="frame" x="28" y="166.5" width="96.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvq-DA-kf8">
-                                <rect key="frame" x="72" y="605.5" width="37.5" height="14"/>
+                                <rect key="frame" x="72" y="605.5" width="38.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sirius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKg-Hk-9Zj">
-                                <rect key="frame" x="315.5" y="48.5" width="31.5" height="14"/>
+                                <rect key="frame" x="317" y="48.5" width="30" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1757,7 +1757,7 @@
                                 <rect key="frame" x="243" y="476.5" width="104" height="46.5"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="East">
+                                <state key="normal" title="West">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -1765,7 +1765,7 @@
                                 <rect key="frame" x="28" y="476.5" width="104" height="46.5"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="West">
+                                <state key="normal" title="East">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -1803,7 +1803,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="RA = 06h 45m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okE-m7-ylK">
-                                <rect key="frame" x="28" y="86.5" width="78" height="14"/>
+                                <rect key="frame" x="28" y="86.5" width="77" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1910,7 +1910,7 @@
                         <outlet property="azimuth" destination="x1W-xk-Jrw" id="K6d-hC-4yF"/>
                         <outlet property="dec" destination="2gZ-O1-qcF" id="pgi-ls-yeu"/>
                         <outlet property="dist" destination="6xh-fh-YJH" id="djD-lj-PvF"/>
-                        <outlet property="eastBtn" destination="bE6-Nu-JiQ" id="E8J-wx-gqG"/>
+                        <outlet property="eastBtn" destination="T5V-Zq-4sz" id="CMl-IH-eh5"/>
                         <outlet property="gotoBtn" destination="zKZ-CB-3SS" id="bQv-qE-89A"/>
                         <outlet property="leftArrowBtn" destination="4tc-Nd-t8p" id="9DC-WQ-yni"/>
                         <outlet property="longName" destination="1oF-tx-TNi" id="T8a-hX-e3A"/>
@@ -1923,7 +1923,7 @@
                         <outlet property="southBtn" destination="ndV-ff-rhI" id="gQC-lc-slL"/>
                         <outlet property="speedSlider" destination="fb8-jM-Jgg" id="50I-Ju-c4L"/>
                         <outlet property="vMag" destination="7Ga-df-sen" id="gYT-LD-qm4"/>
-                        <outlet property="westBtn" destination="T5V-Zq-4sz" id="6Tx-ci-leH"/>
+                        <outlet property="westBtn" destination="bE6-Nu-JiQ" id="fd9-7b-WQP"/>
                         <segue destination="5n0-eN-7XU" kind="show" identifier="backToStarList" id="bq7-Sv-zkc"/>
                         <segue destination="jyA-xV-FLo" kind="show" identifier="backToInitialize" id="nQ6-u1-rE8"/>
                     </connections>
@@ -2237,7 +2237,7 @@
                                 <rect key="frame" x="243" y="430.5" width="104" height="42.5"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="East">
+                                <state key="normal" title="West">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -2245,7 +2245,7 @@
                                 <rect key="frame" x="28" y="430.5" width="104" height="42.5"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="West">
+                                <state key="normal" title="East">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -2390,7 +2390,7 @@
                         <outlet property="azimuth" destination="gjv-VB-SCS" id="CHT-j6-LEf"/>
                         <outlet property="dec" destination="hNG-oe-Xc0" id="3cm-0r-NY7"/>
                         <outlet property="dist" destination="cRk-F3-hVq" id="1t3-qq-eGX"/>
-                        <outlet property="eastBtn" destination="Pvq-oQ-uao" id="8aB-cu-6Pg"/>
+                        <outlet property="eastBtn" destination="Uyg-Wh-iHq" id="ktc-i0-5uq"/>
                         <outlet property="gotoBtn" destination="orF-m3-2ad" id="QwB-hN-r0w"/>
                         <outlet property="leftArrowBtn" destination="WGA-58-zzp" id="bAs-QR-9nR"/>
                         <outlet property="longName" destination="Yfg-17-xOO" id="bD4-pS-i76"/>
@@ -2403,7 +2403,7 @@
                         <outlet property="southBtn" destination="kYh-ad-lqX" id="Kb3-4L-9YU"/>
                         <outlet property="speedSlider" destination="CTh-qj-XQp" id="NNv-1B-W9c"/>
                         <outlet property="vMag" destination="LQO-R8-8ml" id="zFZ-BE-4ar"/>
-                        <outlet property="westBtn" destination="Uyg-Wh-iHq" id="38c-Ua-Q4b"/>
+                        <outlet property="westBtn" destination="Pvq-oQ-uao" id="jbp-Gm-idm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxW-sO-Eah" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2423,24 +2423,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjZ-KT-xAF">
-                                <rect key="frame" x="66.5" y="430" width="37.5" height="14"/>
+                                <rect key="frame" x="66.5" y="96.5" width="37.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1Z-Od-8b4">
-                                <rect key="frame" x="22.5" y="349.5" width="100" height="46"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="Rev. NS">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="reverseNS:" destination="Xgq-u8-mn2" eventType="touchUpInside" id="Qrt-BN-bbH"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoY-T5-6FE">
-                                <rect key="frame" x="142.5" y="300" width="90" height="42.5"/>
+                                <rect key="frame" x="142.5" y="419" width="90" height="42.5"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="Sync">
@@ -2448,23 +2437,55 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdb-bU-KuZ">
-                                <rect key="frame" x="242.5" y="296" width="110" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="East">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouA-5S-lrX">
-                                <rect key="frame" x="22.5" y="296" width="110" height="50"/>
+                                <rect key="frame" x="242.5" y="394" width="110" height="92"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="West">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouA-5S-lrX">
+                                <rect key="frame" x="22.5" y="394" width="110" height="92"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="East">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFX-Dx-Avm">
+                                <rect key="frame" x="22.5" y="302" width="104.5" height="87.5"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="NE">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rss-DX-lIT">
+                                <rect key="frame" x="22.5" y="490.5" width="104.5" height="87.5"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="SE">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUE-KG-xAB">
+                                <rect key="frame" x="248" y="490.5" width="104.5" height="87.5"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="SW">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mT6-fE-wjl">
+                                <rect key="frame" x="248" y="302" width="104.5" height="87.5"/>
+                                <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="NW">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Md-ee-ve9">
-                                <rect key="frame" x="132.5" y="346" width="110" height="49.5"/>
+                                <rect key="frame" x="132.5" y="486" width="110" height="92"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="South">
@@ -2472,24 +2493,24 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLJ-p2-YfC">
-                                <rect key="frame" x="22.5" y="422" width="30" height="30"/>
+                                <rect key="frame" x="22.5" y="88.5" width="30" height="30"/>
                                 <state key="normal" image="lock"/>
                                 <connections>
                                     <action selector="lockButtons:" destination="Xgq-u8-mn2" eventType="touchUpInside" id="COS-6F-QCH"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Lv4-QB-kcQ">
-                                <rect key="frame" x="116" y="422" width="238.5" height="31"/>
+                                <rect key="frame" x="116" y="88.5" width="238.5" height="31"/>
                                 <color key="tintColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="Xgq-u8-mn2" eventType="valueChanged" id="bFa-UU-X07"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lto-qr-xBp">
-                                <rect key="frame" x="252.5" y="349.5" width="100" height="46"/>
+                                <rect key="frame" x="190.5" y="25" width="162" height="43.5"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
-                                <state key="normal" title="Rev. EW">
+                                <state key="normal" title="Flip East-West">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -2497,69 +2518,100 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFc-cq-Mxj">
-                                <rect key="frame" x="132.5" y="246.5" width="110" height="49.5"/>
+                                <rect key="frame" x="132.5" y="302" width="110" height="92"/>
                                 <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <state key="normal" title="North">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1Z-Od-8b4">
+                                <rect key="frame" x="22.5" y="25" width="162" height="43.5"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
+                                <state key="normal" title="Flip North-South">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reverseNS:" destination="Xgq-u8-mn2" eventType="touchUpInside" id="Qrt-BN-bbH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ouA-5S-lrX" firstAttribute="trailing" secondItem="BFc-cq-Mxj" secondAttribute="leading" id="1Ef-eZ-se7"/>
+                            <constraint firstItem="AFX-Dx-Avm" firstAttribute="width" secondItem="BFc-cq-Mxj" secondAttribute="width" multiplier="0.95" id="1Nu-M5-QrQ"/>
                             <constraint firstItem="fdb-bU-KuZ" firstAttribute="width" secondItem="BFc-cq-Mxj" secondAttribute="width" id="2Ai-Hp-Zm7"/>
-                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="bottom" secondItem="9Md-ee-ve9" secondAttribute="bottom" id="68b-NK-2cd"/>
+                            <constraint firstItem="rss-DX-lIT" firstAttribute="height" secondItem="AFX-Dx-Avm" secondAttribute="height" id="6sC-uU-dvg"/>
                             <constraint firstItem="yoY-T5-6FE" firstAttribute="width" secondItem="Bkk-jA-amK" secondAttribute="width" multiplier="0.24" id="7ps-0s-XS0"/>
+                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="width" secondItem="Lto-qr-xBp" secondAttribute="width" id="7sJ-YU-gqu"/>
                             <constraint firstItem="ouA-5S-lrX" firstAttribute="height" secondItem="BFc-cq-Mxj" secondAttribute="height" id="8U0-LL-1Fx"/>
-                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="leading" secondItem="ouA-5S-lrX" secondAttribute="leading" id="9k9-Lh-M8X"/>
                             <constraint firstItem="yoY-T5-6FE" firstAttribute="centerY" secondItem="fdb-bU-KuZ" secondAttribute="centerY" id="Aon-ic-jeX"/>
+                            <constraint firstItem="mT6-fE-wjl" firstAttribute="top" secondItem="BFc-cq-Mxj" secondAttribute="top" id="BLB-Rk-K0E"/>
                             <constraint firstItem="yoY-T5-6FE" firstAttribute="height" secondItem="Bkk-jA-amK" secondAttribute="height" multiplier="0.0704648" id="BpC-v7-jZw"/>
-                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="height" secondItem="Bkk-jA-amK" secondAttribute="height" multiplier="0.0764618" id="JAy-QB-j2l"/>
-                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="width" secondItem="Lto-qr-xBp" secondAttribute="width" id="L0h-P1-fBc"/>
-                            <constraint firstItem="Lto-qr-xBp" firstAttribute="trailing" secondItem="fdb-bU-KuZ" secondAttribute="trailing" id="Ldh-pL-Hc0"/>
+                            <constraint firstItem="Lto-qr-xBp" firstAttribute="trailing" secondItem="CUE-KG-xAB" secondAttribute="trailing" id="DPp-oV-0gj"/>
+                            <constraint firstItem="AFX-Dx-Avm" firstAttribute="height" secondItem="ouA-5S-lrX" secondAttribute="height" multiplier="0.95" id="EFa-hO-bdb"/>
+                            <constraint firstItem="CUE-KG-xAB" firstAttribute="trailing" secondItem="fdb-bU-KuZ" secondAttribute="trailing" id="Gpu-uc-70U"/>
+                            <constraint firstItem="rss-DX-lIT" firstAttribute="leading" secondItem="ouA-5S-lrX" secondAttribute="leading" id="IxG-L0-Sqd"/>
+                            <constraint firstItem="CUE-KG-xAB" firstAttribute="height" secondItem="mT6-fE-wjl" secondAttribute="height" id="JNy-rK-xZa"/>
                             <constraint firstItem="YjZ-KT-xAF" firstAttribute="centerY" secondItem="ZLJ-p2-YfC" secondAttribute="centerY" id="MA9-cB-R4A"/>
                             <constraint firstItem="fdb-bU-KuZ" firstAttribute="leading" secondItem="BFc-cq-Mxj" secondAttribute="trailing" id="MaC-KL-97s"/>
+                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="top" secondItem="JKw-NW-O5W" secondAttribute="bottom" constant="25" id="MiR-Jo-H7i"/>
                             <constraint firstItem="Lv4-QB-kcQ" firstAttribute="centerY" secondItem="ZLJ-p2-YfC" secondAttribute="centerY" id="NVj-Es-cNa"/>
                             <constraint firstItem="BFc-cq-Mxj" firstAttribute="width" secondItem="Bkk-jA-amK" secondAttribute="width" multiplier="0.293333" id="Nf0-EQ-3Gy"/>
+                            <constraint firstItem="CUE-KG-xAB" firstAttribute="bottom" secondItem="9Md-ee-ve9" secondAttribute="bottom" id="NyG-uU-Rt4"/>
+                            <constraint firstItem="AFX-Dx-Avm" firstAttribute="leading" secondItem="ouA-5S-lrX" secondAttribute="leading" id="OUc-pb-sAJ"/>
+                            <constraint firstItem="AFX-Dx-Avm" firstAttribute="height" secondItem="mT6-fE-wjl" secondAttribute="height" id="Ouv-pc-RNq"/>
                             <constraint firstItem="yoY-T5-6FE" firstAttribute="centerX" secondItem="BFc-cq-Mxj" secondAttribute="centerX" id="QwB-FX-hbG"/>
                             <constraint firstItem="fdb-bU-KuZ" firstAttribute="height" secondItem="BFc-cq-Mxj" secondAttribute="height" id="RvE-xg-Kl9"/>
                             <constraint firstItem="9Md-ee-ve9" firstAttribute="width" secondItem="ouA-5S-lrX" secondAttribute="width" id="TSF-vo-e7z"/>
-                            <constraint firstItem="BFc-cq-Mxj" firstAttribute="centerY" secondItem="Bkk-jA-amK" secondAttribute="centerY" multiplier="0.9" id="YPM-fl-cfl"/>
+                            <constraint firstItem="ZLJ-p2-YfC" firstAttribute="top" secondItem="f1Z-Od-8b4" secondAttribute="bottom" constant="20" id="WfP-GR-Zv8"/>
+                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="width" secondItem="Bkk-jA-amK" secondAttribute="width" multiplier="0.4325" id="Xpm-or-lB3"/>
+                            <constraint firstItem="Lto-qr-xBp" firstAttribute="height" secondItem="f1Z-Od-8b4" secondAttribute="height" id="ZX6-Z8-Ofb"/>
+                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="leading" secondItem="rss-DX-lIT" secondAttribute="leading" id="aYO-3Q-dGX"/>
                             <constraint firstItem="ouA-5S-lrX" firstAttribute="width" secondItem="BFc-cq-Mxj" secondAttribute="width" id="ac8-xP-20K"/>
                             <constraint firstItem="Lv4-QB-kcQ" firstAttribute="leading" secondItem="YjZ-KT-xAF" secondAttribute="trailing" constant="14" id="bIt-co-rrB"/>
                             <constraint firstItem="ouA-5S-lrX" firstAttribute="bottom" secondItem="9Md-ee-ve9" secondAttribute="top" id="bKu-cs-eAC"/>
+                            <constraint firstItem="CUE-KG-xAB" firstAttribute="width" secondItem="mT6-fE-wjl" secondAttribute="width" id="d0Y-Sq-q0F"/>
+                            <constraint firstItem="Lto-qr-xBp" firstAttribute="centerY" secondItem="f1Z-Od-8b4" secondAttribute="centerY" id="dKB-FD-MLK"/>
+                            <constraint firstItem="rss-DX-lIT" firstAttribute="width" secondItem="AFX-Dx-Avm" secondAttribute="width" id="dth-ox-oGz"/>
                             <constraint firstItem="ZLJ-p2-YfC" firstAttribute="leading" secondItem="ouA-5S-lrX" secondAttribute="leading" id="fJP-dn-AOd"/>
+                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="height" secondItem="rss-DX-lIT" secondAttribute="height" multiplier="0.5" id="iz1-Wo-yqB"/>
                             <constraint firstItem="BFc-cq-Mxj" firstAttribute="centerX" secondItem="Bkk-jA-amK" secondAttribute="centerX" id="jBQ-4Y-8ZI"/>
                             <constraint firstItem="ouA-5S-lrX" firstAttribute="top" secondItem="BFc-cq-Mxj" secondAttribute="bottom" id="kWc-4D-XY9"/>
+                            <constraint firstItem="rss-DX-lIT" firstAttribute="bottom" secondItem="9Md-ee-ve9" secondAttribute="bottom" id="kbJ-p3-DCk"/>
                             <constraint firstItem="9Md-ee-ve9" firstAttribute="trailing" secondItem="fdb-bU-KuZ" secondAttribute="leading" id="khi-3z-ybi"/>
                             <constraint firstItem="fdb-bU-KuZ" firstAttribute="bottom" secondItem="ouA-5S-lrX" secondAttribute="bottom" id="oA1-Vl-dAl"/>
-                            <constraint firstItem="BFc-cq-Mxj" firstAttribute="height" secondItem="Bkk-jA-amK" secondAttribute="height" multiplier="0.0824588" id="oQx-RZ-a2u"/>
-                            <constraint firstItem="Lto-qr-xBp" firstAttribute="bottom" secondItem="9Md-ee-ve9" secondAttribute="bottom" id="qnz-As-BIa"/>
+                            <constraint firstItem="BFc-cq-Mxj" firstAttribute="height" secondItem="Bkk-jA-amK" secondAttribute="height" multiplier="0.1525" id="oQx-RZ-a2u"/>
                             <constraint firstItem="fdb-bU-KuZ" firstAttribute="top" secondItem="ouA-5S-lrX" secondAttribute="top" id="s5X-5e-DZl"/>
-                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="width" secondItem="Bkk-jA-amK" secondAttribute="width" multiplier="0.266667" id="scw-4G-FD2"/>
-                            <constraint firstItem="ZLJ-p2-YfC" firstAttribute="centerY" secondItem="Bkk-jA-amK" secondAttribute="centerY" multiplier="1.45" id="tGx-E2-2K8"/>
+                            <constraint firstItem="mT6-fE-wjl" firstAttribute="trailing" secondItem="fdb-bU-KuZ" secondAttribute="trailing" id="sqs-ov-30g"/>
+                            <constraint firstItem="AFX-Dx-Avm" firstAttribute="top" secondItem="BFc-cq-Mxj" secondAttribute="top" id="uZT-ea-w9c"/>
                             <constraint firstItem="YjZ-KT-xAF" firstAttribute="leading" secondItem="ZLJ-p2-YfC" secondAttribute="trailing" constant="14" id="uah-sn-HmA"/>
-                            <constraint firstItem="f1Z-Od-8b4" firstAttribute="height" secondItem="Lto-qr-xBp" secondAttribute="height" id="uzG-kO-vun"/>
+                            <constraint firstItem="AFX-Dx-Avm" firstAttribute="width" secondItem="mT6-fE-wjl" secondAttribute="width" id="vDS-pu-0Um"/>
                             <constraint firstItem="Lv4-QB-kcQ" firstAttribute="trailing" secondItem="fdb-bU-KuZ" secondAttribute="trailing" id="xSu-IX-Ggg"/>
                             <constraint firstItem="9Md-ee-ve9" firstAttribute="height" secondItem="ouA-5S-lrX" secondAttribute="height" id="y8Q-o1-YcE"/>
+                            <constraint firstItem="QAh-x9-LvF" firstAttribute="top" secondItem="rss-DX-lIT" secondAttribute="bottom" constant="25" id="yGE-YJ-zee"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="l8e-2J-YBw"/>
                     <connections>
-                        <outlet property="eastBtn" destination="fdb-bU-KuZ" id="pwe-fP-981"/>
+                        <outlet property="NEBtn" destination="AFX-Dx-Avm" id="3aZ-ci-6tS"/>
+                        <outlet property="NWBtn" destination="mT6-fE-wjl" id="BuW-Kr-v86"/>
+                        <outlet property="SEBtn" destination="rss-DX-lIT" id="bRw-wL-aoi"/>
+                        <outlet property="SWBtn" destination="CUE-KG-xAB" id="Y76-aC-jIH"/>
+                        <outlet property="eastBtn" destination="ouA-5S-lrX" id="vlu-xy-D43"/>
                         <outlet property="northBtn" destination="BFc-cq-Mxj" id="4Gy-mm-EWO"/>
                         <outlet property="revEWBtn" destination="Lto-qr-xBp" id="vBu-Wv-OBp"/>
                         <outlet property="revNSBtn" destination="f1Z-Od-8b4" id="FvI-zF-cAG"/>
                         <outlet property="southBtn" destination="9Md-ee-ve9" id="bcM-IW-tDA"/>
                         <outlet property="speedSlider" destination="Lv4-QB-kcQ" id="WEI-jE-gVi"/>
                         <outlet property="syncBtn" destination="yoY-T5-6FE" id="nkw-IC-xl6"/>
-                        <outlet property="westBtn" destination="ouA-5S-lrX" id="i59-H1-BoK"/>
+                        <outlet property="westBtn" destination="fdb-bU-KuZ" id="Gze-ds-T4g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEF-gc-3on" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3121" y="-14"/>
+            <point key="canvasLocation" x="3297" y="-15"/>
         </scene>
     </scenes>
     <resources>

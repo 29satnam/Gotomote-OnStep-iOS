@@ -136,7 +136,6 @@ class InitializeViewController: UIViewController {
     
 
     func setupUserInterface() {
-        
         segmentControl.itemTitles = ["1 Star", "2 Star", "3 Star"]
         segmentControl.allowChangeThumbWidth = false
         segmentControl.selectedTextFont = UIFont(name: "SFUIDisplay-Medium", size: 14.0)!
