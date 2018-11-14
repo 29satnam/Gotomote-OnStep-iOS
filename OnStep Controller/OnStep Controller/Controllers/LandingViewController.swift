@@ -208,7 +208,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         viewController.popoverPresentationController?.delegate = self
         viewController.popoverPresentationController?.barButtonItem = moreOptionsBtn
         viewController.popoverPresentationController?.permittedArrowDirections = .any
-        viewController.preferredContentSize = CGSize(width: 225, height: 337)
+        viewController.preferredContentSize = CGSize(width: 225, height: 340)
         
         // Present the popoverViewController's view on screen
         

@@ -13,19 +13,35 @@ protocol PopViewDelegate: class {
 }
 
 class MoreOptionsTableViewController: UITableViewController {
-
+    
+    @IBOutlet var switchScreen: UISwitch!
+    
     weak var delegate: PopViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        
+        if (UIApplication.shared.isIdleTimerDisabled == true) {
+            switchScreen.isOn = true
+        } else {
+            switchScreen.isOn = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func switchScreenOff(_ sender: UISwitch) {
+        if (sender.isOn == true){
+            UIApplication.shared.isIdleTimerDisabled = true
+        } else{
+            UIApplication.shared.isIdleTimerDisabled = false
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

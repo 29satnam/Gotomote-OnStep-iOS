@@ -1019,6 +1019,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dG6-6O-CQg">
                                                     <rect key="frame" x="160" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchScreenOff:" destination="2u8-NH-vSG" eventType="valueChanged" id="Jaf-ya-4x1"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.75294117650000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1042,6 +1045,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="225" height="307"/>
+                    <connections>
+                        <outlet property="switchScreen" destination="dG6-6O-CQg" id="ha7-He-oXg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWJ-bt-yZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
