@@ -33,13 +33,22 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         
         self.view.backgroundColor = .black
+        
+        self.triggerConnection(cmd: ":%BR#:%BD#", setTag: 0) // RA // DEC
 
+        
+        //   % - Return parameter
+        //  :%BD# Get Dec Antibacklash
+        //          Return: d#
+        //  :%BR# Get RA Antibacklash
+        //          Return: d#
+        //          Get the Backlash values.  Units are arc-seconds
     }
     
     @IBAction func uploadAction(_ sender: UIButton) {
         if !backRaTF.text!.isEmpty || !backDecTF.text!.isEmpty {
             print("do stuff")
-            self.triggerConnection(cmd: ":$BR\(backRaTF.text!)#:$BD\(backDecTF.text!)#", setTag: 0)
+            self.triggerConnection(cmd: ":$BR\(backRaTF.text!)#:$BD\(backDecTF.text!)#", setTag: 1)
 
         } else {
             print("show error")
@@ -121,10 +130,12 @@ extension BacklashViewController: GCDAsyncSocketDelegate {
         case 0:
             readerText += "\(getText!)"
             
-            let index = readerText.components(separatedBy: ",")
-            print(index, readerText)
-            
+            let index = readerText.dropLast().components(separatedBy: "#")
+            print(index, readerText) // // RA // DEC
+
             DispatchQueue.main.async {
+                self.backRaTF.text = index[opt: 0] ?? ""
+                self.backDecTF.text = index[opt: 1] ?? ""
             }
             
         case 1:

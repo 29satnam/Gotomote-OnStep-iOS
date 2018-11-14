@@ -208,7 +208,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         viewController.popoverPresentationController?.delegate = self
         viewController.popoverPresentationController?.barButtonItem = moreOptionsBtn
         viewController.popoverPresentationController?.permittedArrowDirections = .any
-        viewController.preferredContentSize = CGSize(width: 225, height: 357)
+        viewController.preferredContentSize = CGSize(width: 225, height: 337)
         
         // Present the popoverViewController's view on screen
         
@@ -221,7 +221,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
 }
 
 extension Date {

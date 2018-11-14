@@ -59,7 +59,7 @@ class GotoMRViewController: UIViewController {
 
 
     }
-    
+    // TODO: Crash if not connected when button pressed
     @IBAction func defaultAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!*1.0)#", setTag: 0)
