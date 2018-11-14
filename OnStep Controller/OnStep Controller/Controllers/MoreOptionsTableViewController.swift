@@ -20,8 +20,25 @@ class MoreOptionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
         
+        //   $Q - PEC Control
+        //  :$QZ+  Enable RA PEC compensation
+        //         Returns: nothing
+        //  :$QZ-  Disable RA PEC Compensation
+        //         Returns: nothing
+        //  :$QZZ  Clear the PEC data buffer
+        //         Return: Nothing
+        //  :$QZ/  Ready Record PEC
+        //         Returns: nothing
+        //  :$QZ!  Write PEC data to EEPROM
+        //         Returns: nothing
+        //  :$QZ?  Get PEC status
+        //         Returns: S#
+        
+        tableView.tableFooterView = UIView()
+        switchScreen.tintColor = .black
+        switchScreen.onTintColor = .black
+
         if (UIApplication.shared.isIdleTimerDisabled == true) {
             switchScreen.isOn = true
         } else {
