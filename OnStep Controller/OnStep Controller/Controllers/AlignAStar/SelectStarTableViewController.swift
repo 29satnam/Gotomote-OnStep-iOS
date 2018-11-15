@@ -31,7 +31,7 @@ class SelectStarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         jsonObj = grabJSONData(resource: "Bright Stars")
-        print("coordinates", coordinates, coordinates.count, coordinates[0])
+        print("coordinatess", coordinates, coordinates.count, coordinates[0])
         navigationItem.title = vcTitle
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
@@ -105,6 +105,7 @@ class SelectStarTableViewController: UITableViewController {
             destination.alignTypePassed = alignType
             destination.vcTitlePassed = vcTitle
             destination.passedSlctdObjIndex = slctdObjIndex
+            destination.coordinates = coordinates
         }
     }
     
@@ -176,3 +177,5 @@ class SelectStarTableViewController: UITableViewController {
     }
     
 }
+//             destination.coordinates = coordinates
+

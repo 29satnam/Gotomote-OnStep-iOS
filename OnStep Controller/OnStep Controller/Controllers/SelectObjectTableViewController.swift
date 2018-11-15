@@ -48,9 +48,9 @@ class SelectObjectTableViewController: UITableViewController {
             let decDD = Double(decSepa[opt: 0]!)! // 22.0
             let decMM = String(format: "%02d", Int(decSepa[opt: 1]!)! as CVarArg)// Double()! // 22.0
             
-            print("decMM:", decMM)
+      //      print("decMM:", decMM)
             
-            print("raStr:", raStr, "decStr:", decStr)
+       //     print("raStr:", raStr, "decStr:", decStr)
             
             //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
             //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *

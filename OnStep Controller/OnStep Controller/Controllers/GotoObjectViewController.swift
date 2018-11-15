@@ -92,9 +92,9 @@ class GotoObjectViewController: UIViewController {
         let decDD = Double(decSepa[opt: 0]!)! // 22.0
         let decMM = String(format: "%02d", Int(decSepa[opt: 1]!)! as CVarArg)// Double()! // 22.0
         
-        print("decMM:", decMM)
+       // print("decMM:", decMM)
         
-        print("raStr:", raStr, "decStr:", decStr)
+       // print("raStr:", raStr, "decStr:", decStr)
         
         //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
         //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
@@ -102,7 +102,7 @@ class GotoObjectViewController: UIViewController {
         // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
         
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: raSS), declination: DegreeAngle(degree: decDD, minute: Double(decMM)!, second: 0.0), distance: 1)
-        print("lolol:", raHH, raMM, raSS, decDD, Double(decMM)!)
+    //    print("lolol:", raHH, raMM, raSS, decDD, Double(decMM)!)
         
         let date = Date()
         let locTime = ObserverLocationTime(location: CLLocation(latitude: Double(passedCoordinates[0])!, longitude: Double(passedCoordinates[1])!), timestamp: JulianDay(date: date))

@@ -37,7 +37,10 @@ class PECViewController: UIViewController {
         addBtnProperties(button: saveBtn)
         
         readerText = ""
-        triggerConnection(cmd: ":GUE#", setTag: 0)
+        triggerConnection(cmd: ":GU#", setTag: 0)
+        
+        
+        
 //  :GU#   Get telescope Status
         
      //   GE - 0

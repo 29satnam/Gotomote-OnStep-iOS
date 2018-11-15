@@ -38,7 +38,8 @@ class GotoStarViewController: UIViewController {
     var alignTypePassed: Int = Int()
     var vcTitlePassed: String = String()
     var passedSlctdObjIndex: Int = Int()
-    
+    var coordinates:[String] = [String]() // to bee passed
+
     // Labeling
     @IBOutlet var longName: UILabel!
     @IBOutlet var shortName: UILabel!
@@ -86,9 +87,9 @@ class GotoStarViewController: UIViewController {
         let decDD = Double(decSepa[opt: 0]!)! // 22.0
         let decMM = Int(decSepa[opt: 1]!)! // Double()! // 22.0
         
-        print("decMM:", decMM)
+      //  print("decMM:", decMM)
         
-        print("raStr:", raStr, "decStr:", decStr)
+      //  print("raStr:", raStr, "decStr:", decStr)
         
         //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
         //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
@@ -96,7 +97,7 @@ class GotoStarViewController: UIViewController {
         // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
         
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: 0.0), declination: DegreeAngle(degree: decDD, minute: Double(decMM), second: 0.0), distance: 1)
-        print(vegaCoord.declination, vegaCoord.rightAscension)
+      //  print(vegaCoord.declination, vegaCoord.rightAscension)
         
         let date = Date()
         let locTime = ObserverLocationTime(location: CLLocation(latitude: 45, longitude: 68), timestamp: JulianDay(date: date))
@@ -553,10 +554,10 @@ class GotoStarViewController: UIViewController {
         alignTypePassed = alignTypePassed - 1
         print("this:", alignTypePassed)
         if alignTypePassed <= 0 {
+            print("backToInitialize")
             performSegue(withIdentifier: "backToInitialize", sender: self)
         } else {
-            
-            
+            print("backToStarList-- error")
             performSegue(withIdentifier: "backToStarList", sender: self)
         }
     }
@@ -570,9 +571,10 @@ class GotoStarViewController: UIViewController {
             if vcTitlePassed == "FIRST STAR" {
                 
                 // Start second star alignment.
-                print("start third")
+                print("start second")
                 triggerConnection(cmd: ":A2#")
                 destination.vcTitle = "SECOND STAR"
+                destination.coordinates = coordinates
                 
             } else if vcTitlePassed ==  "SECOND STAR" {
                 
@@ -580,9 +582,13 @@ class GotoStarViewController: UIViewController {
                 print("start third")
                 triggerConnection(cmd: ":A3#")
                 destination.vcTitle = "THIRD STAR"
+                destination.coordinates = coordinates
+
                 
             } else {
                 destination.vcTitle = "STAR ALIGNMENT"
+                destination.coordinates = coordinates
+
             }
         } else if segue.identifier == "initialize" {
             
