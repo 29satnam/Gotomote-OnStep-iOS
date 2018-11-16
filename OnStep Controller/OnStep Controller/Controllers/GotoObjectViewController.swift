@@ -224,7 +224,7 @@ class GotoObjectViewController: UIViewController {
         super.viewDidLoad()
 
         print("passedCoordinatesss:", passedCoordinates)
-        
+        print("slctdJSONObj:", slctdJSONObj)
         speedSlider.minimumValue = 0
         speedSlider.maximumValue = 9
         speedSlider.isContinuous = true

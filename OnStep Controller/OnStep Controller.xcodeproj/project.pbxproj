@@ -11,6 +11,7 @@
 		D7028C01214BD6F1007D6B7C /* SwiftyJSON.framework in Sources */ = {isa = PBXBuildFile; fileRef = D7E526DF214BD68900376F5E /* SwiftyJSON.framework */; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
 		D73BA41B215E337300913604 /* GotoObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73BA41A215E337300913604 /* GotoObjectViewController.swift */; };
+		D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */; };
 		D75E916C219C359500AB5E97 /* PECViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E916B219C359500AB5E97 /* PECViewController.swift */; };
 		D784C6252153698100DFB54E /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; };
 		D784C6262153698100DFB54E /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D73BA41A215E337300913604 /* GotoObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoObjectViewController.swift; sourceTree = "<group>"; };
+		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
 		D75E916B219C359500AB5E97 /* PECViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PECViewController.swift; sourceTree = "<group>"; };
 		D764E0AB214E5BDD0070314E /* OnStep Controller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnStep Controller-Bridging-Header.h"; sourceTree = "<group>"; };
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				D7E526A9214BD4D100376F5E /* BacklashViewController.swift */,
 				D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */,
 				D75E916B219C359500AB5E97 /* PECViewController.swift */,
+				D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				D7E526DD214BD57F00376F5E /* LocationAndTime.swift in Sources */,
 				D7E526C2214BD50200376F5E /* PresenterProtocol.swift in Sources */,
 				D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */,
+				D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */,
 				D75E916C219C359500AB5E97 /* PECViewController.swift in Sources */,
 				D7E526B2214BD4D100376F5E /* MoreOptionsTableViewController.swift in Sources */,
 				D7E526B8214BD4D100376F5E /* GotoStarViewController.swift in Sources */,

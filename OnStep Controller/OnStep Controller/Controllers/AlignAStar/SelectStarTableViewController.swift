@@ -172,7 +172,7 @@ class SelectStarTableViewController: UITableViewController {
 
         slctdObj = filteredJSON[indexPath.row]
         slctdObjIndex = indexPath.row
-
+        print("slctdObj", slctdObj)
         self.performSegue(withIdentifier: "gotoSegue", sender: self)
     }
     
