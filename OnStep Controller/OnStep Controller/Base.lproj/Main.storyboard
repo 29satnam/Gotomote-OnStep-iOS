@@ -296,28 +296,28 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wM7-nm-tF1" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="296.5" y="128" width="47" height="20"/>
+                                <rect key="frame" x="291" y="128" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKS-3y-e4f" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="240" y="128" width="46.5" height="20"/>
+                                <rect key="frame" x="228.5" y="128" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70u-tf-M0Q" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="240" y="153.5" width="46.5" height="20"/>
+                                <rect key="frame" x="228.5" y="153.5" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-cP-ybF" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="296.5" y="153.5" width="47" height="20"/>
+                                <rect key="frame" x="291" y="153.5" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
@@ -354,33 +354,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDx-vO-2Bv">
-                                <rect key="frame" x="286.5" y="128" width="8" height="20"/>
+                                <rect key="frame" x="281" y="128" width="8" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fs7-pv-QHv">
-                                <rect key="frame" x="286.5" y="153.5" width="8" height="20"/>
+                                <rect key="frame" x="281" y="153.5" width="8" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQb-Mb-OCc" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="240" y="178.5" width="46.5" height="20"/>
+                                <rect key="frame" x="228.5" y="178.5" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FvE-os-Mwh" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="296.5" y="178.5" width="47" height="20"/>
+                                <rect key="frame" x="291" y="178.5" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMf-CN-m44">
-                                <rect key="frame" x="289" y="178" width="5" height="21"/>
+                                <rect key="frame" x="283.5" y="178" width="5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -457,7 +457,7 @@
                             <constraint firstItem="yXj-ib-qlh" firstAttribute="centerX" secondItem="oJF-WI-Gq2" secondAttribute="centerX" id="uhH-NZ-Oxt"/>
                             <constraint firstItem="FvE-os-Mwh" firstAttribute="trailing" secondItem="6cQ-cP-ybF" secondAttribute="trailing" id="vUe-r3-V68"/>
                             <constraint firstItem="F2M-pP-kt0" firstAttribute="height" secondItem="6cQ-cP-ybF" secondAttribute="height" id="x5o-eR-kEw"/>
-                            <constraint firstItem="wM7-nm-tF1" firstAttribute="width" secondItem="oJF-WI-Gq2" secondAttribute="width" multiplier="0.125" id="yNf-ni-sDc"/>
+                            <constraint firstItem="wM7-nm-tF1" firstAttribute="width" secondItem="oJF-WI-Gq2" secondAttribute="width" multiplier="0.14" id="yNf-ni-sDc"/>
                             <constraint firstItem="LUd-pX-gRC" firstAttribute="leading" secondItem="yXj-ib-qlh" secondAttribute="leading" id="zd8-TN-RT2"/>
                             <constraint firstItem="2CA-Jo-onY" firstAttribute="centerY" secondItem="oJF-WI-Gq2" secondAttribute="centerY" multiplier="0.757475" id="zpy-yx-bHa"/>
                         </constraints>
@@ -2119,8 +2119,8 @@
                                     <action selector="abortBtn:" destination="AKt-JE-OEK" eventType="touchUpInside" id="hKR-Zk-8r9"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alpha Canis Majoris" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-17-xOO">
-                                <rect key="frame" x="28" y="43" width="110.5" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-17-xOO">
+                                <rect key="frame" x="28" y="42.5" width="16.5" height="15"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2161,8 +2161,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sirius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffr-3p-E2t">
-                                <rect key="frame" x="315.5" y="43" width="31.5" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Galaxy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffr-3p-E2t">
+                                <rect key="frame" x="308" y="42.5" width="39" height="15"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2195,9 +2195,6 @@
                                 <state key="normal" title="Sync">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="synvAction:" destination="AKt-JE-OEK" eventType="touchUpInside" id="VsR-0E-754"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QV9-qN-jpy">
                                 <rect key="frame" x="243" y="384.5" width="104" height="42"/>
@@ -2369,7 +2366,6 @@
                     <connections>
                         <outlet property="abortBtn" destination="lAN-q6-N45" id="too-g7-KKD"/>
                         <outlet property="aboveHorizon" destination="JCc-Ub-dXU" id="AyX-qM-cro"/>
-                        <outlet property="alignBtn" destination="u17-nf-QlL" id="Y2g-SA-LTd"/>
                         <outlet property="altitude" destination="UOa-Zo-EET" id="Fee-2y-WJL"/>
                         <outlet property="azimuth" destination="gjv-VB-SCS" id="CHT-j6-LEf"/>
                         <outlet property="dec" destination="hNG-oe-Xc0" id="3cm-0r-NY7"/>
@@ -2386,6 +2382,7 @@
                         <outlet property="shortName" destination="Ffr-3p-E2t" id="Azy-MO-URZ"/>
                         <outlet property="southBtn" destination="kYh-ad-lqX" id="Kb3-4L-9YU"/>
                         <outlet property="speedSlider" destination="CTh-qj-XQp" id="NNv-1B-W9c"/>
+                        <outlet property="syncBtn" destination="u17-nf-QlL" id="2T2-jP-yRW"/>
                         <outlet property="vMag" destination="LQO-R8-8ml" id="zFZ-BE-4ar"/>
                         <outlet property="westBtn" destination="Pvq-oQ-uao" id="jbp-Gm-idm"/>
                     </connections>
@@ -2671,13 +2668,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status for PEC:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osw-9x-gs8">
-                                <rect key="frame" x="147.5" y="32.5" width="80" height="15"/>
+                                <rect key="frame" x="147.5" y="33" width="80" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3Y-8K-ywu">
-                                <rect key="frame" x="150.5" y="48.5" width="74" height="15"/>
+                                <rect key="frame" x="150.5" y="48" width="74" height="15"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Not Available">
                                         <attributes>
@@ -2757,80 +2754,83 @@
                                 <state key="normal" title="Accept">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="acceptAction:" destination="neM-B7-Xym" eventType="touchUpInside" id="Gnt-NX-TGb"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec (DD:MM:[SS]):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3j-ie-Ep2">
-                                <rect key="frame" x="27.5" y="99.5" width="101" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec ([-]DD:MM:[SS]):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3j-ie-Ep2">
+                                <rect key="frame" x="27.5" y="99.5" width="115" height="15"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RA (HH:MM:[SS]):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crZ-XO-GUF">
-                                <rect key="frame" x="27.5" y="74.5" width="96" height="15"/>
+                                <rect key="frame" x="27.5" y="75" width="96" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O5S-Pg-dQk" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="300.5" y="72" width="47" height="20"/>
+                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O5S-Pg-dQk" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                                <rect key="frame" x="295" y="72" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmq-ya-QJA" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="249" y="72" width="46.5" height="20"/>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmq-ya-QJA" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                                <rect key="frame" x="237.5" y="72" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tff-17-F0A" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="249" y="97" width="46.5" height="20"/>
+                            <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tff-17-F0A" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                                <rect key="frame" x="237.5" y="97" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9vS-Lr-cqy" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="197" y="72" width="47" height="20"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9vS-Lr-cqy" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                                <rect key="frame" x="180" y="72" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qfz-A4-04x" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="300.5" y="97" width="47" height="20"/>
+                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qfz-A4-04x" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                                <rect key="frame" x="295" y="97" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LH-iQ-7F4">
-                                <rect key="frame" x="295.5" y="72" width="5" height="20"/>
+                                <rect key="frame" x="290" y="72" width="5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yu-yU-nqo">
-                                <rect key="frame" x="244" y="72" width="5" height="20"/>
+                                <rect key="frame" x="232.5" y="72" width="5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cm-WV-amH">
-                                <rect key="frame" x="244" y="97" width="5" height="20"/>
+                                <rect key="frame" x="232.5" y="97" width="5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmX-2J-uFu">
-                                <rect key="frame" x="295.5" y="97" width="5" height="20"/>
+                                <rect key="frame" x="290" y="97" width="5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="71t-bI-utS" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
-                                <rect key="frame" x="197" y="97" width="47" height="20"/>
+                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="71t-bI-utS" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                                <rect key="frame" x="180" y="97" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
@@ -2842,7 +2842,7 @@
                             <constraint firstItem="O5S-Pg-dQk" firstAttribute="leading" secondItem="6LH-iQ-7F4" secondAttribute="trailing" id="1kL-cm-feG"/>
                             <constraint firstItem="71t-bI-utS" firstAttribute="centerY" secondItem="7cm-WV-amH" secondAttribute="centerY" id="2hu-C6-llm"/>
                             <constraint firstItem="B2C-xh-msY" firstAttribute="width" secondItem="yr0-ta-tWx" secondAttribute="width" id="8kN-NH-ZGE"/>
-                            <constraint firstItem="O5S-Pg-dQk" firstAttribute="width" secondItem="ODe-ru-mXx" secondAttribute="width" multiplier="0.125" id="B6o-sY-WBm"/>
+                            <constraint firstItem="O5S-Pg-dQk" firstAttribute="width" secondItem="ODe-ru-mXx" secondAttribute="width" multiplier="0.14" id="B6o-sY-WBm"/>
                             <constraint firstItem="rmq-ya-QJA" firstAttribute="width" secondItem="O5S-Pg-dQk" secondAttribute="width" id="FhB-25-lux"/>
                             <constraint firstItem="7cm-WV-amH" firstAttribute="centerY" secondItem="Tff-17-F0A" secondAttribute="centerY" id="GbW-Bj-0Sw"/>
                             <constraint firstItem="yr0-ta-tWx" firstAttribute="centerY" secondItem="ODe-ru-mXx" secondAttribute="centerY" multiplier="0.483" id="Gqk-Mk-guQ"/>
@@ -2933,7 +2933,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Above Horizon? =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfb-if-7O8">
-                                <rect key="frame" x="28.5" y="139" width="95" height="15"/>
+                                <rect key="frame" x="28.5" y="139.5" width="94.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

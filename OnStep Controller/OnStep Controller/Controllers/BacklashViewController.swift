@@ -51,10 +51,32 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
             self.triggerConnection(cmd: ":$BR\(backRaTF.text!)#:$BD\(backDecTF.text!)#", setTag: 1)
 
         } else {
-            print("show error")
+            print("show error") // TODO
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var check: Bool = Bool()
+        let maxLength = 3
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        if newString.length <= maxLength {
+           // return true
+            if CharacterSet(charactersIn: "0123456789").isSuperset(of: CharacterSet(charactersIn: string)) == true {
+                check = true
+            } else {
+                check = false
+            }
+        }
+        return check
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func triggerConnection(cmd: String, setTag: Int) {
         
@@ -84,30 +106,6 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
         } catch {
         }
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var check: Bool = Bool()
-        let maxLength = 3
-        let currentString: NSString = textField.text! as NSString
-        let newString: NSString =
-            currentString.replacingCharacters(in: range, with: string) as NSString
-        
-        if newString.length <= maxLength {
-           // return true
-            if CharacterSet(charactersIn: "0123456789").isSuperset(of: CharacterSet(charactersIn: string)) == true {
-                check = true
-            } else {
-                check = false
-            }
-        }
-        return check
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation

@@ -29,7 +29,7 @@ class GotoObjectViewController: UIViewController {
     @IBOutlet var rightArrowBtn: UIButton!
     @IBOutlet var revNSBtn: UIButton!
     @IBOutlet var revEWBtn: UIButton!
-    @IBOutlet var alignBtn: UIButton!
+    @IBOutlet var syncBtn: UIButton!
     
     @IBOutlet var northBtn: UIButton!
     @IBOutlet var southBtn: UIButton!
@@ -153,6 +153,7 @@ class GotoObjectViewController: UIViewController {
 
         triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#") //Set target RA # Set target Dec
          print("this -> :Sr\(RAHHMMSS)#:Sd\(decString):00#:MS#")
+        // this -> :Sr21:30:00#:Sd+12:10:00#:MS#
     }
     
     // Mark: Slider - Increase Speed
@@ -314,7 +315,7 @@ class GotoObjectViewController: UIViewController {
         addBtnProperties(button: rightArrowBtn)
         addBtnProperties(button: revNSBtn)
         addBtnProperties(button: revEWBtn)
-        addBtnProperties(button: alignBtn)
+        addBtnProperties(button: syncBtn)
         
         addBtnProperties(button: northBtn)
         northBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
@@ -569,7 +570,7 @@ class GotoObjectViewController: UIViewController {
         DispatchQueue.main.async {
             self.revEWBtn.alpha = alpha
             self.revNSBtn.alpha = alpha
-            self.alignBtn.alpha = alpha
+            self.syncBtn.alpha = alpha
             self.leftArrowBtn.alpha = alpha
             self.rightArrowBtn.alpha = alpha
             self.speedSlider.alpha = alpha
@@ -578,7 +579,7 @@ class GotoObjectViewController: UIViewController {
             self.rightArrowBtn.isUserInteractionEnabled = activate
             self.revNSBtn.isUserInteractionEnabled = activate
             self.revEWBtn.isUserInteractionEnabled = activate
-            self.alignBtn.isUserInteractionEnabled = activate
+            self.syncBtn.isUserInteractionEnabled = activate
             self.speedSlider.isUserInteractionEnabled = activate
             
         }
