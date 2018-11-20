@@ -73,13 +73,14 @@ class GotoCustomObjectViewController: UIViewController {
         // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
         
         var splitRA = passedRA.split(separator: ":")
-        var splitDec = passedRA.split(separator: ":")
+        var splitDec = passedDec.split(separator: ":")
         
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(splitRA[0])!, minute: Double(splitRA[1])!, second: Double(splitRA[2])!), declination: DegreeAngle(degree: Double(splitDec[0])!, minute: Double(splitDec[1])!, second: Double(splitDec[2])!), distance: 1)
-        
+        print("RA", vegaCoord.rightAscension, "DEC", vegaCoord.declination, "passedCoordinates", passedCoordinates)
         //    print("lolol:", raHH, raMM, raSS, decDD, Double(decMM)!)
         
         let date = Date()
+        
         let locTime = ObserverLocationTime(location: CLLocation(latitude: Double(passedCoordinates[0])!, longitude: Double(passedCoordinates[1])!), timestamp: JulianDay(date: date))
         
         let vegaAziAlt = HorizontalCoordinate.init(equatorialCoordinate: vegaCoord, observerInfo: locTime)
