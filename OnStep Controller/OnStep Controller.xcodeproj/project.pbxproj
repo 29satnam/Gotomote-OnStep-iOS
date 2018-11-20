@@ -19,6 +19,7 @@
 		D78EBE202191A3A10012D24C /* GuideCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */; };
 		D79A7FCE2156ADE600E9C711 /* UserDefaults+CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A7FCD2156ADE600E9C711 /* UserDefaults+CLLocation.swift */; };
 		D7B494B7218B595B007BFDD3 /* SetOverHeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */; };
+		D7B6B16321A3E896006FBCF4 /* GotoCustomObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B6B16221A3E896006FBCF4 /* GotoCustomObjectViewController.swift */; };
 		D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52681214BD41D00376F5E /* AppDelegate.swift */; };
 		D7E52687214BD41D00376F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E52685214BD41D00376F5E /* Main.storyboard */; };
 		D7E5268C214BD41E00376F5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E5268A214BD41E00376F5E /* LaunchScreen.storyboard */; };
@@ -88,6 +89,7 @@
 		D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCenterViewController.swift; sourceTree = "<group>"; };
 		D79A7FCD2156ADE600E9C711 /* UserDefaults+CLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+CLLocation.swift"; sourceTree = "<group>"; };
 		D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetOverHeadViewController.swift; sourceTree = "<group>"; };
+		D7B6B16221A3E896006FBCF4 /* GotoCustomObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoCustomObjectViewController.swift; sourceTree = "<group>"; };
 		D7E5267E214BD41D00376F5E /* OnStep Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnStep Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E52681214BD41D00376F5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E52686214BD41D00376F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */,
 				D75E916B219C359500AB5E97 /* PECViewController.swift */,
 				D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */,
+				D7B6B16221A3E896006FBCF4 /* GotoCustomObjectViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 			files = (
 				D784C6272153699F00DFB54E /* CocoaAsyncSocket.framework in Sources */,
 				D7028C00214BD6F1007D6B7C /* MathUtil.framework in Sources */,
+				D7B6B16321A3E896006FBCF4 /* GotoCustomObjectViewController.swift in Sources */,
 				D79A7FCE2156ADE600E9C711 /* UserDefaults+CLLocation.swift in Sources */,
 				D7028C01214BD6F1007D6B7C /* SwiftyJSON.framework in Sources */,
 				D7E526DA214BD57F00376F5E /* EclipticUtil.swift in Sources */,

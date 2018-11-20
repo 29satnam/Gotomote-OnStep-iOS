@@ -231,7 +231,4 @@ class SelectObjectTableViewController: UITableViewController {
         slctdObjIndex = indexPath.row
         self.performSegue(withIdentifier: "gotoObjectSyncSegue", sender: self)
     }
-
 }
-
-

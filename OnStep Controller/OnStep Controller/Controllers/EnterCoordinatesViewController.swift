@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+import CoreLocation
+import MathUtil
+import SwiftyJSON
+import CocoaAsyncSocket
 class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var raHH: CustomTextField!
@@ -19,9 +22,17 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var decSS: CustomTextField!
     
     @IBOutlet var acceptBtn: UIButton!
+    var utcString: String =  String()
+
+    
+    var clientSocket: GCDAsyncSocket!
+    var readerText: String = String()
+    
+    var coordinatesToPass: [String] = [String]() // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
     
     var declination: String = String()
     var rightAscension: String = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -49,6 +60,23 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
     }
+    
+    // PrepareForSegue with Socket Data Delegate
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "gotoCustomObjectSyncSegue" {
+
+            if let destination = segue.destination as? GotoCustomObjectViewController {
+             //   destination.title = tableViewTitle
+             //   destination.jsonObj = initJSONData
+                
+                destination.passedCoordinates = coordinatesToPass
+                destination.passedRA = rightAscension
+                destination.passedDec = declination
+            }
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         var check: Bool = Bool()
@@ -104,8 +132,8 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
                     print("do stuff")
                   //  print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS))
                     
-                    var declination = String(format: "%+02d:%02d:%02d", Int(decDD.text!)!, Int(decMM.text!)!, Int(decSS.text!)!) // init
-                    var rightAscension = String(format: "%02d:%02d:%02d", Int(raHH.text!)!, Int(raMM.text!)!, Int(raSS.text!)!)
+                    self.declination = String(format: "%+02d:%02d:%02d", Int(decDD.text!)!, Int(decMM.text!)!, Int(decSS.text!)!) // init
+                    self.rightAscension = String(format: "%02d:%02d:%02d", Int(raHH.text!)!, Int(raMM.text!)!, Int(raSS.text!)!)
                     
                     // add positive sign
                     var y = (Int(raHH.text! + raMM.text! + raSS.text!)!)
@@ -117,7 +145,10 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         declination = String(format: "%+03d:%02d:%02d", Int(decDD.text!)!, Int(decMM.text!)!, Int(decSS.text!)!)
                     }
-                    print("declination", declination, "rightAscension", rightAscension) 
+                    
+                  //  print("declination", declination, "rightAscension", rightAscension)
+                    triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
+
                 }
             }
         } else {
@@ -125,4 +156,89 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func triggerConnection(cmd: String, setTag: Int) {
+        
+        clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
+        
+        do {
+            var addr = "192.168.0.1"
+            var port: UInt16 = 9999
+            
+            // Populate data
+            if addressPort.value(forKey: "addressPort") as? String == nil {
+                
+                addressPort.set("192.168.0.1:9999", forKey: "addressPort")
+                addressPort.synchronize()  // Initialize
+                
+            } else {
+                let addrPort = (addressPort.value(forKey: "addressPort") as? String)?.components(separatedBy: ":")
+                
+                addr = addrPort![opt: 0]!
+                port = UInt16(addrPort![opt: 1]!)!
+            }
+            
+            try clientSocket.connect(toHost: addr, onPort: port, withTimeout: 1.5)
+            let data = cmd.data(using: .utf8)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
+        } catch {
+        }
+    }
+    
+}
+
+extension EnterCoordinatesViewController: GCDAsyncSocketDelegate {
+    
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let getText = String(data: data, encoding: .utf8)
+        switch tag {
+        case 0:
+            print("Tag 0:", getText!)
+            readerText += "\(getText!)"
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            print(index)
+        case 1:
+            print("Tag 1:", getText!)
+            utcString = getText!
+        case 2:
+            print("Tag 2:", getText!)
+            readerText += "\(getText!)"
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
+            //   print(index)
+            if index.isEmpty == false && index.count == 2 {
+                coordinatesToPass = index
+                self.performSegue(withIdentifier: "gotoCustomObjectSyncSegue", sender: self)
+                
+                print("coordinatesToPass:", coordinatesToPass, "rightAscension:", rightAscension, "declination:", declination)
+              //  coordinatesToPass: ["+01.55", "+179.52"] rightAscension: 01:01:00 declination: -01:01:00
+
+            }
+        case 3:
+            print("Tag 3:", getText!)
+        default:
+            print("def")
+        }
+        clientSocket.readData(withTimeout: -1, tag: tag)
+        // clientSocket.disconnect()
+        
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        
+        let address = "Server IP：" + "\(host)"
+        print("didConnectToHost:", address)
+        
+        switch sock.isConnected {
+        case true:
+            print("Connected")
+        case false:
+            print("Disconnected")
+        default:
+            print("Default")
+        }
+    }
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        print("Disconnected Called: ", err?.localizedDescription as Any)
+    }
 }

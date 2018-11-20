@@ -512,7 +512,7 @@ class GotoStarViewController: UIViewController {
             
             var splitDec = decString.split(separator: ":")
 
-                dec.text = "DEC = \(splitDec[0])° " + "\(splitDec[1])' " + "\(splitDec[2])"
+                dec.text = "DEC = \(splitDec[0])° " + "\(splitDec[1])' " + "\(splitDec[2])\""
 
              //   print("raHH", raHH, "raMM", raMM, "raSS", raSS)
                // var raHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
