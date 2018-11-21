@@ -12,21 +12,7 @@ import MathUtil
 import SwiftyJSON
 import CocoaAsyncSocket
 
-/*
-protocol TriggerConnectionDelegate {
-    func triggerConnection(cmd: String)
-}
-*/
-
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
-
-    @IBAction func pec(_ sender: UIButton) {
-     //   triggerConnection(cmd: ":Sd-23:12:12#")
-    //    triggerConnection(cmd: ":Sa-23:12:12#")
-      //  triggerConnection(cmd: ":Gd#")
-        //  triggerConnection(cmd: ":Sr12:05:45#")
-    }
-    
     
     @IBAction func guide(_ sender: Any) {
     }
@@ -149,6 +135,11 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         //self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
+    @IBAction func toPecScreen(_ sender: UIButton) {
+        self.readerText = ""
+        triggerConnection(cmd: ":GU#", setTag: 4)
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -190,7 +181,15 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
               //  destination.delegate = self
                 destination.title = "SITE SELECTION"
             }
+        } else if segue.identifier == "toPECScreen" {
+            // PEC Screen
+            if let destination = segue.destination as? PECViewController {
+                //  destination.delegate = self
+                destination.scopeStatus = readerText
+            }
         }
+        
+        //toPECScreen
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -271,12 +270,19 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             }
         case 3:
             print("Tag 3:", getText!)
+        case 4:
+            print("Tag 4:", getText!)
+            var status = readerText.components(separatedBy: "#") // += "\(getText!)" // Push :GU# reply to PEC Screen
+            print("lol", status.count)
+            if status.count == 1 {
+                readerText = getText!
+                self.performSegue(withIdentifier: "toPECScreen", sender: self)
+            }
         default:
             print("def")
         }
         clientSocket.readData(withTimeout: -1, tag: tag)
         // clientSocket.disconnect()
-        
     }
     
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {

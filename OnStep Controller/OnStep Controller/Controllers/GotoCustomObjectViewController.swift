@@ -76,8 +76,6 @@ class GotoCustomObjectViewController: UIViewController {
         var splitDec = passedDec.split(separator: ":")
         
         let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(splitRA[0])!, minute: Double(splitRA[1])!, second: Double(splitRA[2])!), declination: DegreeAngle(degree: Double(splitDec[0])!, minute: Double(splitDec[1])!, second: Double(splitDec[2])!), distance: 1)
-        print("RA", vegaCoord.rightAscension, "DEC", vegaCoord.declination, "passedCoordinates", passedCoordinates)
-        //    print("lolol:", raHH, raMM, raSS, decDD, Double(decMM)!)
         
         let date = Date()
         

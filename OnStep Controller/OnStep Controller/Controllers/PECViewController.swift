@@ -21,6 +21,10 @@ class PECViewController: UIViewController {
     var clientSocket: GCDAsyncSocket!
     var readerText: String = String()
     
+    var scopeStatus: String = String() // retrieved from landing page
+    
+    var pecStatus: String = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,10 +40,33 @@ class PECViewController: UIViewController {
         addBtnProperties(button: recordBtn)
         addBtnProperties(button: saveBtn)
         
-        readerText = ""
-        triggerConnection(cmd: ":GU#", setTag: 0)
+        print("pec:", scopeStatus)
         
         
+        if scopeStatus.contains("A") == true { // Alt-Az mount
+            DispatchQueue.main.async {
+                self.statusLbl.text = "Not Available"
+            }
+        } else { // Other mounts
+            DispatchQueue.main.async {
+                self.statusLbl.text = ""
+                self.readerText = ""
+                self.triggerConnection(cmd: ":$QZ?", setTag: 0) // Get pec status
+            }
+        }
+        
+        
+      //  readerText = ""
+      //  triggerConnection(cmd: ":GU#", setTag: 0)
+        
+        // nNpHzA0#
+        /*
+ 
+         GEM   -> 'E'
+         Alt-Az -> 'A'
+         Fork   -> 'K'
+         Fork (Alternate) -> 'k'
+ */
         
 //  :GU#   Get telescope Status
         
@@ -157,7 +184,7 @@ extension PECViewController: GCDAsyncSocketDelegate {
         }
         
     }
-    
+
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         print("Disconnected Called: ", err?.localizedDescription as Any)
     }
