@@ -21,14 +21,15 @@ class PECViewController: UIViewController {
     var clientSocket: GCDAsyncSocket!
     var readerText: String = String()
     
-    var scopeStatus: String = String() // retrieved from landing page
+    var scopeStatus: String = String() // Retrieved from landing page
     
     var pecStatus: String = String()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+    //    triggerConnection(cmd: ":$QZ?", setTag: 0)
+
         navigationItem.title = "PEC SETTINGS"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         
@@ -42,36 +43,61 @@ class PECViewController: UIViewController {
         
         print("pec:", scopeStatus)
         
-        
-        if scopeStatus.contains("A") == true { // Alt-Az mount
+        if scopeStatus.contains("E") == true || scopeStatus.contains("K") == true || scopeStatus.contains("k") == true { // Other mounts
+            
+            DispatchQueue.main.async { // GEM, FORK, FORK(ALT) mounts
+                self.readerText = ""
+                self.triggerConnection(cmd: ":$QZ?", setTag: 0) // Get Pec status
+                self.statusLbl.text = "Available"
+                let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(PECViewController.update), userInfo: nil, repeats: true)
+            }
+
+        } else { // (A)Alt-Az mount or other statuses like 0..
+            buttonTextAlpha(alpha: 0.25, activate: false)
             DispatchQueue.main.async {
                 self.statusLbl.text = "Not Available"
+                print("Not Available")
+                // disable buttons
+                self.showToast(controller: self, message : "Not Available", seconds: 4.0)
             }
-        } else { // Other mounts
-            DispatchQueue.main.async {
-                self.statusLbl.text = ""
-                self.readerText = ""
-                self.triggerConnection(cmd: ":$QZ?", setTag: 0) // Get pec status
-            }
+            
         }
+    }
+    
+    
+    func showToast(controller: UIViewController, message : String, seconds: Double) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.view.backgroundColor = UIColor.black
+        alert.view.alpha = 0.6
+        alert.view.layer.cornerRadius = 15
         
+        controller.present(alert, animated: true)
         
-      //  readerText = ""
-      //  triggerConnection(cmd: ":GU#", setTag: 0)
-        
-        // nNpHzA0#
-        /*
- 
-         GEM   -> 'E'
-         Alt-Az -> 'A'
-         Fork   -> 'K'
-         Fork (Alternate) -> 'k'
- */
-        
-//  :GU#   Get telescope Status
-        
-     //   GE - 0
-        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds) {
+            alert.dismiss(animated: true)
+        }
+    }
+    
+    @objc func update() {
+        print("Updating!!")
+        triggerConnection(cmd: ":$QZ?", setTag: 0)
+    }
+    
+    
+    func buttonTextAlpha(alpha: CGFloat, activate: Bool) {
+        DispatchQueue.main.async {
+            self.playBtn.alpha = alpha
+            self.stopBtn.alpha = alpha
+            self.clearBtn.alpha = alpha
+            self.recordBtn.alpha = alpha
+            self.saveBtn.alpha = alpha
+            
+            self.playBtn.isUserInteractionEnabled = activate
+            self.stopBtn.isUserInteractionEnabled = activate
+            self.clearBtn.isUserInteractionEnabled = activate
+            self.recordBtn.isUserInteractionEnabled = activate
+            self.saveBtn.isUserInteractionEnabled = activate
+        }
     }
     
     //   $Q - PEC Control
@@ -85,30 +111,35 @@ class PECViewController: UIViewController {
     //         Returns: nothing
     //  :$QZ!  Write PEC data to EEPROM
     //         Returns: nothing
+    
     //  :$QZ?  Get PEC status
     //         Returns: S#
     //  // Status is one of "IpPrR" (I)gnore, get ready to (p)lay, (P)laying, get ready to (r)ecord, (R)ecording.  Or an optional (.) to indicate an index detect.
     
     @IBAction func playAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":$QZ+", setTag: 1)
+        triggerConnection(cmd: ":$QZ+", setTag: 0)
+        print("Enable RA PEC compensation")
     }
     
     @IBAction func stopAction(_ sender: UIButton) {
         triggerConnection(cmd: ":$QZ-", setTag: 1)
+        print("Disable RA PEC Compensation")
     }
     
     @IBAction func clearAction(_ sender: UIButton) {
         triggerConnection(cmd: ":$QZZ", setTag: 1)
+        print("Clear the PEC data buffer")
     }
     
     @IBAction func recordAction(_ sender: UIButton) {
         triggerConnection(cmd: ":$QZ/", setTag: 1)
+        print("Ready Record PEC")
     }
     
     @IBAction func saveAction(_ sender: UIButton) {
         triggerConnection(cmd: ":$QZ!", setTag: 1)
+        print("Write PEC data to EEPROM")
     }
-    
     
     func triggerConnection(cmd: String, setTag: Int) {
         
@@ -145,17 +176,37 @@ extension PECViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let getText = String(data: data, encoding: .utf8)
-        print("got:", getText)
         switch tag {
-        case 0:
-            readerText += "\(getText!)"
             
-            let index = readerText
-            print(index, readerText) // // RA // DEC
-            
-            DispatchQueue.main.async {
-            //    self.backRaTF.text = index[opt: 0] ?? ""
-           //     self.backDecTF.text = index[opt: 1] ?? ""
+        case 0: // TODO make this repeative and dynamic -- if pec is available
+            readerText += "\(getText!)" // Reply for :$QZ? -- Get PEC Status
+            if readerText.contains("I") == true {
+                print("PEC Idle")
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "PEC Idle"
+                }
+            } else if readerText.contains("p") == true {
+                print("PEC Play waiting Idx")
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "PEC Play waiting Idx"
+                }
+            } else if readerText.contains("P") == true {
+                print("PEC Playing")
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "PEC Playing"
+                }
+            } else if readerText.contains("r") == true {
+                print("PEC Rec waiting Idx")
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "PEC Rec waiting Idx"
+                }
+            } else if readerText.contains("R") == true {
+                print("PEC Recording")
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "PEC Recording"
+                }
+            } else {
+                print("Unknown reply")
             }
             
         case 1:

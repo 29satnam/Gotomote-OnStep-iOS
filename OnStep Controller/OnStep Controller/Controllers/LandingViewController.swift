@@ -17,7 +17,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     @IBAction func guide(_ sender: Any) {
     }
     
-    
     var socketConnector: SocketDataManager!
     
     var initJSONData: JSON = JSON()
@@ -252,15 +251,15 @@ extension LandingViewController: GCDAsyncSocketDelegate {
         let getText = String(data: data, encoding: .utf8)
         switch tag {
         case 0:
-            print("Tag 0:", getText!)
+          //  print("Tag 0:", getText!)
             readerText += "\(getText!)"
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-            print(index)
+          //  print(index)
         case 1:
-            print("Tag 1:", getText!)
+          //  print("Tag 1:", getText!)
             utcString = getText!
         case 2:
-            print("Tag 2:", getText!)
+          //  print("Tag 2:", getText!)
             readerText += "\(getText!)"
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
             //   print(index)
@@ -269,11 +268,11 @@ extension LandingViewController: GCDAsyncSocketDelegate {
                 self.performSegue(withIdentifier: "objectListingTableView", sender: self)
             }
         case 3:
-            print("Tag 3:", getText!)
+            print("Tag 3:", getText!) // unused
         case 4:
-            print("Tag 4:", getText!)
-            var status = readerText.components(separatedBy: "#") // += "\(getText!)" // Push :GU# reply to PEC Screen
-            print("lol", status.count)
+         //   print("Tag 4:", getText!)
+            let status = readerText.components(separatedBy: "#") // += "\(getText!)" // Push :GU# reply to PEC Screen
+          //  print("lol", status.count)
             if status.count == 1 {
                 readerText = getText!
                 self.performSegue(withIdentifier: "toPECScreen", sender: self)
