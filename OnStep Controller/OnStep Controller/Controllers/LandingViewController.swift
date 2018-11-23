@@ -11,6 +11,7 @@ import CoreLocation
 import MathUtil
 import SwiftyJSON
 import CocoaAsyncSocket
+import NotificationBanner
 
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
     
@@ -300,7 +301,11 @@ extension LandingViewController: GCDAsyncSocketDelegate {
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
+        if err != nil {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription).", style: .danger)
+            banner.show()
+        }
     }
     
 }

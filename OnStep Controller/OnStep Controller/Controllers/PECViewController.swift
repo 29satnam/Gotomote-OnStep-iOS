@@ -8,6 +8,7 @@
 
 import UIKit
 import CocoaAsyncSocket
+import NotificationBanner
 
 class PECViewController: UIViewController {
 

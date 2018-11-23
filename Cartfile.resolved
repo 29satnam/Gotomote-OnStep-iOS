@@ -1,4 +1,7 @@
 github "DJBen/MathUtil" "0.4.0"
 github "DJBen/SpaceTime" "0.3.1"
-github "SwiftyJSON/SwiftyJSON" "4.1.0"
+github "Daltron/NotificationBanner" "30c7beb4f89e95550759a46bfc4c3278478d222a"
+github "SnapKit/SnapKit" "4.2.0"
+github "SwiftyJSON/SwiftyJSON" "4.2.0"
+github "cbpowell/MarqueeLabel" "3.2.0"
 github "robbiehanson/CocoaAsyncSocket" "f33ea53c298fcad69d55f387ead174e30c2446cf"
