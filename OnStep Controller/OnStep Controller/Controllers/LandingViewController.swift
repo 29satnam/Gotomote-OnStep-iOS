@@ -15,9 +15,6 @@ import NotificationBanner
 
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
     
-    @IBAction func guide(_ sender: Any) {
-    }
-    
     var socketConnector: SocketDataManager!
     
     var initJSONData: JSON = JSON()
@@ -101,14 +98,21 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         
     }
     
-
+    
+    @IBAction func toGuideCenterScreen(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "guideCenterScreen", sender: self)
+    }
+    
+    @IBAction func toInitializeScreen(_ sender: UIButton) {
+        self.readerText = ""
+        triggerConnection(cmd: ":GG#", setTag: 1) // Get UTC Offset
+    }
     
     @IBAction func toMessierTableView(_ sender: UIButton) {
         self.readerText = ""
         triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "Messier")
         tableViewTitle = "MESSIER OBJECTS"
-       // self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     @IBAction func toGalaxyTableView(_ sender: UIButton) {
@@ -116,7 +120,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "GALXY Galaxy")
         tableViewTitle = "GALAXIES"
-       // self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     @IBAction func toBrightNebulaTableView(_ sender: UIButton) {
@@ -124,7 +127,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "BRTNB Bright Nebula")
         tableViewTitle = "BRIGHT NEBULA"
-       // self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
     @IBAction func toQuasarTableView(_ sender: UIButton) {
@@ -156,15 +158,11 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     
     // PrepareForSegue with Socket Data Delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "tracking" {
-            // trigger delegate socket values
-            if let destination = segue.destination as? TrackingViewController {
-              //  destination.delegate = self
-            }
-        } else if segue.identifier == "initialize" {
+        if segue.identifier == "initialize" {
             // trigger delegate socket values
             if let destination = segue.destination as? InitializeViewController {
                // destination.delegate = self
+                destination.utcString = utcString
                 destination.navigationItem.hidesBackButton = true
             }
         } else if segue.identifier == "objectListingTableView" {
@@ -259,13 +257,18 @@ extension LandingViewController: GCDAsyncSocketDelegate {
         case 1:
           //  print("Tag 1:", getText!)
             utcString = getText!
+            let banner = StatusBarNotificationBanner(title: "Fetched UTC Offset \(utcString.dropLast())", style: .danger)
+            banner.show()
+            self.performSegue(withIdentifier: "initialize", sender: self)
         case 2:
           //  print("Tag 2:", getText!)
             readerText += "\(getText!)"
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
-            //   print(index)
+              // print(index) // ["+30.52", "+075.47", "+05:30"]
             if index.isEmpty == false && index.count == 2 {
                 coordinatesToPass = index
+                let banner = StatusBarNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??")", style: .danger)
+                banner.show()
                 self.performSegue(withIdentifier: "objectListingTableView", sender: self)
             }
         case 3:
@@ -301,11 +304,10 @@ extension LandingViewController: GCDAsyncSocketDelegate {
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        if err != nil {
+        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription).", style: .danger)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }
-    
 }

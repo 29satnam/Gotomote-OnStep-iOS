@@ -8,6 +8,7 @@
 
 import UIKit
 import CocoaAsyncSocket
+import NotificationBanner
 
 class InitializeViewController: UIViewController {
     
@@ -52,7 +53,7 @@ class InitializeViewController: UIViewController {
         self.view.backgroundColor = .black
         
         setupUserInterface()
-        triggerConnection(cmd:":GG#", setTag: 1)
+       // triggerConnection(cmd:":GG#", setTag: 1)
     }
 
     // Start Alignment
@@ -84,12 +85,10 @@ class InitializeViewController: UIViewController {
                 utcStr =  "-\(utcString.dropFirst())"
             }
             utcStr = String(utcStr.dropLast().replacingOccurrences(of: ":", with: "."))
-//            print(String(format: "%02d:%02d", utcStr.components(separatedBy: ":")[opt: 0]!, utcStr.components(separatedBy: ":")[opt: 1]!))
         }
 
         let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
         print("hour", hour)
-     //   let hour = doubleToInteger(data: (Double(+05.30)))
 
         let hourInSec = String(hour * 3600)
         
@@ -270,7 +269,7 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
                 print(index)
         case 1:
             print("Tag 1:", getText!)
-            utcString = getText!
+            utcString = getText! // Unused
         case 2:
             print("Tag 2:", getText!)
             readerText += "\(getText!)"
@@ -307,7 +306,12 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
+        
+        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.show()
+        }
     }
     
 }
@@ -319,7 +323,7 @@ extension String {
         let startingIndex = start ?? startIndex
         return index(startingIndex, offsetBy: position, limitedBy: endIndex)
     }
-    
+    // Get first character
     func character(at position: Int) -> Character? {
         guard position >= 0, let indexPosition = index(at: position) else {
             return nil

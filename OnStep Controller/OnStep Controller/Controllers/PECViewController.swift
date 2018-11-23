@@ -59,23 +59,11 @@ class PECViewController: UIViewController {
                 self.statusLbl.text = "Not Available"
                 print("Not Available")
                 // disable buttons
-                self.showToast(controller: self, message : "Not Available", seconds: 4.0)
+                let banner = StatusBarNotificationBanner(title: "Unsupported mount or err occured. :GU#=\(self.scopeStatus)", style: .danger)
+                banner.show()
+                
             }
             
-        }
-    }
-    
-    
-    func showToast(controller: UIViewController, message : String, seconds: Double) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.view.backgroundColor = UIColor.black
-        alert.view.alpha = 0.6
-        alert.view.layer.cornerRadius = 15
-        
-        controller.present(alert, animated: true)
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds) {
-            alert.dismiss(animated: true)
         }
     }
     
@@ -238,7 +226,12 @@ extension PECViewController: GCDAsyncSocketDelegate {
     }
 
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
+        
+        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.show()
+        }
     }
     
 }

@@ -51,7 +51,7 @@ class TrackingViewController: UIViewController {
         addBtnProperties(button: TrCoStopBtn)
         addBtnProperties(button: TrCoStartBtn)
         
-        navigationItem.title = "OBS SITES"
+        navigationItem.title = "TRACKING"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black
         
