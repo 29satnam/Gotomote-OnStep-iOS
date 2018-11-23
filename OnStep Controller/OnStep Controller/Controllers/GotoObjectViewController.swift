@@ -12,6 +12,7 @@ import CoreLocation
 import SpaceTime
 import MathUtil
 import CocoaAsyncSocket
+import NotificationBanner
 
 class GotoObjectViewController: UIViewController {
     
@@ -56,6 +57,8 @@ class GotoObjectViewController: UIViewController {
     @IBOutlet var vMag: UILabel!
     @IBOutlet var dist: UILabel!
     @IBOutlet var aboveHorizon: UILabel!
+    
+    var readerText: String = String()
     
     // retrieved
     var slctdJSONObj: [JSON] = [JSON()]
@@ -151,15 +154,21 @@ class GotoObjectViewController: UIViewController {
         
         let RAHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
 
-        triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#") //Set target RA # Set target Dec
-         print("this -> :Sr\(RAHHMMSS)#:Sd\(decString):00#:MS#")
+        triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#", setTag: 1) //Set target RA # Set target Dec
+         print("this -> :Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#")
         // this -> :Sr21:30:00#:Sd+12:10:00#:MS#
+        
+        //  :CS#   Synchonize the telescope with the current right ascension and declination coordinates
+        //         Returns: Nothing (Sync's fail silently)
+        //  :CM#   Synchonize the telescope with the current database object (as above)
+        //         Returns: "N/A#" on success, "En#" on failure where n is the error code per the :MS# command
+        
     }
     
     // Mark: Slider - Increase Speed
     
     @IBAction func abortBtn(_ sender: UIButton) {
-        triggerConnection(cmd: ":Q#")
+        triggerConnection(cmd: ":Q#", setTag: 1)
     }
     
     // Mark: Slider - Increase Speed
@@ -167,25 +176,25 @@ class GotoObjectViewController: UIViewController {
         
         switch Int(sender.value) {
         case 0:
-            triggerConnection(cmd: ":R0#")
+            triggerConnection(cmd: ":R0#", setTag: 1)
         case 1:
-            triggerConnection(cmd: ":R1#")
+            triggerConnection(cmd: ":R1#", setTag: 1)
         case 2:
-            triggerConnection(cmd: ":R2#")
+            triggerConnection(cmd: ":R2#", setTag: 1)
         case 3:
-            triggerConnection(cmd: ":R3#")
+            triggerConnection(cmd: ":R3#", setTag: 1)
         case 4:
-            triggerConnection(cmd: ":R4#")
+            triggerConnection(cmd: ":R4#", setTag: 1)
         case 5:
-            triggerConnection(cmd: ":R5#")
+            triggerConnection(cmd: ":R5#", setTag: 1)
         case 6:
-            triggerConnection(cmd: ":R6#")
+            triggerConnection(cmd: ":R6#", setTag: 1)
         case 7:
-            triggerConnection(cmd: ":R7#")
+            triggerConnection(cmd: ":R7#", setTag: 1)
         case 8:
-            triggerConnection(cmd: ":R8#")
+            triggerConnection(cmd: ":R8#", setTag: 1)
         case 9:
-            triggerConnection(cmd: ":R9#")
+            triggerConnection(cmd: ":R9#", setTag: 1)
         default:
             print("sero")
         }
@@ -193,7 +202,7 @@ class GotoObjectViewController: UIViewController {
     }
     
     
-    func triggerConnection(cmd: String) {
+    func triggerConnection(cmd: String, setTag: Int) {
         
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
@@ -216,7 +225,8 @@ class GotoObjectViewController: UIViewController {
             
             try clientSocket.connect(toHost: addr, onPort: port, withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
-            clientSocket.write(data!, withTimeout: -1, tag: 0)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
     }
@@ -419,7 +429,7 @@ class GotoObjectViewController: UIViewController {
     
     // Align the Star
     @IBAction func syncAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":CM#")
+        triggerConnection(cmd: ":CM#", setTag: 1)
         ////  :CM#   Synchonize the telescope with the current database object (as above)
         //         Returns: "N/A#" on success, "En#" on failure where n is the error code per the :MS# command
     }
@@ -431,51 +441,51 @@ class GotoObjectViewController: UIViewController {
     
     // North
     @objc func moveToNorth() {
-        triggerConnection(cmd: ":Mn#")
+        triggerConnection(cmd: ":Mn#", setTag: 1)
         print("moveToNorth")
     }
     
     @objc func stopToNorth() {
-        triggerConnection(cmd: ":Qn#")
+        triggerConnection(cmd: ":Qn#", setTag: 1)
         print("stopToNorth")
     }
     
     // South
     @objc func moveToSouth() {
-        triggerConnection(cmd: ":Ms#")
+        triggerConnection(cmd: ":Ms#", setTag: 1)
         print("moveToSouth")
     }
     
     @objc func stopToSouth() {
-        triggerConnection(cmd: ":Qs#")
+        triggerConnection(cmd: ":Qs#", setTag: 1)
         print("stopToSouth")
     }
     
     // West
     @objc func moveToWest(_ sender: UIButton) {
-        triggerConnection(cmd: ":Mw#")
+        triggerConnection(cmd: ":Mw#", setTag: 1)
         print("moveToWest")
     }
     
     @objc func stopToWest() {
-        triggerConnection(cmd: ":Qw#")
+        triggerConnection(cmd: ":Qw#", setTag: 1)
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-        triggerConnection(cmd: ":Me#")
+        triggerConnection(cmd: ":Me#", setTag: 1)
         print("moveToEast")
     }
     
     @objc func stopToEast() {
-        triggerConnection(cmd: ":Qe#")
+        triggerConnection(cmd: ":Qe#", setTag: 1)
         print("stopToEast")
     }
     
     // Stop
     @IBAction func stopScope(_ sender: Any) {
-        triggerConnection(cmd: ":Q#")
+        triggerConnection(cmd: ":Q#", setTag: 1)
         //   print("stopScope")
         //    :T+#
         //    triggerConnection(cmd: ":R9#")
@@ -594,8 +604,27 @@ class GotoObjectViewController: UIViewController {
 
 extension GotoObjectViewController: GCDAsyncSocketDelegate {
     
-    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let getText = String(data: data, encoding: .utf8)
+        print("got:", getText)
+        switch tag {
+        case 0:
+            readerText += "\(getText!)"
+            
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            print(index)
+            DispatchQueue.main.async {
+            }
+            
+        case 1:
+            print("Tag 1:", getText!)
+            
+        default:
+            print("def")
+        }
+        clientSocket.readData(withTimeout: -1, tag: tag)
+        // clientSocket.disconnect()
+        
     }
     
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
@@ -611,13 +640,16 @@ extension GotoObjectViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        clientSocket.readData(withTimeout: -1, tag: 0)
+        
     }
 
-    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let text = String(data: data, encoding: .utf8)
-        print("didRead:", text!)
-        clientSocket.readData(withTimeout: -1, tag: 0)
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        
+        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.show()
+        }
     }
 }
 

@@ -262,13 +262,14 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             self.performSegue(withIdentifier: "initialize", sender: self)
         case 2:
           //  print("Tag 2:", getText!)
-            readerText += "\(getText!)"
+            readerText += getText!
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
-              // print(index) // ["+30.52", "+075.47", "+05:30"]
-            if index.isEmpty == false && index.count == 2 {
+            print("inde", index.count)
+            if index.count == 3 {
                 coordinatesToPass = index
-                let banner = StatusBarNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??")", style: .danger)
+                let banner = StatusBarNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??"), Long:\(index[opt: 1] ?? "??"), UTC \(index[opt: 2] ?? "??")", style: .success)
                 banner.show()
+                print(index) // ["+30.52", "+075.47", "+05:30"]
                 self.performSegue(withIdentifier: "objectListingTableView", sender: self)
             }
         case 3:
