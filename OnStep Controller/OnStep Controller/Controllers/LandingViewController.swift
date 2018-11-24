@@ -257,7 +257,7 @@ extension LandingViewController: GCDAsyncSocketDelegate {
         case 1:
           //  print("Tag 1:", getText!)
             utcString = getText!
-            let banner = StatusBarNotificationBanner(title: "Fetched UTC Offset \(utcString.dropLast())", style: .danger)
+            let banner = StatusBarNotificationBanner(title: "Fetched UTC Offset \(utcString.dropLast())", style: .success)
             banner.show()
             self.performSegue(withIdentifier: "initialize", sender: self)
         case 2:
@@ -305,10 +305,12 @@ extension LandingViewController: GCDAsyncSocketDelegate {
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        
         if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription)
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
+            banner.remove()
         }
     }
 }

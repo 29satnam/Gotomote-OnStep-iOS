@@ -198,11 +198,6 @@ class TrackingViewController: UIViewController {
 
 extension TrackingViewController: GCDAsyncSocketDelegate {
     
-    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
-
-    }
-    
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         
         let address = "Server IP：" + "\(host)"
@@ -230,6 +225,16 @@ extension TrackingViewController: GCDAsyncSocketDelegate {
             print("Tag 1:", getText!)
         default:
             print("def")
+        }
+    }
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        
+        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.show()
+            banner.remove()
         }
     }
 }

@@ -54,16 +54,15 @@ class PECViewController: UIViewController {
             }
 
         } else { // (A)Alt-Az mount or other statuses like 0..
-            buttonTextAlpha(alpha: 0.25, activate: false)
+        //    buttonTextAlpha(alpha: 0.25, activate: false)
             DispatchQueue.main.async {
                 self.statusLbl.text = "Not Available"
                 print("Not Available")
                 // disable buttons
-                let banner = StatusBarNotificationBanner(title: "Unsupported mount or err occured. :GU#=\(self.scopeStatus)", style: .danger)
+                let banner = StatusBarNotificationBanner(title: "Unsupported mount or err occured. :GU#=\(self.scopeStatus)", style: .success)
                 banner.show()
                 
             }
-            
         }
     }
     
@@ -106,7 +105,7 @@ class PECViewController: UIViewController {
     //  // Status is one of "IpPrR" (I)gnore, get ready to (p)lay, (P)laying, get ready to (r)ecord, (R)ecording.  Or an optional (.) to indicate an index detect.
     
     @IBAction func playAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":$QZ+", setTag: 0)
+        triggerConnection(cmd: ":$QZ+", setTag: 1)
         print("Enable RA PEC compensation")
     }
     
@@ -231,7 +230,8 @@ extension PECViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-        }
+            banner.remove()
+        } // Read operation timed out
     }
     
 }

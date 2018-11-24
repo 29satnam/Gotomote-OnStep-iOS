@@ -154,9 +154,15 @@ class GotoObjectViewController: UIViewController {
         
         let RAHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
 
-        triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#", setTag: 1) //Set target RA # Set target Dec
-         print("this -> :Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#")
-        // this -> :Sr21:30:00#:Sd+12:10:00#:MS#
+        triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:CS#", setTag: 2) //Set target RA # Set target Dec
+        
+        //sr //          Return: 0 on failure
+        //                  1 on success
+        
+        //sd //          Return: 0 on failure
+        //                  1 on success
+        
+        
         
         //  :CS#   Synchonize the telescope with the current right ascension and declination coordinates
         //         Returns: Nothing (Sync's fail silently)
@@ -169,6 +175,7 @@ class GotoObjectViewController: UIViewController {
     
     @IBAction func abortBtn(_ sender: UIButton) {
         triggerConnection(cmd: ":Q#", setTag: 1)
+        // Returns: Nothing
     }
     
     // Mark: Slider - Increase Speed
@@ -177,6 +184,7 @@ class GotoObjectViewController: UIViewController {
         switch Int(sender.value) {
         case 0:
             triggerConnection(cmd: ":R0#", setTag: 1)
+            //         Returns: Nothing
         case 1:
             triggerConnection(cmd: ":R1#", setTag: 1)
         case 2:
@@ -430,57 +438,68 @@ class GotoObjectViewController: UIViewController {
     // Align the Star
     @IBAction func syncAction(_ sender: UIButton) {
         triggerConnection(cmd: ":CM#", setTag: 1)
+        
         ////  :CM#   Synchonize the telescope with the current database object (as above)
+        
         //         Returns: "N/A#" on success, "En#" on failure where n is the error code per the :MS# command
+        
+        ////  ---> GOTO Returns: "N/A#" on success, "En#" on failure where n is the error code per the :MS# command
     }
     
     // Pass Int back to controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
     
     // North
     @objc func moveToNorth() {
         triggerConnection(cmd: ":Mn#", setTag: 1)
         print("moveToNorth")
+        //         Returns: Nothing
     }
     
     @objc func stopToNorth() {
         triggerConnection(cmd: ":Qn#", setTag: 1)
         print("stopToNorth")
+        //         Returns: Nothing
     }
     
     // South
     @objc func moveToSouth() {
         triggerConnection(cmd: ":Ms#", setTag: 1)
         print("moveToSouth")
+        //         Returns: Nothing
     }
     
     @objc func stopToSouth() {
         triggerConnection(cmd: ":Qs#", setTag: 1)
         print("stopToSouth")
+        //         Returns: Nothing
     }
     
     // West
     @objc func moveToWest(_ sender: UIButton) {
         triggerConnection(cmd: ":Mw#", setTag: 1)
         print("moveToWest")
+        //         Returns: Nothing
     }
     
     @objc func stopToWest() {
         triggerConnection(cmd: ":Qw#", setTag: 1)
         print("stopToWest")
+        //         Returns: Nothing
     }
     
     // East
     @objc func moveToEast() {
         triggerConnection(cmd: ":Me#", setTag: 1)
         print("moveToEast")
+        //         Returns: Nothing
     }
     
     @objc func stopToEast() {
         triggerConnection(cmd: ":Qe#", setTag: 1)
         print("stopToEast")
+        //         Returns: Nothing
     }
     
     // Stop
@@ -617,7 +636,9 @@ extension GotoObjectViewController: GCDAsyncSocketDelegate {
             }
             
         case 1:
-            print("Tag 1:", getText!)
+            print("Tag 1:", getText!) // No reply
+        case 2:
+            print("Tag 2:", getText!) // - sr sd
             
         default:
             print("def")
@@ -649,6 +670,7 @@ extension GotoObjectViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
+            banner.remove()
         }
     }
 }

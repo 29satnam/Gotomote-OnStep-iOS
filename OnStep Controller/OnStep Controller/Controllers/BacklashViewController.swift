@@ -8,6 +8,7 @@
 
 import UIKit
 import CocoaAsyncSocket
+import NotificationBanner
 
 class BacklashViewController: UIViewController, UITextFieldDelegate {
 
@@ -164,7 +165,13 @@ extension BacklashViewController: GCDAsyncSocketDelegate {
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
+        
+        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.show()
+            banner.remove()
+        }
     }
     
 }

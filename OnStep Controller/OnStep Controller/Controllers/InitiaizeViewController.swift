@@ -119,7 +119,7 @@ class InitializeViewController: UIViewController {
         // 2018-10-09 03:00:24 +0000
         
         triggerConnection(cmd: ":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#", setTag: 1)
-         print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#")
+      //   print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#")
     }
     
     /// Formats the input date to Date in specific timezone
@@ -311,6 +311,7 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
+            banner.remove()
         }
     }
     

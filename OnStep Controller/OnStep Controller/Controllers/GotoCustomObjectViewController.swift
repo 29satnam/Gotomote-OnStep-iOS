@@ -14,6 +14,7 @@ import CoreLocation
 import SpaceTime
 import MathUtil
 import CocoaAsyncSocket
+import NotificationBanner
 
 class GotoCustomObjectViewController: UIViewController {
     
@@ -434,10 +435,6 @@ class GotoCustomObjectViewController: UIViewController {
 
 extension GotoCustomObjectViewController: GCDAsyncSocketDelegate {
     
-    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print("Disconnected Called: ", err?.localizedDescription as Any)
-    }
-    
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         
         let address = "Server IP：" + "\(host)"
@@ -458,5 +455,15 @@ extension GotoCustomObjectViewController: GCDAsyncSocketDelegate {
         let text = String(data: data, encoding: .utf8)
         print("didRead:", text!)
         clientSocket.readData(withTimeout: -1, tag: 0)
+    }
+    
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        
+        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.show()
+            banner.remove()
+        }
     }
 }
