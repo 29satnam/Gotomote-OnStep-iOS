@@ -551,16 +551,7 @@ class GotoStarViewController: UIViewController {
 
     // Align the Star
     @IBAction func alignAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":A+#", setTag: 1)
-        alignTypePassed = alignTypePassed - 1
-        print("this:", alignTypePassed)
-        if alignTypePassed <= 0 {
-            print("backToInitialize")
-            performSegue(withIdentifier: "backToInitialize", sender: self)
-        } else {
-            print("backToStarList-- error")
-            performSegue(withIdentifier: "backToStarList", sender: self)
-        }
+        triggerConnection(cmd: ":A+#", setTag: 2) // Align accept
     }
     
     // Pass Int back to controller
@@ -573,7 +564,7 @@ class GotoStarViewController: UIViewController {
                 
                 // Start second star alignment.
                 print("start second")
-                triggerConnection(cmd: ":A2#", setTag: 1)
+                triggerConnection(cmd: ":A2#", setTag: 0)
                 destination.vcTitle = "SECOND STAR"
                 destination.coordinates = coordinates
                 
@@ -581,7 +572,7 @@ class GotoStarViewController: UIViewController {
                 
                 // Start third star alignment.
                 print("start third")
-                triggerConnection(cmd: ":A3#", setTag: 1)
+                triggerConnection(cmd: ":A3#", setTag: 0)
                 destination.vcTitle = "THIRD STAR"
                 destination.coordinates = coordinates
 
@@ -771,13 +762,7 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
         print("got:", getText)
         switch tag {
         case 0:
-            readerText += "\(getText!)"
-            
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-            print(index)
-            DispatchQueue.main.async {
-            }
-            
+            print("Tag 0:", getText!) // Abort
         case 1:
             print("Tag 1:", getText!) // GOTO Pressed
             readerArray.append(getText!)
@@ -787,7 +772,25 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
                 banner.show()
             }
         case 2:
-            print("Tag 2:", getText!) // - sr sd
+            print("Tag 2:", getText!) // Align Accpet
+            if getText! == "0" {
+                print("Failed")
+                let banner = StatusBarNotificationBanner(title: "Align accept failed.", style: .warning)
+                banner.show()
+            } else {
+                print("Success")
+                let banner = StatusBarNotificationBanner(title: "Align accpeted successfully.", style: .success)
+                banner.show()
+                alignTypePassed = alignTypePassed - 1
+                print("this:", alignTypePassed)
+                if alignTypePassed <= 0 {
+                    print("backToInitialize")
+                    performSegue(withIdentifier: "backToInitialize", sender: self)
+                } else {
+                    print("backToStarList-- error")
+                    performSegue(withIdentifier: "backToStarList", sender: self)
+                }
+            }
         default:
             print("def")
         }
@@ -813,11 +816,20 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            // let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            // banner.show()
+            // banner.remove()
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
             banner.show()
-            banner.remove()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .warning)
+            banner.show()
         }
     }
 }
+// Read operation timed out
