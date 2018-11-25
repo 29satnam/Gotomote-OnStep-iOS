@@ -64,7 +64,7 @@ class InitializeViewController: UIViewController {
         self.readerText = ""
         
         triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
-        
+        // Get those, pass then start alignment
        // triggerConnection(cmd: ":A1#", setTag: 0)
        // self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
         
@@ -269,26 +269,32 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
                 print(index)
         case 1:
             utcString = getText!
-            print("Tag 1::", utcString) // Unused
-
+            print("Tag 1:", utcString) // Unused
         case 2:
             print("Tag 2:", getText!)
             readerText += "\(getText!)"
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
-         //   print(index)
-
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",") // get lat, long, utc then start alignment
             if index.isEmpty == false && index.count == 2 {
-                triggerConnection(cmd: ":A1#", setTag: 0) // start align
+                triggerConnection(cmd: ":A1#", setTag: 4) // Start align
                 coordinatesToPass = index
-                self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
             }
         case 3:
             print("Tag 3:", getText!)
             readerArray.append(getText!)
             if readerArray.count > 1 {
-             //   print("this", readerArray.count, readerArray[opt: 0], readerArray[opt: 1])
+                print("this", readerArray.count, readerArray[opt: 0], readerArray[opt: 1])
                 let banner = StatusBarNotificationBanner(title: "Date and Time updated on the server.", style: .success)
                 banner.show()
+            }
+        case 4:
+            print("Tag 4:", getText!) // Start Alignment
+            if getText! == "1" {
+                print("Success")
+                let banner = StatusBarNotificationBanner(title: "Star #1 aligment started.", style: .success)
+                banner.show()
+                self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
+            } else { // failed
+                
             }
         default:
             print("def")

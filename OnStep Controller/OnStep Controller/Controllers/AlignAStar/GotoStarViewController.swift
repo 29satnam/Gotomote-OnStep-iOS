@@ -18,6 +18,9 @@ class GotoStarViewController: UIViewController {
 
     var socketConnector: SocketDataManager!
     var clientSocket: GCDAsyncSocket!
+    
+    var readerText: String = String()
+    var readerArray: [String] = [String]()
 
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
@@ -183,16 +186,17 @@ class GotoStarViewController: UIViewController {
         
         //------------------- RA
         
+        readerArray.removeAll()
+        print("ty", readerArray.count)
         let raArray = raStr.split(separator: " ")
-        
-        triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#") //Set target RA # Set target Dec
+        triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#", setTag: 1) //Set target RA # Set target Dec
         print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!):00#:Sd\(decString)#:MS#")
     }
     
     // Mark: Slider - Increase Speed
     
     @IBAction func abortBtn(_ sender: UIButton) {
-        triggerConnection(cmd: ":Q#")
+        triggerConnection(cmd: ":Q#", setTag: 1)
     }
     
     // Mark: Slider - Increase Speed
@@ -200,25 +204,25 @@ class GotoStarViewController: UIViewController {
 
         switch Int(sender.value) {
         case 0:
-            triggerConnection(cmd: ":R0#")
+            triggerConnection(cmd: ":R0#", setTag: 1)
         case 1:
-            triggerConnection(cmd: ":R1#")
+            triggerConnection(cmd: ":R1#", setTag: 1)
         case 2:
-            triggerConnection(cmd: ":R2#")
+            triggerConnection(cmd: ":R2#", setTag: 1)
         case 3:
-            triggerConnection(cmd: ":R3#")
+            triggerConnection(cmd: ":R3#", setTag: 1)
         case 4:
-            triggerConnection(cmd: ":R4#")
+            triggerConnection(cmd: ":R4#", setTag: 1)
         case 5:
-            triggerConnection(cmd: ":R5#")
+            triggerConnection(cmd: ":R5#", setTag: 1)
         case 6:
-            triggerConnection(cmd: ":R6#")
+            triggerConnection(cmd: ":R6#", setTag: 1)
         case 7:
-            triggerConnection(cmd: ":R7#")
+            triggerConnection(cmd: ":R7#", setTag: 1)
         case 8:
-            triggerConnection(cmd: ":R8#")
+            triggerConnection(cmd: ":R8#", setTag: 1)
         case 9:
-            triggerConnection(cmd: ":R9#")
+            triggerConnection(cmd: ":R9#", setTag: 1)
         default:
             print("sero")
         }
@@ -226,8 +230,7 @@ class GotoStarViewController: UIViewController {
     }
     
     
-    func triggerConnection(cmd: String) {
-        
+    func triggerConnection(cmd: String, setTag: Int) {
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
         do {
@@ -249,10 +252,10 @@ class GotoStarViewController: UIViewController {
             
             try clientSocket.connect(toHost: addr, onPort: port, withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
-            clientSocket.write(data!, withTimeout: -1, tag: 0)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
-        
     }
     
     override func viewDidLoad() {
@@ -548,7 +551,7 @@ class GotoStarViewController: UIViewController {
 
     // Align the Star
     @IBAction func alignAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":A+#")
+        triggerConnection(cmd: ":A+#", setTag: 1)
         alignTypePassed = alignTypePassed - 1
         print("this:", alignTypePassed)
         if alignTypePassed <= 0 {
@@ -570,7 +573,7 @@ class GotoStarViewController: UIViewController {
                 
                 // Start second star alignment.
                 print("start second")
-                triggerConnection(cmd: ":A2#")
+                triggerConnection(cmd: ":A2#", setTag: 1)
                 destination.vcTitle = "SECOND STAR"
                 destination.coordinates = coordinates
                 
@@ -578,7 +581,7 @@ class GotoStarViewController: UIViewController {
                 
                 // Start third star alignment.
                 print("start third")
-                triggerConnection(cmd: ":A3#")
+                triggerConnection(cmd: ":A3#", setTag: 1)
                 destination.vcTitle = "THIRD STAR"
                 destination.coordinates = coordinates
 
@@ -600,51 +603,51 @@ class GotoStarViewController: UIViewController {
     
     // North
     @objc func moveToNorth() {
-        triggerConnection(cmd: ":Mn#")
+        triggerConnection(cmd: ":Mn#", setTag: 1)
         print("moveToNorth")
     }
 
     @objc func stopToNorth(_ sender: UIButton) {
-        triggerConnection(cmd: ":Qn#")
+        triggerConnection(cmd: ":Qn#", setTag: 1)
         print("stopToNorth")
     }
     
     // South
     @objc func moveToSouth() {
-        triggerConnection(cmd: ":Ms#")
+        triggerConnection(cmd: ":Ms#", setTag: 1)
         print("moveToSouth")
     }
     
     @objc func stopToSouth() {
-       triggerConnection(cmd: ":Qs#")
+       triggerConnection(cmd: ":Qs#", setTag: 1)
         print("stopToSouth")
     }
     
     // West
     @objc func moveToWest() {
-        triggerConnection(cmd: ":Mw#")
+        triggerConnection(cmd: ":Mw#", setTag: 1)
         print("moveToWest")
     }
     
     @objc func stopToWest() {
-       triggerConnection(cmd: ":Qw#")
+       triggerConnection(cmd: ":Qw#", setTag: 1)
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-       triggerConnection(cmd: ":Me#")
+       triggerConnection(cmd: ":Me#", setTag: 1)
         print("moveToEast")
     }
     
     @objc func stopToEast() {
-        triggerConnection(cmd: ":Qe#")
+        triggerConnection(cmd: ":Qe#", setTag: 1)
         print("stopToEast")
     }
     
     // Stop
     @IBAction func stopScope(_ sender: Any) {
-        triggerConnection(cmd: ":Q#")
+        triggerConnection(cmd: ":Q#", setTag: 1)
      //   print("stopScope")
         //    :T+#
        //    triggerConnection(cmd: ":R9#")
@@ -763,8 +766,38 @@ class GotoStarViewController: UIViewController {
 
 extension GotoStarViewController: GCDAsyncSocketDelegate {
     
-    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+        let getText = String(data: data, encoding: .utf8)
+        print("got:", getText)
+        switch tag {
+        case 0:
+            readerText += "\(getText!)"
+            
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            print(index)
+            DispatchQueue.main.async {
+            }
+            
+        case 1:
+            print("Tag 1:", getText!) // GOTO Pressed
+            readerArray.append(getText!)
+            if readerArray.count == 3 {
+                print("this", readerArray.count, readerArray[opt: 0], readerArray[opt: 1])
+                let banner = StatusBarNotificationBanner(title: "Moving scope to given RA & DEC", style: .success)
+                banner.show()
+            }
+        case 2:
+            print("Tag 2:", getText!) // - sr sd
+        default:
+            print("def")
+        }
+        clientSocket.readData(withTimeout: -1, tag: tag)
+        // clientSocket.disconnect()
         
+    }
+    
+    func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+
         let address = "Server IP：" + "\(host)"
         print("didConnectToHost:", address)
         
@@ -776,14 +809,6 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
-        clientSocket.readData(withTimeout: -1, tag: 0)
-    }
-    
-    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let text = String(data: data, encoding: .utf8)
-        print("didRead:", text!)
-        clientSocket.readData(withTimeout: -1, tag: 0)
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
@@ -794,47 +819,5 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
             banner.show()
             banner.remove()
         }
-    }
-    
-}
-
-extension Double {
-    func formatNumber(minimumIntegerDigits: Int, minimumFractionDigits: Int) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.minimumIntegerDigits = minimumIntegerDigits
-        numberFormatter.minimumFractionDigits = minimumFractionDigits
-        
-        return numberFormatter.string(for: self) ?? ""
-    }
-}
-
-
-extension Float {
-    var cleanValue: String {
-        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
-    }
-}
-
-
-extension Double {
-    
-    func splitIntoParts(decimalPlaces: Int, round: Bool) -> (leftPart: Int, rightPart: Int) {
-        
-        var number = self
-        if round {
-            //round to specified number of decimal places:
-            let divisor = pow(10.0, Double(decimalPlaces))
-            number = Darwin.round(self * divisor) / divisor
-        }
-        
-        //convert to string and split on decimal point:
-        let parts = String(number).components(separatedBy: ".")
-        
-        //extract left and right parts:
-        let leftPart = Int(parts[0]) ?? 0
-        let rightPart = Int(parts[1]) ?? 0
-        
-        return(leftPart, rightPart)
     }
 }
