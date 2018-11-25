@@ -2,18 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/MarqueeLabel.framework">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/MarqueeLabelSwift.framework">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/NotificationBanner.framework">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/SnapKit.framework">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

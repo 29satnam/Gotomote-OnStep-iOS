@@ -21,6 +21,7 @@ class InitializeViewController: UIViewController {
     
     var utcString: String =  String()
     var utcStr: String = String()
+    var readerArray: [String] = [String]()
 
     @IBOutlet weak var setDateTimeBtn: UIButton!
     @IBOutlet weak var starAlignmentBtn: UIButton!
@@ -88,7 +89,7 @@ class InitializeViewController: UIViewController {
         }
 
         let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
-        print("hour", hour)
+      //  print("hour", hour)
 
         let hourInSec = String(hour * 3600)
         
@@ -105,7 +106,7 @@ class InitializeViewController: UIViewController {
         
         
         let min:Int = Int(((Double(minutesInSec)!/60)*100)*3600)  // Int(((minutesInSec) / 60)*100)*3600)!
-        print("minutesInSec", minutesInSec, "min", min, "Int(hourInSec)! + min)", Int(hourInSec)! + min)
+     //   print("minutesInSec", minutesInSec, "min", min, "Int(hourInSec)! + min)", Int(hourInSec)! + min)
 
         
         TimeZone.ReferenceType.default = TimeZone(secondsFromGMT: Int(hourInSec)! + min)! // 2018-10-09 10:16
@@ -113,12 +114,12 @@ class InitializeViewController: UIViewController {
         formatter.timeZone = TimeZone.ReferenceType.default
         formatter.dateFormat = "MM/dd/yy HH:mm:ss"
         let strDate = formatter.string(from: Date()).components(separatedBy: " ") // TODO: crash with offline
-        print("strDate", strDate)
-        print(NSDate() as Date)
+      //  print("strDate", strDate)
+     //   print(NSDate() as Date)
         
         // 2018-10-09 03:00:24 +0000
-        
-        triggerConnection(cmd: ":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#", setTag: 1)
+        readerArray.removeAll()
+        triggerConnection(cmd: ":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#", setTag: 3)
       //   print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#")
     }
     
@@ -245,7 +246,6 @@ class InitializeViewController: UIViewController {
                 
                 addr = addrPort![opt: 0]!
                 port = UInt16(addrPort![opt: 1]!)!
-                print("thi")
             }
 
             try clientSocket.connect(toHost: addr, onPort: port, withTimeout: 1.5)
@@ -268,8 +268,9 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
                 print(index)
         case 1:
-            print("Tag 1:", getText!)
-            utcString = getText! // Unused
+            utcString = getText!
+            print("Tag 1::", utcString) // Unused
+
         case 2:
             print("Tag 2:", getText!)
             readerText += "\(getText!)"
@@ -281,7 +282,14 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
                 coordinatesToPass = index
                 self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
             }
-
+        case 3:
+            print("Tag 3:", getText!)
+            readerArray.append(getText!)
+            if readerArray.count > 1 {
+             //   print("this", readerArray.count, readerArray[opt: 0], readerArray[opt: 1])
+                let banner = StatusBarNotificationBanner(title: "Date and Time updated on the server.", style: .success)
+                banner.show()
+            }
         default:
             print("def")
         }

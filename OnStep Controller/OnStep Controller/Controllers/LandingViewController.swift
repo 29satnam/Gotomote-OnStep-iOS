@@ -278,10 +278,10 @@ extension LandingViewController: GCDAsyncSocketDelegate {
          //   print("Tag 4:", getText!)
             let status = readerText.components(separatedBy: "#") // += "\(getText!)" // Push :GU# reply to PEC Screen
           //  print("lol", status.count)
-            if status.count == 1 {
+          //  if status.count == 1 {
                 readerText = getText!
                 self.performSegue(withIdentifier: "toPECScreen", sender: self)
-            }
+         //   }
         default:
             print("def")
         }

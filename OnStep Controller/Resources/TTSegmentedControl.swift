@@ -1,17 +1,9 @@
-//
-//  SegmentController.swift
-//  Segment
-//
-//  Created by Dumitru Igor on 7/28/16.
-//  Copyright © 2016 Dumitru Igor. All rights reserved.
-//
-
 import UIKit
 
 
 @IBDesignable
 open class TTSegmentedControl: UIView {
-
+    
     //Configure the options to for a custom design
     @IBInspectable open var defaultTextFont: UIFont = UIFont.helveticaNeueLight(12)
     @IBInspectable open var selectedTextFont: UIFont = UIFont.helveticaNeueLight(12)
@@ -82,7 +74,7 @@ open class TTSegmentedControl: UIView {
     fileprivate var currentSelectedIndex = 0
     
     open var noItemSelected:Bool = false {
-        didSet {            
+        didSet {
             self.thumbView.isHidden = noItemSelected
             self.selectedLabelsView.isHidden = noItemSelected
         }
@@ -203,7 +195,6 @@ open class TTSegmentedControl: UIView {
 }
 
 //MARK: - UIConfiguration
-
 extension TTSegmentedControl {
     
     fileprivate func configureSelectedView() {
@@ -347,7 +338,6 @@ extension TTSegmentedControl {
 }
 
 //MARK: - UIResponder Methods
-
 extension TTSegmentedControl {
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -450,7 +440,6 @@ extension TTSegmentedControl {
 }
 
 //MARK: -  Frames
-
 extension TTSegmentedControl {
     
     fileprivate func configureViewBounds() {
@@ -531,12 +520,12 @@ extension TTSegmentedControl {
             }
         } else {
             UIView.animate(withDuration: 0.3, animations: {
-               block()
+                block()
             }, completion: { (completed) in
                 completion(completed)
             })
         }
-
+        
     }
     
     fileprivate func selectedViewWidthForPoint(_ point: CGPoint)-> CGFloat {
@@ -577,7 +566,7 @@ extension TTSegmentedControl {
             let finalWidth = selectedViewWidthForPoint(targetLabel.center)
             let initialWidth = selectedViewWidthForPoint(label.center)
             
-            let diff = abs(initialWidth - finalWidth)
+            let diff = fabs(initialWidth - finalWidth)
             
             let minOriginX = min(label.center.x, targetLabel.center.x)
             let maxOriginX = max(label.center.x, targetLabel.center.x)
@@ -768,7 +757,6 @@ extension TTSegmentedControl {
 
 
 //MARK: - UIView Extension
-
 extension NSAttributedString {
     func stringSize() -> CGSize {
         return self.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil).size
@@ -780,4 +768,3 @@ extension UIFont {
         return UIFont(name: "HelveticaNeue-Light", size: size)!
     }
 }
-
