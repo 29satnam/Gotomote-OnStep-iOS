@@ -567,7 +567,8 @@ class GotoStarViewController: UIViewController {
                 triggerConnection(cmd: ":A2#", setTag: 0)
                 destination.vcTitle = "SECOND STAR"
                 destination.coordinates = coordinates
-                
+                let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
+                banner.show()
             } else if vcTitlePassed ==  "SECOND STAR" {
                 
                 // Start third star alignment.
@@ -575,7 +576,8 @@ class GotoStarViewController: UIViewController {
                 triggerConnection(cmd: ":A3#", setTag: 0)
                 destination.vcTitle = "THIRD STAR"
                 destination.coordinates = coordinates
-
+                let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
+                banner.show()
                 
             } else {
                 destination.vcTitle = "STAR ALIGNMENT"
@@ -726,7 +728,6 @@ class GotoStarViewController: UIViewController {
         } else {
             buttonTextAlpha(alpha: 1.0, activate: true)
         }
-        
     }
     
     func buttonTextAlpha(alpha: CGFloat, activate: Bool) {
@@ -744,7 +745,6 @@ class GotoStarViewController: UIViewController {
             self.revEWBtn.isUserInteractionEnabled = activate
             self.alignBtn.isUserInteractionEnabled = activate
             self.speedSlider.isUserInteractionEnabled = activate
-
         }
     }
     
@@ -782,12 +782,14 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
                 let banner = StatusBarNotificationBanner(title: "Align accpeted successfully.", style: .success)
                 banner.show()
                 alignTypePassed = alignTypePassed - 1
-                print("this:", alignTypePassed)
                 if alignTypePassed <= 0 {
                     print("backToInitialize")
                     performSegue(withIdentifier: "backToInitialize", sender: self)
-                } else {
-                    print("backToStarList-- error")
+                } else if alignTypePassed == 1 {
+                    print("backToStarList 1")
+                    performSegue(withIdentifier: "backToStarList", sender: self)
+                } else if alignTypePassed == 2 {
+                    print("backToStarList 2")
                     performSegue(withIdentifier: "backToStarList", sender: self)
                 }
             }
@@ -816,18 +818,15 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
-            // let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
-            // banner.show()
-            // banner.remove()
-        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" {
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
             let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
-            print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .warning)
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
+            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

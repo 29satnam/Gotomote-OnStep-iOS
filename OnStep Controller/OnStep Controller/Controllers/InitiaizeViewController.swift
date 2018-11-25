@@ -54,7 +54,6 @@ class InitializeViewController: UIViewController {
         self.view.backgroundColor = .black
         
         setupUserInterface()
-       // triggerConnection(cmd:":GG#", setTag: 1)
     }
 
     // Start Alignment
@@ -63,7 +62,7 @@ class InitializeViewController: UIViewController {
         print("start first")
         self.readerText = ""
         
-        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 0) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
         // Get those, pass then start alignment
         
     }
@@ -86,7 +85,7 @@ class InitializeViewController: UIViewController {
             utcStr = String(utcStr.dropLast().replacingOccurrences(of: ":", with: "."))
         }
 
-        let hour = doubleToInteger(data: (Double(utcStr)!)) // with server
+        let hour = doubleToInteger(data: (Double(utcStr)!)) // with server // crash when offline
       //  print("hour", hour)
 
         let hourInSec = String(hour * 3600)
@@ -105,7 +104,6 @@ class InitializeViewController: UIViewController {
         
         let min:Int = Int(((Double(minutesInSec)!/60)*100)*3600)  // Int(((minutesInSec) / 60)*100)*3600)!
      //   print("minutesInSec", minutesInSec, "min", min, "Int(hourInSec)! + min)", Int(hourInSec)! + min)
-
         
         TimeZone.ReferenceType.default = TimeZone(secondsFromGMT: Int(hourInSec)! + min)! // 2018-10-09 10:16
         let formatter = DateFormatter()
@@ -118,6 +116,12 @@ class InitializeViewController: UIViewController {
         // 2018-10-09 03:00:24 +0000
         readerArray.removeAll()
         triggerConnection(cmd: ":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#", setTag: 3)
+        //          Return: 0 on failure
+        //                  1 on success
+        
+        //          Return: 0 on failure
+        //                  1 on success
+        
       //   print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#")
     }
     
@@ -172,31 +176,39 @@ class InitializeViewController: UIViewController {
     // At Home/Reset
     @IBAction func atHomeAct(_ sender: UIButton) {
         // :hC#
-        triggerConnection(cmd: ":hC#", setTag: 0)
+        triggerConnection(cmd: ":hC#", setTag: 1)
+        //         Returns: Nothing
     }
     
     // Return Home
     @IBAction func returnHomeAct(_ sender: UIButton) {
         // :hF#
-        triggerConnection(cmd: ":hF#", setTag: 0)
+        triggerConnection(cmd: ":hF#", setTag: 1)
+        //         Returns: Nothing
     }
     
     // Park
     @IBAction func parkAct(_ sender: UIButton) {
         // :hP#
-        triggerConnection(cmd: ":hP#", setTag: 0)
+        triggerConnection(cmd: ":hP#", setTag: 5)
+        //          Return: 0 on failure
+        //                  1 on success
     }
     
     // Un-Park
     @IBAction func unParkAct(_ sender: UIButton) {
         // :hR#
-        triggerConnection(cmd: ":hR#", setTag: 0)
+        triggerConnection(cmd: ":hR#", setTag: 6)
+        //          Return: 0 on failure
+        //                  1 on success
     }
     
     // Set-Park
     @IBAction func setParkAct(_ sender: UIButton) {
         // :hQ#
-        triggerConnection(cmd: ":hQ#", setTag: 0)
+        triggerConnection(cmd: ":hQ#", setTag: 7)
+        //          Return: 0 on failure
+        //                  1 on success
     }
     
     // Mark: Reticule
@@ -204,13 +216,16 @@ class InitializeViewController: UIViewController {
     // Dimmer
     @IBAction func dimmerAct(_ sender: UIButton) {
         // :B-#
-       triggerConnection(cmd: ":B-#", setTag: 0)
+       triggerConnection(cmd: ":B-#", setTag: 1)
+        //         Returns: Nothing
     }
     
     //Brighter
     @IBAction func BrighterAct(_ sender: UIButton) {
         // :B+#
-        triggerConnection(cmd: ":B+#", setTag: 0)
+        triggerConnection(cmd: ":B+#", setTag: 1)
+        //         Returns: Nothing
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -261,23 +276,22 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
         let getText = String(data: data, encoding: .utf8)
         switch tag {
         case 0:
-            print("Tag 0:", getText!)
+            print("Tag 0:", getText!) // Get lat, long, utc then start alignment
             readerText += "\(getText!)"
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-                print(index)
-        case 1:
-            utcString = getText!
-            print("Tag 1:", utcString) // Unused
-        case 2:
-            print("Tag 2:", getText!)
-            readerText += "\(getText!)"
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",") // get lat, long, utc then start alignment
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
             if index.isEmpty == false && index.count == 2 {
                 triggerConnection(cmd: ":A1#", setTag: 4) // Start align
                 coordinatesToPass = index
             }
+        case 1:
+            print("Tag 1:", getText) // Returns nothing
+        case 2:
+            print("Tag 2:", getText!)
+            readerText += "\(getText!)"
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            print(index)
         case 3:
-            print("Tag 3:", getText!)
+            print("Tag 3:", getText!) // Write Date time to server
             readerArray.append(getText!)
             if readerArray.count > 1 {
                 print("this", readerArray.count, readerArray[opt: 0], readerArray[opt: 1])
@@ -292,7 +306,30 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
                 banner.show()
                 self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
             } else { // failed
-                
+            }
+        case 5:
+            if getText! == "0" { // parkAct
+                let banner = StatusBarNotificationBanner(title: "Park failed.", style: .warning)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Parked successfully.", style: .success)
+                banner.show()
+            }
+        case 6:
+            if getText! == "0" { // unParkAct
+                let banner = StatusBarNotificationBanner(title: "Unpark failed.", style: .warning)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Unparked successfully.", style: .success)
+                banner.show()
+            }
+        case 7:
+            if getText! == "0" { // setParkAct
+                let banner = StatusBarNotificationBanner(title: "Set-park failed.", style: .warning)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Set-park successfully.", style: .success)
+                banner.show()
             }
         default:
             print("def")
@@ -331,7 +368,6 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             banner.show()
         }
     }
-    
 }
 
 extension String {
