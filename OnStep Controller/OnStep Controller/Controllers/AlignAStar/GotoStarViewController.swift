@@ -21,6 +21,8 @@ class GotoStarViewController: UIViewController {
     
     var readerText: String = String()
     var readerArray: [String] = [String]()
+    
+    var utcString: String =  String()
 
     @IBOutlet var gotoBtn: UIButton!
     @IBOutlet var abortBtn: UIButton!
@@ -567,6 +569,7 @@ class GotoStarViewController: UIViewController {
                 triggerConnection(cmd: ":A2#", setTag: 0)
                 destination.vcTitle = "SECOND STAR"
                 destination.coordinates = coordinates
+                destination.utcString = utcString
                 let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
                 banner.show()
             } else if vcTitlePassed ==  "SECOND STAR" {
@@ -576,19 +579,24 @@ class GotoStarViewController: UIViewController {
                 triggerConnection(cmd: ":A3#", setTag: 0)
                 destination.vcTitle = "THIRD STAR"
                 destination.coordinates = coordinates
+                destination.utcString = utcString
+
                 let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
                 banner.show()
                 
             } else {
                 destination.vcTitle = "STAR ALIGNMENT"
                 destination.coordinates = coordinates
+                destination.utcString = utcString
 
             }
-        } else if segue.identifier == "initialize" {
+        } else if segue.identifier == "backToInitialize" {
             
-            // trigger delegate socket values
             if let destination = segue.destination as? InitializeViewController {
                 destination.navigationItem.hidesBackButton = true
+                destination.utcString = utcString
+                print("oi", utcString)
+
             }
         }
         

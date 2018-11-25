@@ -163,6 +163,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
             if let destination = segue.destination as? InitializeViewController {
                // destination.delegate = self
                 destination.utcString = utcString
+                print("utcString", utcString)
                 destination.navigationItem.hidesBackButton = true
             }
         } else if segue.identifier == "objectListingTableView" {

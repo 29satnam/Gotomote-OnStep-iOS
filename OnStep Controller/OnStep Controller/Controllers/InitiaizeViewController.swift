@@ -85,15 +85,11 @@ class InitializeViewController: UIViewController {
             utcStr = String(utcStr.dropLast().replacingOccurrences(of: ":", with: "."))
         }
 
-        let hour = doubleToInteger(data: (Double(utcStr)!)) // with server // crash when offline
-      //  print("hour", hour)
-
+        let hour = doubleToInteger(data: (Double(utcStr)!))
         let hourInSec = String(hour * 3600)
-        
         let minExt = Double(utcStr)!.truncatingRemainder(dividingBy: 1)
 
         // Precision fix
-        
         let formatterNum = NumberFormatter()
         formatterNum.numberStyle = NumberFormatter.Style.decimal
         formatterNum.roundingMode = NumberFormatter.RoundingMode.halfUp
@@ -110,6 +106,9 @@ class InitializeViewController: UIViewController {
         formatter.timeZone = TimeZone.ReferenceType.default
         formatter.dateFormat = "MM/dd/yy HH:mm:ss"
         let strDate = formatter.string(from: Date()).components(separatedBy: " ") // TODO: crash with offline
+        
+        
+        
       //  print("strDate", strDate)
      //   print(NSDate() as Date)
         
@@ -235,6 +234,7 @@ class InitializeViewController: UIViewController {
             destination.alignType = alignTypeInit
             destination.vcTitle = "FIRST STAR"
             destination.coordinates = coordinatesToPass
+            destination.utcString = utcString
           //  destination.delegate = self
             
         }

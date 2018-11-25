@@ -22,6 +22,8 @@ class SelectStarTableViewController: UITableViewController {
     var slctdObj: JSON = JSON()
     var slctdObjIndex: Int = Int()
     
+    var utcString: String =  String()
+    
     var coordinates:[String] = [String]()
     
     var readerText: String = String()
@@ -106,6 +108,8 @@ class SelectStarTableViewController: UITableViewController {
             destination.vcTitlePassed = vcTitle
             destination.passedSlctdObjIndex = slctdObjIndex
             destination.coordinates = coordinates
+            destination.utcString = utcString
+
         }
     }
     
