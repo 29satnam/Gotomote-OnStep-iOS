@@ -48,6 +48,10 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     var backRaTFToPass: String = String()
     var backDecTFToPass: String = String()
     
+    //SetOverHead
+    var horLimitToPass: String = String()
+    var overHeadLimitToPass: String = String()
+
     override func viewDidLoad() {
         setupUserInteface()
     }
@@ -204,6 +208,10 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
             print("dectected")
             destination.backDec = backDecTFToPass
             destination.backRa = backRaTFToPass
+        } else if let destination = segue.destination as? SetOverHeadViewController {
+            print("dectected")
+            destination.horizonLimit = horLimitToPass
+            destination.overHeadLimit = overHeadLimitToPass
         }
         //toPECScreen
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -222,6 +230,11 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
             backDecTFToPass = ""
             backRaTFToPass = ""
             self.triggerConnection(cmd: ":%BR#:%BD#", setTag: 6) // backRA // backDEC
+        } else if identifier == "limits" {
+            readerText = ""
+            horLimitToPass = ""
+            overHeadLimitToPass = ""
+            self.triggerConnection(cmd: ":GhsDD#:GoDD#", setTag: 7) // hor limit and hor limit
         } else { // backlash
             self.performSegue(withIdentifier: identifier, sender: self)
         }
@@ -325,7 +338,17 @@ extension LandingViewController: GCDAsyncSocketDelegate {
                 backDecTFToPass = index[opt: 1] ?? ""
                 self.performSegue(withIdentifier: "backlash", sender: self)
             }
+        case 7:
+            readerText += "\(getText!)"
             
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: "").components(separatedBy: ",")
+            print(index, readerText) // ["-10*", "80*"]
+            if index.count == 2 {
+                horLimitToPass = index[opt: 0] ?? ""
+                overHeadLimitToPass = index[opt: 1] ?? ""
+                self.performSegue(withIdentifier: "limits", sender: self)
+            }
+
         default:
             print("def")
         }

@@ -15,6 +15,9 @@ class SetOverHeadViewController: UIViewController {
     var clientSocket: GCDAsyncSocket!
     var readerText: String = String()
 
+    var horizonLimit: String = String()
+    var overHeadLimit: String = String()
+    
     @IBOutlet var horizonLimitBtn: CustomTextField!
     @IBOutlet var overHeadLimitBtn: CustomTextField!
     
@@ -34,7 +37,10 @@ class SetOverHeadViewController: UIViewController {
         self.view.backgroundColor = .black
         // Do any additional setup after loading the view.
         
-        self.triggerConnection(cmd: ":GhsDD#:GoDD#", setTag: 0)
+        horizonLimitBtn.text = horizonLimit
+        overHeadLimitBtn.text = overHeadLimit
+        
+       // self.triggerConnection(cmd: ":GhsDD#:GoDD#", setTag: 0)
         // Get horizon limit // Get overhead limit // ["-10*", "80*"]
     }
     
@@ -107,15 +113,7 @@ extension SetOverHeadViewController: GCDAsyncSocketDelegate {
         print("got:", getText)
         switch tag {
         case 0:
-            readerText += "\(getText!)"
-            
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: "").components(separatedBy: ",")
-            print(index, readerText) // ["-10*", "80*"]
-            DispatchQueue.main.async {
-                
-                self.horizonLimitBtn.text = index[opt: 0]
-                self.overHeadLimitBtn.text = index[opt: 1]
-            }
+            readerText += "\(getText!)" // Unused
             
         case 1:
             print("Tag 1:", getText!) // 0, 1 for both -> check success
