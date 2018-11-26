@@ -41,7 +41,11 @@ class GotoMRViewController: UIViewController {
         
         self.view.backgroundColor = .black
         readerText = ""
-        self.triggerConnection(cmd: ":GX93#:VS#:GX92#", setTag: 1)   // DefaultMaxRate // stepsPerSec // StepsPerSecond
+       // self.triggerConnection(cmd: ":GX93#:VS#:GX92#", setTag: 1)   // DefaultMaxRate // stepsPerSec // StepsPerSecond
+        
+        rateLabel.text = String(format: "%.02f", ((1.0/(Double(defaultRate)!*1.0/1000000.0))/(Double(stepsPerSec)!))/240.0) + " deg/sec"
+        
+        print("thisss", defaultRate, currentRate, stepsPerSec)
     }
     
     // Mark: Change goto rate

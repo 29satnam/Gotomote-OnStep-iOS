@@ -39,6 +39,11 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     var utcString: String =  String()
     var utcStr: String = String()
     
+    // GOTOMR
+    var defaultRateToPass: String = String()
+    var currentRateToPass: String = String()
+    var stepsPerSecToPass: String = String()
+    
     override func viewDidLoad() {
         setupUserInteface()
     }
@@ -186,6 +191,13 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
                 //  destination.delegate = self
                 destination.scopeStatus = readerText
             }
+        } else if let destination = segue.destination as? GotoMRViewController {
+            // trigger delegate socket values
+            print("dectected")
+            readerText = ""
+            destination.defaultRate = defaultRateToPass
+            destination.stepsPerSec = stepsPerSecToPass
+            destination.currentRate = currentRateToPass
         }
         
         //toPECScreen
@@ -194,7 +206,11 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     
     // Mark: PopViewDelegate
     func passIdentifier(_ identifier: String) {
-        self.performSegue(withIdentifier: identifier, sender: self)
+        if identifier == "gotomax" {
+             self.triggerConnection(cmd: ":GX93#:VS#:GX92#", setTag: 5)   // DefaultMaxRate // stepsPerSec // StepsPerSecond
+        } else {
+            self.performSegue(withIdentifier: identifier, sender: self)
+        }
     }
     
     @IBAction func showTableBarButton(_ sender: UIBarButtonItem) {
@@ -283,6 +299,22 @@ extension LandingViewController: GCDAsyncSocketDelegate {
                 readerText = getText!
                 self.performSegue(withIdentifier: "toPECScreen", sender: self)
          //   }
+        case 5:
+            print("Tag 1:", getText!)
+            readerText += "\(getText!)"
+            
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
+            
+            print("ind", index)
+            if index.count == 3 {
+                defaultRateToPass = index[opt: 0] ?? "0"
+                stepsPerSecToPass = index[opt: 1] ?? "0"
+                currentRateToPass = index[opt: 2] ?? "0"
+                self.performSegue(withIdentifier: "gotomax", sender: self)
+            }
+
+           // rateLabel.text = String(format: "%.02f", ((1.0/(Double(index[opt: 2] ?? "0")!*1.0/1000000.0))/(Double(index[opt: 1] ?? "0")!))/240.0) + " deg/sec"
+
         default:
             print("def")
         }

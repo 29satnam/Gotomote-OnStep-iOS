@@ -115,4 +115,12 @@ class MoreOptionsTableViewController: UITableViewController {
         
        
     }
+    
+    // PrepareForSegue with Socket Data Delegate
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? GotoMRViewController {
+            // trigger delegate socket values
+            print("dectected")
+        }
+    }
 }
