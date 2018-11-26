@@ -42,7 +42,6 @@ class GotoMRViewController: UIViewController {
         self.view.backgroundColor = .black
         readerText = ""
        // self.triggerConnection(cmd: ":GX93#:VS#:GX92#", setTag: 1)   // DefaultMaxRate // stepsPerSec // StepsPerSecond
-        
         rateLabel.text = String(format: "%.02f", ((1.0/(Double(defaultRate)!*1.0/1000000.0))/(Double(stepsPerSec)!))/240.0) + " deg/sec"
         
         print("thisss", defaultRate, currentRate, stepsPerSec)
@@ -135,21 +134,10 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
             print(index)
             
         case 1:
-            print("Tag 1:", getText!)
-            readerText += "\(getText!)"
-            
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-
-            print("ind", index)
-            defaultRate = index[opt: 0] ?? "0"
-            stepsPerSec = index[opt: 1] ?? "0"
-            currentRate = index[opt: 2] ?? "0"
-            rateLabel.text = String(format: "%.02f", ((1.0/(Double(index[opt: 2] ?? "0")!*1.0/1000000.0))/(Double(index[opt: 1] ?? "0")!))/240.0) + " deg/sec"
-
+            print("Tag 1:", getText!) // Unused
         case 2:
             print("Tag 2:", getText!)
           //  currentRate = String(getText!.dropLast())
-                        
         default:
             print("def")
         }

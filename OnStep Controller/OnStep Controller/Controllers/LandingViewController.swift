@@ -44,6 +44,10 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     var currentRateToPass: String = String()
     var stepsPerSecToPass: String = String()
     
+    //BacklashView
+    var backRaTFToPass: String = String()
+    var backDecTFToPass: String = String()
+    
     override func viewDidLoad() {
         setupUserInteface()
     }
@@ -192,14 +196,15 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
                 destination.scopeStatus = readerText
             }
         } else if let destination = segue.destination as? GotoMRViewController {
-            // trigger delegate socket values
-            print("dectected")
-            readerText = ""
+          //  readerText = ""
             destination.defaultRate = defaultRateToPass
             destination.stepsPerSec = stepsPerSecToPass
             destination.currentRate = currentRateToPass
+        } else if let destination = segue.destination as? BacklashViewController {
+            print("dectected")
+            destination.backDec = backDecTFToPass
+            destination.backRa = backRaTFToPass
         }
-        
         //toPECScreen
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -207,8 +212,17 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     // Mark: PopViewDelegate
     func passIdentifier(_ identifier: String) {
         if identifier == "gotomax" {
+            readerText = ""
+            defaultRateToPass = ""
+            currentRateToPass = ""
+            stepsPerSecToPass = ""
              self.triggerConnection(cmd: ":GX93#:VS#:GX92#", setTag: 5)   // DefaultMaxRate // stepsPerSec // StepsPerSecond
-        } else {
+        } else if identifier == "backlash" {
+            readerText = ""
+            backDecTFToPass = ""
+            backRaTFToPass = ""
+            self.triggerConnection(cmd: ":%BR#:%BD#", setTag: 6) // backRA // backDEC
+        } else { // backlash
             self.performSegue(withIdentifier: identifier, sender: self)
         }
     }
@@ -229,7 +243,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         // Segue Delegate
         viewController.delegate = self
         self.present(viewController, animated: true, completion: nil)
-        
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -250,16 +263,6 @@ extension Array where Element: Equatable {
         return self.enumerated().filter({ element == $0.element }).map({ $0.offset })
     }
 }
-
-/*
- Set date - :SCMM/DD/YY#
- Set time (Local) - :SLHH:MM:SS#
- 
- Align, one-star*4 - :A1#
- Align, two-star*4 - :A2#                  These are saved when Set park is called         Set park position - :hQ#
- Align, three-star*4 - :A3#
- Align, accept*4 - :A+#
- */
 
 extension LandingViewController: GCDAsyncSocketDelegate {
     
@@ -312,9 +315,17 @@ extension LandingViewController: GCDAsyncSocketDelegate {
                 currentRateToPass = index[opt: 2] ?? "0"
                 self.performSegue(withIdentifier: "gotomax", sender: self)
             }
-
-           // rateLabel.text = String(format: "%.02f", ((1.0/(Double(index[opt: 2] ?? "0")!*1.0/1000000.0))/(Double(index[opt: 1] ?? "0")!))/240.0) + " deg/sec"
-
+        case 6:
+            readerText += "\(getText!)"
+            
+            let index = readerText.dropLast().components(separatedBy: "#")
+            print(index.count, readerText) // // RA // DEC
+            if index.count == 2 {
+                backRaTFToPass = index[opt: 0] ?? ""
+                backDecTFToPass = index[opt: 1] ?? ""
+                self.performSegue(withIdentifier: "backlash", sender: self)
+            }
+            
         default:
             print("def")
         }

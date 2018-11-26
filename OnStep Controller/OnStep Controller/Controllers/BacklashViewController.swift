@@ -16,12 +16,22 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
     var readerText: String = String()
     
     @IBOutlet var uploadBtn: UIButton!
+    
+    //BacklashView
+    var backRa: String = String()
+    var backDec: String = String()
+    
     @IBOutlet var backRaTF: CustomTextField!
     @IBOutlet var backDecTF: CustomTextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backRaTF.text = backRa
+        backDecTF.text = backDec
+
+        
         backRaTF.delegate = self
         backDecTF.delegate = self
         
@@ -35,7 +45,7 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
         
         self.view.backgroundColor = .black
         
-        self.triggerConnection(cmd: ":%BR#:%BD#", setTag: 0) // RA // DEC
+ //       self.triggerConnection(cmd: ":%BR#:%BD#", setTag: 0) // RA // DEC
 
         
         //   % - Return parameter

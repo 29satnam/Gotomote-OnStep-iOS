@@ -60,7 +60,7 @@ class GotoStarViewController: UIViewController {
     @IBOutlet var dist: UILabel!
     @IBOutlet var aboveHorizon: UILabel!
     
-    var slctdJSONObj = grabJSONData(resource: "Bright Stars")
+    var slctdJSONObj: [JSON] = [JSON]() //= grabJSONData(resource: "Bright Stars")
     
     var raStr: String = String()
     var decStr: Double = Double()
@@ -570,6 +570,7 @@ class GotoStarViewController: UIViewController {
                 destination.vcTitle = "SECOND STAR"
                 destination.coordinates = coordinates
                 destination.utcString = utcString
+                destination.filteredJSON = slctdJSONObj
                 let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
                 banner.show()
             } else if vcTitlePassed ==  "SECOND STAR" {
@@ -580,6 +581,7 @@ class GotoStarViewController: UIViewController {
                 destination.vcTitle = "THIRD STAR"
                 destination.coordinates = coordinates
                 destination.utcString = utcString
+                destination.filteredJSON = slctdJSONObj
 
                 let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
                 banner.show()
@@ -588,6 +590,7 @@ class GotoStarViewController: UIViewController {
                 destination.vcTitle = "STAR ALIGNMENT"
                 destination.coordinates = coordinates
                 destination.utcString = utcString
+                destination.filteredJSON = slctdJSONObj
 
             }
         } else if segue.identifier == "backToInitialize" {

@@ -109,7 +109,7 @@ class SelectStarTableViewController: UITableViewController {
             destination.passedSlctdObjIndex = slctdObjIndex
             destination.coordinates = coordinates
             destination.utcString = utcString
-
+            destination.slctdJSONObj = filteredJSON
         }
     }
     
