@@ -622,7 +622,7 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
                 let banner = StatusBarNotificationBanner(title: "Align accepted successfully.", style: .success)
                 banner.show()
             } else {
-                let banner = StatusBarNotificationBanner(title: "Align accept failed.", style: .success)
+                let banner = StatusBarNotificationBanner(title: "Align accept failed.", style: .warning)
                 banner.show()
             }
         case 2:

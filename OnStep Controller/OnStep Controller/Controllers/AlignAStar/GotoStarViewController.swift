@@ -782,11 +782,14 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
                 } else if alignTypePassed == 1 { // 2 star
                     let banner = StatusBarNotificationBanner(title: "Align accepted successfully.", style: .success)
                     banner.show()
-                    triggerConnection(cmd: ":A2#", setTag: 4)
+                    triggerConnection(cmd: ":A1#", setTag: 4)
+                    print(":A1")
                 } else if alignTypePassed == 2 { // 3 star
                     let banner = StatusBarNotificationBanner(title: "Align accepted successfully.", style: .success)
                     banner.show()
-                    triggerConnection(cmd: ":A3#", setTag: 5)
+                    triggerConnection(cmd: ":A2#", setTag: 5)
+                    print(":A2")
+
                 }
             }
         case 3:
@@ -796,14 +799,14 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
         case 4:
             print("Tag 4:", getText!) // 2 star
             if getText! == "1" {
-                let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
+                let banner = StatusBarNotificationBanner(title: "Star #1 aligment started.", style: .success)
                 banner.show()
                 performSegue(withIdentifier: "backToStarList", sender: self) // SelectStarTableViewController
             }
         case 5:
             print("Tag 5:", getText!) // 3 star
             if getText! == "1" {
-                let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
+                let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
                 banner.show()
                 performSegue(withIdentifier: "backToStarList", sender: self) // SelectStarTableViewController
             }

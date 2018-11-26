@@ -280,8 +280,16 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             readerText += "\(getText!)"
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
             if index.isEmpty == false && index.count == 2 {
-                triggerConnection(cmd: ":A1#", setTag: 4) // Start align
                 coordinatesToPass = index
+                if alignTypeInit == 3 {
+                    triggerConnection(cmd: ":A3#", setTag: 4) // Start align
+                } else if alignTypeInit == 2 {
+                    triggerConnection(cmd: ":A2#", setTag: 4) // Start align
+                } else if alignTypeInit == 1 {
+                    triggerConnection(cmd: ":A1#", setTag: 4) // Start align
+                }
+                
+             //   triggerConnection(cmd: ":A1#", setTag: 4) // Start align
             }
         case 1:
             print("Tag 1:", getText) // Returns nothing -- all here
@@ -302,8 +310,19 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             print("Tag 4:", getText!) // Start Alignment
             if getText! == "1" {
                 print("Success")
-                let banner = StatusBarNotificationBanner(title: "Star #1 aligment started.", style: .success)
-                banner.show()
+                
+                if alignTypeInit == 3 {
+                    let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
+                    banner.show() // Start align
+                } else if alignTypeInit == 2 {
+                    let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
+                    banner.show() // Start align
+                } else if alignTypeInit == 1 {
+                    let banner = StatusBarNotificationBanner(title: "Star #1 aligment started.", style: .success)
+                    banner.show() // Start align
+                }
+                
+
                 self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
             } else { // failed
             }
