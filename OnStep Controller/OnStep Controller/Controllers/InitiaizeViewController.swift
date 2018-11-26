@@ -284,7 +284,7 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
                 coordinatesToPass = index
             }
         case 1:
-            print("Tag 1:", getText) // Returns nothing
+            print("Tag 1:", getText) // Returns nothing -- all here
         case 2:
             print("Tag 2:", getText!)
             readerText += "\(getText!)"

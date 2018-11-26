@@ -373,11 +373,16 @@ extension LandingViewController: GCDAsyncSocketDelegate {
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-            banner.remove()
         }
     }
 }

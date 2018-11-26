@@ -47,6 +47,9 @@ class GuideCenterViewController: UIViewController {
         speedSlider.minimumValue = 0
         speedSlider.maximumValue = 9
         speedSlider.isContinuous = true
+        
+        triggerConnection(cmd: ":A?#", setTag: 0)
+
     }
     
     func setupUserInterface() {
@@ -115,7 +118,7 @@ class GuideCenterViewController: UIViewController {
     
     
     @IBAction func syncAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":CM#")
+        triggerConnection(cmd: ":CM#", setTag: 0)
     }
     
     // Mark: Slider - Increase Speed
@@ -123,33 +126,33 @@ class GuideCenterViewController: UIViewController {
         
         switch Int(sender.value) {
         case 0:
-            triggerConnection(cmd: ":R0#")
+            triggerConnection(cmd: ":R0#", setTag: 0)
         case 1:
-            triggerConnection(cmd: ":R1#")
+            triggerConnection(cmd: ":R1#", setTag: 0)
         case 2:
-            triggerConnection(cmd: ":R2#")
+            triggerConnection(cmd: ":R2#", setTag: 0)
         case 3:
-            triggerConnection(cmd: ":R3#")
+            triggerConnection(cmd: ":R3#", setTag: 0)
         case 4:
-            triggerConnection(cmd: ":R4#")
+            triggerConnection(cmd: ":R4#", setTag: 0)
         case 5:
-            triggerConnection(cmd: ":R5#")
+            triggerConnection(cmd: ":R5#", setTag: 0)
         case 6:
-            triggerConnection(cmd: ":R6#")
+            triggerConnection(cmd: ":R6#", setTag: 0)
         case 7:
-            triggerConnection(cmd: ":R7#")
+            triggerConnection(cmd: ":R7#", setTag: 0)
         case 8:
-            triggerConnection(cmd: ":R8#")
+            triggerConnection(cmd: ":R8#", setTag: 0)
         case 9:
-            triggerConnection(cmd: ":R9#")
+            triggerConnection(cmd: ":R9#", setTag: 0)
         default:
             print("sero")
         }
         
     }
     
-    func triggerConnection(cmd: String) {
-        
+    
+    func triggerConnection(cmd: String, setTag: Int) {
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
         do {
@@ -171,103 +174,103 @@ class GuideCenterViewController: UIViewController {
             
             try clientSocket.connect(toHost: addr, onPort: port, withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
-            clientSocket.write(data!, withTimeout: -1, tag: 0)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
-        
     }
 
     // NE
     @objc func moveToNE() {
-        triggerConnection(cmd: ":Mn#:Me#")
+        triggerConnection(cmd: ":Mn#:Me#", setTag: 0)
         print("moveToNE")
     }
 
     @objc func stopToNE() {
-        triggerConnection(cmd: ":Qn#:Qe#")
+        triggerConnection(cmd: ":Qn#:Qe#", setTag: 0)
         print("stopToNE")
     }
     
     // NW
     @objc func moveToNW() {
-        triggerConnection(cmd: ":Mn#:Mw#")
+        triggerConnection(cmd: ":Mn#:Mw#", setTag: 0)
         print("moveToNW")
     }
     
     @objc func stopToNW() {
-        triggerConnection(cmd: ":Qn#:Qw#")
+        triggerConnection(cmd: ":Qn#:Qw#", setTag: 0)
         print("stopToNW")
     }
     
     // SE
     @objc func moveToSE() {
-        triggerConnection(cmd: ":Ms#:Me#")
+        triggerConnection(cmd: ":Ms#:Me#", setTag: 0)
         print("moveToSE")
     }
     
     @objc func stopToSE() {
-        triggerConnection(cmd: ":Qs#:Qe#")
+        triggerConnection(cmd: ":Qs#:Qe#", setTag: 0)
         print("stopToSE")
     }
 
     // SW
     @objc func moveToSW() {
-        triggerConnection(cmd: ":Ms#:Mw#")
+        triggerConnection(cmd: ":Ms#:Mw#", setTag: 0)
         print("moveToSW")
     }
     
     @objc func stopToSW() {
-        triggerConnection(cmd: ":Qs#:Qw#")
+        triggerConnection(cmd: ":Qs#:Qw#", setTag: 0)
         print("stopToSW")
     }
     
     // North
     @objc func moveToNorth() {
-        triggerConnection(cmd: ":Mn#")
+        triggerConnection(cmd: ":Mn#", setTag: 0)
         print("moveToNorth")
     }
     
     @objc func stopToNorth() {
-        triggerConnection(cmd: ":Qn#")
+        triggerConnection(cmd: ":Qn#", setTag: 0)
         print("stopToNorth")
     }
     
     // South
     @objc func moveToSouth() {
-        triggerConnection(cmd: ":Ms#")
+        triggerConnection(cmd: ":Ms#", setTag: 0)
         print("moveToSouth")
     }
     
     @objc func stopToSouth() {
-        triggerConnection(cmd: ":Qs#")
+        triggerConnection(cmd: ":Qs#", setTag: 0)
         print("stopToSouth")
     }
     
     // West
     @objc func moveToWest() {
-        triggerConnection(cmd: ":Mw#")
+        triggerConnection(cmd: ":Mw#", setTag: 0)
         print("moveToWest")
     }
     
     @objc func stopToWest() {
-        triggerConnection(cmd: ":Qw#")
+        triggerConnection(cmd: ":Qw#", setTag: 0)
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-        triggerConnection(cmd: ":Me#")
+        triggerConnection(cmd: ":Me#", setTag: 0)
         print("moveToEast")
     }
     
     @objc func stopToEast() {
-        triggerConnection(cmd: ":Qe#")
+        triggerConnection(cmd: ":Qe#", setTag: 0)
         print("stopToEast")
     }
     
     // Stop
     @IBAction func stopScope(_ sender: Any) {
-        triggerConnection(cmd: ":Q#")
+        triggerConnection(cmd: ":Q#", setTag: 0)
     }
     
     
@@ -539,18 +542,32 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let text = String(data: data, encoding: .utf8)
-        print("didRead:", text!)
-        clientSocket.readData(withTimeout: -1, tag: 0)
+        let getText = String(data: data, encoding: .utf8)
+        print("got:", getText)
+        switch tag {
+        case 0:
+            print("Tag 0:", getText!) // Returns nothing
+        case 1:
+            print("")
+        default:
+            print("def")
+        }
+        clientSocket.readData(withTimeout: -1, tag: tag)
+        // clientSocket.disconnect()
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-            banner.remove()
         }
     }
 }

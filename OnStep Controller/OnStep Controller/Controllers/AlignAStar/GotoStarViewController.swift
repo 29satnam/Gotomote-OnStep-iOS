@@ -198,7 +198,7 @@ class GotoStarViewController: UIViewController {
     // Mark: Slider - Increase Speed
     
     @IBAction func abortBtn(_ sender: UIButton) {
-        triggerConnection(cmd: ":Q#", setTag: 1)
+        triggerConnection(cmd: ":Q#", setTag: 3)
     }
     
     // Mark: Slider - Increase Speed
@@ -206,31 +206,30 @@ class GotoStarViewController: UIViewController {
 
         switch Int(sender.value) {
         case 0:
-            triggerConnection(cmd: ":R0#", setTag: 1)
+            triggerConnection(cmd: ":R0#", setTag: 3)
         case 1:
-            triggerConnection(cmd: ":R1#", setTag: 1)
+            triggerConnection(cmd: ":R1#", setTag: 3)
         case 2:
-            triggerConnection(cmd: ":R2#", setTag: 1)
+            triggerConnection(cmd: ":R2#", setTag: 3)
         case 3:
-            triggerConnection(cmd: ":R3#", setTag: 1)
+            triggerConnection(cmd: ":R3#", setTag: 3)
         case 4:
-            triggerConnection(cmd: ":R4#", setTag: 1)
+            triggerConnection(cmd: ":R4#", setTag: 3)
         case 5:
-            triggerConnection(cmd: ":R5#", setTag: 1)
+            triggerConnection(cmd: ":R5#", setTag: 3)
         case 6:
-            triggerConnection(cmd: ":R6#", setTag: 1)
+            triggerConnection(cmd: ":R6#", setTag: 3)
         case 7:
-            triggerConnection(cmd: ":R7#", setTag: 1)
+            triggerConnection(cmd: ":R7#", setTag: 3)
         case 8:
-            triggerConnection(cmd: ":R8#", setTag: 1)
+            triggerConnection(cmd: ":R8#", setTag: 3)
         case 9:
-            triggerConnection(cmd: ":R9#", setTag: 1)
+            triggerConnection(cmd: ":R9#", setTag: 3)
         default:
             print("sero")
         }
 
     }
-    
     
     func triggerConnection(cmd: String, setTag: Int) {
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
@@ -556,108 +555,49 @@ class GotoStarViewController: UIViewController {
         triggerConnection(cmd: ":A+#", setTag: 2) // Align accept
     }
     
-    // Pass Int back to controller
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        if let destination = segue.destination as? SelectStarTableViewController {
-            destination.alignType = alignTypePassed
-            
-            if vcTitlePassed == "FIRST STAR" {
-                
-                // Start second star alignment.
-                print("start second")
-                triggerConnection(cmd: ":A2#", setTag: 0)
-                destination.vcTitle = "SECOND STAR"
-                destination.coordinates = coordinates
-                destination.utcString = utcString
-                destination.filteredJSON = slctdJSONObj
-                let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
-                banner.show()
-            } else if vcTitlePassed ==  "SECOND STAR" {
-                
-                // Start third star alignment.
-                print("start third")
-                triggerConnection(cmd: ":A3#", setTag: 0)
-                destination.vcTitle = "THIRD STAR"
-                destination.coordinates = coordinates
-                destination.utcString = utcString
-                destination.filteredJSON = slctdJSONObj
-
-                let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
-                banner.show()
-                
-            } else {
-                destination.vcTitle = "STAR ALIGNMENT"
-                destination.coordinates = coordinates
-                destination.utcString = utcString
-                destination.filteredJSON = slctdJSONObj
-
-            }
-        } else if segue.identifier == "backToInitialize" {
-            
-            if let destination = segue.destination as? InitializeViewController {
-                destination.navigationItem.hidesBackButton = true
-                destination.utcString = utcString
-                print("oi", utcString)
-
-            }
-        }
-        
-    }
-    
     // North
     @objc func moveToNorth() {
-        triggerConnection(cmd: ":Mn#", setTag: 1)
+        triggerConnection(cmd: ":Mn#", setTag: 3)
         print("moveToNorth")
     }
 
     @objc func stopToNorth(_ sender: UIButton) {
-        triggerConnection(cmd: ":Qn#", setTag: 1)
+        triggerConnection(cmd: ":Qn#", setTag: 3)
         print("stopToNorth")
     }
     
     // South
     @objc func moveToSouth() {
-        triggerConnection(cmd: ":Ms#", setTag: 1)
+        triggerConnection(cmd: ":Ms#", setTag: 3)
         print("moveToSouth")
     }
     
     @objc func stopToSouth() {
-       triggerConnection(cmd: ":Qs#", setTag: 1)
+       triggerConnection(cmd: ":Qs#", setTag: 3)
         print("stopToSouth")
     }
     
     // West
     @objc func moveToWest() {
-        triggerConnection(cmd: ":Mw#", setTag: 1)
+        triggerConnection(cmd: ":Mw#", setTag: 3)
         print("moveToWest")
     }
     
     @objc func stopToWest() {
-       triggerConnection(cmd: ":Qw#", setTag: 1)
+       triggerConnection(cmd: ":Qw#", setTag: 3)
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-       triggerConnection(cmd: ":Me#", setTag: 1)
+       triggerConnection(cmd: ":Me#", setTag: 3)
         print("moveToEast")
     }
     
     @objc func stopToEast() {
-        triggerConnection(cmd: ":Qe#", setTag: 1)
+        triggerConnection(cmd: ":Qe#", setTag: 3)
         print("stopToEast")
     }
-    
-    // Stop
-    @IBAction func stopScope(_ sender: Any) {
-        triggerConnection(cmd: ":Q#", setTag: 1)
-     //   print("stopScope")
-        //    :T+#
-       //    triggerConnection(cmd: ":R9#")
-
-    }
-    
     
     // Mark: Reverse North-South buttons
     @IBAction func reverseNS(_ sender: UIButton) {
@@ -763,6 +703,50 @@ class GotoStarViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Pass Int back to controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        if let destination = segue.destination as? SelectStarTableViewController {
+            destination.alignType = alignTypePassed
+            
+            if vcTitlePassed == "FIRST STAR" {
+                
+                // Start second star alignment.
+                print("start second")
+              //  triggerConnection(cmd: ":A2#", setTag: 4)
+                destination.vcTitle = "SECOND STAR"
+                destination.coordinates = coordinates
+                destination.utcString = utcString
+                destination.filteredJSON = slctdJSONObj
+
+            } else if vcTitlePassed ==  "SECOND STAR" {
+                
+                // Start third star alignment.
+                print("start third")
+              //  triggerConnection(cmd: ":A3#", setTag: 4)
+                destination.vcTitle = "THIRD STAR"
+                destination.coordinates = coordinates
+                destination.utcString = utcString
+                destination.filteredJSON = slctdJSONObj
+                
+            } else {
+                destination.vcTitle = "STAR ALIGNMENT"
+                destination.coordinates = coordinates
+                destination.utcString = utcString
+                destination.filteredJSON = slctdJSONObj
+                
+            }
+        } else if segue.identifier == "backToInitialize" {
+            
+            if let destination = segue.destination as? InitializeViewController {
+                destination.navigationItem.hidesBackButton = true
+                destination.utcString = utcString
+                print("oi", utcString)
+                
+            }
+        }
+    }
 }
 
 
@@ -790,19 +774,39 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
                 banner.show()
             } else {
                 print("Success")
-                let banner = StatusBarNotificationBanner(title: "Align accpeted successfully.", style: .success)
-                banner.show()
                 alignTypePassed = alignTypePassed - 1
-                if alignTypePassed <= 0 {
-                    print("backToInitialize")
-                    performSegue(withIdentifier: "backToInitialize", sender: self)
-                } else if alignTypePassed == 1 {
-                    print("backToStarList 1")
-                    performSegue(withIdentifier: "backToStarList", sender: self)
-                } else if alignTypePassed == 2 {
-                    print("backToStarList 2")
-                    performSegue(withIdentifier: "backToStarList", sender: self)
+                if alignTypePassed <= 0 {       // 1 star
+                    let banner = StatusBarNotificationBanner(title: "Align accpeted successfully.", style: .success)
+                    banner.show()
+                    performSegue(withIdentifier: "backToInitialize", sender: self) // InitializeViewController
+                } else if alignTypePassed == 1 { // 2 star
+                    let banner = StatusBarNotificationBanner(title: "Align accpeted successfully.", style: .success)
+                    banner.show()
+                    triggerConnection(cmd: ":A2#", setTag: 4)
+                } else if alignTypePassed == 2 { // 3 star
+                    let banner = StatusBarNotificationBanner(title: "Align accpeted successfully.", style: .success)
+                    banner.show()
+                    triggerConnection(cmd: ":A3#", setTag: 4)
                 }
+            }
+        case 3:
+            print("Tag 3:", getText!) // Returns nothing
+            if getText! == "0" {
+            }
+        case 4:
+            print("Tag 4:", getText!) // 2 star
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
+                banner.show()
+                performSegue(withIdentifier: "backToStarList", sender: self) // SelectStarTableViewController
+
+            }
+        case 5:
+            print("Tag 5:", getText!) // 3 star
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
+                banner.show()
+                performSegue(withIdentifier: "backToStarList", sender: self) // SelectStarTableViewController
             }
         default:
             print("def")

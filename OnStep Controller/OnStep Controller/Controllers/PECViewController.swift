@@ -54,7 +54,7 @@ class PECViewController: UIViewController {
             }
 
         } else { // (A)Alt-Az mount or other statuses like 0..
-        //    buttonTextAlpha(alpha: 0.25, activate: false)
+            buttonTextAlpha(alpha: 0.25, activate: false)
             DispatchQueue.main.async {
                 self.statusLbl.text = "Not Available"
                 print("Not Available")
