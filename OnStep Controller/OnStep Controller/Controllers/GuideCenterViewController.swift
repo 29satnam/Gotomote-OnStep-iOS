@@ -19,7 +19,6 @@ class GuideCenterViewController: UIViewController {
     
     @IBOutlet var revNSBtn: UIButton!
     @IBOutlet var revEWBtn: UIButton!
-    @IBOutlet var syncBtn: UIButton!
     
     @IBOutlet var northBtn: UIButton!
     @IBOutlet var southBtn: UIButton!
@@ -34,6 +33,12 @@ class GuideCenterViewController: UIViewController {
     @IBOutlet var SWBtn: UIButton!
     
     @IBOutlet var speedLbl: UILabel!
+    
+    @IBOutlet var alignBtn: UIButton!
+    @IBOutlet var syncBtn: UIButton!
+
+    @IBOutlet var stopBtn: UIButton!
+    
     var flippedSN: Bool = Bool()
     var flippedEW: Bool = Bool()
 
@@ -48,7 +53,7 @@ class GuideCenterViewController: UIViewController {
         speedSlider.maximumValue = 9
         speedSlider.isContinuous = true
         
-        triggerConnection(cmd: ":A?#", setTag: 0)
+     //  triggerConnection(cmd: ":A?#", setTag: ) get alignment status
 
     }
     
@@ -56,6 +61,9 @@ class GuideCenterViewController: UIViewController {
 
         addBtnProperties(button: revNSBtn)
         addBtnProperties(button: revEWBtn)
+        
+        addBtnProperties(button: alignBtn)
+        addBtnProperties(button: stopBtn)
         
         addBtnProperties(button: syncBtn)
         
@@ -116,9 +124,14 @@ class GuideCenterViewController: UIViewController {
 
     }
     
-    
+    // Sync Scope
     @IBAction func syncAction(_ sender: UIButton) {
         triggerConnection(cmd: ":CM#", setTag: 0)
+    }
+    
+    // Align Scope
+    @IBAction func alignAction(_ sender: UIButton) {
+        triggerConnection(cmd: ":A+#", setTag: 1)
     }
     
     // Mark: Slider - Increase Speed
@@ -126,25 +139,25 @@ class GuideCenterViewController: UIViewController {
         
         switch Int(sender.value) {
         case 0:
-            triggerConnection(cmd: ":R0#", setTag: 0)
+            triggerConnection(cmd: ":R0#", setTag: 2)
         case 1:
-            triggerConnection(cmd: ":R1#", setTag: 0)
+            triggerConnection(cmd: ":R1#", setTag: 2)
         case 2:
-            triggerConnection(cmd: ":R2#", setTag: 0)
+            triggerConnection(cmd: ":R2#", setTag: 2)
         case 3:
-            triggerConnection(cmd: ":R3#", setTag: 0)
+            triggerConnection(cmd: ":R3#", setTag: 2)
         case 4:
-            triggerConnection(cmd: ":R4#", setTag: 0)
+            triggerConnection(cmd: ":R4#", setTag: 2)
         case 5:
-            triggerConnection(cmd: ":R5#", setTag: 0)
+            triggerConnection(cmd: ":R5#", setTag: 2)
         case 6:
-            triggerConnection(cmd: ":R6#", setTag: 0)
+            triggerConnection(cmd: ":R6#", setTag: 2)
         case 7:
-            triggerConnection(cmd: ":R7#", setTag: 0)
+            triggerConnection(cmd: ":R7#", setTag: 2)
         case 8:
-            triggerConnection(cmd: ":R8#", setTag: 0)
+            triggerConnection(cmd: ":R8#", setTag: 2)
         case 9:
-            triggerConnection(cmd: ":R9#", setTag: 0)
+            triggerConnection(cmd: ":R9#", setTag: 2)
         default:
             print("sero")
         }
@@ -182,95 +195,95 @@ class GuideCenterViewController: UIViewController {
 
     // NE
     @objc func moveToNE() {
-        triggerConnection(cmd: ":Mn#:Me#", setTag: 0)
+        triggerConnection(cmd: ":Mn#:Me#", setTag: 2)
         print("moveToNE")
     }
 
     @objc func stopToNE() {
-        triggerConnection(cmd: ":Qn#:Qe#", setTag: 0)
+        triggerConnection(cmd: ":Qn#:Qe#", setTag: 2)
         print("stopToNE")
     }
     
     // NW
     @objc func moveToNW() {
-        triggerConnection(cmd: ":Mn#:Mw#", setTag: 0)
+        triggerConnection(cmd: ":Mn#:Mw#", setTag: 2)
         print("moveToNW")
     }
     
     @objc func stopToNW() {
-        triggerConnection(cmd: ":Qn#:Qw#", setTag: 0)
+        triggerConnection(cmd: ":Qn#:Qw#", setTag: 2)
         print("stopToNW")
     }
     
     // SE
     @objc func moveToSE() {
-        triggerConnection(cmd: ":Ms#:Me#", setTag: 0)
+        triggerConnection(cmd: ":Ms#:Me#", setTag: 2)
         print("moveToSE")
     }
     
     @objc func stopToSE() {
-        triggerConnection(cmd: ":Qs#:Qe#", setTag: 0)
+        triggerConnection(cmd: ":Qs#:Qe#", setTag: 2)
         print("stopToSE")
     }
 
     // SW
     @objc func moveToSW() {
-        triggerConnection(cmd: ":Ms#:Mw#", setTag: 0)
+        triggerConnection(cmd: ":Ms#:Mw#", setTag: 2)
         print("moveToSW")
     }
     
     @objc func stopToSW() {
-        triggerConnection(cmd: ":Qs#:Qw#", setTag: 0)
+        triggerConnection(cmd: ":Qs#:Qw#", setTag: 2)
         print("stopToSW")
     }
     
     // North
     @objc func moveToNorth() {
-        triggerConnection(cmd: ":Mn#", setTag: 0)
+        triggerConnection(cmd: ":Mn#", setTag: 2)
         print("moveToNorth")
     }
     
     @objc func stopToNorth() {
-        triggerConnection(cmd: ":Qn#", setTag: 0)
+        triggerConnection(cmd: ":Qn#", setTag: 2)
         print("stopToNorth")
     }
     
     // South
     @objc func moveToSouth() {
-        triggerConnection(cmd: ":Ms#", setTag: 0)
+        triggerConnection(cmd: ":Ms#", setTag: 2)
         print("moveToSouth")
     }
     
     @objc func stopToSouth() {
-        triggerConnection(cmd: ":Qs#", setTag: 0)
+        triggerConnection(cmd: ":Qs#", setTag: 2)
         print("stopToSouth")
     }
     
     // West
     @objc func moveToWest() {
-        triggerConnection(cmd: ":Mw#", setTag: 0)
+        triggerConnection(cmd: ":Mw#", setTag: 2)
         print("moveToWest")
     }
     
     @objc func stopToWest() {
-        triggerConnection(cmd: ":Qw#", setTag: 0)
+        triggerConnection(cmd: ":Qw#", setTag: 2)
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-        triggerConnection(cmd: ":Me#", setTag: 0)
+        triggerConnection(cmd: ":Me#", setTag: 2)
         print("moveToEast")
     }
     
     @objc func stopToEast() {
-        triggerConnection(cmd: ":Qe#", setTag: 0)
+        triggerConnection(cmd: ":Qe#", setTag: 2)
         print("stopToEast")
     }
     
-    // Stop
+    // Stop Scope
     @IBAction func stopScope(_ sender: Any) {
-        triggerConnection(cmd: ":Q#", setTag: 0)
+        triggerConnection(cmd: ":Q#", setTag: 2)
     }
     
     
@@ -498,10 +511,12 @@ class GuideCenterViewController: UIViewController {
         DispatchQueue.main.async {
             self.revEWBtn.alpha = alpha
             self.revNSBtn.alpha = alpha
-            self.syncBtn.alpha = alpha
             self.speedSlider.alpha = alpha
             self.speedLbl.alpha = alpha
-            
+            self.alignBtn.alpha = alpha
+            self.syncBtn.alpha = alpha
+            self.stopBtn.alpha = alpha
+
             
             self.NEBtn.alpha = alpha
             self.NWBtn.alpha = alpha
@@ -511,6 +526,8 @@ class GuideCenterViewController: UIViewController {
             self.revNSBtn.isUserInteractionEnabled = activate
             self.revEWBtn.isUserInteractionEnabled = activate
             self.syncBtn.isUserInteractionEnabled = activate
+            self.alignBtn.isUserInteractionEnabled = activate
+            self.stopBtn.isUserInteractionEnabled = activate
             self.speedSlider.isUserInteractionEnabled = activate
             
             self.NEBtn.isUserInteractionEnabled = activate
@@ -538,7 +555,6 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        clientSocket.readData(withTimeout: -1, tag: 0)
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
@@ -547,8 +563,71 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
         switch tag {
         case 0:
             print("Tag 0:", getText!) // Returns nothing
+            switch getText! {
+            case "E0#":
+                let banner = StatusBarNotificationBanner(title: "Error: Goto is possible", style: .warning)
+                banner.show()
+            case "E1#":
+                let banner = StatusBarNotificationBanner(title: "Error: Below the horizon limit", style: .warning)
+                banner.show()
+            case "E2#":
+                let banner = StatusBarNotificationBanner(title: "Error: Above overhead limit", style: .warning)
+                banner.show()
+            case "E3#":
+                let banner = StatusBarNotificationBanner(title: "Error: Controller in standby", style: .warning)
+                banner.show()
+            case "E4#":
+                let banner = StatusBarNotificationBanner(title: "Error: Mount is parked", style: .warning)
+                banner.show()
+            case "E5#":
+                let banner = StatusBarNotificationBanner(title: "Error: Goto in progress", style: .warning)
+                banner.show()
+            case "E6#":
+                let banner = StatusBarNotificationBanner(title: "Error: Outside limits (MaxDec, MinDec, UnderPoleLimit, MeridianLimit)", style: .warning)
+                banner.show()
+            case "E7#":
+                let banner = StatusBarNotificationBanner(title: "Error: Hardware fault", style: .warning)
+                banner.show()
+            case "E8#":
+                let banner = StatusBarNotificationBanner(title: "Error: Already in motion", style: .warning)
+                banner.show()
+            case "E9#":
+                let banner = StatusBarNotificationBanner(title: "Error: Unspecified error", style: .warning)
+                banner.show()
+            case "N/A#":
+                let banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success)
+                banner.show()
+            default:
+                print("Defaut")
+            }
+            
+            //  :CM#   Synchonize the telescope with the current database object (as above)
+            //         Returns: "N/A#" on success, "En#" on failure where n is the error code per the :MS# command
+            
+            //         Returns:
+            //         0=Goto is possible - E1#
+            //         1=below the horizon limit
+            //         2=above overhead limit
+            //         3=controller in standby
+            //         4=mount is parked
+            //         5=Goto in progress
+            //         6=outside limits (MaxDec, MinDec, UnderPoleLimit, MeridianLimit)
+            //         7=hardware fault
+            //         8=already in motion
+            //         9=unspecified error
+            
         case 1:
-            print("")
+            print("Tag 1:", getText!) // Align
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Align accepted successfully.", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Align accept failed.", style: .success)
+                banner.show()
+            }
+        case 2:
+            print("Tag 2:", getText!) // Returns nothing
+            
         default:
             print("def")
         }
