@@ -13,7 +13,7 @@ import NotificationBanner
 class SetOverHeadViewController: UIViewController {
     
     var clientSocket: GCDAsyncSocket!
-    var readerText: String = String()
+    var readerArray: [String] = [String]()
 
     var horizonLimit: String = String()
     var overHeadLimit: String = String()
@@ -29,7 +29,7 @@ class SetOverHeadViewController: UIViewController {
         addBtnProperties(button: uploadBtn)
         
         addTFProperties(tf: overHeadLimitBtn, placeholder: "85")
-        addTFProperties(tf: horizonLimitBtn, placeholder: "30 ")
+        addTFProperties(tf: horizonLimitBtn, placeholder: "30")
         
         navigationItem.title = "SET OVERHEAD LIMITS"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
@@ -78,6 +78,8 @@ class SetOverHeadViewController: UIViewController {
             
             if !(60...90).contains(Int(overHeadLimitBtn.text!)!) || !(-30...30).contains(Int(horizonLimitBtn.text!)!) {
                 print("not success")
+                let banner = StatusBarNotificationBanner(title: "Value(s) is not in range.", style: .danger)
+                banner.show()
             } else {
                 print("success")
                 
@@ -96,11 +98,14 @@ class SetOverHeadViewController: UIViewController {
                     print("neg", String(format: "%03d", x))
                 }
                 
-                self.triggerConnection(cmd: ":Sh\(y)#:So\(overHeadLimitBtn.text!)#", setTag: 1)
+                readerArray.removeAll()
+                self.triggerConnection(cmd: ":Sh\(y)#:So\(overHeadLimitBtn.text!)#", setTag: 0)
                 // Set horizon limit -/+ 30 // Set overhead limit 60 to 90
             }
         } else {
-            print("Backlash RA or Backlash Dec can't be empty.")
+            print("can't be empty")
+            let banner = StatusBarNotificationBanner(title: "Textfields can't be empty.", style: .danger)
+            banner.show()
         }
     }
 
@@ -113,11 +118,24 @@ extension SetOverHeadViewController: GCDAsyncSocketDelegate {
         print("got:", getText)
         switch tag {
         case 0:
-            readerText += "\(getText!)" // Unused
-            
-        case 1:
-            print("Tag 1:", getText!) // 0, 1 for both -> check success
-            
+            readerArray.append(getText!)
+            if readerArray.count == 2 {
+                if readerArray[opt: 0] == "1" {
+                    let banner = StatusBarNotificationBanner(title: "Set horizon limit successful.", style: .success)
+                    banner.show()
+                } else {
+                    let banner = StatusBarNotificationBanner(title: "Set horizon limit failed.", style: .danger)
+                    banner.show()
+                }
+                
+                if readerArray[opt: 1] == "1" {
+                    let banner = StatusBarNotificationBanner(title: "Set overhead limit successful.", style: .success)
+                    banner.show()
+                } else {
+                    let banner = StatusBarNotificationBanner(title: "Set overhead limit failed.", style: .danger)
+                    banner.show()
+                }
+            }
         default:
             print("def")
         }
@@ -143,11 +161,16 @@ extension SetOverHeadViewController: GCDAsyncSocketDelegate {
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-            banner.remove()
         }
     }
     
