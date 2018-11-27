@@ -294,8 +294,8 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             banner.show()
             self.performSegue(withIdentifier: "initialize", sender: self)
         case 2:
-          //  print("Tag 2:", getText!)
-            readerText += getText!
+          //  print("Tag 2:", getText!) // to messier, bright nebula...
+            readerText += getText! // To Messier, Bright Nebula...
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
             print("inde", index.count)
             if index.count == 3 {

@@ -51,40 +51,26 @@ class GotoMRViewController: UIViewController {
     @IBAction func fastestAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!/2.0)#", setTag: 3)
-        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-
-
     }
     
     @IBAction func fasterAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!/1.5)#", setTag: 4)
-        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-
-
     }
     // TODO: Crash if not connected when button pressed
     @IBAction func defaultAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!*1.0)#", setTag: 5)
-        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-
     }
     
     @IBAction func slowerAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!*1.5)#", setTag: 6)
-        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-
-
     }
     
     @IBAction func slowestAction(_ sender: UIButton) {
         readerText = ""
         self.triggerConnection(cmd: ":SX92,\(Double(defaultRate)!*2.0)#", setTag: 7)
-        rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,6 +123,7 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
         case 3:
             print("Tag 3:", getText!) // Fastest
             if getText! == "1" {
+                rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
                 let banner = StatusBarNotificationBanner(title: "Max rate is 2x faster.", style: .success)
                 banner.show()
             } else {
@@ -146,6 +133,7 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
         case 4:
             print("Tag 4:", getText!) // Faster
             if getText! == "1" {
+                rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
                 let banner = StatusBarNotificationBanner(title: "Max rate is 1.5x faster.", style: .success)
                 banner.show()
             } else {
@@ -155,6 +143,7 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
         case 5:
             print("Tag 5:", getText!) // Default
             if getText! == "1" {
+                rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
                 let banner = StatusBarNotificationBanner(title: "Max rate is at default.", style: .success)
                 banner.show()
             } else {
@@ -164,6 +153,7 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
         case 6:
             print("Tag 6:", getText!) // Slower
             if getText! == "1" {
+                rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
                 let banner = StatusBarNotificationBanner(title: "Max rate is 1.5x slower.", style: .success)
                 banner.show()
             } else {
@@ -173,6 +163,7 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
         case 7:
             print("Tag 7:", getText!) // Slowest
             if getText! == "1" {
+                rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
                 let banner = StatusBarNotificationBanner(title: "Max rate is 2x slower.", style: .success)
                 banner.show()
             } else {
