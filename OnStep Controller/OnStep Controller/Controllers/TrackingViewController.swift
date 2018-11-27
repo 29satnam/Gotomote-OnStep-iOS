@@ -73,13 +73,11 @@ class TrackingViewController: UIViewController {
             
             // Populate data
             if addressPort.value(forKey: "addressPort") as? String == nil {
-                
                 addressPort.set("192.168.0.1:9999", forKey: "addressPort")
                 addressPort.synchronize()  // Initialize
                 
             } else {
                 let addrPort = (addressPort.value(forKey: "addressPort") as? String)?.components(separatedBy: ":")
-                
                 addr = addrPort![opt: 0]!
                 port = UInt16(addrPort![opt: 1]!)!
             }
@@ -97,8 +95,7 @@ class TrackingViewController: UIViewController {
     
     // - Sidereal Rate
     @IBAction func sSiderealAct(_ sender: UIButton) {
-        // :STdd.ddddd# // TODO
-        self.triggerConnection(cmd: ":TQ", setTag: 0)
+        self.triggerConnection(cmd: ":TQ#", setTag: 0)
     }
     
     // - Lunar Rate
@@ -117,32 +114,32 @@ class TrackingViewController: UIViewController {
     
     // - Full
     @IBAction func cFullAct(_ sender: UIButton) {
-        // TODO -- Confirm
-        self.triggerConnection(cmd: ":To#", setTag: 0)
+        // OnTrack enable
+        self.triggerConnection(cmd: ":To#", setTag: 1)
     }
     
     // - Refraction
     @IBAction func cReftAct(_ sender: UIButton) {
-        //:Tr#
-        self.triggerConnection(cmd: ":Tr#", setTag: 0)
-    }
-    
-    // - Dual
-    @IBAction func cDualAct(_ sender: UIButton) {
-        // TODO- :T2#
-        self.triggerConnection(cmd: ":T2#", setTag: 0) // -------------
-    }
-
-    // - Single
-    @IBAction func cSingleAct(_ sender: UIButton) {
-        // TODO- :T1#
-        self.triggerConnection(cmd: ":T1#", setTag: 0) // --------------
+        // Track refraction enable // turn refraction compensation on, defaults to base sidereal tracking rate
+        self.triggerConnection(cmd: ":Tr#", setTag: 2)
     }
     
     // - Off
     @IBAction func cOffAct(_ sender: UIButton) {
-        // TODO
-        self.triggerConnection(cmd: ":Tn#", setTag: 0)
+        // Track refraction disable
+        self.triggerConnection(cmd: ":Tn#", setTag: 5)
+    }
+    
+    // - Dual
+    @IBAction func cDualAct(_ sender: UIButton) {
+        // Track dual axis // turn on dual axis tracking
+        self.triggerConnection(cmd: ":T2#", setTag: 3) // -------------
+    }
+
+    // - Single
+    @IBAction func cSingleAct(_ sender: UIButton) {
+        // Track single axis (disable Dec tracking on Eq mounts)
+        self.triggerConnection(cmd: ":T1#", setTag: 4) // --------------
     }
     
     //Mark - Adjust Rate by 0.1Hz:
@@ -161,20 +158,20 @@ class TrackingViewController: UIViewController {
     
     // - Reset
     @IBAction func aRestAct(_ sender: UIButton) {
-        // :TR#
+        // :TR# // Track refraction enable // Reset Base Rate to default
         self.triggerConnection(cmd: ":TR#", setTag: 0)
     }
     
     // - Tracking Control
     @IBAction func tStopAct(_ sender: UIButton) {
-        // :Te#
-        self.triggerConnection(cmd: ":Td#", setTag: 0)
+        // :Te# // Tracking disable
+        self.triggerConnection(cmd: ":Td#", setTag: 6)
     }
     
     // - Start
     @IBAction func tStartAct(_ sender: UIButton) {
-        // :Te#
-        self.triggerConnection(cmd: ":Te#", setTag: 0)
+        // :Te# // Tracking enable
+        self.triggerConnection(cmd: ":Te#", setTag: 7)
     }
     
     
@@ -198,6 +195,7 @@ class TrackingViewController: UIViewController {
 
 extension TrackingViewController: GCDAsyncSocketDelegate {
     
+    
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         
         let address = "Server IP：" + "\(host)"
@@ -211,7 +209,6 @@ extension TrackingViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        clientSocket.readData(withTimeout: -1, tag: 0)
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
@@ -220,21 +217,88 @@ extension TrackingViewController: GCDAsyncSocketDelegate {
         print("got:", getText!)
         switch tag {
         case 0:
-            readerText += "\(getText!)"
+            print("Tag 1:", getText!) // returns nothing
         case 1:
-            print("Tag 1:", getText!)
+            print("Tag 1:", getText!) // cFullAct // OnTrack enable
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Full compensation on successful.", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Full compensation on failed.", style: .danger)
+                banner.show()
+            }
+        case 2:
+            print("Tag 2:", getText!) // cReftAct // turn refraction compensation on, defaults to base sidereal tracking rate
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Turn refraction compensation on successful.", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Turn refraction compensation on failed.", style: .danger)
+                banner.show()
+            }
+        case 3:
+            print("Tag 3:", getText!) // cDualAct // // turn on dual axis tracking
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Turn on dual axis tracking successful", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Turn on dual axis tracking failed", style: .danger)
+                banner.show()
+            }
+        case 4:
+            print("Tag 4:", getText!) // cSingleAct // Track single axis (disable Dec tracking on Eq mounts)
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Track single axis (disable Dec tracking on Eq mounts) successful.", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Track single axis (disable Dec tracking on Eq mounts) failed.", style: .danger)
+                banner.show()
+            }
+        case 5:
+            print("Tag 5:", getText!) // cSingleAct // Track single axis (disable Dec tracking on Eq mounts)
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Track refraction disable successful.", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Track refraction disable failed.", style: .danger)
+                banner.show()
+            }
+        case 6:
+            print("Tag 6:", getText!) // tStopAct // Tracking disable
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Tracking disable successful", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Tracking disable failed.", style: .danger)
+                banner.show()
+            }
+        case 7:
+            print("Tag 7:", getText!) // tStartAct // Tracking enable
+            if getText! == "1" {
+                let banner = StatusBarNotificationBanner(title: "Tracking enable successful", style: .success)
+                banner.show()
+            } else {
+                let banner = StatusBarNotificationBanner(title: "Tracking enable failed.", style: .danger)
+                banner.show()
+            }
         default:
             print("def")
         }
+        clientSocket.readData(withTimeout: -1, tag: tag)
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-            banner.remove()
         }
     }
 }

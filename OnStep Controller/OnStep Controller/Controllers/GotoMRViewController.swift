@@ -191,7 +191,6 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
@@ -208,5 +207,4 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
             banner.show()
         }
     }
-    
 }
