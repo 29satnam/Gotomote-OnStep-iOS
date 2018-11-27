@@ -115,21 +115,25 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func acceptAction(_ sender: UIButton) {
         
-        if (raSS.text?.isEmpty)! {
-            raSS.text = "00"
-        }
-
-        if (decSS.text?.isEmpty)! {
-            decSS.text = "00"
+        if !raHH.text!.isEmpty && !raMM.text!.isEmpty && !decDD.text!.isEmpty && !decMM.text!.isEmpty {
+            if (raSS.text?.isEmpty)! {
+                raSS.text = "00"
+            }
+            
+            if (decSS.text?.isEmpty)! {
+                decSS.text = "00"
+            }
         }
         
         if !raHH.text!.isEmpty && !raMM.text!.isEmpty && !raSS.text!.isEmpty && !decDD.text!.isEmpty && !decMM.text!.isEmpty && !decSS.text!.isEmpty {
             
             if !(00...23).contains(Int(raHH.text!)!) || !(00...59).contains(Int(raMM.text!)!) || !(00...59).contains(Int(raSS.text!)!) || !(-90...90).contains(Int(decDD.text!)!) || !(00...59).contains(Int(decMM.text!)!) || !(00...59).contains(Int(decSS.text!)!) {
-                print("show error - Not in range") // Not in range TODO
+                print("show error - Not in range")
+                let banner = StatusBarNotificationBanner(title: "Value(s) is out of range.", style: .danger)
+                banner.show()
             } else {
                 if !(0...235959).contains(Int(raHH.text! + raMM.text! + raSS.text!)!) || !(-900000...900000).contains(Int(decDD.text! + decMM.text! + decSS.text!)!) {
-                    print("show error - Not in range") // Not in range TODO
+                    print("Value(s) is out of range.")
                 } else {
                     print("do stuff")
                   //  print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS))
@@ -149,12 +153,13 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                   //  print("declination", declination, "rightAscension", rightAscension)
+                    readerText = ""
                     triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2) // Get Latitude (for current site) // Get Longitude (for current site) // Get UTC Offset(for current site)
-
                 }
             }
         } else {
-            print("show error - can't be empty") // TODO cant be empty
+            let banner = StatusBarNotificationBanner(title: "Textfields can't be empty.", style: .danger)
+            banner.show()
         }
     }
     
@@ -195,13 +200,9 @@ extension EnterCoordinatesViewController: GCDAsyncSocketDelegate {
         let getText = String(data: data, encoding: .utf8)
         switch tag {
         case 0:
-            print("Tag 0:", getText!)
-            readerText += "\(getText!)"
-            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-            print(index)
+            print("Tag 0:", getText!) // Unused
         case 1:
-            print("Tag 1:", getText!)
-            utcString = getText!
+            print("Tag 1:", getText!)  // Unused
         case 2:
             print("Tag 2:", getText!)
             readerText += "\(getText!)"
@@ -209,14 +210,14 @@ extension EnterCoordinatesViewController: GCDAsyncSocketDelegate {
             //   print(index)
             if index.isEmpty == false && index.count == 2 {
                 coordinatesToPass = index
+                let banner = StatusBarNotificationBanner(title: "RA and Dec values are accepted.", style: .success)
+                banner.show()
                 self.performSegue(withIdentifier: "gotoCustomObjectSyncSegue", sender: self)
-                
-                print("coordinatesToPass:", coordinatesToPass, "rightAscension:", rightAscension, "declination:", declination)
+              //  print("coordinatesToPass:", coordinatesToPass, "rightAscension:", rightAscension, "declination:", declination)
               //  coordinatesToPass: ["+01.55", "+179.52"] rightAscension: 01:01:00 declination: -01:01:00
-
-            }
+           }
         case 3:
-            print("Tag 3:", getText!)
+            print("Tag 3:", getText!)  // Unused
         default:
             print("def")
         }
@@ -226,7 +227,6 @@ extension EnterCoordinatesViewController: GCDAsyncSocketDelegate {
     }
     
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
-        
         let address = "Server IP：" + "\(host)"
         print("didConnectToHost:", address)
         
@@ -242,11 +242,16 @@ extension EnterCoordinatesViewController: GCDAsyncSocketDelegate {
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-            banner.remove()
         }
     }
 }

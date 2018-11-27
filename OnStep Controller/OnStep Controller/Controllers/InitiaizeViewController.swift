@@ -313,16 +313,14 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
                 
                 if alignTypeInit == 3 {
                     let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
-                    banner.show() // Start align
+                    banner.show() // Start #3 align
                 } else if alignTypeInit == 2 {
                     let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
-                    banner.show() // Start align
+                    banner.show() // Start #2 align
                 } else if alignTypeInit == 1 {
                     let banner = StatusBarNotificationBanner(title: "Star #1 aligment started.", style: .success)
-                    banner.show() // Start align
+                    banner.show() // Start #1 align
                 }
-                
-
                 self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
             } else { // failed
             }
