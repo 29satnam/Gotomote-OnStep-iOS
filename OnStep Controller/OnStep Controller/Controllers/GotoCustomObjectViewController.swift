@@ -57,6 +57,8 @@ class GotoCustomObjectViewController: UIViewController {
     
     @IBOutlet var aboveHorizon: UILabel!
     
+    var readerArray: [String] = [String]()
+
     // retrieved
    // var slctdJSONObj: [JSON] = [JSON()]
     
@@ -93,17 +95,14 @@ class GotoCustomObjectViewController: UIViewController {
     //         print("thisss:", String(format: "%02d:%02d:%02d", hours, minutes, seconds))
     
     @IBAction func gotoBtn(_ sender: UIButton) {
-        let formatRA = passedRA.replacingOccurrences(of: ":", with: "")
-        let formatDec = passedDec.replacingOccurrences(of: ":", with: "")
-
-        triggerConnection(cmd: ":Sr\(formatRA)#:Sd\(formatDec)#:CS#") //Set target RA # Set target Dec
+     //   let formatRA = passedRA.replacingOccurrences(of: ":", with: "")
+     //   let formatDec = passedDec.replacingOccurrences(of: ":", with: "")
+        readerArray.removeAll()
+        triggerConnection(cmd: ":Sr\(passedRA)#:Sd\(passedDec)#:MS#", setTag: 1) //Set target RA // Set target Dec // GOTO
+        print(":Sr\(passedRA)#:Sd\(passedDec)#:MS#")
         // this -> :Sr21:30:00#:Sd+12:10:00#:MS#
-    }
-    
-    // Mark: Slider - Increase Speed
-    
-    @IBAction func abortBtn(_ sender: UIButton) {
-        triggerConnection(cmd: ":Q#")
+        //:Sr123000#:Sd+234500#:MS#
+
     }
     
     // Mark: Slider - Increase Speed
@@ -111,34 +110,32 @@ class GotoCustomObjectViewController: UIViewController {
         
         switch Int(sender.value) {
         case 0:
-            triggerConnection(cmd: ":R0#")
+            triggerConnection(cmd: ":R0#", setTag: 0)
         case 1:
-            triggerConnection(cmd: ":R1#")
+            triggerConnection(cmd: ":R1#", setTag: 0)
         case 2:
-            triggerConnection(cmd: ":R2#")
+            triggerConnection(cmd: ":R2#", setTag: 0)
         case 3:
-            triggerConnection(cmd: ":R3#")
+            triggerConnection(cmd: ":R3#", setTag: 0)
         case 4:
-            triggerConnection(cmd: ":R4#")
+            triggerConnection(cmd: ":R4#", setTag: 0)
         case 5:
-            triggerConnection(cmd: ":R5#")
+            triggerConnection(cmd: ":R5#", setTag: 0)
         case 6:
-            triggerConnection(cmd: ":R6#")
+            triggerConnection(cmd: ":R6#", setTag: 0)
         case 7:
-            triggerConnection(cmd: ":R7#")
+            triggerConnection(cmd: ":R7#", setTag: 0)
         case 8:
-            triggerConnection(cmd: ":R8#")
+            triggerConnection(cmd: ":R8#", setTag: 0)
         case 9:
-            triggerConnection(cmd: ":R9#")
+            triggerConnection(cmd: ":R9#", setTag: 0)
         default:
             print("sero")
         }
         
     }
     
-    
-    func triggerConnection(cmd: String) {
-        
+    func triggerConnection(cmd: String, setTag: Int) {
         clientSocket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
         do {
@@ -160,7 +157,8 @@ class GotoCustomObjectViewController: UIViewController {
             
             try clientSocket.connect(toHost: addr, onPort: port, withTimeout: 1.5)
             let data = cmd.data(using: .utf8)
-            clientSocket.write(data!, withTimeout: -1, tag: 0)
+            clientSocket.write(data!, withTimeout: 1.5, tag: setTag)
+            clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
     }
@@ -260,7 +258,7 @@ class GotoCustomObjectViewController: UIViewController {
     
     // Align the Star
     @IBAction func syncAction(_ sender: UIButton) {
-        triggerConnection(cmd: ":CM#")
+        triggerConnection(cmd: ":CM#", setTag: 2)
         //  :CM#   Synchonize the telescope with the current database object (as above)
         //    Returns: "N/A#" on success, "En#" on failure where n is the error code per the :MS# command
     }
@@ -272,54 +270,51 @@ class GotoCustomObjectViewController: UIViewController {
     
     // North
     @objc func moveToNorth() {
-        triggerConnection(cmd: ":Mn#")
+        triggerConnection(cmd: ":Mn#", setTag: 0)
         print("moveToNorth")
     }
     
     @objc func stopToNorth() {
-        triggerConnection(cmd: ":Qn#")
+        triggerConnection(cmd: ":Qn#", setTag: 0)
         print("stopToNorth")
     }
     
     // South
     @objc func moveToSouth() {
-        triggerConnection(cmd: ":Ms#")
+        triggerConnection(cmd: ":Ms#", setTag: 0)
         print("moveToSouth")
     }
     
     @objc func stopToSouth() {
-        triggerConnection(cmd: ":Qs#")
+        triggerConnection(cmd: ":Qs#", setTag: 0)
         print("stopToSouth")
     }
     
     // West
     @objc func moveToWest(_ sender: UIButton) {
-        triggerConnection(cmd: ":Mw#")
+        triggerConnection(cmd: ":Mw#", setTag: 0)
         print("moveToWest")
     }
     
     @objc func stopToWest() {
-        triggerConnection(cmd: ":Qw#")
+        triggerConnection(cmd: ":Qw#", setTag: 0)
         print("stopToWest")
     }
     
     // East
     @objc func moveToEast() {
-        triggerConnection(cmd: ":Me#")
+        triggerConnection(cmd: ":Me#", setTag: 0)
         print("moveToEast")
     }
     
     @objc func stopToEast() {
-        triggerConnection(cmd: ":Qe#")
+        triggerConnection(cmd: ":Qe#", setTag: 0)
         print("stopToEast")
     }
     
     // Stop
     @IBAction func stopScope(_ sender: Any) {
-        triggerConnection(cmd: ":Q#")
-        //   print("stopScope")
-        //    :T+#
-        //    triggerConnection(cmd: ":R9#")
+        triggerConnection(cmd: ":Q#", setTag: 0)
         
     }
     
@@ -448,22 +443,118 @@ extension GotoCustomObjectViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        clientSocket.readData(withTimeout: -1, tag: 0)
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let text = String(data: data, encoding: .utf8)
-        print("didRead:", text!)
-        clientSocket.readData(withTimeout: -1, tag: 0)
+        let getText = String(data: data, encoding: .utf8)
+    //    print("got:", getText)
+        switch tag {
+        case 0:
+            print("shitt") // returns nothing
+        case 1:
+            print("Tag 1:", getText!) // GOTO Pressed
+            readerArray.append(getText!)
+            print(readerArray.count, readerArray)
+            if readerArray.count == 3 {
+                
+                print("Reader", readerArray[opt: 1]!) // Returns nothing
+                switch getText! {
+                case "0":
+                    let banner = StatusBarNotificationBanner(title: "Goto is possible.", style: .success)
+                    banner.show()
+                case "1":
+                    let banner = StatusBarNotificationBanner(title: "Error: Below the horizon limit", style: .warning)
+                    banner.show()
+                case "2":
+                    let banner = StatusBarNotificationBanner(title: "Error: Above overhead limit", style: .warning)
+                    banner.show()
+                case "3":
+                    let banner = StatusBarNotificationBanner(title: "Error: Controller in standby", style: .warning)
+                    banner.show()
+                case "4":
+                    let banner = StatusBarNotificationBanner(title: "Error: Mount is parked", style: .warning)
+                    banner.show()
+                case "5":
+                    let banner = StatusBarNotificationBanner(title: "Error: Goto in progress", style: .warning)
+                    banner.show()
+                case "6":
+                    let banner = StatusBarNotificationBanner(title: "Error: Outside limits (MaxDec, MinDec, UnderPoleLimit, MeridianLimit)", style: .warning)
+                    banner.show()
+                case "7":
+                    let banner = StatusBarNotificationBanner(title: "Error: Hardware fault", style: .warning)
+                    banner.show()
+                case "8":
+                    let banner = StatusBarNotificationBanner(title: "Error: Already in motion", style: .warning)
+                    banner.show()
+                case "9":
+                    let banner = StatusBarNotificationBanner(title: "Error: Unspecified error", style: .warning)
+                    banner.show()
+                case "N/A#":
+                    let banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success) // :MS# -- GOTO
+                    banner.show()
+                default:
+                    print("Defaut")
+                }
+            }
+        case 2:
+            print("Tag 2:", getText!) // Sync
+            switch getText! {
+            case "E0#":
+                let banner = StatusBarNotificationBanner(title: "Goto is possible", style: .success)
+                banner.show()
+            case "E1#":
+                let banner = StatusBarNotificationBanner(title: "Error: Below the horizon limit", style: .warning)
+                banner.show()
+            case "E2#":
+                let banner = StatusBarNotificationBanner(title: "Error: Above overhead limit", style: .warning)
+                banner.show()
+            case "E3#":
+                let banner = StatusBarNotificationBanner(title: "Error: Controller in standby", style: .warning)
+                banner.show()
+            case "E4#":
+                let banner = StatusBarNotificationBanner(title: "Error: Mount is parked", style: .warning)
+                banner.show()
+            case "E5#":
+                let banner = StatusBarNotificationBanner(title: "Error: Goto in progress", style: .warning)
+                banner.show()
+            case "E6#":
+                let banner = StatusBarNotificationBanner(title: "Error: Outside limits (MaxDec, MinDec, UnderPoleLimit, MeridianLimit)", style: .warning)
+                banner.show()
+            case "E7#":
+                let banner = StatusBarNotificationBanner(title: "Error: Hardware fault", style: .warning)
+                banner.show()
+            case "E8#":
+                let banner = StatusBarNotificationBanner(title: "Error: Already in motion", style: .warning)
+                banner.show()
+            case "E9#":
+                let banner = StatusBarNotificationBanner(title: "Error: Unspecified error", style: .warning)
+                banner.show()
+            case "N/A#":
+                let banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success) // :CM# -- Sync
+                banner.show()
+            default:
+                print("Defaut")
+            }
+        default:
+            print("def")
+        }
+        clientSocket.readData(withTimeout: -1, tag: tag)
+        // clientSocket.disconnect()
+        
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-            banner.remove()
         }
     }
 }

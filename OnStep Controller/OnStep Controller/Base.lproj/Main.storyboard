@@ -538,7 +538,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Max Rate:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m81-kI-8RQ">
-                                <rect key="frame" x="139.5" y="33" width="96" height="14"/>
+                                <rect key="frame" x="138.5" y="33" width="98.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2109,13 +2109,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-17-xOO">
-                                <rect key="frame" x="28" y="43" width="16.5" height="14"/>
+                                <rect key="frame" x="28" y="43" width="17.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="DEC = -16.7" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNG-oe-Xc0">
-                                <rect key="frame" x="28" y="101.5" width="64" height="14"/>
+                                <rect key="frame" x="28" y="101.5" width="66.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2133,25 +2133,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance = 9 ly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRk-F3-hVq">
-                                <rect key="frame" x="28" y="125.5" width="94.5" height="14"/>
+                                <rect key="frame" x="28" y="125.5" width="96.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Above Horizon? =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCc-Ub-dXU">
-                                <rect key="frame" x="28" y="150" width="94.5" height="14"/>
+                                <rect key="frame" x="28" y="150" width="96.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMe-KM-6R7">
-                                <rect key="frame" x="72" y="547" width="37.5" height="14"/>
+                                <rect key="frame" x="72" y="547" width="38.5" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Galaxy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffr-3p-E2t">
-                                <rect key="frame" x="308.5" y="43" width="38.5" height="14"/>
+                                <rect key="frame" x="310" y="43" width="37" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2253,7 +2253,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="RA = 06h 45m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2b-kq-aax">
-                                <rect key="frame" x="28" y="77.5" width="78" height="14"/>
+                                <rect key="frame" x="28" y="77.5" width="77" height="14"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3071,8 +3071,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="gotoBtn:" destination="3qm-Df-FnM" eventType="touchUpInside" id="AC6-nC-bGj"/>
-                                    <action selector="gotoBtn:" destination="Vnk-Qz-cM6" eventType="touchUpInside" id="SGQ-9X-c5P"/>
+                                    <action selector="gotoBtn:" destination="Vnk-Qz-cM6" eventType="touchUpInside" id="pg4-W4-FKl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lu-Ek-UWe">
@@ -3084,7 +3083,6 @@
                                 </state>
                                 <connections>
                                     <action selector="abortBtn:" destination="3qm-Df-FnM" eventType="touchUpInside" id="jTE-TX-NFC"/>
-                                    <action selector="abortBtn:" destination="Vnk-Qz-cM6" eventType="touchUpInside" id="wDu-gk-jM2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3153,7 +3151,7 @@
                         <outlet property="azimuth" destination="bdp-F7-54Q" id="927-ch-hvZ"/>
                         <outlet property="dec" destination="KyJ-3g-PLf" id="0jG-tI-Rl9"/>
                         <outlet property="eastBtn" destination="NuR-Ql-g0h" id="uVM-Ot-iUn"/>
-                        <outlet property="gotoBtn" destination="cUU-4q-vuK" id="zkQ-EB-gGy"/>
+                        <outlet property="gotoBtn" destination="cUU-4q-vuK" id="eE4-bR-rHU"/>
                         <outlet property="northBtn" destination="sSq-0T-vBF" id="pmK-a8-4Y7"/>
                         <outlet property="ra" destination="BhM-ES-wYW" id="HcR-Yu-ycB"/>
                         <outlet property="revEWBtn" destination="Vdj-je-bD1" id="kHP-Vb-LVf"/>

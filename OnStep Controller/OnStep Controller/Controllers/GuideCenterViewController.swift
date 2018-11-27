@@ -562,10 +562,10 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
         print("got:", getText)
         switch tag {
         case 0:
-            print("Tag 0:", getText!) // Returns nothing
+            print("Tag 0:", getText!) // Sync
             switch getText! {
             case "E0#":
-                let banner = StatusBarNotificationBanner(title: "Error: Goto is possible", style: .warning)
+                let banner = StatusBarNotificationBanner(title: "Goto is possible", style: .success)
                 banner.show()
             case "E1#":
                 let banner = StatusBarNotificationBanner(title: "Error: Below the horizon limit", style: .warning)
@@ -595,7 +595,7 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
                 let banner = StatusBarNotificationBanner(title: "Error: Unspecified error", style: .warning)
                 banner.show()
             case "N/A#":
-                let banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success)
+                let banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success) // :CM# -- Sync
                 banner.show()
             default:
                 print("Defaut")

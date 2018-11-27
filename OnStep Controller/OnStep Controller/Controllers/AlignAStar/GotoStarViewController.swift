@@ -188,11 +188,15 @@ class GotoStarViewController: UIViewController {
         
         //------------------- RA
         
-        readerArray.removeAll()
-        print("ty", readerArray.count)
         let raArray = raStr.split(separator: " ")
+        readerArray.removeAll()
         triggerConnection(cmd: ":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!).0#:Sd\(decString)#:MS#", setTag: 1) //Set target RA # Set target Dec
         print(":Sr\(raArray[opt: 0]!):\(raArray[opt: 1]!):00#:Sd\(decString)#:MS#")
+        
+        // :Sr16:29:00#:Sd-26:24:00#:MS#
+
+        //  :MN#   Goto current RA/Dec but East of the Pier (within meridian limit overlap for GEM mounts)
+        //         Returns: 0..9, see :MS#
     }
     
     // Mark: Slider - Increase Speed
@@ -761,10 +765,48 @@ extension GotoStarViewController: GCDAsyncSocketDelegate {
         case 1:
             print("Tag 1:", getText!) // GOTO Pressed
             readerArray.append(getText!)
+            print(readerArray.count, readerArray)
             if readerArray.count == 3 {
-                print("this", readerArray.count, readerArray[opt: 0], readerArray[opt: 1])
-                let banner = StatusBarNotificationBanner(title: "Moving scope to given RA & DEC", style: .success)
-                banner.show()
+                
+                print("Reader", readerArray[opt: 1]!) // Returns nothing
+                switch getText! {
+                case "0":
+                    let banner = StatusBarNotificationBanner(title: "Goto is possible.", style: .success)
+                    banner.show()
+                case "1":
+                    let banner = StatusBarNotificationBanner(title: "Error: Below the horizon limit", style: .warning)
+                    banner.show()
+                case "2":
+                    let banner = StatusBarNotificationBanner(title: "Error: Above overhead limit", style: .warning)
+                    banner.show()
+                case "3":
+                    let banner = StatusBarNotificationBanner(title: "Error: Controller in standby", style: .warning)
+                    banner.show()
+                case "4":
+                    let banner = StatusBarNotificationBanner(title: "Error: Mount is parked", style: .warning)
+                    banner.show()
+                case "5":
+                    let banner = StatusBarNotificationBanner(title: "Error: Goto in progress", style: .warning)
+                    banner.show()
+                case "6":
+                    let banner = StatusBarNotificationBanner(title: "Error: Outside limits (MaxDec, MinDec, UnderPoleLimit, MeridianLimit)", style: .warning)
+                    banner.show()
+                case "7":
+                    let banner = StatusBarNotificationBanner(title: "Error: Hardware fault", style: .warning)
+                    banner.show()
+                case "8":
+                    let banner = StatusBarNotificationBanner(title: "Error: Already in motion", style: .warning)
+                    banner.show()
+                case "9":
+                    let banner = StatusBarNotificationBanner(title: "Error: Unspecified error", style: .warning)
+                    banner.show()
+                case "N/A#":
+                    let banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success) // :MS# -- GOTO
+                    banner.show()
+                default:
+                    print("Defaut")
+                }
+
             }
         case 2:
             print("Tag 2:", getText!) // Align Accpet
