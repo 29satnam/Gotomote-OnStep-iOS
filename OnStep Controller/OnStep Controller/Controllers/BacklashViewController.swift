@@ -13,7 +13,7 @@ import NotificationBanner
 class BacklashViewController: UIViewController, UITextFieldDelegate {
 
     var clientSocket: GCDAsyncSocket!
-    var readerText: String = String()
+    var readerArray: [String] = [String]()
     
     @IBOutlet var uploadBtn: UIButton!
     
@@ -57,12 +57,14 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func uploadAction(_ sender: UIButton) {
-        if !backRaTF.text!.isEmpty || !backDecTF.text!.isEmpty {
+        if !backRaTF.text!.isEmpty && !backDecTF.text!.isEmpty {
             print("do stuff")
-            self.triggerConnection(cmd: ":$BR\(backRaTF.text!)#:$BD\(backDecTF.text!)#", setTag: 1)
-
+            readerArray.removeAll()
+            self.triggerConnection(cmd: ":$BR\(backRaTF.text!)#:$BD\(backDecTF.text!)#", setTag: 0)
         } else {
-            print("show error") // TODO
+            print("show error")
+            let banner = StatusBarNotificationBanner(title: "Textfields can't be empty.", style: .danger)
+            banner.show()
         }
     }
     
@@ -134,28 +136,32 @@ extension BacklashViewController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let getText = String(data: data, encoding: .utf8)
-        print("got:", getText)
+      //  print("got:", getText)
         switch tag {
         case 0:
-            readerText += "\(getText!)"
-            
-            let index = readerText.dropLast().components(separatedBy: "#")
-            print(index, readerText) // // RA // DEC
-
-            DispatchQueue.main.async {
-                self.backRaTF.text = index[opt: 0] ?? ""
-                self.backDecTF.text = index[opt: 1] ?? ""
+            readerArray.append(getText!)
+            if readerArray.count == 2 {
+                if readerArray[opt: 0] == "1" {
+                    let banner = StatusBarNotificationBanner(title: "RA (Azm) backlash amount set successful.", style: .success)
+                    banner.show()
+                } else {
+                    let banner = StatusBarNotificationBanner(title: "RA (Azm) backlash amount set failed.", style: .danger)
+                    banner.show()
+                }
+                
+                if readerArray[opt: 1] == "1" {
+                    let banner = StatusBarNotificationBanner(title: "Set Dec (Alt) backlash amount successful.", style: .success)
+                    banner.show()
+                } else {
+                    let banner = StatusBarNotificationBanner(title: "Set Dec (Alt) backlash amount failed.", style: .danger)
+                    banner.show()
+                }
             }
-            
-        case 1:
-            print("Tag 1:", getText!)
-            
         default:
             print("def")
         }
         clientSocket.readData(withTimeout: -1, tag: tag)
         // clientSocket.disconnect()
-        
     }
     
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
@@ -171,17 +177,20 @@ extension BacklashViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
-            banner.remove()
         }
     }
-    
 }
