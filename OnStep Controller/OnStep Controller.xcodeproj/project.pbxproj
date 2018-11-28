@@ -36,7 +36,6 @@
 		D7D2924321A7DA12008CD831 /* SwiftyJSON.framework in Resources */ = {isa = PBXBuildFile; fileRef = D7E526DF214BD68900376F5E /* SwiftyJSON.framework */; };
 		D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52681214BD41D00376F5E /* AppDelegate.swift */; };
 		D7E52687214BD41D00376F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E52685214BD41D00376F5E /* Main.storyboard */; };
-		D7E5268C214BD41E00376F5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E5268A214BD41E00376F5E /* LaunchScreen.storyboard */; };
 		D7E5269B214BD49600376F5E /* GALXY Galaxy.json in Resources */ = {isa = PBXBuildFile; fileRef = D7E52694214BD49600376F5E /* GALXY Galaxy.json */; };
 		D7E5269C214BD49600376F5E /* BRTNB Bright Nebula.json in Resources */ = {isa = PBXBuildFile; fileRef = D7E52695214BD49600376F5E /* BRTNB Bright Nebula.json */; };
 		D7E5269D214BD49600376F5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52696214BD49600376F5E /* Constants.swift */; };
@@ -116,7 +115,6 @@
 		D7E5267E214BD41D00376F5E /* OnStep Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnStep Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E52681214BD41D00376F5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E52686214BD41D00376F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D7E5268B214BD41E00376F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7E5268D214BD41E00376F5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7E52694214BD49600376F5E /* GALXY Galaxy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GALXY Galaxy.json"; sourceTree = "<group>"; };
 		D7E52695214BD49600376F5E /* BRTNB Bright Nebula.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "BRTNB Bright Nebula.json"; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 				D7E52681214BD41D00376F5E /* AppDelegate.swift */,
 				D7028C02214BD9F6007D6B7C /* Assets.xcassets */,
 				D7E52685214BD41D00376F5E /* Main.storyboard */,
-				D7E5268A214BD41E00376F5E /* LaunchScreen.storyboard */,
 				D7E5268D214BD41E00376F5E /* Info.plist */,
 			);
 			path = "OnStep Controller";
@@ -400,7 +397,6 @@
 				D7D2924221A7DA12008CD831 /* MathUtil.framework in Resources */,
 				D7D2924321A7DA12008CD831 /* SwiftyJSON.framework in Resources */,
 				D7E5269B214BD49600376F5E /* GALXY Galaxy.json in Resources */,
-				D7E5268C214BD41E00376F5E /* LaunchScreen.storyboard in Resources */,
 				D7E526C8214BD51B00376F5E /* SFUIDisplay-Bold.ttf in Resources */,
 				D7E52687214BD41D00376F5E /* Main.storyboard in Resources */,
 				D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */,
@@ -489,14 +485,6 @@
 				D7E52686214BD41D00376F5E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D7E5268A214BD41E00376F5E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D7E5268B214BD41E00376F5E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -622,6 +610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FM2NXM55QY;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -647,6 +636,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FM2NXM55QY;
 				FRAMEWORK_SEARCH_PATHS = (
