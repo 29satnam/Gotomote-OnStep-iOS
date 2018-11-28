@@ -11,7 +11,7 @@ import CocoaAsyncSocket
 import NotificationBanner
 
 class InitializeViewController: UIViewController {
-    
+    var banner = StatusBarNotificationBanner(title: "", style: .success)
     var clientSocket: GCDAsyncSocket!
     var readerText: String = String()
     var coordinatesToPass: [String] = [String]()
@@ -43,6 +43,7 @@ class InitializeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.hidesBackButton = true
+        banner.bannerHeight = banner.bannerHeight + 5
         
         let bckBtn = UIBarButtonItem(title: "Done", style: .plain , target: self, action: #selector(backBtn))
         bckBtn.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
@@ -303,7 +304,7 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             readerArray.append(getText!)
             if readerArray.count > 1 {
                 print("this", readerArray.count, readerArray[opt: 0], readerArray[opt: 1])
-                let banner = StatusBarNotificationBanner(title: "Date and Time updated on the server.", style: .success)
+                banner = StatusBarNotificationBanner(title: "Date and Time updated on the server.", style: .success)
                 banner.show()
             }
         case 4:
@@ -312,13 +313,13 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
                 print("Success")
                 
                 if alignTypeInit == 3 {
-                    let banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
+                    banner = StatusBarNotificationBanner(title: "Star #3 aligment started.", style: .success)
                     banner.show() // Start #3 align
                 } else if alignTypeInit == 2 {
-                    let banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
+                    banner = StatusBarNotificationBanner(title: "Star #2 aligment started.", style: .success)
                     banner.show() // Start #2 align
                 } else if alignTypeInit == 1 {
-                    let banner = StatusBarNotificationBanner(title: "Star #1 aligment started.", style: .success)
+                    banner = StatusBarNotificationBanner(title: "Star #1 aligment started.", style: .success)
                     banner.show() // Start #1 align
                 }
                 self.performSegue(withIdentifier: "toStartAlignTableView", sender: self)
@@ -326,26 +327,26 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             }
         case 5:
             if getText! == "0" { // parkAct
-                let banner = StatusBarNotificationBanner(title: "Park failed.", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Park failed.", style: .warning)
                 banner.show()
             } else {
-                let banner = StatusBarNotificationBanner(title: "Parked successfully.", style: .success)
+                banner = StatusBarNotificationBanner(title: "Parked successfully.", style: .success)
                 banner.show()
             }
         case 6:
             if getText! == "0" { // unParkAct
-                let banner = StatusBarNotificationBanner(title: "Unpark failed.", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Unpark failed.", style: .warning)
                 banner.show()
             } else {
-                let banner = StatusBarNotificationBanner(title: "Unparked successfully.", style: .success)
+                banner = StatusBarNotificationBanner(title: "Unparked successfully.", style: .success)
                 banner.show()
             }
         case 7:
             if getText! == "0" { // setParkAct
-                let banner = StatusBarNotificationBanner(title: "Set-park failed.", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Set-park failed.", style: .warning)
                 banner.show()
             } else {
-                let banner = StatusBarNotificationBanner(title: "Set-park successfully.", style: .success)
+                banner = StatusBarNotificationBanner(title: "Set-park successfully.", style: .success)
                 banner.show()
             }
         default:
@@ -377,11 +378,15 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
+            print("Disconnected called:", err!.localizedDescription)
+            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

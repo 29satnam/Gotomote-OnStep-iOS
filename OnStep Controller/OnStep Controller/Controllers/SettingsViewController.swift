@@ -9,8 +9,10 @@
 let addressPort:UserDefaults = UserDefaults.standard
 
 import UIKit
+import NotificationBanner
 
 class SettingsViewController: UIViewController {
+    var banner = StatusBarNotificationBanner(title: "", style: .success)
 
     @IBOutlet var ipAddTF: CustomTextField!
     @IBOutlet var portTF: CustomTextField!
@@ -18,12 +20,13 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        banner.bannerHeight = banner.bannerHeight + 5
+        
         addBtnProperties(button: uploadBtn)
         addTFProperties(tf: ipAddTF, placeholder: "192.168.0.1")
         addTFProperties(tf: portTF, placeholder: "9999")
         
-        navigationItem.title = "BACKLASH"
+        navigationItem.title = "CONNECTION"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black
         
@@ -41,13 +44,15 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func saveAddress(_ sender: UIButton) {
-        if !ipAddTF.text!.isEmpty || !portTF.text!.isEmpty {
+        if !ipAddTF.text!.isEmpty && !portTF.text!.isEmpty {
             addressPort.set("\(ipAddTF.text!):\(portTF.text!)", forKey: "addressPort")
             addressPort.synchronize()
-            
-            print(addressPort.value(forKey: "addressPort") as! String)
+            banner = StatusBarNotificationBanner(title: "Address and port saved.", style: .success)
+            banner.show()
         } else {
             print("address or port can't be empty.") // TODO
+            banner = StatusBarNotificationBanner(title: "Address or port textfields can't be empty.", style: .danger)
+            banner.show()
         }
     }
 

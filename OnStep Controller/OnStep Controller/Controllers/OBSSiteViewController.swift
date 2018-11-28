@@ -12,7 +12,7 @@ import CoreLocation
 import NotificationBanner
 
 class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
-    
+    var banner = StatusBarNotificationBanner(title: "", style: .success)
     @IBOutlet var segmentControl: TTSegmentedControl!
     
     var clientSocket: GCDAsyncSocket!
@@ -37,15 +37,20 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     
     var selectedIndex: Int = Int()
     var readerText: String = String()
-    
+    var readerArray: [String] = [String]()
+
     @IBAction func userCurrentLocation(_ sender: UIButton) {
         
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
                 print("No access")
+                banner = StatusBarNotificationBanner(title: "Couldn't determined the location.", style: .danger)
+                banner.show()
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Access")
+                banner = StatusBarNotificationBanner(title: "Location determined successfully.", style: .danger)
+                banner.show()
                 locationManager.startUpdatingLocation()
                 if locationManager.location != nil {
                     let latSplit = "\(locationManager.location!.coordinate.latitude.roundedDecimal(to: 2))".split(separator: ".")
@@ -86,6 +91,8 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
             }
         } else {
             print("Location services are not enabled")
+            banner = StatusBarNotificationBanner(title: "Location services are not enabled.", style: .danger)
+            banner.show()
             showLocationDisabledPopUp()
         }
         
@@ -100,6 +107,8 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        banner.bannerHeight = banner.bannerHeight + 5
+        
         setupUserInterface()
         
         // For use when the app is open & in the background
@@ -317,11 +326,11 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     // Upload content to server
     @IBAction func uploadAction(_ sender: UIButton) {
         
-        
+        readerArray.removeAll()
+
         switch selectedIndex {
         case 0:
             print("upload 0")
-            
             self.triggerConnection(cmd: ":W\(0)#:SM\(siteNaTF.text!)#:St\(self.latDDTF.text! + "*" + self.latMMTF.text!)#:Sg\(self.longDDTF.text!)*\(self.longMMTF.text!)#:SG\(self.utcHHTF.text!   + ":" + self.utcMMTF.text!)#", setTag: 1) // select site 0 // site name //
         case 1:
             print("upload 1")
@@ -356,36 +365,38 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
         switch tag {
         case 0:
             readerText += "\(getText!)"
-            
             let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().components(separatedBy: ",")
-              print(index)
-            DispatchQueue.main.async {
-                self.siteNaTF.text = index[opt: 0]
-                
-                self.latDDTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 0]
-                self.latMMTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 1]
-                self.longDDTF.text = index[opt: 2]?.components(separatedBy: "*")[opt: 0]
-                self.longMMTF.text = index[opt: 2]?.components(separatedBy: "*")[opt: 1]
-                // save retrieved location
-    //            UserDefaults.standard.set(location:CLLocation(latitude: CLLocationDegrees(Double(self.latDDTF.text! + "." + self.latMMTF.text!)!), longitude: CLLocationDegrees(Double(self.longDDTF.text! + "." + self.longMMTF.text!)!)), forKey:"myLocation")
-   //             print("yaay:", UserDefaults.standard.location(forKey:"myLocation")
-//)
-             //   self.latTF.text =
-                
-                self.utcHHTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 0]
-                self.utcMMTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 1]
-
+            print("ind", index.count)
+            if index.count == 4 {
+                DispatchQueue.main.async {
+                    
+                    self.siteNaTF.text = index[opt: 0]
+                    
+                    self.latDDTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 0]
+                    self.latMMTF.text = index[opt: 1]?.components(separatedBy: "*")[opt: 1]
+                    self.longDDTF.text = index[opt: 2]?.components(separatedBy: "*")[opt: 0]
+                    self.longMMTF.text = index[opt: 2]?.components(separatedBy: "*")[opt: 1]
+                    
+                    self.utcHHTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 0]
+                    self.utcMMTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 1]
+                }
+                banner = StatusBarNotificationBanner(title: "Site data retrieved successfully.", style: .success)
+                banner.show()
             }
-            
         case 1:
             print("Tag 1:", getText!)
+            readerArray.append(getText!)
+            print(readerArray.count, readerArray)
+            if readerArray.count == 3 {
+                banner = StatusBarNotificationBanner(title: "Site data uploaded successfully.", style: .success)
+                banner.show()
+            }
             
         default:
             print("def")
         }
         clientSocket.readData(withTimeout: -1, tag: tag)
         // clientSocket.disconnect()
-        
     }
     
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
@@ -401,16 +412,24 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
         default:
             print("Default")
         }
-        
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
-        if err != nil && String(err!.localizedDescription) != "Socket closed by remote peer" {
+        if err != nil && String(err!.localizedDescription) == "Socket closed by remote peer" { // Server Closed Connection
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+        } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
+            print("Disconnected called:", err!.localizedDescription)
+            banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
             banner.show()
-            banner.remove()
+        } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
+            print("Disconnected called:", err!.localizedDescription)
+            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
+            print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
+            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.show()
         }
     }
     

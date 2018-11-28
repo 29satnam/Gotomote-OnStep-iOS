@@ -14,7 +14,7 @@ import CocoaAsyncSocket
 import NotificationBanner
 
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
-    
+
     var socketConnector: SocketDataManager!
     
     var initJSONData: JSON = JSON()
@@ -53,6 +53,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     var overHeadLimitToPass: String = String()
 
     override func viewDidLoad() {
+
         setupUserInteface()
     }
     
@@ -146,7 +147,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         self.readerText = ""
         triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
         initJSONData = grabJSONData(resource: "QUASR Quasar")
-        tableViewTitle = "Quasar"
+        tableViewTitle = "QUASAR"
         //self.performSegue(withIdentifier: "objectListingTableView", sender: self)
     }
     
@@ -182,7 +183,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         } else if segue.identifier == "objectListingTableView" {
             // Pass MESSIER OBJECTS data to SelectStarTableViewController
             if let destination = segue.destination as? SelectObjectTableViewController {
-                destination.title = tableViewTitle
+                destination.vcTitle = tableViewTitle
                 destination.jsonObj = initJSONData
                 destination.coordinates = coordinatesToPass
 
@@ -205,11 +206,9 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
             destination.stepsPerSec = stepsPerSecToPass
             destination.currentRate = currentRateToPass
         } else if let destination = segue.destination as? BacklashViewController {
-            print("dectected")
             destination.backDec = backDecTFToPass
             destination.backRa = backRaTFToPass
         } else if let destination = segue.destination as? SetOverHeadViewController {
-            print("dectected")
             destination.horizonLimit = horLimitToPass
             destination.overHeadLimit = overHeadLimitToPass
         }
@@ -291,6 +290,7 @@ extension LandingViewController: GCDAsyncSocketDelegate {
           //  print("Tag 1:", getText!)
             utcString = getText!
             let banner = StatusBarNotificationBanner(title: "Fetched UTC Offset \(utcString.dropLast())", style: .success)
+            banner.bannerHeight = banner.bannerHeight + 5
             banner.show()
             self.performSegue(withIdentifier: "initialize", sender: self)
         case 2:
@@ -301,6 +301,7 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             if index.count == 3 {
                 coordinatesToPass = index
                 let banner = StatusBarNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??"), Long:\(index[opt: 1] ?? "??"), UTC \(index[opt: 2] ?? "??")", style: .success)
+                banner.bannerHeight = banner.bannerHeight + 5
                 banner.show()
                 print(index) // ["+30.52", "+075.47", "+05:30"]
                 self.performSegue(withIdentifier: "objectListingTableView", sender: self)
@@ -378,10 +379,17 @@ extension LandingViewController: GCDAsyncSocketDelegate {
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
             let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.bannerHeight = banner.bannerHeight + 5
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
+            print("Disconnected called:", err!.localizedDescription)
+            let banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            banner.bannerHeight = banner.bannerHeight + 5
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
             let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner.bannerHeight = banner.bannerHeight + 5
             banner.show()
         }
     }

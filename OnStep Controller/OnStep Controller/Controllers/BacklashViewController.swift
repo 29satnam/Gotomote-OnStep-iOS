@@ -11,6 +11,7 @@ import CocoaAsyncSocket
 import NotificationBanner
 
 class BacklashViewController: UIViewController, UITextFieldDelegate {
+    var banner = StatusBarNotificationBanner(title: "", style: .success)
 
     var clientSocket: GCDAsyncSocket!
     var readerArray: [String] = [String]()
@@ -27,6 +28,8 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        banner.bannerHeight = banner.bannerHeight + 5
         
         backRaTF.text = backRa
         backDecTF.text = backDec
@@ -63,7 +66,7 @@ class BacklashViewController: UIViewController, UITextFieldDelegate {
             self.triggerConnection(cmd: ":$BR\(backRaTF.text!)#:$BD\(backDecTF.text!)#", setTag: 0)
         } else {
             print("show error")
-            let banner = StatusBarNotificationBanner(title: "Textfields can't be empty.", style: .danger)
+            banner = StatusBarNotificationBanner(title: "Textfields can't be empty.", style: .danger)
             banner.show()
         }
     }
@@ -142,18 +145,18 @@ extension BacklashViewController: GCDAsyncSocketDelegate {
             readerArray.append(getText!)
             if readerArray.count == 2 {
                 if readerArray[opt: 0] == "1" {
-                    let banner = StatusBarNotificationBanner(title: "RA (Azm) backlash amount set successful.", style: .success)
+                    banner = StatusBarNotificationBanner(title: "RA (Azm) backlash amount set successful.", style: .success)
                     banner.show()
                 } else {
-                    let banner = StatusBarNotificationBanner(title: "RA (Azm) backlash amount set failed.", style: .danger)
+                    banner = StatusBarNotificationBanner(title: "RA (Azm) backlash amount set failed.", style: .danger)
                     banner.show()
                 }
                 
                 if readerArray[opt: 1] == "1" {
-                    let banner = StatusBarNotificationBanner(title: "Set Dec (Alt) backlash amount successful.", style: .success)
+                    banner = StatusBarNotificationBanner(title: "Set Dec (Alt) backlash amount successful.", style: .success)
                     banner.show()
                 } else {
-                    let banner = StatusBarNotificationBanner(title: "Set Dec (Alt) backlash amount failed.", style: .danger)
+                    banner = StatusBarNotificationBanner(title: "Set Dec (Alt) backlash amount failed.", style: .danger)
                     banner.show()
                 }
             }
@@ -185,11 +188,15 @@ extension BacklashViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
+            print("Disconnected called:", err!.localizedDescription)
+            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

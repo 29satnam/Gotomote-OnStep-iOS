@@ -11,6 +11,7 @@ import CocoaAsyncSocket
 import NotificationBanner
 
 class GuideCenterViewController: UIViewController {
+    var banner = StatusBarNotificationBanner(title: "", style: .success)
 
     var socketConnector: SocketDataManager!
     var clientSocket: GCDAsyncSocket!
@@ -45,6 +46,9 @@ class GuideCenterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        banner.bannerHeight = banner.bannerHeight + 5
+        
         flippedSN = false
         flippedEW = false
         setupUserInterface()
@@ -565,37 +569,37 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
             print("Tag 0:", getText!) // Sync
             switch getText! {
             case "E0#":
-                let banner = StatusBarNotificationBanner(title: "Goto is possible", style: .success)
+                banner = StatusBarNotificationBanner(title: "Goto is possible", style: .success)
                 banner.show()
             case "E1#":
-                let banner = StatusBarNotificationBanner(title: "Error: Below the horizon limit", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Below the horizon limit", style: .warning)
                 banner.show()
             case "E2#":
-                let banner = StatusBarNotificationBanner(title: "Error: Above overhead limit", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Above overhead limit", style: .warning)
                 banner.show()
             case "E3#":
-                let banner = StatusBarNotificationBanner(title: "Error: Controller in standby", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Controller in standby", style: .warning)
                 banner.show()
             case "E4#":
-                let banner = StatusBarNotificationBanner(title: "Error: Mount is parked", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Mount is parked", style: .warning)
                 banner.show()
             case "E5#":
-                let banner = StatusBarNotificationBanner(title: "Error: Goto in progress", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Goto in progress", style: .warning)
                 banner.show()
             case "E6#":
-                let banner = StatusBarNotificationBanner(title: "Error: Outside limits (MaxDec, MinDec, UnderPoleLimit, MeridianLimit)", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Outside limits (MaxDec, MinDec, UnderPoleLimit, MeridianLimit)", style: .warning)
                 banner.show()
             case "E7#":
-                let banner = StatusBarNotificationBanner(title: "Error: Hardware fault", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Hardware fault", style: .warning)
                 banner.show()
             case "E8#":
-                let banner = StatusBarNotificationBanner(title: "Error: Already in motion", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Already in motion", style: .warning)
                 banner.show()
             case "E9#":
-                let banner = StatusBarNotificationBanner(title: "Error: Unspecified error", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Error: Unspecified error", style: .warning)
                 banner.show()
             case "N/A#":
-                let banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success) // :CM# -- Sync
+                banner = StatusBarNotificationBanner(title: "Sync Success.", style: .success) // :CM# -- Sync
                 banner.show()
             default:
                 print("Defaut")
@@ -619,10 +623,10 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
         case 1:
             print("Tag 1:", getText!) // Align
             if getText! == "1" {
-                let banner = StatusBarNotificationBanner(title: "Align accepted successfully.", style: .success)
+                banner = StatusBarNotificationBanner(title: "Align accepted successfully.", style: .success)
                 banner.show()
             } else {
-                let banner = StatusBarNotificationBanner(title: "Align accept failed.", style: .warning)
+                banner = StatusBarNotificationBanner(title: "Align accept failed.", style: .warning)
                 banner.show()
             }
         case 2:
@@ -641,11 +645,15 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            banner.show()
+        } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
+            print("Disconnected called:", err!.localizedDescription)
+            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }
