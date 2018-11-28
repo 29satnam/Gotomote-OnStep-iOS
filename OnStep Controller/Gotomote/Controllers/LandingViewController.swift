@@ -14,7 +14,6 @@ import CocoaAsyncSocket
 import NotificationBanner
 
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
-
     var socketConnector: SocketDataManager!
     
     var initJSONData: JSON = JSON()

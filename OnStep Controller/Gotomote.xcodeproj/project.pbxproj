@@ -101,7 +101,6 @@
 		D73BA41A215E337300913604 /* GotoObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoObjectViewController.swift; sourceTree = "<group>"; };
 		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
 		D75E916B219C359500AB5E97 /* PECViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PECViewController.swift; sourceTree = "<group>"; };
-		D764E0AB214E5BDD0070314E /* OnStep Controller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnStep Controller-Bridging-Header.h"; sourceTree = "<group>"; };
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
 		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCenterViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +111,7 @@
 		D7D2925121A7DB58008CD831 /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabelSwift.framework; path = "/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/MarqueeLabelSwift.framework"; sourceTree = "<absolute>"; };
 		D7D2925221A7DB59008CD831 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/SnapKit.framework"; sourceTree = "<absolute>"; };
 		D7D2925321A7DB59008CD831 /* NotificationBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBanner.framework; path = "/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/NotificationBanner.framework"; sourceTree = "<absolute>"; };
-		D7E5267E214BD41D00376F5E /* OnStep Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnStep Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7E5267E214BD41D00376F5E /* Gotomote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gotomote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E52681214BD41D00376F5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E52686214BD41D00376F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7E5268D214BD41E00376F5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -219,9 +218,8 @@
 		D7E52675214BD41D00376F5E = {
 			isa = PBXGroup;
 			children = (
-				D764E0AB214E5BDD0070314E /* OnStep Controller-Bridging-Header.h */,
 				D7E52693214BD47600376F5E /* Resources */,
-				D7E52680214BD41D00376F5E /* OnStep Controller */,
+				D7E52680214BD41D00376F5E /* Gotomote */,
 				D7E5267F214BD41D00376F5E /* Products */,
 				D764E0AC214E5EC00070314E /* Frameworks */,
 			);
@@ -230,12 +228,12 @@
 		D7E5267F214BD41D00376F5E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D7E5267E214BD41D00376F5E /* OnStep Controller.app */,
+				D7E5267E214BD41D00376F5E /* Gotomote.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D7E52680214BD41D00376F5E /* OnStep Controller */ = {
+		D7E52680214BD41D00376F5E /* Gotomote */ = {
 			isa = PBXGroup;
 			children = (
 				D7E526CA214BD52B00376F5E /* Space Time */,
@@ -247,7 +245,7 @@
 				D7E52685214BD41D00376F5E /* Main.storyboard */,
 				D7E5268D214BD41E00376F5E /* Info.plist */,
 			);
-			path = "OnStep Controller";
+			path = Gotomote;
 			sourceTree = "<group>";
 		};
 		D7E52693214BD47600376F5E /* Resources */ = {
@@ -335,9 +333,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D7E5267D214BD41D00376F5E /* OnStep Controller */ = {
+		D7E5267D214BD41D00376F5E /* Gotomote */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7E52690214BD41E00376F5E /* Build configuration list for PBXNativeTarget "OnStep Controller" */;
+			buildConfigurationList = D7E52690214BD41E00376F5E /* Build configuration list for PBXNativeTarget "Gotomote" */;
 			buildPhases = (
 				D7E5267A214BD41D00376F5E /* Sources */,
 				D7E5267B214BD41D00376F5E /* Frameworks */,
@@ -349,9 +347,9 @@
 			);
 			dependencies = (
 			);
-			name = "OnStep Controller";
+			name = Gotomote;
 			productName = "OnStep Controller";
-			productReference = D7E5267E214BD41D00376F5E /* OnStep Controller.app */;
+			productReference = D7E5267E214BD41D00376F5E /* Gotomote.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -369,7 +367,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D7E52679214BD41D00376F5E /* Build configuration list for PBXProject "OnStep Controller" */;
+			buildConfigurationList = D7E52679214BD41D00376F5E /* Build configuration list for PBXProject "Gotomote" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -382,7 +380,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D7E5267D214BD41D00376F5E /* OnStep Controller */,
+				D7E5267D214BD41D00376F5E /* Gotomote */,
 			);
 		};
 /* End PBXProject section */
@@ -609,6 +607,7 @@
 		D7E52691214BD41E00376F5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
@@ -617,8 +616,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "OnStep-Controller-Header.h";
-				INFOPLIST_FILE = "OnStep Controller/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Gotomote/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -626,7 +624,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverseahog.OnStep-Controller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OnStep Controller-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -635,6 +632,7 @@
 		D7E52692214BD41E00376F5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
@@ -643,8 +641,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "OnStep-Controller-Header.h";
-				INFOPLIST_FILE = "OnStep Controller/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Gotomote/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -652,7 +649,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverseahog.OnStep-Controller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OnStep Controller-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -661,7 +657,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D7E52679214BD41D00376F5E /* Build configuration list for PBXProject "OnStep Controller" */ = {
+		D7E52679214BD41D00376F5E /* Build configuration list for PBXProject "Gotomote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7E5268E214BD41E00376F5E /* Debug */,
@@ -670,7 +666,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D7E52690214BD41E00376F5E /* Build configuration list for PBXNativeTarget "OnStep Controller" */ = {
+		D7E52690214BD41E00376F5E /* Build configuration list for PBXNativeTarget "Gotomote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7E52691214BD41E00376F5E /* Debug */,
