@@ -20,7 +20,7 @@
         <!--Landing View Controller-->
         <scene sceneID="2Zh-m2-8Rz">
             <objects>
-                <viewController storyboardIdentifier="LandingViewController" autoresizesArchivedViewToFullSize="NO" id="Dh4-cw-Mo4" customClass="LandingViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" autoresizesArchivedViewToFullSize="NO" id="Dh4-cw-Mo4" customClass="LandingViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="25E-ys-vLu"/>
                         <viewControllerLayoutGuide type="bottom" id="XGo-vn-E6t"/>
@@ -192,7 +192,11 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="MYo-94-Rwf">
-                        <barButtonItem key="leftBarButtonItem" image="leftIcon" id="9M2-I1-bgW"/>
+                        <barButtonItem key="leftBarButtonItem" image="leftIcon" id="9M2-I1-bgW">
+                            <connections>
+                                <segue destination="2w5-ug-CX3" kind="show" id="Bjr-xR-xHo"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="more" id="Irr-Bi-fxP">
                             <connections>
                                 <action selector="showTableBarButton:" destination="Dh4-cw-Mo4" id="0Uv-jS-fKz"/>
@@ -228,7 +232,7 @@
         <!--Site View Controller-->
         <scene sceneID="dFO-zs-7No">
             <objects>
-                <viewController id="TWU-dC-Nu2" customClass="OBSSiteViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TWU-dC-Nu2" customClass="OBSSiteViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wsn-xp-3fg"/>
                         <viewControllerLayoutGuide type="bottom" id="FKX-ee-Nvd"/>
@@ -289,42 +293,42 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MVg-8R-4O6" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MVg-8R-4O6" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="111" y="103" width="236.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wM7-nm-tF1" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wM7-nm-tF1" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="283.5" y="128" width="60" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKS-3y-e4f" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKS-3y-e4f" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="213.5" y="128" width="60" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70u-tf-M0Q" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="70u-tf-M0Q" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="213.5" y="153.5" width="60" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-cP-ybF" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-cP-ybF" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="283.5" y="153.5" width="60" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Et0-4d-ycJ" customClass="TTSegmentedControl" customModule="OnStep_Controller" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Et0-4d-ycJ" customClass="TTSegmentedControl" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="27.5" y="54" width="320" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -366,14 +370,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQb-Mb-OCc" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tQb-Mb-OCc" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="213.5" y="178.5" width="60" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FvE-os-Mwh" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FvE-os-Mwh" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="283.5" y="178.5" width="60" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -484,7 +488,7 @@
         <!--GotoMR View Controller-->
         <scene sceneID="UnO-h7-T6A">
             <objects>
-                <viewController id="TA9-S0-Wnn" customClass="GotoMRViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TA9-S0-Wnn" customClass="GotoMRViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EhU-nY-U3D"/>
                         <viewControllerLayoutGuide type="bottom" id="kJl-aJ-NAY"/>
@@ -612,7 +616,7 @@
         <!--Initialize View Controller-->
         <scene sceneID="lCQ-ms-y7b">
             <objects>
-                <viewController id="jyA-xV-FLo" customClass="InitializeViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jyA-xV-FLo" customClass="InitializeViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="raf-nd-SiS"/>
                         <viewControllerLayoutGuide type="bottom" id="9Y3-LD-Dlj"/>
@@ -732,7 +736,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aq4-Z5-RLb" customClass="TTSegmentedControl" customModule="OnStep_Controller" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aq4-Z5-RLb" customClass="TTSegmentedControl" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="27.5" y="138" width="320" height="34.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -839,10 +843,44 @@
             </objects>
             <point key="canvasLocation" x="946" y="-54"/>
         </scene>
+        <!--Read Me View Controller-->
+        <scene sceneID="dka-Ek-drI">
+            <objects>
+                <viewController id="2w5-ug-CX3" customClass="ReadMeViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qjs-Yo-BdQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="FOs-AX-bpe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oDM-hG-6DS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ny0-Ia-gPf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ny0-Ia-gPf" firstAttribute="centerX" secondItem="oDM-hG-6DS" secondAttribute="centerX" id="7tA-yh-IqR"/>
+                            <constraint firstItem="FOs-AX-bpe" firstAttribute="top" secondItem="ny0-Ia-gPf" secondAttribute="bottom" id="7uU-oG-ai4"/>
+                            <constraint firstItem="ny0-Ia-gPf" firstAttribute="leading" secondItem="oDM-hG-6DS" secondAttribute="leading" id="Jka-GS-zzW"/>
+                            <constraint firstAttribute="trailing" secondItem="ny0-Ia-gPf" secondAttribute="trailing" id="bzG-tL-fPi"/>
+                            <constraint firstItem="ny0-Ia-gPf" firstAttribute="top" secondItem="Qjs-Yo-BdQ" secondAttribute="bottom" id="kO8-X5-hPd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="ny0-Ia-gPf" id="tGx-Qy-Inw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8FY-fU-WaT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="-788"/>
+        </scene>
         <!--More Options Table View Controller-->
         <scene sceneID="GSD-cd-Qr9">
             <objects>
-                <tableViewController storyboardIdentifier="MoreOptionsTableViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2u8-NH-vSG" customClass="MoreOptionsTableViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MoreOptionsTableViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2u8-NH-vSG" customClass="MoreOptionsTableViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HBN-YD-Jsd">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="307"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1061,7 +1099,7 @@
         <!--Tracking View Controller-->
         <scene sceneID="2mt-v6-D3f">
             <objects>
-                <viewController id="9QE-Xa-Tak" customClass="TrackingViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9QE-Xa-Tak" customClass="TrackingViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Uxl-Ay-kNA"/>
                         <viewControllerLayoutGuide type="bottom" id="pzq-t4-ocB"/>
@@ -1357,7 +1395,7 @@
         <!--Set Over Head View Controller-->
         <scene sceneID="rrl-Z6-kWG">
             <objects>
-                <viewController id="fMR-BN-U6v" customClass="SetOverHeadViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fMR-BN-U6v" customClass="SetOverHeadViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQu-Pr-1ld"/>
                         <viewControllerLayoutGuide type="bottom" id="66c-EG-Qbv"/>
@@ -1389,14 +1427,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="obH-cn-63Z" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="obH-cn-63Z" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="207.5" y="29" width="140" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ap0-sO-9bo" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ap0-sO-9bo" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="177.5" y="54" width="170" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -1438,7 +1476,7 @@
         <!--Backlash View Controller-->
         <scene sceneID="dmr-wq-Z8a">
             <objects>
-                <viewController id="1Fn-Wb-LEh" customClass="BacklashViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Fn-Wb-LEh" customClass="BacklashViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Blz-Zb-Uhv"/>
                         <viewControllerLayoutGuide type="bottom" id="Mhf-7y-9JG"/>
@@ -1470,14 +1508,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yqq-ZE-Wdq" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yqq-ZE-Wdq" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="190.5" y="29" width="157" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AED-xY-R4b" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AED-xY-R4b" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="197.5" y="54" width="150" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -1519,7 +1557,7 @@
         <!--Settings View Controller-->
         <scene sceneID="pqu-iQ-UQ4">
             <objects>
-                <viewController id="W4s-7u-8gO" customClass="SettingsViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="W4s-7u-8gO" customClass="SettingsViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dAn-rX-8Uq"/>
                         <viewControllerLayoutGuide type="bottom" id="czy-Vf-15W"/>
@@ -1557,14 +1595,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0U-95-Wt0" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0U-95-Wt0" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="113.5" y="29" width="234" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xvw-kf-yHH" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xvw-kf-yHH" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="72.5" y="54" width="275" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -1609,7 +1647,7 @@
         <!--Goto Star View Controller-->
         <scene sceneID="Xuj-Gs-MHa">
             <objects>
-                <viewController id="3qm-Df-FnM" customClass="GotoStarViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3qm-Df-FnM" customClass="GotoStarViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aKS-IT-vnR"/>
                         <viewControllerLayoutGuide type="bottom" id="BeM-XG-g62"/>
@@ -1908,7 +1946,7 @@
         <!--Select Object Table View Controller-->
         <scene sceneID="Vzi-Hg-Twp">
             <objects>
-                <tableViewController id="nMl-cx-fs7" customClass="SelectObjectTableViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nMl-cx-fs7" customClass="SelectObjectTableViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kwF-4h-Ljk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1917,7 +1955,7 @@
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="R8S-u5-gEe" customClass="ObjectListTableViewCell" customModule="OnStep_Controller" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="R8S-u5-gEe" customClass="ObjectListTableViewCell" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R8S-u5-gEe" id="opP-Te-Cpi">
@@ -1988,7 +2026,7 @@
         <!--Select Star Table View Controller-->
         <scene sceneID="H2e-N7-Oi9">
             <objects>
-                <tableViewController id="5n0-eN-7XU" customClass="SelectStarTableViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="5n0-eN-7XU" customClass="SelectStarTableViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GaY-Yv-h0b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1997,7 +2035,7 @@
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="VVc-Ut-cCz" customClass="StarListTableViewCell" customModule="OnStep_Controller" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="VVc-Ut-cCz" customClass="StarListTableViewCell" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VVc-Ut-cCz" id="H9o-pO-dLb">
@@ -2077,7 +2115,7 @@
         <!--Goto Object View Controller-->
         <scene sceneID="VF6-kO-mgG">
             <objects>
-                <viewController id="AKt-JE-OEK" customClass="GotoObjectViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AKt-JE-OEK" customClass="GotoObjectViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PDQ-Yn-fSm"/>
                         <viewControllerLayoutGuide type="bottom" id="ktS-ua-ynQ"/>
@@ -2374,7 +2412,7 @@
         <!--Guide Center View Controller-->
         <scene sceneID="SvF-ZB-wCQ">
             <objects>
-                <viewController id="Xgq-u8-mn2" customClass="GuideCenterViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xgq-u8-mn2" customClass="GuideCenterViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JKw-NW-O5W"/>
                         <viewControllerLayoutGuide type="bottom" id="QAh-x9-LvF"/>
@@ -2615,7 +2653,7 @@
         <!--View Controller-->
         <scene sceneID="dhg-IY-3j8">
             <objects>
-                <viewController id="9zh-c0-znh" customClass="PECViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9zh-c0-znh" customClass="PECViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ys0-wh-gNG"/>
                         <viewControllerLayoutGuide type="bottom" id="ffR-hv-fhs"/>
@@ -2744,7 +2782,7 @@
         <!--Enter Coordinates View Controller-->
         <scene sceneID="COI-MC-jah">
             <objects>
-                <viewController id="neM-B7-Xym" customClass="EnterCoordinatesViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="neM-B7-Xym" customClass="EnterCoordinatesViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3fS-OA-ZzF"/>
                         <viewControllerLayoutGuide type="bottom" id="TJS-g7-mac"/>
@@ -2782,35 +2820,35 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O5S-Pg-dQk" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O5S-Pg-dQk" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="295" y="72" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmq-ya-QJA" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmq-ya-QJA" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="237.5" y="72" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tff-17-F0A" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tff-17-F0A" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="237.5" y="97" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9vS-Lr-cqy" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9vS-Lr-cqy" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="180" y="72" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qfz-A4-04x" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qfz-A4-04x" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="295" y="97" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -2841,7 +2879,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="71t-bI-utS" customClass="CustomTextField" customModule="OnStep_Controller" customModuleProvider="target">
+                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="71t-bI-utS" customClass="CustomTextField" customModule="Gotomote" customModuleProvider="target">
                                 <rect key="frame" x="180" y="97" width="52.5" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -2918,7 +2956,7 @@
         <!--Goto Custom Object View Controller-->
         <scene sceneID="9Mc-yL-qv4">
             <objects>
-                <viewController id="Vnk-Qz-cM6" customClass="GotoCustomObjectViewController" customModule="OnStep_Controller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vnk-Qz-cM6" customClass="GotoCustomObjectViewController" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hdj-ZF-oQY"/>
                         <viewControllerLayoutGuide type="bottom" id="kXe-lL-fE8"/>

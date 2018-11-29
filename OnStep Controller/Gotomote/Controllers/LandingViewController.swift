@@ -52,7 +52,11 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     var overHeadLimitToPass: String = String()
 
     override func viewDidLoad() {
-
+     //   self.triggerConnection(cmd: ":GVD#:GVN#:GVP#:GVT#", setTag: 3) // set
+      /*  Tag 3: Aug 11 2018#
+        Tag 3: 1.8m#
+        Tag 3: On-Step#
+        Tag 3: 20:03:03# */
         setupUserInteface()
     }
     
@@ -87,6 +91,16 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
 
     func setupUserInteface() {
         
+        //  :GVD# Get Telescope Firmware Date
+        //         Returns: mmm dd yyyy#
+        //  :GVN# Get Telescope Firmware Number
+        //         Returns: d.dc#
+        //  :GVP# Get Telescope Product Name
+        //         Returns: <string>#
+        //  :GVT# Get Telescope Firmware Time
+        //         returns: HH:MM:SS#
+        
+
     //    self.triggerConnection(cmd: ":SMSITE00#") // set
     //    self.triggerConnection(cmd: ":GM#") // get
         

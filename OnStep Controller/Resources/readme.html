@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style>
+		html,body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		main {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			background-color: black;
+			color: white;
+			max-width: 100%;
+			padding: 8px;
+			word-wrap: break-word;
+		}
+
+		a:visited, a:active, a {
+            font-style: italic;
+			font-weight: 600;
+			text-decoration: none;
+			color: orange;
+		}
+	</style>
+</head>
+<body>
+<main>
+<h2>First Things First</h2>
+<p>Welcome. Gotomote is a very special project to <a href="https://github.com/29satnam/">me</a>. I&#8217;m proud to say that it&#8217;s a part of the project OnStep. OnStep is a DIY computerized Goto controller for Telescope mounts. <a href="https://groups.io/g/onstep/wiki/home">OnStep</a> is led by <a href="https://github.com/hjd1964">Howard Dutton</a> and <a href="https://github.com/hjd1964">Khalid Baheyeldin</a>. Hundereds of hours of work have gone into OnStep, and we&#8217;re dedicated to making it better every day. Thank you for making it part of your world.</p>
+<p style="text-align: right">&#8212; Satnam</p>
+
+<h2>Initilization: Setting up and Alignment</h2>
+<ol>
+	<li>This App controls through Wi-Fi from your iPhone or iPad. Go to your device's Settings > Wi-Fi > Connect with your Goto&#8217;s Wi-Fi.</li>
+	<li>In the app tap on more button. It will open up a list of settings.
+		<ol>
+			<li>Tap on &#8217;Connection&#8217; that will take you to Connection settings page.</li>
+			<li>Add IP Address and Port to access point. Wi-Fi connections in access-point mode defaults to address 192.168.0.1</li>
+			<li>Then just tap &#8217;Save&#8217;. This is just one time thing, then app will always remember your IP Address and Port.</li>
+		</ol>
+	</li>
+	<li>At top-right side, on landing screen tap more button and then tap on &#8217;Site Selection&#8217;. Add your Site name, Latitude, Longitude, UTC Offset, and then tap Upload. Server should revert with a success message.</li>
+	<li>On landing screen, tap Initialize/Park. Then tap Date/Time button. This will update time on the Goto server.</li>
+    <li>Now that OnStep has the correct site information and date/time you can start an Align.</li>
+    <ol>
+        <li>A list of suitable stars will be displayed to choose from.</li>
+        <li>Pick a bright easily identified star not too close to the NCP/SCP and do a goto.</li>
+        <li>Depending on your configuration, up to 3 stars may be used.</li>
+        <li>If the mount is well constructed and polar aligned and OnStep was setup correctly the star should be in a wide field eyepiece of a small telescope or in your finder &#8217;scope.</li>
+        <li>Use the guide controls to center the star in the eyepiece.</li>
+        <li>Finally, select &#34;Align&#34; on the direction pad. If more alignment stars are required the list of stars will reappear and this sequence will repeat until done.</li>
+    </ol>
+</ol>
+<h2>FAQ:</h2>
+<ul>
+    <li>Two star and three start alignment isn&#8217;t working?</li>
+    <dd>&#8212; Two star and three star align is not supported with Fork mounts in alternate mode.</dd>
+    <li>PEC isn&#8217;t?</li>
+    <dd>&#8212; PEC is not supported with AlT/AZM mounts, for rest all mount types it should work.</dd>
+    <li>Goto speed is too slow/fast?</li>
+    <dd>&#8212; You might want to increase/decrease the MaxRate, it&#8217;s possible to change from app upto 2x.</dd>
+    <li>There&#8217;s a bug/crash you&#8217;d want to report?</li>
+    <dd>&#8212; You can always reach me out at my <a href="mailto:29satnam@gmail.com?Subject=I%20would%20want%20to%20report%20a%20bug%20-%20Gotomote" target="_top">email</a> and OnStep <a href="https://groups.io/g/onstep/topics">group</a>.</dd>
+</ul>
+<p>If you have any other question, please take advantage of OnStep&#8217; <a href="https://groups.io/g/onstep/topics">group</a>.</p>
+<h2>Credits:</h2>
+<ul>
+    <li>Development credits for this app obviously goes to <a href="https://github.com/29satnam/">me</a>.</li>
+    <li>Design and user interface for the same by my friend <a href="https://www.instagram.com/Zac.wolff/">Zachary</a>.</li>
+    <li><a href="https://github.com/hjd1964">Howard Dutton</a> and <a href="https://github.com/hjd1964">Khalid Baheyeldin</a> for OnStep.</li>
+</ul>
+</body>
+</main>
+</html>

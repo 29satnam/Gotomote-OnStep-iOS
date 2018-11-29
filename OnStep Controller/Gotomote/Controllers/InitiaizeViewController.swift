@@ -122,7 +122,10 @@ class InitializeViewController: UIViewController {
         //          Return: 0 on failure
         //                  1 on success
         
-      //   print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#:GC#:GL#")
+        //print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#") //:SC11/29/18#:SL13:21:29#
+
+        banner = StatusBarNotificationBanner(title: "Setting (\(strDate[opt: 0]!), \(strDate[opt: 1]!) GMT[\(utcStr)])" , style: .success)
+        banner.show()
     }
     
     /// Formats the input date to Date in specific timezone
