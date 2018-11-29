@@ -15,11 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-     //   UIApplication.shared.statusBarStyle = .lightContent
-        // let font = UIFont(name: "Helvetica", size: 5)!
-        //   UINavigationBar.appearance().titleTextAttributes = [kCTFontAttributeName: font] as [NSAttributedStringKey : Any]
-        //  UINavigationBar.appearance().titleTextAttributes  = [NSAttributedStringKey.foregroundColor: UIColor.white]
+     //   RunLoop.current.run(until: Date(timeIntervalSinceNow: 1.0))
         
         let backImage = #imageLiteral(resourceName: "backBtn") .withRenderingMode(.alwaysOriginal)
         UINavigationBar.appearance().backIndicatorImage = backImage
