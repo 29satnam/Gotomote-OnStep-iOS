@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "30c7beb4f89e95550759a46bfc4c3278478d222a",
+  "iOS" : [
+    {
+      "name" : "NotificationBanner",
+      "hash" : "cbc233c372f17c398d870c74d1a9b78e5745bddd8ad062412d3c1b7fd53645a2"
+    }
+  ]
+}
