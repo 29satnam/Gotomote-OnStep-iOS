@@ -120,7 +120,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         
         self.view.backgroundColor = .black
         
-        navigationItem.title = "ONSTEP CONTROLLER"
+        navigationItem.title = "GOTOMOTE"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         
     }
@@ -259,6 +259,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         
         viewController.modalPresentationStyle = UIModalPresentationStyle.popover
         viewController.popoverPresentationController?.delegate = self
+        viewController.popoverPresentationController?.backgroundColor = UIColor(red: 144/255.0, green: 19/255.0, blue: 254/255.0, alpha: 1.0)
         viewController.popoverPresentationController?.barButtonItem = moreOptionsBtn
         viewController.popoverPresentationController?.permittedArrowDirections = .any
         viewController.preferredContentSize = CGSize(width: 225, height: 340)

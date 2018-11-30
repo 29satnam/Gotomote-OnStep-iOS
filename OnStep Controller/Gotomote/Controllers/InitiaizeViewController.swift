@@ -144,14 +144,14 @@ class InitializeViewController: UIViewController {
         segmentControl.itemTitles = ["1 Star", "2 Star", "3 Star"]
         segmentControl.allowChangeThumbWidth = false
         segmentControl.selectedTextFont = UIFont(name: "SFUIDisplay-Medium", size: 14.0)!
-        segmentControl.selectedTextColor = UIColor.black
+        segmentControl.selectedTextColor = UIColor.white
         segmentControl.defaultTextFont = UIFont(name: "SFUIDisplay-Medium", size: 14.0)!
         segmentControl.defaultTextColor = UIColor.white
         segmentControl.useGradient = false
         segmentControl.useShadow = false
         segmentControl.containerBackgroundColor = .clear
-        segmentControl.thumbColor = (UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0))
-        
+        segmentControl.thumbColor = (UIColor(red: 144/255.0, green: 19/255.0, blue: 254/255.0, alpha: 1.0))
+
         segmentControl.selectItemAt(index: 0, animated: true)
         alignTypeInit = 1
         segmentControl.didSelectItemWith = { index, title in
@@ -162,7 +162,7 @@ class InitializeViewController: UIViewController {
         addBtnProperties(button: setDateTimeBtn)
         
         addBtnProperties(button: starAlignmentBtn)
-        starAlignmentBtn.backgroundColor = UIColor(red: 255/255.0, green: 192/255.0, blue: 0/255.0, alpha: 1.0)
+        starAlignmentBtn.backgroundColor = UIColor(red: 144/255.0, green: 19/255.0, blue: 254/255.0, alpha: 1.0)
         
         addBtnProperties(button: atHomeBtn)
         addBtnProperties(button: returnHomeBtn)

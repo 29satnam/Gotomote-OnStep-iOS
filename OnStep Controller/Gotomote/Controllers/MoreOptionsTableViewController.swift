@@ -36,8 +36,8 @@ class MoreOptionsTableViewController: UITableViewController {
         //         Returns: S#
         
         tableView.tableFooterView = UIView()
-        switchScreen.tintColor = .black
-        switchScreen.onTintColor = .black
+        switchScreen.tintColor = .white
+        switchScreen.onTintColor = .white
 
         if (UIApplication.shared.isIdleTimerDisabled == true) {
             switchScreen.isOn = true
