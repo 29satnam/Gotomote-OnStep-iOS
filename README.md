@@ -27,3 +27,11 @@ Commands for PEC programming and much more.
 - Howard Dutton and Khalid Baheyeldin for OnStep.
 - Brightest stars database by atlasoftheuniverse.com.
 - Messier, Quasar, Galaxy data by astro-organizer.
+
+## Author
+
+Satnam Singh, 29satnam@gmail.com
+
+## License
+
+Gotomote is available under the GNU General Public License v3.0 license. See the LICENSE file for more info.
