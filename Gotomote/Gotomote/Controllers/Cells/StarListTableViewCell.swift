@@ -10,12 +10,11 @@ import UIKit
 
 class StarListTableViewCell: UITableViewCell {
 
-    @IBOutlet var numberLabel: UILabel!
-    @IBOutlet var objectLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
     @IBOutlet var otherLabel: UILabel!
+    @IBOutlet var abvrLabel: UILabel!
     
     @IBOutlet var magLabel: UILabel!
-    @IBOutlet var typeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

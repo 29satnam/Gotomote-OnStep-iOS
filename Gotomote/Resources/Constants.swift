@@ -61,6 +61,21 @@ let dateFormatter: DateFormatter = {
     return formatter
 }()
 
+func hourToString(hour:Double) -> String {
+    let hours = Int(floor(hour))
+    let mins = Int(floor(hour * 60).truncatingRemainder(dividingBy: 60))
+    let secs = Int(floor(hour * 3600).truncatingRemainder(dividingBy: 60))
+    
+    return String(format:"%02d:%02d:%02d", hours, mins, secs)
+}
+
+func doubleToInteger(data:Double)-> Int {
+    let doubleToString = "\(data)"
+    let stringToInteger = (doubleToString as NSString).integerValue
+    
+    return stringToInteger
+}
+
 
 
 extension Collection {

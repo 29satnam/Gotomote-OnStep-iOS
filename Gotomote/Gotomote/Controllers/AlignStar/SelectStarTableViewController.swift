@@ -27,6 +27,8 @@ class SelectStarTableViewController: UITableViewController {
     
     var readerText: String = String()
     
+    let formatter = NumberFormatter()
+    
     var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
 
     override func viewDidLoad() {
@@ -42,41 +44,108 @@ class SelectStarTableViewController: UITableViewController {
         let abortAlig = UIBarButtonItem(title: "Abort", style: .plain , target: self, action: #selector(abortAlignment))
         abortAlig.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.navigationItem.rightBarButtonItem = abortAlig
-        
 
         filteredJSON.removeAll()
         
         for (key, entry) in jsonObj {
-        //    print("key:", key, "entryValue:", entry)
-            
             //  Right Ascension in hours and minutes for epoch 2000. // "RA": "06 45"
             //  Declination in degrees for epoch 2000.               // "DEC": -16.7
             
-            let raStr = jsonObj[Int(key)!]["RA"].stringValue // "RA": "06 45",
-            let raSepa = raStr.components(separatedBy: " ")
+            let raStr = jsonObj[Int(key)!]["RA"].doubleValue // "RA": 0.139791
+            let raSepa = hourToString(hour: raStr).components(separatedBy: ":")
             
-            let raHH = Double(raSepa[opt: 0]!)!
-            let raSepaMM = raSepa[opt: 1]!.components(separatedBy: ".")  // "DEC": -16.7
+            // ----
             
-            let raMM = Double(raSepaMM[opt: 0]!)! // "34"
-      //      let raSS = Double(raSepaMM[opt: 1]!)!/10*(60)
-            
+            formatter.numberStyle = .decimal
             let decStr = jsonObj[Int(key)!]["DEC"].doubleValue //  decStr: +22 01
-            let decSepa = "\(decStr)".components(separatedBy: ".")
             
-            let decDD = Double(decSepa[opt: 0]!)! // 22.0
-            let decMM = Int(decSepa[opt: 1]!)! // Double()! // 22.0
+            let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
+
+            // get whole number for degree value
+            // let decDD = floor(Double(decForm)!)
+            let decDD = doubleToInteger(data: (Double(decForm)!))
             
-       //     print("decMM:", decMM)
+            print("decStr", decStr, "decForm", decForm, "decDD", decDD)
             
-         //   print("raStr:", raStr, "decStr:", decStr)
+            
+            //----------------
+            
+            //seperate degree's decimal and change to minutes
+            let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
+            print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
+            
+            // format the mintutes value (precision correction)
+            let frmtr = NumberFormatter()
+            frmtr.numberStyle = .decimal
+            
+            let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
+            
+            
+            print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+            
+            // drop negative sign for minute value
+            var x = Double(decformmDecimal)
+            if (x! < 0) {
+                x! = 0 - x!
+                //   print("dec min is neg", 0 - x!) // negative
+            } else if (x! == 0) {
+                x! = x!
+            } else {
+                x! = x! // postive
+            }
+            
+            // double value to integer for minutes value
+            let decMM = doubleToInteger(data: x!)
+            
+            // ------------------ seconds
+            
+            //seperate degree's decimal and change to minutes
+            let decStrDeciSec = decStrDecimal.rounded().truncatingRemainder(dividingBy: 1) * 60
+            
+            // format the mintutes value (precision correction)
+            let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
+            formatter.numberStyle = .decimal
+            
+            print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
+            
+            
+            // drop negative sign for seconds value
+            var y = Double(decStrDeciSecPart)
+            if (y! < 0) {
+                y! = 0 - y!
+                //   print("dec min is neg", 0 - y!) // negative
+            } else if (y! == 0) {
+                y! = y!
+            } else {
+                y! = y! // postive
+            }
+            
+            //  print("yyy", y!)
+            var decString: String = String()
+            // double value to integer for minutes value
+            let decSS = doubleToInteger(data: Double(y!.rounded())) // round off
+            
+            // adjust formatting if degrees single value is negative
+            let z = decDD
+            if (z < 0) {
+                decString = String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+                //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
+            } else if (z == 0) {
+                decString = String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+                //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+            } else {
+                decString = String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+                //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
+            }
+            
+            var splitDec = decString.split(separator: ":")
             
             //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
             //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
             
             // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
             
-            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: 0.0), declination: DegreeAngle(degree: decDD, minute: Double(decMM), second: 0.0), distance: 1)
+            let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second:                                                          Double(raSepa[2])!), declination: DegreeAngle(degree: Double(splitDec[0])!, minute: Double(splitDec[1])!, second: Double(splitDec[2])!), distance: 1)
 
             let date = Date()
             let locTime = ObserverLocationTime(location: CLLocation(latitude: Double(coordinates[0])!, longitude: Double(coordinates[1])!), timestamp: JulianDay(date: date))
@@ -134,39 +203,25 @@ class SelectStarTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! StarListTableViewCell
         
-        // Number Empty Check
-        if (self.filteredJSON[indexPath.row]["NUMBER"]) == "" {
-            cell.numberLabel.text = "N/A "
-        } else {
-            cell.numberLabel.text = "\(self.filteredJSON[indexPath.row]["NUMBER"].stringValue) "
-        }
-        
-        // Name Empty Check
+        // NAME Empty Check
         if (self.filteredJSON[indexPath.row]["NAME"]) == "" {
-            cell.objectLabel.text = "N/A / "
+            cell.nameLabel.text = "- / "
         } else {
-            cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["NAME"].stringValue) / "
+            cell.nameLabel.text = "\(self.filteredJSON[indexPath.row]["NAME"].stringValue) / "
         }
         
-        // Other Empty Check
+        // OTHER Empty Check
         if (self.filteredJSON[indexPath.row]["OTHER"]) == "" {
-            cell.otherLabel.text = "N/A"
+            cell.otherLabel.text = "-"
         } else {
             cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
         }
         
-        // Distance Empty Check
-        if (self.filteredJSON[indexPath.row]["DISTLY"]) == "" {
-            cell.magLabel.text = "N/A"
+        // ABVR Empty Check
+        if (self.filteredJSON[indexPath.row]["ABVR"]) == "" {
+            cell.abvrLabel.text = " / -"
         } else {
-            cell.magLabel.text = "Distance: \(self.filteredJSON[indexPath.row]["DISTLY"].doubleValue) ly"
-        }
-        
-        // Visual Magnitude Empty Check
-        if (self.filteredJSON[indexPath.row]["VMAG"]) == "" {
-            cell.typeLabel.text = "N/A"
-        } else {
-            cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["VMAG"].doubleValue) Mv"
+            cell.abvrLabel.text = " / \(self.filteredJSON[indexPath.row]["ABVR"].stringValue)"
         }
         return cell
     }
@@ -180,5 +235,5 @@ class SelectStarTableViewController: UITableViewController {
     }
     
 }
-//             destination.coordinates = coordinates
+// destination.coordinates = coordinates
 
