@@ -12,6 +12,7 @@ import MathUtil
 import SwiftyJSON
 import CocoaAsyncSocket
 import NotificationBanner
+import Crashlytics
 
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
     var socketConnector: SocketDataManager!
@@ -57,8 +58,32 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         Tag 3: 1.8m#
         Tag 3: On-Step#
         Tag 3: 20:03:03# */
+        let button = UIButton(type: .roundedRect)
+        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
+        button.setTitle("Crash", for: [])
+        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+        view.addSubview(button)
+
         setupUserInteface()
+        
+        // TODO: Move this to where you establish a user session
+        self.logUser()
+
     }
+    
+    @objc func crashButtonTapped(_ sender: AnyObject) {
+        Crashlytics.sharedInstance().crash()
+    }
+    
+    func logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.sharedInstance().setUserEmail("user@fabric.io")
+        Crashlytics.sharedInstance().setUserIdentifier("Gotomote")
+        Crashlytics.sharedInstance().setUserName("Test User")
+    }
+
+
     
     func triggerConnection(cmd: String, setTag: Int) {
         

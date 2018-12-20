@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.4.0",
+  "iOS" : [
+    {
+      "name" : "Answers",
+      "hash" : "1d27fa4f2ff5bdb548393d0dc8f441ced21aec053853ad519c6f740d5405c298"
+    }
+  ]
+}

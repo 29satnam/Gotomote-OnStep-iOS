@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-     //   RunLoop.current.run(until: Date(timeIntervalSinceNow: 1.0))
+
+        // TODO: Move this to where you establish a user session
         
         let backImage = #imageLiteral(resourceName: "backBtn") .withRenderingMode(.alwaysOriginal)
         UINavigationBar.appearance().backIndicatorImage = backImage
@@ -29,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextField.appearance().tintColor = .white
         
         //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -80.0), for: .default)
+        
+        Fabric.with([Crashlytics.self])
         return true
     }
 

@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.9.0",
+  "iOS" : [
+    {
+      "name" : "Fabric",
+      "hash" : "e80706acfc147ef3fe20642197b46f14725ded1defa9a318c8e2f36b6724e146"
+    }
+  ]
+}

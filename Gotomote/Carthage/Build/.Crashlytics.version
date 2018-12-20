@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "3.12.0",
+  "iOS" : [
+    {
+      "name" : "Crashlytics",
+      "hash" : "d589e1d90f2bae0603f7e577c79b7d4097ebdd4a54c6409071568ce63e35e01c"
+    }
+  ]
+}

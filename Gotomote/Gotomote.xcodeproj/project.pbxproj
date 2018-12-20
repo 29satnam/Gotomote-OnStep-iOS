@@ -14,6 +14,8 @@
 		D75E916C219C359500AB5E97 /* PECViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E916B219C359500AB5E97 /* PECViewController.swift */; };
 		D7648A3921B05D6A00C087EE /* readme.html in Resources */ = {isa = PBXBuildFile; fileRef = D7648A3821B05D6A00C087EE /* readme.html */; };
 		D7648A3B21B0621000C087EE /* ReadMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7648A3A21B0621000C087EE /* ReadMeViewController.swift */; };
+		D764CF8821CBC2FF00490D29 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8621CBC2FE00490D29 /* Crashlytics.framework */; };
+		D764CF8921CBC2FF00490D29 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8721CBC2FF00490D29 /* Fabric.framework */; };
 		D78EBE202191A3A10012D24C /* GuideCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */; };
 		D7B494B7218B595B007BFDD3 /* SetOverHeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */; };
 		D7B6B16321A3E896006FBCF4 /* GotoCustomObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B6B16221A3E896006FBCF4 /* GotoCustomObjectViewController.swift */; };
@@ -62,6 +64,8 @@
 		D75E916B219C359500AB5E97 /* PECViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PECViewController.swift; sourceTree = "<group>"; };
 		D7648A3821B05D6A00C087EE /* readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = readme.html; sourceTree = "<group>"; };
 		D7648A3A21B0621000C087EE /* ReadMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeViewController.swift; sourceTree = "<group>"; };
+		D764CF8621CBC2FE00490D29 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D764CF8721CBC2FF00490D29 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
 		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCenterViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D764CF8821CBC2FF00490D29 /* Crashlytics.framework in Frameworks */,
+				D764CF8921CBC2FF00490D29 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +139,8 @@
 		D764E0AC214E5EC00070314E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D764CF8621CBC2FE00490D29 /* Crashlytics.framework */,
+				D764CF8721CBC2FF00490D29 /* Fabric.framework */,
 				D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */,
 				D764E0B3214E5F750070314E /* SpaceTime.framework */,
 				D7E526DE214BD68900376F5E /* MathUtil.framework */,
@@ -354,7 +362,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		D7F8419921A7CCD00098CFB5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -383,7 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "./Fabric.framework/run a2f20f059814a50908d7c7ff2fcc2d942f7b6e78 b4193a92461514a31bf34f278974b0439dd80d6fad5db4765830cfb7143d3584\n/usr/local/bin/carthage copy-frameworks\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -565,8 +573,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 25DZLP69MU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = YES;
@@ -582,7 +591,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = com.silverseahog.gotomote;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -593,8 +602,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 25DZLP69MU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = YES;
@@ -610,7 +620,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = com.silverseahog.gotomote;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

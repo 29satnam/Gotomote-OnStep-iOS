@@ -1,3 +1,6 @@
+binary "https://building42.github.io/Specs/Carthage/iOS/Answers.json" "1.4.0"
+binary "https://building42.github.io/Specs/Carthage/iOS/Crashlytics.json" "3.12.0"
+binary "https://building42.github.io/Specs/Carthage/iOS/Fabric.json" "1.9.0"
 github "DJBen/MathUtil" "0.4.0"
 github "DJBen/SpaceTime" "0.3.1"
 github "Daltron/NotificationBanner" "30c7beb4f89e95550759a46bfc4c3278478d222a"
