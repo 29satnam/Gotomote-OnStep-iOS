@@ -31,9 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextField.appearance().tintColor = .white
         
         //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -80.0), for: .default)
-        
+        logUser()
         Fabric.with([Crashlytics.self])
         return true
+    }
+    
+    func logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.sharedInstance().setUserEmail("user@fabric.io")
+        Crashlytics.sharedInstance().setUserIdentifier("Gotomote")
+        Crashlytics.sharedInstance().setUserName("Test User Two")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

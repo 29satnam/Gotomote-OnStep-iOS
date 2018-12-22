@@ -67,7 +67,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         setupUserInteface()
         
         // TODO: Move this to where you establish a user session
-        self.logUser()
 
     }
     
@@ -75,13 +74,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         Crashlytics.sharedInstance().crash()
     }
     
-    func logUser() {
-        // TODO: Use the current user's information
-        // You can call any combination of these three methods
-        Crashlytics.sharedInstance().setUserEmail("user@fabric.io")
-        Crashlytics.sharedInstance().setUserIdentifier("Gotomote")
-        Crashlytics.sharedInstance().setUserName("Test User")
-    }
+
 
 
     

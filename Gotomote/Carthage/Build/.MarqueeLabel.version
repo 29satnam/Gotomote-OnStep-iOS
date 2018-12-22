@@ -8,18 +8,18 @@
   "tvOS" : [
     {
       "name" : "MarqueeLabel",
-      "hash" : "1fce1c30361773df2869595f5f8903b1022f7f051c67ba30731cac29cbb50515"
+      "hash" : "7e282e39941cb51755e8bab1bef5b0199cda9559851913affae19600878ad878"
     }
   ],
   "commitish" : "3.2.0",
   "iOS" : [
     {
       "name" : "MarqueeLabel",
-      "hash" : "bc0e5b8b89b4ec0ea0e082bf9c47ee9300b589016055035aa54917a91d77da64"
+      "hash" : "36f545681872d860a06624da6c78bb4390702914d0ce60950083dfca864ced08"
     },
     {
       "name" : "MarqueeLabelSwift",
-      "hash" : "f12723deee5d13e83060fcab36d48dafed496d0335753d527948af2c7dd35572"
+      "hash" : "8d524c472f06fc681bf0e4ac19a42b92176cf2a4dee6e27522f1c23e1a173422"
     }
   ]
 }
