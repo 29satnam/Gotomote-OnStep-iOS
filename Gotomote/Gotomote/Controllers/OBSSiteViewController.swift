@@ -54,8 +54,22 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                 locationManager.startUpdatingLocation()
                 if locationManager.location != nil {
                     let latSplit = "\(locationManager.location!.coordinate.latitude.roundedDecimal(to: 2))".split(separator: ".")
-                    let longSplit = "\(locationManager.location!.coordinate.longitude.roundedDecimal(to: 2))".split(separator: ".") // change sign
-                    print("locationManager.location!.coordinate", locationManager.location!.coordinate)
+                    let longStr = "\(locationManager.location!.coordinate.longitude.roundedDecimal(to: 2))"//.split(separator: ".") // change sign
+
+                    
+                    
+                    var longNewStr: String = String()
+                    
+                    if let character = longStr.character(at: 0) {
+                        if character == "-" {
+                            longNewStr =  "+\(longStr.dropFirst())"
+                        } else {
+                            longNewStr =  "-\(longStr)"
+                        }
+                    }
+                    
+                    let longSplit = longNewStr.split(separator: ".")
+
                     
                     // fix symbol for latitude degrees
                     let z = Int(latSplit[opt: 0]!)!
