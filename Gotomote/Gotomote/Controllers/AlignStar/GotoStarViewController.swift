@@ -361,7 +361,7 @@ class GotoStarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("coordinates", coordinates)
         banner.bannerHeight = banner.bannerHeight + 5
         
         speedSlider.minimumValue = 0

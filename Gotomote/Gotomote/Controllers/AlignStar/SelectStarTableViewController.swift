@@ -34,7 +34,18 @@ class SelectStarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         jsonObj = grabJSONData(resource: "Bright Stars")
-        print("coordinatess", coordinates, coordinates.count, coordinates[0])
+        
+        if let character = coordinates[1].character(at: 0) {
+            print("character")
+            if character == "-" {
+                coordinates[1] = "+\(coordinates[1].dropFirst())"
+            } else {
+                coordinates[1] = "-\(coordinates[1].dropFirst())"
+            }
+        }
+
+        print("coordinatess", coordinates, coordinates.count, coordinates[1]) // ["+01.21", "-103.44"] 2 +01.21
+        
         navigationItem.title = vcTitle
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
