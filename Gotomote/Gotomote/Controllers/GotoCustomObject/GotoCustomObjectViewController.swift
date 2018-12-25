@@ -167,7 +167,16 @@ class GotoCustomObjectViewController: UIViewController {
         super.viewDidLoad()
         
         print("passedCoordinatesss:", passedCoordinates)
-
+        /*
+        if let character = passedCoordinates[1].character(at: 0) {
+            print("character")
+            if character == "-" {
+                passedCoordinates[1] = "+\(passedCoordinates[1].dropFirst())"
+            } else {
+                passedCoordinates[1] = "-\(passedCoordinates[1].dropFirst())"
+            }
+        }
+*/
         speedSlider.minimumValue = 0
         speedSlider.maximumValue = 9
         speedSlider.isContinuous = true

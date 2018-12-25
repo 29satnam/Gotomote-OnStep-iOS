@@ -34,7 +34,7 @@ class SelectStarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         jsonObj = grabJSONData(resource: "Bright Stars")
-        
+        // reverse sign for longitude
         if let character = coordinates[1].character(at: 0) {
             print("character")
             if character == "-" {

@@ -28,6 +28,15 @@ class SelectObjectTableViewController: UITableViewController {
         super.viewDidLoad()
         print("coordinatesss", coordinates)
         
+        if let character = coordinates[1].character(at: 0) {
+            print("character")
+            if character == "-" {
+                coordinates[1] = "+\(coordinates[1].dropFirst())"
+            } else {
+                coordinates[1] = "-\(coordinates[1].dropFirst())"
+            }
+        }
+        
         filteredJSON.removeAll()
         
         for (key, entry) in jsonObj {
@@ -105,8 +114,6 @@ class SelectObjectTableViewController: UITableViewController {
             destination.passedSlctdObjIndex = slctdObjIndex
             destination.slctdJSONObj = filteredJSON
             destination.passedCoordinates = coordinates
-            
-
             
         }
     }
