@@ -17,6 +17,10 @@
 		D764CF8821CBC2FF00490D29 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8621CBC2FE00490D29 /* Crashlytics.framework */; };
 		D764CF8921CBC2FF00490D29 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8721CBC2FF00490D29 /* Fabric.framework */; };
 		D78EBE202191A3A10012D24C /* GuideCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */; };
+		D7915BC421D228210034169D /* Messier2.json in Resources */ = {isa = PBXBuildFile; fileRef = D7915BC321D228210034169D /* Messier2.json */; };
+		D7915BC721D251D80034169D /* GotoObjectViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7915BC621D251D80034169D /* GotoObjectViewControllerTwo.swift */; };
+		D7915BC921D251FB0034169D /* SelectObjectTableViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7915BC821D251FB0034169D /* SelectObjectTableViewControllerTwo.swift */; };
+		D7915BCB21D27C150034169D /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7915BCA21D27C150034169D /* CellViewController.swift */; };
 		D7B494B7218B595B007BFDD3 /* SetOverHeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */; };
 		D7B6B16321A3E896006FBCF4 /* GotoCustomObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B6B16221A3E896006FBCF4 /* GotoCustomObjectViewController.swift */; };
 		D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52681214BD41D00376F5E /* AppDelegate.swift */; };
@@ -69,6 +73,10 @@
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
 		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCenterViewController.swift; sourceTree = "<group>"; };
+		D7915BC321D228210034169D /* Messier2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Messier2.json; sourceTree = "<group>"; };
+		D7915BC621D251D80034169D /* GotoObjectViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoObjectViewControllerTwo.swift; sourceTree = "<group>"; };
+		D7915BC821D251FB0034169D /* SelectObjectTableViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectObjectTableViewControllerTwo.swift; sourceTree = "<group>"; };
+		D7915BCA21D27C150034169D /* CellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
 		D7B494B6218B595B007BFDD3 /* SetOverHeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetOverHeadViewController.swift; sourceTree = "<group>"; };
 		D7B6B16221A3E896006FBCF4 /* GotoCustomObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoCustomObjectViewController.swift; sourceTree = "<group>"; };
 		D7E5267E214BD41D00376F5E /* Gotomote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gotomote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +157,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D7915BC521D251950034169D /* GotoObjectTwo */ = {
+			isa = PBXGroup;
+			children = (
+				D7915BC621D251D80034169D /* GotoObjectViewControllerTwo.swift */,
+				D7915BC821D251FB0034169D /* SelectObjectTableViewControllerTwo.swift */,
+			);
+			path = GotoObjectTwo;
+			sourceTree = "<group>";
+		};
 		D7D4BDCB21AE922A005C08FC /* GotoObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +226,7 @@
 				D7E52696214BD49600376F5E /* Constants.swift */,
 				D7E52694214BD49600376F5E /* GALXY Galaxy.json */,
 				D7E5269A214BD49600376F5E /* Messier.json */,
+				D7915BC321D228210034169D /* Messier2.json */,
 				D7E52698214BD49600376F5E /* QUASR Quasar.json */,
 				D7E52699214BD49600376F5E /* TTSegmentedControl.swift */,
 				D7648A3821B05D6A00C087EE /* readme.html */,
@@ -220,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				D73BA41C215E37CA00913604 /* AlignStar */,
+				D7915BC521D251950034169D /* GotoObjectTwo */,
 				D7D4BDCB21AE922A005C08FC /* GotoObject */,
 				D7D4BDCC21AE925E005C08FC /* GotoCustomObject */,
 				D7E526A8214BD4D100376F5E /* LandingViewController.swift */,
@@ -244,6 +263,7 @@
 			children = (
 				D7E526BA214BD4E000376F5E /* StarListTableViewCell.swift */,
 				D7E526BB214BD4E000376F5E /* ObjectListTableViewCell.swift */,
+				D7915BCA21D27C150034169D /* CellViewController.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -354,6 +374,7 @@
 				D7E5269E214BD49600376F5E /* Bright Star.json in Resources */,
 				D7648A3921B05D6A00C087EE /* readme.html in Resources */,
 				D7E5269C214BD49600376F5E /* BRTNB Bright Nebula.json in Resources */,
+				D7915BC421D228210034169D /* Messier2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +432,7 @@
 				D7648A3B21B0621000C087EE /* ReadMeViewController.swift in Sources */,
 				D7E526A0214BD49600376F5E /* TTSegmentedControl.swift in Sources */,
 				D7E526BC214BD4E000376F5E /* StarListTableViewCell.swift in Sources */,
+				D7915BC721D251D80034169D /* GotoObjectViewControllerTwo.swift in Sources */,
 				D7E526B1214BD4D100376F5E /* TrackingViewController.swift in Sources */,
 				D7E526B5214BD4D100376F5E /* OBSSiteViewController.swift in Sources */,
 				D7E526D5214BD57F00376F5E /* JulianDay.swift in Sources */,
@@ -419,9 +441,11 @@
 				D7E526B6214BD4D100376F5E /* SelectStarTableViewController.swift in Sources */,
 				D7E526AF214BD4D100376F5E /* SelectObjectTableViewController.swift in Sources */,
 				D7E526B7214BD4D100376F5E /* InitiaizeViewController.swift in Sources */,
+				D7915BC921D251FB0034169D /* SelectObjectTableViewControllerTwo.swift in Sources */,
 				D7E526DD214BD57F00376F5E /* LocationAndTime.swift in Sources */,
 				D7E526C2214BD50200376F5E /* PresenterProtocol.swift in Sources */,
 				D7E52682214BD41D00376F5E /* AppDelegate.swift in Sources */,
+				D7915BCB21D27C150034169D /* CellViewController.swift in Sources */,
 				D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */,
 				D75E916C219C359500AB5E97 /* PECViewController.swift in Sources */,
 				D7E526B2214BD4D100376F5E /* MoreOptionsTableViewController.swift in Sources */,

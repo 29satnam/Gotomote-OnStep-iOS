@@ -58,22 +58,14 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         Tag 3: 1.8m#
         Tag 3: On-Step#
         Tag 3: 20:03:03# */
-        let button = UIButton(type: .roundedRect)
-        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
-        button.setTitle("Crash", for: [])
-        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
-        view.addSubview(button)
 
         setupUserInteface()
-        
-        // TODO: Move this to where you establish a user session
-
     }
     
-    @objc func crashButtonTapped(_ sender: AnyObject) {
+/*    @objc func crashButtonTapped(_ sender: AnyObject) {
         Crashlytics.sharedInstance().crash()
     }
-    
+    */
 
 
 
@@ -143,7 +135,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         
     }
     
-    
     @IBAction func toGuideCenterScreen(_ sender: UIButton) {
         self.performSegue(withIdentifier: "guideCenterScreen", sender: self)
     }
@@ -155,8 +146,8 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBAction func toMessierTableView(_ sender: UIButton) {
         self.readerText = ""
-        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
-        initJSONData = grabJSONData(resource: "Messier")
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 8)
+        initJSONData = grabJSONData(resource: "Messier2")
         tableViewTitle = "MESSIER OBJECTS"
     }
     
@@ -218,6 +209,14 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
                 destination.jsonObj = initJSONData
                 destination.coordinates = coordinatesToPass
 
+            }
+        } else if segue.identifier == "objectListingTableViewTwo" {
+            // Pass MESSIER OBJECTS data to objectListingTableViewTwo
+            if let destination = segue.destination as? SelectObjectTableViewControllerTwo {
+                destination.vcTitle = tableViewTitle
+                destination.jsonObj = initJSONData
+                destination.coordinates = coordinatesToPass
+                
             }
         } else if segue.identifier == "obsSite" {
             // Site selection
@@ -381,7 +380,18 @@ extension LandingViewController: GCDAsyncSocketDelegate {
                 overHeadLimitToPass = index[opt: 1] ?? ""
                 self.performSegue(withIdentifier: "limits", sender: self)
             }
-
+        case 8:
+            readerText += getText!
+            let index = readerText.replacingOccurrences(of: "#", with: ",").dropLast().replacingOccurrences(of: "*", with: ".").components(separatedBy: ",")
+            print("inde", index.count)
+            if index.count == 3 {
+                coordinatesToPass = index
+                let banner = StatusBarNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??"), Long:\(index[opt: 1] ?? "??"), UTC \(index[opt: 2] ?? "??")", style: .success)
+                banner.bannerHeight = banner.bannerHeight + 5
+                banner.show()
+                print(index)
+                self.performSegue(withIdentifier: "objectListingTableViewTwo", sender: self)
+            }
         default:
             print("def")
         }
