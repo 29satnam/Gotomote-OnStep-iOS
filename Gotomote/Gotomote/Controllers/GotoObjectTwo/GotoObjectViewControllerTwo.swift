@@ -62,7 +62,7 @@ class GotoObjectViewControllerTwo: UIViewController {
     
     // retrieved
     var slctdJSONObj: [JSON] = [JSON()]
-    var raStr: String = String()
+   // var raStr: String = String()
     var decStr: Double = Double()
     
     let formatter = NumberFormatter()
@@ -82,31 +82,101 @@ class GotoObjectViewControllerTwo: UIViewController {
          
          */
         
-        let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue //raStr: 05 34.5
-        let raSepa = raStr.components(separatedBy: " ")// stringValue.split(separator: " ")
+        let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].doubleValue //raStr: 05 34.5
+        let raSepa = hourToString(hour: raStr).components(separatedBy: ":")
+
+        // ----
         
-        let raHH = Double(raSepa[opt: 0]!)!
-        let raSepaMM = raSepa[opt: 1]!.components(separatedBy: ".")  // ["34", "5"]
+        formatter.numberStyle = .decimal
+        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue //  decStr: +22 01
         
-        let raMM = Double(raSepaMM[opt: 0]!)! // "34"
-        let raSS = Double(raSepaMM[opt: 1]!)!/10*(60)
+        let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         
-        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].stringValue //  decStr: +22 01
-        let decSepa = decStr.components(separatedBy: " ")
+        // get whole number for degree value
+        // let decDD = floor(Double(decForm)!)
+        let decDD = doubleToInteger(data: (Double(decForm)!))
         
-        let decDD = Double(decSepa[opt: 0]!)! // 22.0
-        let decMM = String(format: "%02d", Int(decSepa[opt: 1]!)! as CVarArg)// Double()! // 22.0
+        print("decStr", decStr, "decForm", decForm, "decDD", decDD)
         
-        // print("decMM:", decMM)
         
-        // print("raStr:", raStr, "decStr:", decStr)
+        //----------------
+        
+        //seperate degree's decimal and change to minutes
+        let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
+        print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
+        
+        // format the mintutes value (precision correction)
+        let frmtr = NumberFormatter()
+        frmtr.numberStyle = .decimal
+        
+        let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
+        
+        
+        print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+        
+        // drop negative sign for minute value
+        var x = Double(decformmDecimal)
+        if (x! < 0) {
+            x! = 0 - x!
+            //   print("dec min is neg", 0 - x!) // negative
+        } else if (x! == 0) {
+            x! = x!
+        } else {
+            x! = x! // postive
+        }
+        
+        // double value to integer for minutes value
+        let decMM = doubleToInteger(data: x!)
+        
+        // ------------------ seconds
+        
+        //seperate degree's decimal and change to minutes
+        let decStrDeciSec = decStrDecimal.rounded().truncatingRemainder(dividingBy: 1) * 60
+        
+        // format the mintutes value (precision correction)
+        let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
+        formatter.numberStyle = .decimal
+        
+        print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
+        
+        
+        // drop negative sign for seconds value
+        var y = Double(decStrDeciSecPart)
+        if (y! < 0) {
+            y! = 0 - y!
+            //   print("dec min is neg", 0 - y!) // negative
+        } else if (y! == 0) {
+            y! = y!
+        } else {
+            y! = y! // postive
+        }
+        
+        //  print("yyy", y!)
+        var decString: String = String()
+        // double value to integer for minutes value
+        let decSS = doubleToInteger(data: Double(y!.rounded())) // round off
+        
+        // adjust formatting if degrees single value is negative
+        let z = decDD
+        if (z < 0) {
+            decString = String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+            //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
+        } else if (z == 0) {
+            decString = String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+            //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+        } else {
+            decString = String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+            //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
+        }
+        
+        var splitDec = decString.split(separator: ":")
         
         //Right Ascension in hours and minutes  ->     :SrHH:MM:SS# *
         //The declination is given in degrees and minutes. -> :SdsDD:MM:SS# *
         
         // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
         
-        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: raHH, minute: raMM, second: raSS), declination: DegreeAngle(degree: decDD, minute: Double(decMM)!, second: 0.0), distance: 1)
+        let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second:                                                          Double(raSepa[2])!), declination: DegreeAngle(degree: Double(splitDec[0])!, minute: Double(splitDec[1])!, second: Double(splitDec[2])!), distance: 1)
         //    print("lolol:", raHH, raMM, raSS, decDD, Double(decMM)!)
         
         let date = Date()
@@ -125,39 +195,97 @@ class GotoObjectViewControllerTwo: UIViewController {
     @IBAction func gotoBtn(_ sender: UIButton) {
         
         //---------------- Dec
+        formatter.numberStyle = .decimal
+        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
+
+        let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
         
-        let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].string?.components(separatedBy: " ")
+        // get whole number for degree value
+        // let decDD = floor(Double(decForm)!)
+        let decDD = doubleToInteger(data: (Double(decForm)!))
+        
+        print("decStr", decStr, "decForm", decForm, "decDD", decDD)
+        
+        
+        //----------------
+        
+        //seperate degree's decimal and change to minutes
+        let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
+        print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
+        
+        // format the mintutes value (precision correction)
+        let frmtr = NumberFormatter()
+        frmtr.numberStyle = .decimal
+        
+        let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
+        
+        
+        print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+        
+        // drop negative sign for minute value
+        var x = Double(decformmDecimal)
+        if (x! < 0) {
+            x! = 0 - x!
+            //   print("dec min is neg", 0 - x!) // negative
+        } else if (x! == 0) {
+            x! = x!
+        } else {
+            x! = x! // postive
+        }
+        
+        // double value to integer for minutes value
+        let decMM = doubleToInteger(data: x!)
+        
+        // ------------------ seconds
+        
+        //seperate degree's decimal and change to minutes
+        let decStrDeciSec = decStrDecimal.rounded().truncatingRemainder(dividingBy: 1) * 60
+        
+        // format the mintutes value (precision correction)
+        let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
+        formatter.numberStyle = .decimal
+        
+        print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
+        
+        
+        // drop negative sign for seconds value
+        var y = Double(decStrDeciSecPart)
+        if (y! < 0) {
+            y! = 0 - y!
+            //   print("dec min is neg", 0 - y!) // negative
+        } else if (y! == 0) {
+            y! = y!
+        } else {
+            y! = y! // postive
+        }
+        
+        //  print("yyy", y!)
         var decString: String = String()
-        let z = Int(decStr![0])!
+        // double value to integer for minutes value
+        let decSS = doubleToInteger(data: Double(y!.rounded())) // round off
+        
+        // adjust formatting if degrees single value is negative
+        let z = decDD
         if (z < 0) {
-            decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
+            decString = String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)
             //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
         } else if (z == 0) {
-            decString = String(format: "%02d:%02d", Int(decStr![0])!, Int(decStr![1])!)
+            decString = String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
             //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
         } else {
-            decString = String(format: "+%02d:%02d", Int(decStr![0])!, Int(decStr![1])!)
+            decString = String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
             //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
         }
         
-        print("decString::", decString)
+        print("decString:", decString)
         //------------------- RA
         
-        let raArray = raStr.split(separator: " ")
-        
-        let raHH = raArray[0]
-        let raMM = doubleToInteger(data: (Double(raArray[1])!))
-        
-        // seperate minutes's decimal and change to second
-        let raMMSecSepa = Double(raArray[1])!.truncatingRemainder(dividingBy: 1) * 60
-        
-        // format the mintutes value (precision correction)
-        let raSS = formatter.string(from: NSNumber(value:Int(raMMSecSepa)))!
-        
-        let RAHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
-        
+        let raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].doubleValue
+        let raSepa = hourToString(hour: raStr)
+
         readerArray.removeAll()
-        triggerConnection(cmd: ":Sr\(RAHHMMSS)#:Sd\(decString):00#:MS#", setTag: 1) //Set target RA // Set target Dec // GOTO
+        triggerConnection(cmd: ":Sr\(raStr)#:Sd\(decString)#:MS#", setTag: 1) //Set target RA // Set target Dec // GOTO
+        print(":ç\(raSepa)#:Sd\(decString)#:MS#")
         
         //sr //          Return: 0 on failure
         //                  1 on success
@@ -379,25 +507,12 @@ class GotoObjectViewControllerTwo: UIViewController {
             ra.text = "RA = N/A "
         } else {
             
-            raStr = slctdJSONObj[passedSlctdObjIndex]["RA"].stringValue
+            let raSt = slctdJSONObj[passedSlctdObjIndex]["RA"].doubleValue
             formatter.numberStyle = .decimal
-            print("raStr", raStr)
-            let raArray = raStr.split(separator: " ")
-            let raHH = raArray[0]
-            let raMM = doubleToInteger(data: (Double(raArray[1])!))
-            
-            // seperate minutes's decimal and change to second
-            let raMMSecSepa = Double(raArray[1])!.truncatingRemainder(dividingBy: 1) * 60
-            
-            // format the mintutes value (precision correction)
-            let raSS = formatter.string(from: NSNumber(value:Int(raMMSecSepa)))!
-            
-            print("raHH", raHH, "raMM", raMM, "raSS", raSS)
-            let raHHMMSS = String(format: "%02d:%02d:%02d", Int(raHH)!, raMM, Int(raSS)!)
-            
-            var splitRA = raHHMMSS.split(separator: ":")
-            print("splitRA", splitRA.count)
-            ra.text = "RA = \(splitRA[0])h \(splitRA[1])m \(splitRA[2])s"  //+ (slctdJSONObj[passedSlctdObjIndex]["RA"].string?.replacingOccurrences(of: " ", with: "h "))! + "m"
+
+            let raSepa = hourToString(hour: raSt).components(separatedBy: ":")
+
+            ra.text = "RA = \(raSepa[0])h \(raSepa[1])m \(raSepa[2])s"  //+ (slctdJSONObj[passedSlctdObjIndex]["RA"].string?.replacingOccurrences(of: " ", with: "h "))! + "m"
             
         }
         
@@ -408,9 +523,90 @@ class GotoObjectViewControllerTwo: UIViewController {
             dec.text = "DEC = N/A "
         } else {
             
-            let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].string?.components(separatedBy: " ")
+            let decStr = slctdJSONObj[passedSlctdObjIndex]["DEC"].doubleValue
             
-            dec.text = "DEC = \(decStr![0])° \(decStr![1])'"
+            let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
+            
+            // get whole number for degree value
+            // let decDD = floor(Double(decForm)!)
+            let decDD = doubleToInteger(data: (Double(decForm)!))
+            
+            print("decStr", decStr, "decForm", decForm, "decDD", decDD)
+            
+            
+            //----------------
+            
+            //seperate degree's decimal and change to minutes
+            let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
+            print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
+            
+            // format the mintutes value (precision correction)
+            let frmtr = NumberFormatter()
+            frmtr.numberStyle = .decimal
+            
+            let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
+            
+            
+            print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+            
+            // drop negative sign for minute value
+            var x = Double(decformmDecimal)
+            if (x! < 0) {
+                x! = 0 - x!
+                //   print("dec min is neg", 0 - x!) // negative
+            } else if (x! == 0) {
+                x! = x!
+            } else {
+                x! = x! // postive
+            }
+            
+            // double value to integer for minutes value
+            let decMM = doubleToInteger(data: x!)
+            
+            // ------------------ seconds
+            
+            //seperate degree's decimal and change to minutes
+            let decStrDeciSec = decStrDecimal.rounded().truncatingRemainder(dividingBy: 1) * 60
+            
+            // format the mintutes value (precision correction)
+            let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
+            formatter.numberStyle = .decimal
+            
+            print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
+            
+            
+            // drop negative sign for seconds value
+            var y = Double(decStrDeciSecPart)
+            if (y! < 0) {
+                y! = 0 - y!
+                //   print("dec min is neg", 0 - y!) // negative
+            } else if (y! == 0) {
+                y! = y!
+            } else {
+                y! = y! // postive
+            }
+            
+            //  print("yyy", y!)
+            var decString: String = String()
+            // double value to integer for minutes value
+            let decSS = doubleToInteger(data: Double(y!.rounded())) // round off
+            
+            // adjust formatting if degrees single value is negative
+            let z = decDD
+            if (z < 0) {
+                decString = String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+                //    print(String(format: "%03d:%02d:%02d", decDD as CVarArg, decMM, decSS)) //neg
+            } else if (z == 0) {
+                decString = String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+                //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+            } else {
+                decString = String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)
+                //   print(String(format: "+%02d:%02d:%02d", decDD as CVarArg, decMM, decSS))
+            }
+            
+            var splitDec = decString.split(separator: ":")
+            
+            dec.text = "DEC = \(splitDec[0])° \(splitDec[1])' \(splitDec[1])\""
             // round off fix
         }
         

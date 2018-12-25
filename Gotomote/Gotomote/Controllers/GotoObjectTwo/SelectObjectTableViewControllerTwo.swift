@@ -187,6 +187,14 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
             destination.slctdJSONObj = filteredJSON
             destination.passedCoordinates = coordinates
             
+        } else if let destination = segue.destination as? GotoObjectViewControllerTwo {
+            
+            destination.alignTypePassed = alignType
+            destination.vcTitlePassed = vcTitle
+            destination.passedSlctdObjIndex = slctdObjIndex
+            destination.slctdJSONObj = filteredJSON
+            destination.passedCoordinates = coordinates
+            
         }
     }
     
@@ -247,6 +255,6 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         slctdObjIndex = indexPath.row
-        self.performSegue(withIdentifier: "gotoObjectSyncSegue", sender: self)
+        self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
     }
 }
