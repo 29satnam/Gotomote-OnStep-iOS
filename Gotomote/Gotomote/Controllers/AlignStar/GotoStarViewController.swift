@@ -614,11 +614,11 @@ class GotoStarViewController: UIViewController {
             // round off fix
         }
         
-        // VMag
-        if (slctdJSONObj[passedSlctdObjIndex]["VMAG"]) == "" {
+        // Mag
+        if (slctdJSONObj[passedSlctdObjIndex]["MAG"]) == "" {
             vMag.text = "Visual Magnitude = N/A"
         } else {
-            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["VMAG"].numberValue)!) "
+            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["MAG"].numberValue)!) "
         }
     }
 

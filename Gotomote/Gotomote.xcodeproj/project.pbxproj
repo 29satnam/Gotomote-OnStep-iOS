@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
-		D73BA41B215E337300913604 /* GotoObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73BA41A215E337300913604 /* GotoObjectViewController.swift */; };
 		D748C10F21C3AC2300456511 /* Bright Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = D748C10E21C3AC2300456511 /* Bright Stars.json */; };
 		D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */; };
 		D75E916C219C359500AB5E97 /* PECViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E916B219C359500AB5E97 /* PECViewController.swift */; };
@@ -16,6 +15,7 @@
 		D7648A3B21B0621000C087EE /* ReadMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7648A3A21B0621000C087EE /* ReadMeViewController.swift */; };
 		D764CF8821CBC2FF00490D29 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8621CBC2FE00490D29 /* Crashlytics.framework */; };
 		D764CF8921CBC2FF00490D29 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8721CBC2FF00490D29 /* Fabric.framework */; };
+		D767CEFF21D3AD7200BCEE30 /* cladwell.json in Resources */ = {isa = PBXBuildFile; fileRef = D767CEFE21D3AD7200BCEE30 /* cladwell.json */; };
 		D78EBE202191A3A10012D24C /* GuideCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */; };
 		D7915BC421D228210034169D /* Messier2.json in Resources */ = {isa = PBXBuildFile; fileRef = D7915BC321D228210034169D /* Messier2.json */; };
 		D7915BC721D251D80034169D /* GotoObjectViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7915BC621D251D80034169D /* GotoObjectViewControllerTwo.swift */; };
@@ -33,7 +33,6 @@
 		D7E526A0214BD49600376F5E /* TTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E52699214BD49600376F5E /* TTSegmentedControl.swift */; };
 		D7E526A1214BD49600376F5E /* Messier.json in Resources */ = {isa = PBXBuildFile; fileRef = D7E5269A214BD49600376F5E /* Messier.json */; };
 		D7E526AE214BD4D100376F5E /* GotoMRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526A3214BD4D100376F5E /* GotoMRViewController.swift */; };
-		D7E526AF214BD4D100376F5E /* SelectObjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526A4214BD4D100376F5E /* SelectObjectTableViewController.swift */; };
 		D7E526B0214BD4D100376F5E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526A5214BD4D100376F5E /* SettingsViewController.swift */; };
 		D7E526B1214BD4D100376F5E /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526A6214BD4D100376F5E /* TrackingViewController.swift */; };
 		D7E526B2214BD4D100376F5E /* MoreOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526A7214BD4D100376F5E /* MoreOptionsTableViewController.swift */; };
@@ -62,7 +61,6 @@
 
 /* Begin PBXFileReference section */
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D73BA41A215E337300913604 /* GotoObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoObjectViewController.swift; sourceTree = "<group>"; };
 		D748C10E21C3AC2300456511 /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; };
 		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
 		D75E916B219C359500AB5E97 /* PECViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PECViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +69,7 @@
 		D764CF8621CBC2FE00490D29 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D764CF8721CBC2FF00490D29 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
+		D767CEFE21D3AD7200BCEE30 /* cladwell.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cladwell.json; sourceTree = "<group>"; };
 		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCenterViewController.swift; sourceTree = "<group>"; };
 		D7915BC321D228210034169D /* Messier2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Messier2.json; sourceTree = "<group>"; };
@@ -91,7 +90,6 @@
 		D7E52699214BD49600376F5E /* TTSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTSegmentedControl.swift; sourceTree = "<group>"; };
 		D7E5269A214BD49600376F5E /* Messier.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Messier.json; sourceTree = "<group>"; };
 		D7E526A3214BD4D100376F5E /* GotoMRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GotoMRViewController.swift; sourceTree = "<group>"; };
-		D7E526A4214BD4D100376F5E /* SelectObjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectObjectTableViewController.swift; sourceTree = "<group>"; };
 		D7E526A5214BD4D100376F5E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D7E526A6214BD4D100376F5E /* TrackingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		D7E526A7214BD4D100376F5E /* MoreOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreOptionsTableViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +155,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D767CEFD21D3A96900BCEE30 /* New One */ = {
+			isa = PBXGroup;
+			children = (
+				D7915BC321D228210034169D /* Messier2.json */,
+				D748C10E21C3AC2300456511 /* Bright Stars.json */,
+				D767CEFE21D3AD7200BCEE30 /* cladwell.json */,
+			);
+			path = "New One";
+			sourceTree = "<group>";
+		};
 		D7915BC521D251950034169D /* GotoObjectTwo */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,15 +172,6 @@
 				D7915BC821D251FB0034169D /* SelectObjectTableViewControllerTwo.swift */,
 			);
 			path = GotoObjectTwo;
-			sourceTree = "<group>";
-		};
-		D7D4BDCB21AE922A005C08FC /* GotoObject */ = {
-			isa = PBXGroup;
-			children = (
-				D73BA41A215E337300913604 /* GotoObjectViewController.swift */,
-				D7E526A4214BD4D100376F5E /* SelectObjectTableViewController.swift */,
-			);
-			path = GotoObject;
 			sourceTree = "<group>";
 		};
 		D7D4BDCC21AE925E005C08FC /* GotoCustomObject */ = {
@@ -220,13 +219,12 @@
 		D7E52693214BD47600376F5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D767CEFD21D3A96900BCEE30 /* New One */,
 				D7E52697214BD49600376F5E /* Bright Star.json */,
-				D748C10E21C3AC2300456511 /* Bright Stars.json */,
 				D7E52695214BD49600376F5E /* BRTNB Bright Nebula.json */,
 				D7E52696214BD49600376F5E /* Constants.swift */,
 				D7E52694214BD49600376F5E /* GALXY Galaxy.json */,
 				D7E5269A214BD49600376F5E /* Messier.json */,
-				D7915BC321D228210034169D /* Messier2.json */,
 				D7E52698214BD49600376F5E /* QUASR Quasar.json */,
 				D7E52699214BD49600376F5E /* TTSegmentedControl.swift */,
 				D7648A3821B05D6A00C087EE /* readme.html */,
@@ -239,7 +237,6 @@
 			children = (
 				D73BA41C215E37CA00913604 /* AlignStar */,
 				D7915BC521D251950034169D /* GotoObjectTwo */,
-				D7D4BDCB21AE922A005C08FC /* GotoObject */,
 				D7D4BDCC21AE925E005C08FC /* GotoCustomObject */,
 				D7E526A8214BD4D100376F5E /* LandingViewController.swift */,
 				D7E526AA214BD4D100376F5E /* OBSSiteViewController.swift */,
@@ -371,6 +368,7 @@
 				D7E526A1214BD49600376F5E /* Messier.json in Resources */,
 				D7E5269F214BD49600376F5E /* QUASR Quasar.json in Resources */,
 				D7E526C9214BD51B00376F5E /* SFUIDisplay-Medium.ttf in Resources */,
+				D767CEFF21D3AD7200BCEE30 /* cladwell.json in Resources */,
 				D7E5269E214BD49600376F5E /* Bright Star.json in Resources */,
 				D7648A3921B05D6A00C087EE /* readme.html in Resources */,
 				D7E5269C214BD49600376F5E /* BRTNB Bright Nebula.json in Resources */,
@@ -427,7 +425,6 @@
 				D7E526AE214BD4D100376F5E /* GotoMRViewController.swift in Sources */,
 				D7E526B4214BD4D100376F5E /* BacklashViewController.swift in Sources */,
 				D7E526C4214BD50200376F5E /* DataSocket.swift in Sources */,
-				D73BA41B215E337300913604 /* GotoObjectViewController.swift in Sources */,
 				D7E526D8214BD57F00376F5E /* SiderealTime.swift in Sources */,
 				D7648A3B21B0621000C087EE /* ReadMeViewController.swift in Sources */,
 				D7E526A0214BD49600376F5E /* TTSegmentedControl.swift in Sources */,
@@ -439,7 +436,6 @@
 				D7B494B7218B595B007BFDD3 /* SetOverHeadViewController.swift in Sources */,
 				D7E526DC214BD57F00376F5E /* CLLocation+Transform.swift in Sources */,
 				D7E526B6214BD4D100376F5E /* SelectStarTableViewController.swift in Sources */,
-				D7E526AF214BD4D100376F5E /* SelectObjectTableViewController.swift in Sources */,
 				D7E526B7214BD4D100376F5E /* InitiaizeViewController.swift in Sources */,
 				D7915BC921D251FB0034169D /* SelectObjectTableViewControllerTwo.swift in Sources */,
 				D7E526DD214BD57F00376F5E /* LocationAndTime.swift in Sources */,

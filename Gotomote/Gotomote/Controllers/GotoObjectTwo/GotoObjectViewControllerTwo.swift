@@ -43,10 +43,11 @@ class GotoObjectViewControllerTwo: UIViewController {
     var alignTypePassed: Int = Int()
     var vcTitlePassed: String = String()
     var passedSlctdObjIndex: Int = Int()
-    
+
     // Labeling
     @IBOutlet var longName: UILabel!
     @IBOutlet var shortName: UILabel!
+    @IBOutlet var ObjType: UILabel!
     
     @IBOutlet var ra: UILabel!
     @IBOutlet var dec: UILabel!
@@ -488,19 +489,36 @@ class GotoObjectViewControllerTwo: UIViewController {
         print(slctdJSONObj[passedSlctdObjIndex])
         
         // Long Name
-        if (slctdJSONObj[passedSlctdObjIndex]["OTHER"]) == "" {
+        if (slctdJSONObj[passedSlctdObjIndex]["objNum"]) == "" {
             longName.text = "N/A "
         } else {
-            longName.text = "\(slctdJSONObj[passedSlctdObjIndex]["OTHER"].stringValue) "
+            longName.text = "\(slctdJSONObj[passedSlctdObjIndex]["objNum"].stringValue) "
         }
         
-        // Short Name
-        if (slctdJSONObj[passedSlctdObjIndex]["OBJECT"]) == "" {
-            shortName.text = "N/A "
+        // Type Name
+        if (slctdJSONObj[passedSlctdObjIndex]["OBJType"]) == JSON.null {
+          //  shortName.text = ""
+            
+            // Type Name -- For star list
+            if (slctdJSONObj[passedSlctdObjIndex]["ABVR"]) == JSON.null {
+                shortName.text = ""
+                
+            } else {
+                shortName.text = "\(slctdJSONObj[passedSlctdObjIndex]["ABVR"].stringValue) "
+            }
             
         } else {
-            shortName.text = "\(slctdJSONObj[passedSlctdObjIndex]["OBJECT"].stringValue) "
+            shortName.text = "\(slctdJSONObj[passedSlctdObjIndex]["OBJType"].stringValue) "
         }
+        
+        // Second name
+        if (slctdJSONObj[passedSlctdObjIndex]["OTHER"]) == JSON.null {
+            ObjType.text = ""
+            
+        } else {
+            ObjType.text = "\(slctdJSONObj[passedSlctdObjIndex]["OTHER"].stringValue) "
+        }
+        
         
         // RA
         if (slctdJSONObj[passedSlctdObjIndex]["RA"]) == "" {

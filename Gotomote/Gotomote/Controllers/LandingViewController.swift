@@ -28,7 +28,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
     @IBOutlet weak var messierBtn: UIButton!
     @IBOutlet weak var ngcicBtn: UIButton!
     @IBOutlet weak var herschelBtn: UIButton!
-    @IBOutlet weak var brightStarsBtn: UIButton!
     
     @IBOutlet var moreOptionsBtn: UIBarButtonItem!
     
@@ -58,7 +57,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         Tag 3: 1.8m#
         Tag 3: On-Step#
         Tag 3: 20:03:03# */
-
         setupUserInteface()
     }
     
@@ -126,7 +124,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         addBtnProperties(button: messierBtn)
         addBtnProperties(button: ngcicBtn)
         addBtnProperties(button: herschelBtn)
-        addBtnProperties(button: brightStarsBtn)
         
         self.view.backgroundColor = .black
         
@@ -144,33 +141,25 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         triggerConnection(cmd: ":GG#", setTag: 1) // Get UTC Offset
     }
     
-    @IBAction func toMessierTableView(_ sender: UIButton) {
+    @IBAction func toMessierTableView(_ sender: UIButton) { // Messier
         self.readerText = ""
         triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 8)
         initJSONData = grabJSONData(resource: "Messier2")
         tableViewTitle = "MESSIER OBJECTS"
     }
     
-    @IBAction func toGalaxyTableView(_ sender: UIButton) {
+    @IBAction func toCladwellTableView(_ sender: UIButton) { // Cladwell
         self.readerText = ""
-        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
-        initJSONData = grabJSONData(resource: "GALXY Galaxy")
-        tableViewTitle = "GALAXIES"
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 8)
+        initJSONData = grabJSONData(resource: "cladwell")
+        tableViewTitle = "CLADWELL OBJECTS"
     }
     
-    @IBAction func toBrightNebulaTableView(_ sender: UIButton) {
+    @IBAction func toBrightStarTableView(_ sender: UIButton) { // Stars
         self.readerText = ""
-        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
-        initJSONData = grabJSONData(resource: "BRTNB Bright Nebula")
-        tableViewTitle = "BRIGHT NEBULA"
-    }
-    
-    @IBAction func toQuasarTableView(_ sender: UIButton) {
-        self.readerText = ""
-        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 2)
-        initJSONData = grabJSONData(resource: "QUASR Quasar")
-        tableViewTitle = "QUASAR"
-        //self.performSegue(withIdentifier: "objectListingTableView", sender: self)
+        triggerConnection(cmd: ":Gt#:Gg#:GG#", setTag: 8)
+        initJSONData = grabJSONData(resource: "Bright Stars")
+        tableViewTitle = "BRIGHT STARS"
     }
     
     @IBAction func toPecScreen(_ sender: UIButton) {
@@ -201,14 +190,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
                 destination.utcString = utcString
                 print("utcString", utcString)
                 destination.navigationItem.hidesBackButton = true
-            }
-        } else if segue.identifier == "objectListingTableView" {
-            // Pass MESSIER OBJECTS data to SelectStarTableViewController
-            if let destination = segue.destination as? SelectObjectTableViewController {
-                destination.vcTitle = tableViewTitle
-                destination.jsonObj = initJSONData
-                destination.coordinates = coordinatesToPass
-
             }
         } else if segue.identifier == "objectListingTableViewTwo" {
             // Pass MESSIER OBJECTS data to objectListingTableViewTwo

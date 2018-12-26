@@ -15,6 +15,7 @@ class ObjectListTableViewCellTwo: UITableViewCell {
     
     @IBOutlet var magLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
+    @IBOutlet var secName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

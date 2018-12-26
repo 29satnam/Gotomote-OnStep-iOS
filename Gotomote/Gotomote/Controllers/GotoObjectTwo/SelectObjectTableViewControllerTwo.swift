@@ -179,15 +179,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        if let destination = segue.destination as? GotoObjectViewController {
-            
-            destination.alignTypePassed = alignType
-            destination.vcTitlePassed = vcTitle
-            destination.passedSlctdObjIndex = slctdObjIndex
-            destination.slctdJSONObj = filteredJSON
-            destination.passedCoordinates = coordinates
-            
-        } else if let destination = segue.destination as? GotoObjectViewControllerTwo {
+        if let destination = segue.destination as? GotoObjectViewControllerTwo {
             
             destination.alignTypePassed = alignType
             destination.vcTitlePassed = vcTitle
@@ -249,6 +241,15 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
             //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
             cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["OBJType"].stringValue)"
         }
+        
+        // OTHER Empty Check - OTHER
+        if (self.filteredJSON[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
+            cell.secName.text = ""
+        } else {
+            //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+            cell.secName.text = " - \(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
+        }
+        
         return cell
     }
     
@@ -256,5 +257,62 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
         
         slctdObjIndex = indexPath.row
         self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
+    }
+}
+
+extension JSON{
+    mutating func appendIfArray(json:JSON){
+        if var arr = self.array{
+            arr.append(json)
+            self = JSON(arr);
+        }
+    }
+    
+    mutating func appendIfDictionary(key:String,json:JSON){
+        if var dict = self.dictionary{
+            dict[key] = json;
+            self = JSON(dict);
+        }
+    }
+}
+
+extension Double {
+    func formatNumber(minimumIntegerDigits: Int, minimumFractionDigits: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumIntegerDigits = minimumIntegerDigits
+        numberFormatter.minimumFractionDigits = minimumFractionDigits
+        
+        return numberFormatter.string(for: self) ?? ""
+    }
+}
+
+
+extension Float {
+    var cleanValue: String {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+}
+
+
+extension Double {
+    
+    func splitIntoParts(decimalPlaces: Int, round: Bool) -> (leftPart: Int, rightPart: Int) {
+        
+        var number = self
+        if round {
+            //round to specified number of decimal places:
+            let divisor = pow(10.0, Double(decimalPlaces))
+            number = Darwin.round(self * divisor) / divisor
+        }
+        
+        //convert to string and split on decimal point:
+        let parts = String(number).components(separatedBy: ".")
+        
+        //extract left and right parts:
+        let leftPart = Int(parts[0]) ?? 0
+        let rightPart = Int(parts[1]) ?? 0
+        
+        return(leftPart, rightPart)
     }
 }
