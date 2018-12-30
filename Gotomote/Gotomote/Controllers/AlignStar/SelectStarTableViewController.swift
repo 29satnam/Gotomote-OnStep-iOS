@@ -12,8 +12,8 @@ import CoreLocation
 import SpaceTime
 import MathUtil
 
-
 class SelectStarTableViewController: UITableViewController {
+    
     var instance: LandingViewController = LandingViewController()
     var jsonObj: JSON = JSON()
     var alignType: Int = Int()
@@ -212,28 +212,48 @@ class SelectStarTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! StarListTableViewCell
+
         
-        // NAME Empty Check
-        if (self.filteredJSON[indexPath.row]["NAME"]) == "" {
-            cell.nameLabel.text = "- / "
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ObjectListTableViewCellTwo
+        
+        // Object Empty Check
+        if (self.filteredJSON[indexPath.row]["objNum"]) == "" { // changed
+            cell.objectLabel.text = "N/A /"
         } else {
-            cell.nameLabel.text = "\(self.filteredJSON[indexPath.row]["NAME"].stringValue) / "
+            cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["objNum"].stringValue)"
         }
         
-        // OTHER Empty Check
-        if (self.filteredJSON[indexPath.row]["OTHER"]) == "" {
-            cell.otherLabel.text = "-"
+        // Other Empty Check
+        if (self.filteredJSON[indexPath.row]["ABVR"]) == "" { // changed
+            cell.otherLabel.text = "N/A"
         } else {
-            cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
+            cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["ABVR"].stringValue)"
         }
         
-        // ABVR Empty Check
-        if (self.filteredJSON[indexPath.row]["ABVR"]) == "" {
-            cell.abvrLabel.text = " / -"
+        // Magnitude Empty Check
+        if (self.filteredJSON[indexPath.row]["Mag"]) == "" { // changed
+            cell.magLabel.text = "N/A"
         } else {
-            cell.abvrLabel.text = " / \(self.filteredJSON[indexPath.row]["ABVR"].stringValue)"
+            cell.magLabel.text = "\(self.filteredJSON[indexPath.row]["Mag"].doubleValue) Mv"
         }
+        
+        
+        // Type Empty Check
+        if (self.filteredJSON[indexPath.row]["OBJType"]) == "" { // changed
+            cell.typeLabel.text = "N/A"
+        } else {
+            //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+            cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["OBJType"].stringValue)"
+        }
+        
+        // OTHER Empty Check - OTHER
+        if (self.filteredJSON[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
+            cell.secName.text = ""
+        } else {
+            //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+            cell.secName.text = " - \(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
+        }
+        
         return cell
     }
     

@@ -57,6 +57,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         Tag 3: 1.8m#
         Tag 3: On-Step#
         Tag 3: 20:03:03# */
+     //   ngcicBtn.setTitle("Bright Stars", for: UIControl.State.normal)
         setupUserInteface()
     }
     

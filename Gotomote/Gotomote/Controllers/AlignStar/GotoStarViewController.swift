@@ -58,7 +58,6 @@ class GotoStarViewController: UIViewController {
     @IBOutlet var azimuth: UILabel!
     
     @IBOutlet var vMag: UILabel!
-    @IBOutlet var dist: UILabel!
     @IBOutlet var aboveHorizon: UILabel!
     
     var slctdJSONObj: [JSON] = [JSON]() //= grabJSONData(resource: "Bright Stars")
@@ -487,11 +486,11 @@ class GotoStarViewController: UIViewController {
         }
         
         // Short Name
-        if (slctdJSONObj[passedSlctdObjIndex]["NAME"]) == "" {
+        if (slctdJSONObj[passedSlctdObjIndex]["objNum"]) == "" {
             shortName.text = "N/A "
             
         } else {
-            shortName.text = "\(slctdJSONObj[passedSlctdObjIndex]["NAME"].stringValue) "
+            shortName.text = "\(slctdJSONObj[passedSlctdObjIndex]["objNum"].stringValue) "
         }
         
         // RA
@@ -615,10 +614,10 @@ class GotoStarViewController: UIViewController {
         }
         
         // Mag
-        if (slctdJSONObj[passedSlctdObjIndex]["MAG"]) == "" {
+        if (slctdJSONObj[passedSlctdObjIndex]["Mag"]) == "" {
             vMag.text = "Visual Magnitude = N/A"
         } else {
-            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["MAG"].numberValue)!) "
+            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["Mag"].numberValue)!) "
         }
     }
 

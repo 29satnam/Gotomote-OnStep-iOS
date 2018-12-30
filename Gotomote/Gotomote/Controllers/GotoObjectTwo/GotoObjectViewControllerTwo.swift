@@ -56,7 +56,7 @@ class GotoObjectViewControllerTwo: UIViewController {
     @IBOutlet var azimuth: UILabel!
     
     @IBOutlet var vMag: UILabel!
-    @IBOutlet var dist: UILabel!
+
     @IBOutlet var aboveHorizon: UILabel!
     
     var readerText: String = String()
@@ -629,17 +629,10 @@ class GotoObjectViewControllerTwo: UIViewController {
         }
         
         // VMag
-        if (slctdJSONObj[passedSlctdObjIndex]["MAG"]) == "" {
+        if (slctdJSONObj[passedSlctdObjIndex]["Mag"]) == "" {
             vMag.text = "Visual Magnitude = N/A"
         } else {
-            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["MAG"].numberValue)!) "
-        }
-        
-        // Distance
-        if (slctdJSONObj[passedSlctdObjIndex]["CLASS"]) == "" {
-            dist.text = "CLASS = N/A "
-        } else {
-            dist.text = "CLASS = \(slctdJSONObj[passedSlctdObjIndex]["CLASS"].doubleValue)"
+            vMag.text = "Visual Magnitude = \(formatter.string(from: slctdJSONObj[passedSlctdObjIndex]["Mag"].numberValue)!) "
         }
     }
     
