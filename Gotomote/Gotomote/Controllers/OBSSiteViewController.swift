@@ -21,7 +21,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     @IBOutlet var siteNaTF: CustomTextField!
-  //  @IBOutlet var latTF: CustomTextField!
+    //  @IBOutlet var latTF: CustomTextField!
     
     @IBOutlet var latDDTF: CustomTextField!
     @IBOutlet var latMMTF: CustomTextField!
@@ -31,14 +31,14 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var utcHHTF: CustomTextField!
     @IBOutlet var utcMMTF: CustomTextField!
-
+    
     @IBOutlet var uploadBtn: UIButton!
     @IBOutlet var useLocat: UIButton!
     
     var selectedIndex: Int = Int()
     var readerText: String = String()
     var readerArray: [String] = [String]()
-
+    
     @IBAction func userCurrentLocation(_ sender: UIButton) {
         
         if CLLocationManager.locationServicesEnabled() {
@@ -46,124 +46,11 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
             case .notDetermined, .restricted, .denied:
                 print("No access")
                 banner = StatusBarNotificationBanner(title: "Couldn't determined the location.", style: .danger)
-                banner,
                 banner.show()
+                showLocationDisabledPopUp()
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Access")
                 locationManager.startUpdatingLocation()
-                if locationManager.location != nil {
-                    let latSplit = "\(locationManager.location!.coordinate.latitude.roundedDecimal(to: 2))".split(separator: ".")
-                    let longStr = "\(locationManager.location!.coordinate.longitude.roundedDecimal(to: 2))"//.split(separator: ".") // change sign
-
-                    
-                    
-                    var longNewStr: String = String()
-                    
-                    if let character = longStr.character(at: 0) {
-                        if character == "-" {
-                            longNewStr =  "+\(longStr.dropFirst())"
-                        } else {
-                            longNewStr =  "-\(longStr)"
-                        }
-                    }
-                    
-                    let longSplit = longNewStr.split(separator: ".")
-
-                    // fix symbol for latitude degrees
-                    let z = Int(latSplit[0])!
-                    if (z < 0) {
-                        //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
-                        self.latDDTF.text = String(format: "%03d", Int(latSplit[0])!) //neg
-                    } else if (z == 0) {
-                        //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
-                        self.latDDTF.text = String(format: "%02d", Int(latSplit[0])!)
-                    } else {
-                        self.latDDTF.text = String(format: "+%02d", Int(latSplit[0])!) //pos
-                    }
-                    
-                    self.latMMTF.text = String(format: "%02d", self.doubleToInteger(data: ((Double(latSplit[1])!/100)*60).rounded()))
-                    
-                    let y = Int(longSplit[0])!
-                    if (y < 0) {
-                        //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
-                        self.longDDTF.text = String(format: "%04d", Int(longSplit[0])!) //neg
-                    } else if (y == 0) {
-                        self.longDDTF.text = String(format: "%03d", Int(longSplit[0])!)
-                    } else {
-                        self.longDDTF.text = String(format: "+%03d", Int(longSplit[0])!) //pos
-                    }
-                    
-                    self.longMMTF.text = String(format: "%02d", self.doubleToInteger(data: ((Double(longSplit[1])!/100)*60).rounded()))
-                    
-                    let utc = TimeZone.current.offsetInHours().components(separatedBy: ":")
-                    self.utcHHTF.text = utc[0]
-                    self.utcMMTF.text = utc[1]
-                    print(self.utcHHTF.text, self.utcMMTF.text)                        // fix symbol for latitude degrees
-                    let z = Int(latSplit[0])!
-                    if (z < 0) {
-                        //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
-                        self.latDDTF.text = String(format: "%03d", Int(latSplit[0])!) //neg
-                    } else if (z == 0) {
-                        //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
-                        self.latDDTF.text = String(format: "%02d", Int(latSplit[0])!)
-                    } else {
-                        self.latDDTF.text = String(format: "+%02d", Int(latSplit[0])!) //pos
-                    }
-                    
-                    self.latMMTF.text = String(format: "%02d", self.doubleToInteger(data: ((Double(latSplit[1])!/100)*60).rounded()))
-                    
-                    let y = Int(longSplit[0])!
-                    if (y < 0) {
-                        //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
-                        self.longDDTF.text = String(format: "%04d", Int(longSplit[0])!) //neg
-                    } else if (y == 0) {
-                        self.longDDTF.text = String(format: "%03d", Int(longSplit[0])!)
-                    } else {
-                        self.longDDTF.text = String(format: "+%03d", Int(longSplit[0])!) //pos
-                    }
-                    
-                    self.longMMTF.text = String(format: "%02d", self.doubleToInteger(data: ((Double(longSplit[1])!/100)*60).rounded()))
-                    
-                    let utc = TimeZone.current.offsetInHours().components(separatedBy: ":")
-                    self.utcHHTF.text = utc[0]
-                    self.utcMMTF.text = utc[1]
-                    print(self.utcHHTF.text, self.utcMMTF.text)                        // fix symbol for latitude degrees
-                    let z = Int(latSplit[0])!
-                    if (z < 0) {
-                        //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
-                        self.latDDTF.text = String(format: "%03d", Int(latSplit[0])!) //neg
-                    } else if (z == 0) {
-                        //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
-                        self.latDDTF.text = String(format: "%02d", Int(latSplit[0])!)
-                    } else {
-                        self.latDDTF.text = String(format: "+%02d", Int(latSplit[0])!) //pos
-                    }
-                    
-                    self.latMMTF.text = String(format: "%02d", self.doubleToInteger(data: ((Double(latSplit[1])!/100)*60).rounded()))
-                    
-                    let y = Int(longSplit[0])!
-                    if (y < 0) {
-                        //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
-                        self.longDDTF.text = String(format: "%04d", Int(longSplit[0])!) //neg
-                    } else if (y == 0) {
-                        self.longDDTF.text = String(format: "%03d", Int(longSplit[0])!)
-                    } else {
-                        self.longDDTF.text = String(format: "+%03d", Int(longSplit[0])!) //pos
-                    }
-                    
-                    self.longMMTF.text = String(format: "%02d", self.doubleToInteger(data: ((Double(longSplit[1])!/100)*60).rounded()))
-                    
-                    let utc = TimeZone.current.offsetInHours().components(separatedBy: ":")
-                    self.utcHHTF.text = utc[0]
-                    self.utcMMTF.text = utc[1]
-                    print(self.utcHHTF.text, self.utcMMTF.text)
-                        
-                    banner = StatusBarNotificationBanner(title: "Location determined successfully.", style: .success)
-                    banner.show()
-                } else {
-                    print("Data is nil")
-                }
-
             }
         } else {
             print("Location services are not enabled")
@@ -183,32 +70,86 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
         banner.bannerHeight = banner.bannerHeight + 5
         
         setupUserInterface()
         
-        // For use when the app is open & in the background
-        locationManager.requestAlwaysAuthorization()
-        
-        // For use when the app is open
-        //locationManager.requestWhenInUseAuthorization()
-        
-        // If location services is enabled get the users location
-        locationManager.delegate = self
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest // You can change the locaiton accuary here.
-        }
     }
     
     // Print out the location to the console
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+    /*    if let location = locations.first {
             print("here", location.coordinate)
             locationManager.stopUpdatingLocation()
-        //    latTF.text = "\(locationManager.location!.coordinate.latitude.roundedDecimal(to: 2))"
-        //    longTF.text = "\(locationManager.location!.coordinate.longitude.roundedDecimal(to: 2))"
+        } */
+        
+        if locationManager.location != nil {
+            print(locationManager.location?.coordinate)
+            let latSplit = "\(locationManager.location!.coordinate.latitude.roundedDecimal(to: 2))".split(separator: ".")
+            let longStr = "\(locationManager.location!.coordinate.longitude.roundedDecimal(to: 2))"//.split(separator: ".") // change sign
+            
+            // Change sign
+            var longNewStr: String = String()
+            if let character = longStr.character(at: 0) {
+                if character == "-" {
+                    longNewStr =  "+\(longStr.dropFirst())"
+                    print("-")
+                } else {
+                    longNewStr =  "-\(longStr)"
+                    print("+")
+
+                }
+            }
+            
+       //     DispatchQueue.main.async {
+                let longSplit = longNewStr.split(separator: ".")
+                
+                // fix symbol for latitude degrees
+                let z = Int(latSplit[0])!
+                if (z < 0) {
+                    //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
+                    latDDTF.text = String(format: "%03d", Int(latSplit[0])!) //neg
+                } else if (z == 0) {
+                    //    print(String(format: "%02d:%02d:%02d", decDD as CVarArg, decMM, decSS)) // not happening
+                    latDDTF.text = String(format: "%02d", Int(latSplit[0])!)
+                } else {
+                    latDDTF.text = String(format: "+%02d", Int(latSplit[0])!) //pos
+                }
+                
+                latMMTF.text = String(format: "%02d", doubleToInteger(data: ((Double(latSplit[1])!/100)*60).rounded()))
+                
+                let y = Int(longSplit[0])!
+                if (y < 0) {
+                    //  decString = String(format: "%03d:%02d", Int(decStr![0])!, Int(decStr![1])!)
+                    longDDTF.text = String(format: "%04d", Int(longSplit[0])!) //neg
+                } else if (y == 0) {
+                    longDDTF.text = String(format: "%03d", Int(longSplit[0])!)
+                } else {
+                    longDDTF.text = String(format: "+%03d", Int(longSplit[0])!) //pos
+                }
+                
+                longMMTF.text = String(format: "%02d", doubleToInteger(data: ((Double(longSplit[1])!/100)*60).rounded()))
+                
+                let utc = TimeZone.current.offsetInHours().components(separatedBy: ":")
+                utcHHTF.text = utc[0]
+                utcMMTF.text = utc[1]
+                print(utcHHTF.text, utcMMTF.text)
+        //    }
+            
+            banner = StatusBarNotificationBanner(title: "Location determined successfully.", style: .success)
+            banner.show()
+            locationManager.stopUpdatingLocation()
+
+        } else {
+            print("Data is nil")
         }
+        
+        
     }
     
     // If we have been deined access give the user the option to change it
@@ -301,13 +242,13 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
         
         addTFProperties(tf: latDDTF, placeholder: "")
         addTFProperties(tf: latMMTF, placeholder: "")
-
+        
         addTFProperties(tf: longDDTF, placeholder: "")
         addTFProperties(tf: longMMTF, placeholder: "")
-
+        
         addTFProperties(tf: utcHHTF, placeholder: "")
         addTFProperties(tf: utcMMTF, placeholder: "")
-
+        
         segmentControl.itemTitles = ["Site 0","Site 1","Site 2", "Site 3"]
         
         segmentControl.allowChangeThumbWidth = false
@@ -403,7 +344,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func uploadAction(_ sender: UIButton) {
         
         readerArray.removeAll()
-
+        
         switch selectedIndex {
         case 0:
             print("upload 0")
