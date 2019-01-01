@@ -13,8 +13,8 @@ import SpaceTime
 import MathUtil
 
 class SelectObjectTableViewControllerTwo: UITableViewController {
-    @IBOutlet var searchBar: UISearchBar!
     
+    lazy var searchBar = UISearchBar(frame: CGRect.zero)
     var coordinates:[String] = [String]()
     
     // To pass
@@ -23,12 +23,9 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     var vcTitle: String = String()
     var slctdObjIndex: Int = Int()
     
-    var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
+    var filteredJSON: [JSON] = [JSON()]
     
     let formatter = NumberFormatter()
-  //  @IBOutlet weak var countrySearch: UISearchBar!
-  //  @IBOutlet weak var tblView: UITableView!
-    // --------------
     
     var searchedArray: JSON = JSON()
     var searching = false
@@ -36,8 +33,20 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("coordinatessz", coordinates)
+        
+        if #available(iOS 11, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+        
+        searchBar.sizeToFit()
         searchBar.delegate = self
-        searchBar.showsCancelButton = true
+        searchBar.placeholder = "\(vcTitle.capitalized)"
+        let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
+        
+        navigationItem.titleView = searchBar
         
         if let character = coordinates[1].character(at: 0) {
             print("character")
@@ -47,7 +56,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
                 coordinates[1] = "-\(coordinates[1].dropFirst())"
             }
         }
-        
+
         filteredJSON.removeAll()
         
         for (key, entry) in jsonObj {
@@ -69,7 +78,6 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
             let decDD = doubleToInteger(data: (Double(decForm)!))
             
             print("decStr", decStr, "decForm", decForm, "decDD", decDD)
-            
             
             //----------------
             
@@ -324,18 +332,26 @@ extension SelectObjectTableViewControllerTwo: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let searchPredicate = NSPredicate(format: "objNum contains[cd] %@", searchBar.text!)
-        if let arrayObjs = JSON(filteredJSON).arrayObject {
-            let filtered = JSON(arrayObjs.filter{ searchPredicate.evaluate(with: $0) })
-            searchedArray = filtered
-            
+        if searchText == "" {
+            self.searchBar.showsCancelButton = false
+            searching = false
+            self.tableView.reloadData()
+        } else {
+            searching = true
+            self.searchBar.showsCancelButton = true
+            let searchPredicate = NSPredicate(format: "objNum contains[cd] %@", searchBar.text!)
+            if let arrayObjs = JSON(filteredJSON).arrayObject {
+                let filtered = JSON(arrayObjs.filter{ searchPredicate.evaluate(with: $0) })
+                searchedArray = filtered
+            }
+            self.tableView.reloadData()
         }
         
-        searching = true
-        self.tableView.reloadData()
+
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = false
         searching = false
         searchBar.text = ""
         self.tableView.reloadData()

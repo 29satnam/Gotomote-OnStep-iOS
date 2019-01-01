@@ -3377,22 +3377,17 @@
         <!--Select Object Table View Controller Two-->
         <scene sceneID="akq-0s-egt">
             <objects>
-                <tableViewController id="x7L-Gs-HfP" customClass="SelectObjectTableViewControllerTwo" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Po-mF-cZ3">
+                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="x7L-Gs-HfP" customClass="SelectObjectTableViewControllerTwo" customModule="Gotomote" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" autoresizesSubviews="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Po-mF-cZ3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="1" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="u91-Qq-Qlx">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="vuz-js-yUH" customClass="ObjectListTableViewCellTwo" customModule="Gotomote" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vuz-js-yUH" id="qqv-Wu-lrX">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -3453,14 +3448,10 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="x7L-Gs-HfP" id="Plz-UU-XNA"/>
-                            <outlet property="delegate" destination="x7L-Gs-HfP" id="Pgo-Hg-Din"/>
-                        </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="8tE-ex-TJ9"/>
                     <connections>
-                        <outlet property="searchBar" destination="u91-Qq-Qlx" id="Kja-dN-nfW"/>
                         <outlet property="searchDisplayController" destination="N4l-zh-C3O" id="ko2-SQ-4xG"/>
                         <segue destination="Z5p-sc-r3E" kind="show" identifier="gotoObjectSyncSegueTwo" id="h2x-Bc-be9"/>
                     </connections>
