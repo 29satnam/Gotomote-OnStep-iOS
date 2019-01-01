@@ -292,7 +292,7 @@ class GotoObjectViewControllerTwo: UIViewController {
         //                  1 on success
         
         //sd //          Return: 0 on failure
-        //                  1 on success
+        //                  1 on successsss3
         
         //  :CS#   Synchonize the telescope with the current right ascension and declination coordinates
         //         Returns: Nothing (Sync's fail silently)

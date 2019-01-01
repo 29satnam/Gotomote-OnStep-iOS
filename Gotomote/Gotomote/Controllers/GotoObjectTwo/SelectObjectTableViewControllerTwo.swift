@@ -13,6 +13,7 @@ import SpaceTime
 import MathUtil
 
 class SelectObjectTableViewControllerTwo: UITableViewController {
+    @IBOutlet var searchBar: UISearchBar!
     
     var coordinates:[String] = [String]()
     
@@ -25,10 +26,18 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
     
     let formatter = NumberFormatter()
+  //  @IBOutlet weak var countrySearch: UISearchBar!
+  //  @IBOutlet weak var tblView: UITableView!
+    // --------------
+    
+    var searchedArray: JSON = JSON()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("coordinatessz", coordinates)
+        searchBar.delegate = self
+        searchBar.showsCancelButton = true
         
         if let character = coordinates[1].character(at: 0) {
             print("character")
@@ -203,62 +212,137 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return filteredJSON.count
+
+        if searching {
+            return searchedArray.count
+        } else {
+            return filteredJSON.count
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ObjectListTableViewCellTwo
         
-        // Object Empty Check
-        if (self.filteredJSON[indexPath.row]["objNum"]) == "" { // changed
-            cell.objectLabel.text = "N/A /"
-        } else {
-            cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["objNum"].stringValue)"
-        }
-        
-        // Other Empty Check
-        if (self.filteredJSON[indexPath.row]["ABVR"]) == "" { // changed
-            cell.otherLabel.text = "N/A"
-        } else {
-            cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["ABVR"].stringValue)"
-        }
-        
-        // Magnitude Empty Check
-        if (self.filteredJSON[indexPath.row]["Mag"]) == "" { // changed
-            cell.magLabel.text = "N/A"
-        } else {
-            cell.magLabel.text = "\(self.filteredJSON[indexPath.row]["Mag"].doubleValue) Mv"
-        }
-        
-     
-        // Type Empty Check
-        if (self.filteredJSON[indexPath.row]["OBJType"]) == "" { // changed
-            cell.typeLabel.text = "N/A"
-        } else {
-            //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
-            cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["OBJType"].stringValue)"
-        }
-        
-        // OTHER Empty Check - OTHER
-        if (self.filteredJSON[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
-            cell.secName.text = ""
-        } else {
-            //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
-            cell.secName.text = " - \(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
+        if searching { // searching
+            // Object Empty Check
+            if (self.searchedArray[indexPath.row]["objNum"]) == "" { // changed
+                cell.objectLabel.text = "N/A /"
+            } else {
+                cell.objectLabel.text = "\(self.searchedArray[indexPath.row]["objNum"].stringValue)"
+            }
+            
+            // Other Empty Check
+            if (self.searchedArray[indexPath.row]["ABVR"]) == "" { // changed
+                cell.otherLabel.text = "N/A"
+            } else {
+                cell.otherLabel.text = "\(self.searchedArray[indexPath.row]["ABVR"].stringValue)"
+            }
+            
+            // Magnitude Empty Check
+            if (self.searchedArray[indexPath.row]["Mag"]) == "" { // changed
+                cell.magLabel.text = "N/A"
+            } else {
+                cell.magLabel.text = "\(self.searchedArray[indexPath.row]["Mag"].doubleValue) Mv"
+            }
+            
+            
+            // Type Empty Check
+            if (self.searchedArray[indexPath.row]["OBJType"]) == "" { // changed
+                cell.typeLabel.text = "N/A"
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.typeLabel.text = "\(self.searchedArray[indexPath.row]["OBJType"].stringValue)"
+            }
+            
+            // OTHER Empty Check - OTHER
+            if (self.searchedArray[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
+                cell.secName.text = ""
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.secName.text = " - \(self.searchedArray[indexPath.row]["OTHER"].stringValue)"
+            }
+            
+        } else { // not seaching
+            // Object Empty Check
+            if (self.filteredJSON[indexPath.row]["objNum"]) == "" { // changed
+                cell.objectLabel.text = "N/A /"
+            } else {
+                cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["objNum"].stringValue)"
+            }
+            
+            // Other Empty Check
+            if (self.filteredJSON[indexPath.row]["ABVR"]) == "" { // changed
+                cell.otherLabel.text = "N/A"
+            } else {
+                cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["ABVR"].stringValue)"
+            }
+            
+            // Magnitude Empty Check
+            if (self.filteredJSON[indexPath.row]["Mag"]) == "" { // changed
+                cell.magLabel.text = "N/A"
+            } else {
+                cell.magLabel.text = "\(self.filteredJSON[indexPath.row]["Mag"].doubleValue) Mv"
+            }
+            
+            
+            // Type Empty Check
+            if (self.filteredJSON[indexPath.row]["OBJType"]) == "" { // changed
+                cell.typeLabel.text = "N/A"
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["OBJType"].stringValue)"
+            }
+            
+            // OTHER Empty Check - OTHER
+            if (self.filteredJSON[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
+                cell.secName.text = ""
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.secName.text = " - \(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
+            }
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        slctdObjIndex = indexPath.row
-        self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
+        if searching == true {
+            let index = filteredJSON.index(of: searchedArray[indexPath.row])
+            slctdObjIndex = index!
+            self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
+
+        } else {
+            slctdObjIndex = indexPath.row
+            self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
+        }
     }
 }
+// json["users"].arrayValue.map({$0["name"].stringValue
+extension SelectObjectTableViewControllerTwo: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let searchPredicate = NSPredicate(format: "objNum contains[cd] %@", searchBar.text!)
+        if let arrayObjs = JSON(filteredJSON).arrayObject {
+            let filtered = JSON(arrayObjs.filter{ searchPredicate.evaluate(with: $0) })
+            searchedArray = filtered
+            
+        }
+        
+        searching = true
+        self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        self.tableView.reloadData()
+    }
+    
+}
+
 
 extension JSON{
     mutating func appendIfArray(json:JSON){
