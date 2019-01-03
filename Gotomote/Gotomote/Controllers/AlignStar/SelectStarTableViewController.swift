@@ -57,6 +57,13 @@ class SelectStarTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = abortAlig
 
         filteredJSON.removeAll()
+
+        allCalcs()
+        tableView.reloadData()
+        
+    }
+    
+    func allCalcs() {
         
         for (key, entry) in jsonObj {
             //  Right Ascension in hours and minutes for epoch 2000. // "RA": "06 45"
@@ -71,7 +78,7 @@ class SelectStarTableViewController: UITableViewController {
             let decStr = jsonObj[Int(key)!]["DEC"].doubleValue //  decStr: +22 01
             
             let decForm = decStr.formatNumber(minimumIntegerDigits: 2, minimumFractionDigits: 2)
-
+            
             // get whole number for degree value
             // let decDD = floor(Double(decForm)!)
             let decDD = doubleToInteger(data: (Double(decForm)!))
@@ -157,7 +164,7 @@ class SelectStarTableViewController: UITableViewController {
             // https://groups.io/g/onstep/topic/ios_app_for_onstep/23675334?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,40,23675334
             
             let vegaCoord = EquatorialCoordinate(rightAscension: HourAngle(hour: Double(raSepa[0])!, minute: Double(raSepa[1])!, second:                                                          Double(raSepa[2])!), declination: DegreeAngle(degree: Double(splitDec[0])!, minute: Double(splitDec[1])!, second: Double(splitDec[2])!), distance: 1)
-
+            
             let date = Date()
             let locTime = ObserverLocationTime(location: CLLocation(latitude: Double(coordinates[0])!, longitude: Double(coordinates[1])!), timestamp: JulianDay(date: date))
             
@@ -166,13 +173,9 @@ class SelectStarTableViewController: UITableViewController {
             if vegaAziAlt.altitude.wrappedValue > 0 {
                 let filt = jsonObj[Int(key)!]
                 filteredJSON.append(filt)
-           //     print("ya")
+                //     print("ya")
             }
         }
-     //   print("filteredJSON:", filteredJSON)
-        tableView.reloadData()
-        
-        
     }
     @objc func abortAlignment(){
         print("clicked")
