@@ -14,8 +14,8 @@ import MathUtil
 
 class SelectObjectTableViewControllerTwo: UITableViewController {
     
-   lazy var searchBar = UISearchBar(frame: CGRect.zero)
-    
+    let searchController = UISearchController(searchResultsController: nil)
+
     var leftConstraint: NSLayoutConstraint!
     var coordinates:[String] = [String]()
     
@@ -32,11 +32,12 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     var searchedArray: JSON = JSON()
     var searching = false
     
-    var rightNavBtn: UIBarButtonItem = UIBarButtonItem()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.tableFooterView = UIView()
+        setupSearchController()
+
         if let character = coordinates[1].character(at: 0) {
             print("character")
             if character == "-" {
@@ -49,58 +50,27 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
         filteredJSON.removeAll()
         calculateData()
         
-        // Expandable area.
-        let expandableView = ExpandableView()
-        navigationItem.titleView = expandableView
-        rightNavBtn = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(toggle))
-        // Search button.
-        navigationItem.rightBarButtonItem = rightNavBtn //UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(toggle))
-        navigationItem.rightBarButtonItem?.tintColor = .white
-        
         let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        
-        let TF = self.searchBar.value(forKey: "searchField") as! UITextField
-        TF.tintColor = UIColor.black
-        
-        searchBar.delegate = self
-        // searchbar cursor color, keyboard resing on cancel          ´
-        // Search bar.
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.searchBarStyle = .prominent
-        
-        expandableView.addSubview(searchBar)
-        leftConstraint = searchBar.leftAnchor.constraint(equalTo: expandableView.leftAnchor)
-        leftConstraint.isActive = false
-        searchBar.rightAnchor.constraint(equalTo: expandableView.rightAnchor).isActive = true
-        searchBar.topAnchor.constraint(equalTo: expandableView.topAnchor).isActive = true
-        searchBar.bottomAnchor.constraint(equalTo: expandableView.bottomAnchor).isActive = true
-        searchBar.showsCancelButton = true
-        searchBar.keyboardAppearance = .dark
-        searchBar.tintColor = .black
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         navigationItem.title = vcTitle + " LIST"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.black, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         self.view.backgroundColor = .black
     }
     
-    @objc func toggle() {
-        let isOpen = leftConstraint.isActive == true
-        // Inactivating the left constraint closes the expandable header.
-        leftConstraint.isActive = isOpen ? false : true
-
-        // Animate change to visible.
+    func setupSearchController() {
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.placeholder = "Search In " + vcTitle.capitalized
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.barStyle = .black
+        searchController.searchBar.searchBarStyle = .minimal
         
-        UIView.animate(withDuration: 0.025, animations: {
-        //    self.navigationItem.titleView?.alpha = isOpen ? 0 : 1
-            if isOpen == true {
-                self.navigationItem.rightBarButtonItem = self.rightNavBtn
-            } else {
-                self.navigationItem.rightBarButtonItem = nil
-            }
-            self.navigationItem.titleView?.layoutIfNeeded()
-        })
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     func calculateData() {
@@ -123,13 +93,13 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
             // let decDD = floor(Double(decForm)!)
             let decDD = doubleToInteger(data: (Double(decForm)!))
             
-            print("decStr", decStr, "decForm", decForm, "decDD", decDD)
+        //    print("decStr", decStr, "decForm", decForm, "decDD", decDD)
             
             //----------------
             
             //seperate degree's decimal and change to minutes
             let decStrDecimal = decStr.truncatingRemainder(dividingBy: 1) * 60
-            print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
+         //   print("decStrDecimal", decStrDecimal) // -47.99999999999983 alpha cent
             
             // format the mintutes value (precision correction)
             let frmtr = NumberFormatter()
@@ -137,8 +107,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
             
             let decformmDecimal = frmtr.string(from: NSNumber(value:Int(decStrDecimal.rounded())))!
             
-            
-            print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
+        //    print("decStrDecimal",decStrDecimal, "decformmDecimal", decformmDecimal)
             
             // drop negative sign for minute value
             var x = Double(decformmDecimal)
@@ -163,7 +132,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
             let decStrDeciSecPart = formatter.string(from: NSNumber(value:Int(decStrDeciSec)))!
             formatter.numberStyle = .decimal
             
-            print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
+          //  print("decStrDeciSecPart", decStrDeciSecPart, "decStrDeciSec", decStrDeciSec)
             
             
             // drop negative sign for seconds value
@@ -215,19 +184,15 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
                 //     print("ya")
             }
         }
-        print("filteredJSON:", filteredJSON)
+     //   print("filteredJSON:", filteredJSON)
         tableView.reloadData()
     }
     
     @objc func abortAlignment(){
-        print("clicked")
-        print("filteredJSON", filteredJSON)
+     //   print("clicked")
+       // print("filteredJSON", filteredJSON)
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
-    /* @objc func goBack(){
-     dismiss(animated: true, completion: nil)
-     } */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -256,7 +221,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if searching {
+        if searchController.isActive && searchController.searchBar.text != "" {
             return searchedArray.count
         } else {
             return filteredJSON.count
@@ -268,7 +233,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ObjectListTableViewCellTwo
         
-        if searching { // searching
+        if searchController.isActive && searchController.searchBar.text != "" {
             // Object Empty Check
             if (self.searchedArray[indexPath.row]["objNum"]) == "" { // changed
                 cell.objectLabel.text = "N/A /"
@@ -351,7 +316,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searching == true {
+        if searchController.isActive && searchController.searchBar.text != "" {
             let index = filteredJSON.index(of: searchedArray[indexPath.row])
             slctdObjIndex = index!
             self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
@@ -362,40 +327,21 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
         }
     }
 }
-// json["users"].arrayValue.map({$0["name"].stringValue
-extension SelectObjectTableViewControllerTwo: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchText == "" {
-            self.searchBar.showsCancelButton = true
-            searching = false
-            self.tableView.reloadData()
-        } else {
-            searching = true
-            self.searchBar.showsCancelButton = true
-            let searchPredicate = NSPredicate(format: "objNum contains[cd] %@", searchBar.text!)
-            if let arrayObjs = JSON(filteredJSON).arrayObject {
-                let filtered = JSON(arrayObjs.filter{ searchPredicate.evaluate(with: $0) })
-                searchedArray = filtered
+
+
+extension SelectObjectTableViewControllerTwo: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let term = searchController.searchBar.text {
+                let searchPredicate = NSPredicate(format: "objNum contains[cd] %@", term)
+                if let arrayObjs = JSON(filteredJSON).arrayObject {
+                    let filtered = JSON(arrayObjs.filter{ searchPredicate.evaluate(with: $0) })
+                    searchedArray = filtered
+                    self.tableView.reloadData()
+                }
             }
-            self.tableView.reloadData()
+            
         }
-        
-
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        toggle()
-        self.searchBar.showsCancelButton = true
-        searching = false
-        searchBar.text = ""
-        self.tableView.reloadData()
-    }
-    
 }
-
 
 extension JSON{
     mutating func appendIfArray(json:JSON){
@@ -451,33 +397,5 @@ extension Double {
         let rightPart = Int(parts[1]) ?? 0
         
         return(leftPart, rightPart)
-    }
-}
-
-class ExpandableView: UIView {
-    var labelTitle: UILabel = UILabel()
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-//        backgroundColor = .clear
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        labelTitle.textAlignment = NSTextAlignment.center
-        
-        labelTitle.translatesAutoresizingMaskIntoConstraints = false
-        let horizontalConstraint = labelTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        let verticalConstraint = labelTitle.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        self.addConstraints([horizontalConstraint, verticalConstraint])
-        labelTitle.text = "OBJECTS LIST"
-        labelTitle.font = UIFont(name:"SFUIDisplay-Bold", size: 11.0)
-        labelTitle.textColor = .white
-        self.addSubview(labelTitle)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return UIView.layoutFittingExpandedSize
     }
 }
