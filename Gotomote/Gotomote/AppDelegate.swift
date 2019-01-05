@@ -29,19 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //BarButtonItemAppearance.setBackButtonTitlePositionAdjustment(UIOffsetMake(-100, 0), for:UIBarMetrics.default)
         
         UITextField.appearance().tintColor = .white
-        
+        UIApplication.shared.statusBarView?.backgroundColor = .black
+   //     UINavigationBar.appearance().barStyle = .blackOpaque
+   //     UINavigationBar.appearance().isTranslucent = false
         //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -80.0), for: .default)
-        logUser()
         Fabric.with([Crashlytics.self])
         return true
-    }
-    
-    func logUser() {
-        // TODO: Use the current user's information
-        // You can call any combination of these three methods
-        Crashlytics.sharedInstance().setUserEmail("user@fabric.io")
-        Crashlytics.sharedInstance().setUserIdentifier("Gotomote")
-        Crashlytics.sharedInstance().setUserName("Test User Two")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -69,3 +62,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UIApplication {
+    var statusBarView: UIView? {
+        if responds(to: Selector(("statusBar"))) {
+            return value(forKey: "statusBar") as? UIView
+        }
+        return nil
+    }
+}

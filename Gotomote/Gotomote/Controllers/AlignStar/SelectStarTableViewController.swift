@@ -14,6 +14,8 @@ import MathUtil
 
 class SelectStarTableViewController: UITableViewController {
     
+    let searchController = UISearchController(searchResultsController: nil)
+
     var instance: LandingViewController = LandingViewController()
     var jsonObj: JSON = JSON()
     var alignType: Int = Int()
@@ -30,9 +32,14 @@ class SelectStarTableViewController: UITableViewController {
     let formatter = NumberFormatter()
     
     var filteredJSON: [JSON] = [JSON()] //[[String : Any]] = [[String : Any]]()
-
+    var searchedArray: JSON = JSON()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView()
+        setupSearchController()
+        
         jsonObj = grabJSONData(resource: "Bright Stars")
         // reverse sign for longitude
         if let character = coordinates[1].character(at: 0) {
@@ -44,7 +51,13 @@ class SelectStarTableViewController: UITableViewController {
             }
         }
 
-        print("coordinatess", coordinates, coordinates.count, coordinates[1]) // ["+01.21", "-103.44"] 2 +01.21
+        filteredJSON.removeAll()
+        allCalcs()
+        tableView.reloadData()
+        
+        let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         navigationItem.title = vcTitle
         navigationItem.hidesBackButton = true
@@ -55,12 +68,27 @@ class SelectStarTableViewController: UITableViewController {
         let abortAlig = UIBarButtonItem(title: "Abort", style: .plain , target: self, action: #selector(abortAlignment))
         abortAlig.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.navigationItem.rightBarButtonItem = abortAlig
-
-        filteredJSON.removeAll()
-
-        allCalcs()
-        tableView.reloadData()
         
+    }
+    
+    func setupSearchController() {
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.placeholder = "Search In " + vcTitle.capitalized
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchBar.barStyle = .black
+        
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.backgroundColor = UIColor.red
+        searchController.searchBar.clearBackgroundColor()
+        
+        searchController.searchBar.backgroundColor = UIColor.black
+        searchController.searchBar.searchBarStyle = .minimal
+        
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     func allCalcs() {
@@ -208,10 +236,13 @@ class SelectStarTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.filteredJSON.count
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return searchedArray.count
+        } else {
+            return filteredJSON.count
+        }
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -219,55 +250,116 @@ class SelectStarTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ObjectListTableViewCellTwo
         
-        // Object Empty Check
-        if (self.filteredJSON[indexPath.row]["objNum"]) == "" { // changed
-            cell.objectLabel.text = "N/A /"
+        if searchController.isActive && searchController.searchBar.text != "" {
+            
+            // Object Empty Check
+            if (self.searchedArray[indexPath.row]["objNum"]) == "" { // changed
+                cell.objectLabel.text = "N/A /"
+            } else {
+                cell.objectLabel.text = "\(self.searchedArray[indexPath.row]["objNum"].stringValue)"
+            }
+            
+            // Other Empty Check
+            if (self.searchedArray[indexPath.row]["ABVR"]) == "" { // changed
+                cell.otherLabel.text = "N/A"
+            } else {
+                cell.otherLabel.text = "\(self.searchedArray[indexPath.row]["ABVR"].stringValue)"
+            }
+            
+            // Magnitude Empty Check
+            if (self.searchedArray[indexPath.row]["Mag"]) == "" { // changed
+                cell.magLabel.text = "N/A"
+            } else {
+                cell.magLabel.text = "\(self.searchedArray[indexPath.row]["Mag"].doubleValue) Mv"
+            }
+            
+            
+            // Type Empty Check
+            if (self.searchedArray[indexPath.row]["OBJType"]) == "" { // changed
+                cell.typeLabel.text = "N/A"
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.typeLabel.text = "\(self.searchedArray[indexPath.row]["OBJType"].stringValue)"
+            }
+            
+            // OTHER Empty Check - OTHER
+            if (self.searchedArray[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
+                cell.secName.text = ""
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.secName.text = " - \(self.searchedArray[indexPath.row]["OTHER"].stringValue)"
+            }
+            
         } else {
-            cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["objNum"].stringValue)"
-        }
-        
-        // Other Empty Check
-        if (self.filteredJSON[indexPath.row]["ABVR"]) == "" { // changed
-            cell.otherLabel.text = "N/A"
-        } else {
-            cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["ABVR"].stringValue)"
-        }
-        
-        // Magnitude Empty Check
-        if (self.filteredJSON[indexPath.row]["Mag"]) == "" { // changed
-            cell.magLabel.text = "N/A"
-        } else {
-            cell.magLabel.text = "\(self.filteredJSON[indexPath.row]["Mag"].doubleValue) Mv"
-        }
-        
-        
-        // Type Empty Check
-        if (self.filteredJSON[indexPath.row]["OBJType"]) == "" { // changed
-            cell.typeLabel.text = "N/A"
-        } else {
-            //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
-            cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["OBJType"].stringValue)"
-        }
-        
-        // OTHER Empty Check - OTHER
-        if (self.filteredJSON[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
-            cell.secName.text = ""
-        } else {
-            //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
-            cell.secName.text = " - \(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
+            // Object Empty Check
+            if (self.filteredJSON[indexPath.row]["objNum"]) == "" { // changed
+                cell.objectLabel.text = "N/A"
+            } else {
+                cell.objectLabel.text = "\(self.filteredJSON[indexPath.row]["objNum"].stringValue)"
+            }
+            
+            // Other Empty Check
+            if (self.filteredJSON[indexPath.row]["ABVR"]) == "" { // changed
+                cell.otherLabel.text = "N/A"
+            } else {
+                cell.otherLabel.text = "\(self.filteredJSON[indexPath.row]["ABVR"].stringValue)"
+            }
+            
+            // Magnitude Empty Check
+            if (self.filteredJSON[indexPath.row]["Mag"]) == "" { // changed
+                cell.magLabel.text = "N/A"
+            } else {
+                cell.magLabel.text = "\(self.filteredJSON[indexPath.row]["Mag"].doubleValue) Mv"
+            }
+            
+            
+            // Type Empty Check
+            if (self.filteredJSON[indexPath.row]["OBJType"]) == "" { // changed
+                cell.typeLabel.text = "N/A"
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.typeLabel.text = "\(self.filteredJSON[indexPath.row]["OBJType"].stringValue)"
+            }
+            
+            // OTHER Empty Check - OTHER
+            if (self.filteredJSON[indexPath.row]["OTHER"]) == JSON.null { // OTHER NAME
+                cell.secName.text = ""
+            } else {
+                //  cell.typeLabel.text = "\(self.jsonObj[indexPath.row]["TYPE"].stringValue)"
+                cell.secName.text = " - \(self.filteredJSON[indexPath.row]["OTHER"].stringValue)"
+            }
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        slctdObj = filteredJSON[indexPath.row]
-        slctdObjIndex = indexPath.row
-        print("slctdObj", slctdObj)
-        self.performSegue(withIdentifier: "gotoSegue", sender: self)
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            let index = filteredJSON.index(of: searchedArray[indexPath.row])
+            slctdObjIndex = index!
+            self.performSegue(withIdentifier: "gotoSegue", sender: self)
+        } else {
+            slctdObj = filteredJSON[indexPath.row]
+            slctdObjIndex = indexPath.row
+            print("slctdObj", slctdObj)
+            self.performSegue(withIdentifier: "gotoSegue", sender: self)
+        }
     }
     
 }
-// destination.coordinates = coordinates
 
+
+extension SelectStarTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let term = searchController.searchBar.text {
+            let searchPredicate = NSPredicate(format: "objNum contains[cd] %@", term)
+            if let arrayObjs = JSON(filteredJSON).arrayObject {
+                let filtered = JSON(arrayObjs.filter{ searchPredicate.evaluate(with: $0) })
+                searchedArray = filtered
+                self.tableView.reloadData()
+            }
+        }
+        
+    }
+}

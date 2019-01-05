@@ -30,14 +30,13 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     let formatter = NumberFormatter()
     
     var searchedArray: JSON = JSON()
-    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.tableFooterView = UIView()
         setupSearchController()
-
+        // trasparent bar
         if let character = coordinates[1].character(at: 0) {
             print("character")
             if character == "-" {
@@ -49,6 +48,7 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
         
         filteredJSON.removeAll()
         calculateData()
+        tableView.reloadData()
         
         let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
@@ -68,8 +68,14 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.keyboardAppearance = .dark
         searchController.searchBar.barStyle = .black
-        searchController.searchBar.searchBarStyle = .minimal
         
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.backgroundColor = UIColor.red
+        searchController.searchBar.clearBackgroundColor()
+        
+        searchController.searchBar.backgroundColor = UIColor.black
+        searchController.searchBar.searchBarStyle = .minimal
+
         tableView.tableHeaderView = searchController.searchBar
     }
     
@@ -320,7 +326,6 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
             let index = filteredJSON.index(of: searchedArray[indexPath.row])
             slctdObjIndex = index!
             self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
-
         } else {
             slctdObjIndex = indexPath.row
             self.performSegue(withIdentifier: "gotoObjectSyncSegueTwo", sender: self)
@@ -397,5 +402,20 @@ extension Double {
         let rightPart = Int(parts[1]) ?? 0
         
         return(leftPart, rightPart)
+    }
+}
+
+extension UISearchBar {
+    
+    func clearBackgroundColor() {
+        guard let UISearchBarBackground: AnyClass = NSClassFromString("UISearchBarBackground") else { return }
+        
+        for view in self.subviews {
+            for subview in view.subviews {
+                if subview.isKind(of: UISearchBarBackground) {
+                    subview.alpha = 0
+                }
+            }
+        }
     }
 }

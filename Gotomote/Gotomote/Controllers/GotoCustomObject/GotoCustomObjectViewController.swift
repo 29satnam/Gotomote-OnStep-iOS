@@ -64,9 +64,43 @@ class GotoCustomObjectViewController: UIViewController {
     
     let formatter = NumberFormatter()
     
-    // formed
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("passedCoordinatesss:", passedCoordinates)
+
+        if let character = passedCoordinates[1].character(at: 0) {
+            print("character")
+            if character == "-" {
+                passedCoordinates[1] = "+\(passedCoordinates[1].dropFirst())"
+            } else {
+                passedCoordinates[1] = "-\(passedCoordinates[1].dropFirst())"
+            }
+        }
+        
+        speedSlider.minimumValue = 0
+        speedSlider.maximumValue = 9
+        speedSlider.isContinuous = true
+        
+        northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
+        northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
+        
+        southBtn.addTarget(self, action: #selector(moveToSouth), for: UIControl.Event.touchDown)
+        southBtn.addTarget(self, action: #selector(stopToSouth), for: UIControl.Event.touchUpInside)
+        
+        westBtn.addTarget(self, action: #selector(moveToWest), for: UIControl.Event.touchDown)
+        westBtn.addTarget(self, action: #selector(stopToWest), for: UIControl.Event.touchUpInside)
+        
+        eastBtn.addTarget(self, action: #selector(moveToEast), for: UIControl.Event.touchDown)
+        eastBtn.addTarget(self, action: #selector(stopToEast), for: UIControl.Event.touchUpInside)
+        
+        setupLabelData()
+        setupUserInterface()
+        
+        let displayLink = CADisplayLink(target: self, selector: #selector(screenUpdate))
+        displayLink.add(to: .main, forMode: RunLoop.Mode.default)
+    }
     
-    // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
     @objc func screenUpdate() {
 
         
@@ -161,43 +195,6 @@ class GotoCustomObjectViewController: UIViewController {
             clientSocket.readData(withTimeout: 1.5, tag: setTag)
         } catch {
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print("passedCoordinatesss:", passedCoordinates)
-        /*
-        if let character = passedCoordinates[1].character(at: 0) {
-            print("character")
-            if character == "-" {
-                passedCoordinates[1] = "+\(passedCoordinates[1].dropFirst())"
-            } else {
-                passedCoordinates[1] = "-\(passedCoordinates[1].dropFirst())"
-            }
-        }
-*/
-        speedSlider.minimumValue = 0
-        speedSlider.maximumValue = 9
-        speedSlider.isContinuous = true
-        
-        northBtn.addTarget(self, action: #selector(moveToNorth), for: UIControl.Event.touchDown)
-        northBtn.addTarget(self, action: #selector(stopToNorth), for: UIControl.Event.touchUpInside)
-        
-        southBtn.addTarget(self, action: #selector(moveToSouth), for: UIControl.Event.touchDown)
-        southBtn.addTarget(self, action: #selector(stopToSouth), for: UIControl.Event.touchUpInside)
-        
-        westBtn.addTarget(self, action: #selector(moveToWest), for: UIControl.Event.touchDown)
-        westBtn.addTarget(self, action: #selector(stopToWest), for: UIControl.Event.touchUpInside)
-        
-        eastBtn.addTarget(self, action: #selector(moveToEast), for: UIControl.Event.touchDown)
-        eastBtn.addTarget(self, action: #selector(stopToEast), for: UIControl.Event.touchUpInside)
-        
-        setupLabelData()
-        setupUserInterface()
-        
-        let displayLink = CADisplayLink(target: self, selector: #selector(screenUpdate))
-        displayLink.add(to: .main, forMode: RunLoop.Mode.default)
     }
     
     func alertMessage(message:String,buttonText:String,completionHandler:(()->())?) {
@@ -551,7 +548,7 @@ extension GotoCustomObjectViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)

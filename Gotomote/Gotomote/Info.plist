@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>3.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Fabric</key>
@@ -42,7 +42,7 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>App uses this to preview and calculate celestial objects data based on your location.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Will you allow this app to always know your location?</string>
+	<string>Do you allow this app to always know your location?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Do you allow this app to know your current location?</string>
 	<key>UIAppFonts</key>

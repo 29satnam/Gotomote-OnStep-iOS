@@ -53,7 +53,6 @@ class InitializeViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
         
         self.view.backgroundColor = .black
-        
         setupUserInterface()
     }
 
@@ -124,7 +123,7 @@ class InitializeViewController: UIViewController {
         
         //print(":SC\(strDate[opt: 0]!)#:SL\(strDate[opt: 1]!)#") //:SC11/29/18#:SL13:21:29#
 
-        banner = StatusBarNotificationBanner(title: "Setting (\(strDate[opt: 0]!), \(strDate[opt: 1]!) GMT[\(utcStr)])" , style: .success)
+        banner = StatusBarNotificationBanner(title: "Setting (\(strDate[opt: 0]!), \(strDate[opt: 1]!) GMT[\(utcStr.replacingOccurrences(of: ".", with: ":"))])" , style: .success)
         banner.show()
     }
     
@@ -381,7 +380,7 @@ extension InitializeViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)

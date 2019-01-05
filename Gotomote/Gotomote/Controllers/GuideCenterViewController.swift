@@ -645,7 +645,7 @@ extension GuideCenterViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)

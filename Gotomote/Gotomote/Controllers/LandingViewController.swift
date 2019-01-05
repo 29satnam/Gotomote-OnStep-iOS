@@ -58,6 +58,9 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         Tag 3: On-Step#
         Tag 3: 20:03:03# */
      //   ngcicBtn.setTitle("Bright Stars", for: UIControl.State.normal)
+        
+        // //  :GVN# Get Telescope Firmware Number //  :GU#   Get telescope Status
+        triggerConnection(cmd: ":GVN#:GU#", setTag: 9) // Start align
         setupUserInteface()
     }
     
@@ -198,7 +201,6 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
                 destination.vcTitle = tableViewTitle
                 destination.jsonObj = initJSONData
                 destination.coordinates = coordinatesToPass
-                
             }
         } else if segue.identifier == "obsSite" {
             // Site selection
@@ -261,7 +263,7 @@ class LandingViewController: UIViewController, UIPopoverPresentationControllerDe
         viewController.popoverPresentationController?.backgroundColor = UIColor(red: 144/255.0, green: 19/255.0, blue: 254/255.0, alpha: 1.0)
         viewController.popoverPresentationController?.barButtonItem = moreOptionsBtn
         viewController.popoverPresentationController?.permittedArrowDirections = .any
-        viewController.preferredContentSize = CGSize(width: 225, height: 340)
+        viewController.preferredContentSize = CGSize(width: 225, height: 250)
         
         // Present the popoverViewController's view on screen
         
@@ -374,6 +376,10 @@ extension LandingViewController: GCDAsyncSocketDelegate {
                 print(index)
                 self.performSegue(withIdentifier: "objectListingTableViewTwo", sender: self)
             }
+        case 9:
+            if getText!.components(separatedBy: "#").count == 2 {
+                Crashlytics.sharedInstance().setUserIdentifier(getText!)
+            }
         default:
             print("def")
         }
@@ -402,7 +408,7 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed and returned nothing.", style: .success)
+            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
             banner.bannerHeight = banner.bannerHeight + 5
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
