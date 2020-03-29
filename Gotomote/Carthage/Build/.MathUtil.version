@@ -1,18 +1,10 @@
 {
-  "Mac" : [
-
-  ],
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
   "commitish" : "0.4.0",
   "iOS" : [
     {
       "name" : "MathUtil",
-      "hash" : "a8db0e5ee5eb9dab1d80b2ee5a517967f1e5ebd33cbd5cf17008d2a36fba7b8c"
+      "hash" : "981f3ea24b9f3adac9dcebc92824c2e31e1489873d5ab48670dcc3a3b07de677",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
     }
   ]
 }

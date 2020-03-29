@@ -1,18 +1,10 @@
 {
-  "Mac" : [
-
-  ],
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "commitish" : "30c7beb4f89e95550759a46bfc4c3278478d222a",
+  "commitish" : "a852488c04c5bfdb32021711b3dde465ad0899ef",
   "iOS" : [
     {
       "name" : "NotificationBanner",
-      "hash" : "2f54ef25433bd82a409e44c827b34fa48b0149328545816d3f2bb83d9599124f"
+      "hash" : "2190cc935f217a37307459e6ac211870735a95fa94b0de1d5cd79c4ccac53e8e",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
     }
   ]
 }

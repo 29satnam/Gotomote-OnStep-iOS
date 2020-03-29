@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C817F5424308C7E0011FEFB /* Answers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4924308C7D0011FEFB /* Answers.framework */; };
+		7C817F5524308C7E0011FEFB /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4A24308C7D0011FEFB /* SnapKit.framework */; };
+		7C817F5624308C7E0011FEFB /* SpaceTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4B24308C7D0011FEFB /* SpaceTime.framework */; };
+		7C817F5724308C7E0011FEFB /* MarqueeLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4C24308C7D0011FEFB /* MarqueeLabel.framework */; };
+		7C817F5824308C7E0011FEFB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4D24308C7D0011FEFB /* Crashlytics.framework */; };
+		7C817F5924308C7E0011FEFB /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4E24308C7D0011FEFB /* CocoaAsyncSocket.framework */; };
+		7C817F5A24308C7E0011FEFB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4F24308C7D0011FEFB /* Fabric.framework */; };
+		7C817F5B24308C7E0011FEFB /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5024308C7D0011FEFB /* MarqueeLabelSwift.framework */; };
+		7C817F5C24308C7E0011FEFB /* MathUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5124308C7D0011FEFB /* MathUtil.framework */; };
+		7C817F5D24308C7E0011FEFB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5224308C7D0011FEFB /* SwiftyJSON.framework */; };
+		7C817F5E24308C7E0011FEFB /* NotificationBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5324308C7E0011FEFB /* NotificationBanner.framework */; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
 		D748C10F21C3AC2300456511 /* Bright Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = D748C10E21C3AC2300456511 /* Bright Stars.json */; };
 		D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */; };
 		D75E916C219C359500AB5E97 /* PECViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E916B219C359500AB5E97 /* PECViewController.swift */; };
 		D7648A3921B05D6A00C087EE /* readme.html in Resources */ = {isa = PBXBuildFile; fileRef = D7648A3821B05D6A00C087EE /* readme.html */; };
 		D7648A3B21B0621000C087EE /* ReadMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7648A3A21B0621000C087EE /* ReadMeViewController.swift */; };
-		D764CF8821CBC2FF00490D29 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8621CBC2FE00490D29 /* Crashlytics.framework */; };
-		D764CF8921CBC2FF00490D29 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D764CF8721CBC2FF00490D29 /* Fabric.framework */; };
 		D767CEFF21D3AD7200BCEE30 /* cladwell.json in Resources */ = {isa = PBXBuildFile; fileRef = D767CEFE21D3AD7200BCEE30 /* cladwell.json */; };
 		D78EBE202191A3A10012D24C /* GuideCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */; };
 		D7915BC421D228210034169D /* Messier2.json in Resources */ = {isa = PBXBuildFile; fileRef = D7915BC321D228210034169D /* Messier2.json */; };
@@ -60,17 +69,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C817F4924308C7D0011FEFB /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Answers.framework; path = Carthage/Build/iOS/Answers.framework; sourceTree = "<group>"; };
+		7C817F4A24308C7D0011FEFB /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		7C817F4B24308C7D0011FEFB /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpaceTime.framework; path = Carthage/Build/iOS/SpaceTime.framework; sourceTree = "<group>"; };
+		7C817F4C24308C7D0011FEFB /* MarqueeLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabel.framework; path = Carthage/Build/iOS/MarqueeLabel.framework; sourceTree = "<group>"; };
+		7C817F4D24308C7D0011FEFB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Carthage/Build/iOS/Crashlytics.framework; sourceTree = "<group>"; };
+		7C817F4E24308C7D0011FEFB /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		7C817F4F24308C7D0011FEFB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Carthage/Build/iOS/Fabric.framework; sourceTree = "<group>"; };
+		7C817F5024308C7D0011FEFB /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabelSwift.framework; path = Carthage/Build/iOS/MarqueeLabelSwift.framework; sourceTree = "<group>"; };
+		7C817F5124308C7D0011FEFB /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MathUtil.framework; path = Carthage/Build/iOS/MathUtil.framework; sourceTree = "<group>"; };
+		7C817F5224308C7D0011FEFB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		7C817F5324308C7E0011FEFB /* NotificationBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBanner.framework; path = Carthage/Build/iOS/NotificationBanner.framework; sourceTree = "<group>"; };
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D748C10E21C3AC2300456511 /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; };
 		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
 		D75E916B219C359500AB5E97 /* PECViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PECViewController.swift; sourceTree = "<group>"; };
 		D7648A3821B05D6A00C087EE /* readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = readme.html; sourceTree = "<group>"; };
 		D7648A3A21B0621000C087EE /* ReadMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeViewController.swift; sourceTree = "<group>"; };
-		D764CF8621CBC2FE00490D29 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		D764CF8721CBC2FF00490D29 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		D764E0B3214E5F750070314E /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpaceTime.framework; sourceTree = "<group>"; };
 		D767CEFE21D3AD7200BCEE30 /* cladwell.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cladwell.json; sourceTree = "<group>"; };
-		D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		D78EBE1F2191A3A10012D24C /* GuideCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideCenterViewController.swift; sourceTree = "<group>"; };
 		D7915BC321D228210034169D /* Messier2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Messier2.json; sourceTree = "<group>"; };
 		D7915BC621D251D80034169D /* GotoObjectViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoObjectViewControllerTwo.swift; sourceTree = "<group>"; };
@@ -116,8 +132,6 @@
 		D7E526D2214BD57F00376F5E /* EquatorialCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquatorialCoordinate.swift; sourceTree = "<group>"; };
 		D7E526D3214BD57F00376F5E /* CLLocation+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocation+Transform.swift"; sourceTree = "<group>"; };
 		D7E526D4214BD57F00376F5E /* LocationAndTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAndTime.swift; sourceTree = "<group>"; };
-		D7E526DE214BD68900376F5E /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MathUtil.framework; sourceTree = "<group>"; };
-		D7E526DF214BD68900376F5E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +139,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D764CF8821CBC2FF00490D29 /* Crashlytics.framework in Frameworks */,
-				D764CF8921CBC2FF00490D29 /* Fabric.framework in Frameworks */,
+				7C817F5C24308C7E0011FEFB /* MathUtil.framework in Frameworks */,
+				7C817F5A24308C7E0011FEFB /* Fabric.framework in Frameworks */,
+				7C817F5924308C7E0011FEFB /* CocoaAsyncSocket.framework in Frameworks */,
+				7C817F5E24308C7E0011FEFB /* NotificationBanner.framework in Frameworks */,
+				7C817F5424308C7E0011FEFB /* Answers.framework in Frameworks */,
+				7C817F5D24308C7E0011FEFB /* SwiftyJSON.framework in Frameworks */,
+				7C817F5824308C7E0011FEFB /* Crashlytics.framework in Frameworks */,
+				7C817F5B24308C7E0011FEFB /* MarqueeLabelSwift.framework in Frameworks */,
+				7C817F5624308C7E0011FEFB /* SpaceTime.framework in Frameworks */,
+				7C817F5724308C7E0011FEFB /* MarqueeLabel.framework in Frameworks */,
+				7C817F5524308C7E0011FEFB /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,12 +168,17 @@
 		D764E0AC214E5EC00070314E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D764CF8621CBC2FE00490D29 /* Crashlytics.framework */,
-				D764CF8721CBC2FF00490D29 /* Fabric.framework */,
-				D784C6242153698100DFB54E /* CocoaAsyncSocket.framework */,
-				D764E0B3214E5F750070314E /* SpaceTime.framework */,
-				D7E526DE214BD68900376F5E /* MathUtil.framework */,
-				D7E526DF214BD68900376F5E /* SwiftyJSON.framework */,
+				7C817F4924308C7D0011FEFB /* Answers.framework */,
+				7C817F4E24308C7D0011FEFB /* CocoaAsyncSocket.framework */,
+				7C817F4D24308C7D0011FEFB /* Crashlytics.framework */,
+				7C817F4F24308C7D0011FEFB /* Fabric.framework */,
+				7C817F4C24308C7D0011FEFB /* MarqueeLabel.framework */,
+				7C817F5024308C7D0011FEFB /* MarqueeLabelSwift.framework */,
+				7C817F5124308C7D0011FEFB /* MathUtil.framework */,
+				7C817F5324308C7E0011FEFB /* NotificationBanner.framework */,
+				7C817F4A24308C7D0011FEFB /* SnapKit.framework */,
+				7C817F4B24308C7D0011FEFB /* SpaceTime.framework */,
+				7C817F5224308C7D0011FEFB /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -602,6 +630,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Gotomote/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -612,7 +641,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = com.silverseahog.gotomote;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -631,6 +660,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Gotomote/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -641,7 +671,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = com.silverseahog.gotomote;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

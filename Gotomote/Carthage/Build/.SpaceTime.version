@@ -1,18 +1,10 @@
 {
-  "Mac" : [
-
-  ],
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
   "commitish" : "0.3.1",
   "iOS" : [
     {
       "name" : "SpaceTime",
-      "hash" : "28b741c27df559815205de4ca5fff0b042a7548cb60433f16ac2c795a65d6a66"
+      "hash" : "8e9f38e5f5f60cb5ea7d7167371f176ed4aad9a30a4c48f6f2f3de0a530b01cd",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
     }
   ]
 }

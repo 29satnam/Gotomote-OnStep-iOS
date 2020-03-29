@@ -17,6 +17,9 @@ protocol ExampleViewDelegate : class {
     func basicNotificationCellSelected(at index: Int)
     func basicNotificationCellWithSideViewsSelected(at index: Int)
     func basicCustomNotificationCellSelected(at index: Int)
+    func basicGrowingNotificationCellSelected(at index: Int)
+    func basicFloatingNotificationCellSelected(at index: Int)
+    func basicSimulanteousFloatingNotificationCellSelected(at index: Int)
     func basicStatusBarNotificationCellSelected(at index: Int)
 }
 
@@ -117,7 +120,7 @@ class ExampleView: UIView {
 extension ExampleView : UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,13 +158,19 @@ extension ExampleView : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         if indexPath.section == 0 {
-            delegate!.basicNotificationCellSelected(at: indexPath.row)
+            delegate?.basicNotificationCellSelected(at: indexPath.row)
         } else if indexPath.section == 1 {
-            delegate!.basicNotificationCellWithSideViewsSelected(at: indexPath.row)
+            delegate?.basicNotificationCellWithSideViewsSelected(at: indexPath.row)
         } else if indexPath.section == 2 {
-            delegate!.basicCustomNotificationCellSelected(at: indexPath.row)
+            delegate?.basicCustomNotificationCellSelected(at: indexPath.row)
         } else if indexPath.section == 3 {
-            delegate!.basicStatusBarNotificationCellSelected(at: indexPath.row)
+            delegate?.basicGrowingNotificationCellSelected(at: indexPath.row)
+        } else if indexPath.section == 4 {
+            delegate?.basicFloatingNotificationCellSelected(at: indexPath.row)
+        } else if indexPath.section == 5 {
+            delegate?.basicSimulanteousFloatingNotificationCellSelected(at: indexPath.row)
+        } else if indexPath.section == 6 {
+            delegate?.basicStatusBarNotificationCellSelected(at: indexPath.row)
         }
     }
 }

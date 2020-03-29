@@ -1,25 +1,15 @@
 {
-  "Mac" : [
-
-  ],
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-    {
-      "name" : "MarqueeLabel",
-      "hash" : "7e282e39941cb51755e8bab1bef5b0199cda9559851913affae19600878ad878"
-    }
-  ],
-  "commitish" : "3.2.0",
+  "commitish" : "4.0.2",
   "iOS" : [
     {
       "name" : "MarqueeLabel",
-      "hash" : "36f545681872d860a06624da6c78bb4390702914d0ce60950083dfca864ced08"
+      "hash" : "3bc276e94926f698d3121956e9de90b1477304b509da1b5d49d2440770a539b1",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
     },
     {
       "name" : "MarqueeLabelSwift",
-      "hash" : "8d524c472f06fc681bf0e4ac19a42b92176cf2a4dee6e27522f1c23e1a173422"
+      "hash" : "6754a627a70f2bd3db653a60446eeffcfa40722251c2c9fe617e3e563466843f",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
     }
   ]
 }
