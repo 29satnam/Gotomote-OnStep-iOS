@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C817F5424308C7E0011FEFB /* Answers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4924308C7D0011FEFB /* Answers.framework */; };
-		7C817F5524308C7E0011FEFB /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4A24308C7D0011FEFB /* SnapKit.framework */; };
-		7C817F5624308C7E0011FEFB /* SpaceTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4B24308C7D0011FEFB /* SpaceTime.framework */; };
-		7C817F5724308C7E0011FEFB /* MarqueeLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4C24308C7D0011FEFB /* MarqueeLabel.framework */; };
-		7C817F5824308C7E0011FEFB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4D24308C7D0011FEFB /* Crashlytics.framework */; };
-		7C817F5924308C7E0011FEFB /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4E24308C7D0011FEFB /* CocoaAsyncSocket.framework */; };
-		7C817F5A24308C7E0011FEFB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F4F24308C7D0011FEFB /* Fabric.framework */; };
-		7C817F5B24308C7E0011FEFB /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5024308C7D0011FEFB /* MarqueeLabelSwift.framework */; };
-		7C817F5C24308C7E0011FEFB /* MathUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5124308C7D0011FEFB /* MathUtil.framework */; };
-		7C817F5D24308C7E0011FEFB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5224308C7D0011FEFB /* SwiftyJSON.framework */; };
-		7C817F5E24308C7E0011FEFB /* NotificationBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C817F5324308C7E0011FEFB /* NotificationBanner.framework */; };
+		7CBE70CA2431FE52005449E8 /* Answers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70BF2431FE51005449E8 /* Answers.framework */; };
+		7CBE70CB2431FE52005449E8 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C02431FE52005449E8 /* CocoaAsyncSocket.framework */; };
+		7CBE70CC2431FE52005449E8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C12431FE52005449E8 /* Fabric.framework */; };
+		7CBE70CD2431FE52005449E8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C22431FE52005449E8 /* Crashlytics.framework */; };
+		7CBE70CE2431FE52005449E8 /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C32431FE52005449E8 /* MarqueeLabelSwift.framework */; };
+		7CBE70CF2431FE52005449E8 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C42431FE52005449E8 /* SwiftyJSON.framework */; };
+		7CBE70D02431FE52005449E8 /* SpaceTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C52431FE52005449E8 /* SpaceTime.framework */; };
+		7CBE70D12431FE52005449E8 /* MathUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C62431FE52005449E8 /* MathUtil.framework */; };
+		7CBE70D22431FE52005449E8 /* NotificationBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C72431FE52005449E8 /* NotificationBanner.framework */; };
+		7CBE70D32431FE52005449E8 /* MarqueeLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C82431FE52005449E8 /* MarqueeLabel.framework */; };
+		7CBE70D42431FE52005449E8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C92431FE52005449E8 /* SnapKit.framework */; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
 		D748C10F21C3AC2300456511 /* Bright Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = D748C10E21C3AC2300456511 /* Bright Stars.json */; };
 		D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */; };
@@ -69,17 +69,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C817F4924308C7D0011FEFB /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Answers.framework; path = Carthage/Build/iOS/Answers.framework; sourceTree = "<group>"; };
-		7C817F4A24308C7D0011FEFB /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		7C817F4B24308C7D0011FEFB /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpaceTime.framework; path = Carthage/Build/iOS/SpaceTime.framework; sourceTree = "<group>"; };
-		7C817F4C24308C7D0011FEFB /* MarqueeLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabel.framework; path = Carthage/Build/iOS/MarqueeLabel.framework; sourceTree = "<group>"; };
-		7C817F4D24308C7D0011FEFB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Carthage/Build/iOS/Crashlytics.framework; sourceTree = "<group>"; };
-		7C817F4E24308C7D0011FEFB /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
-		7C817F4F24308C7D0011FEFB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Carthage/Build/iOS/Fabric.framework; sourceTree = "<group>"; };
-		7C817F5024308C7D0011FEFB /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabelSwift.framework; path = Carthage/Build/iOS/MarqueeLabelSwift.framework; sourceTree = "<group>"; };
-		7C817F5124308C7D0011FEFB /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MathUtil.framework; path = Carthage/Build/iOS/MathUtil.framework; sourceTree = "<group>"; };
-		7C817F5224308C7D0011FEFB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		7C817F5324308C7E0011FEFB /* NotificationBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBanner.framework; path = Carthage/Build/iOS/NotificationBanner.framework; sourceTree = "<group>"; };
+		7CBE70BF2431FE51005449E8 /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Answers.framework; path = Carthage/Build/iOS/Answers.framework; sourceTree = "<group>"; };
+		7CBE70C02431FE52005449E8 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		7CBE70C12431FE52005449E8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Carthage/Build/iOS/Fabric.framework; sourceTree = "<group>"; };
+		7CBE70C22431FE52005449E8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Carthage/Build/iOS/Crashlytics.framework; sourceTree = "<group>"; };
+		7CBE70C32431FE52005449E8 /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabelSwift.framework; path = Carthage/Build/iOS/MarqueeLabelSwift.framework; sourceTree = "<group>"; };
+		7CBE70C42431FE52005449E8 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		7CBE70C52431FE52005449E8 /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpaceTime.framework; path = Carthage/Build/iOS/SpaceTime.framework; sourceTree = "<group>"; };
+		7CBE70C62431FE52005449E8 /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MathUtil.framework; path = Carthage/Build/iOS/MathUtil.framework; sourceTree = "<group>"; };
+		7CBE70C72431FE52005449E8 /* NotificationBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBanner.framework; path = Carthage/Build/iOS/NotificationBanner.framework; sourceTree = "<group>"; };
+		7CBE70C82431FE52005449E8 /* MarqueeLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabel.framework; path = Carthage/Build/iOS/MarqueeLabel.framework; sourceTree = "<group>"; };
+		7CBE70C92431FE52005449E8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D748C10E21C3AC2300456511 /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; };
 		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
@@ -139,17 +139,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C817F5C24308C7E0011FEFB /* MathUtil.framework in Frameworks */,
-				7C817F5A24308C7E0011FEFB /* Fabric.framework in Frameworks */,
-				7C817F5924308C7E0011FEFB /* CocoaAsyncSocket.framework in Frameworks */,
-				7C817F5E24308C7E0011FEFB /* NotificationBanner.framework in Frameworks */,
-				7C817F5424308C7E0011FEFB /* Answers.framework in Frameworks */,
-				7C817F5D24308C7E0011FEFB /* SwiftyJSON.framework in Frameworks */,
-				7C817F5824308C7E0011FEFB /* Crashlytics.framework in Frameworks */,
-				7C817F5B24308C7E0011FEFB /* MarqueeLabelSwift.framework in Frameworks */,
-				7C817F5624308C7E0011FEFB /* SpaceTime.framework in Frameworks */,
-				7C817F5724308C7E0011FEFB /* MarqueeLabel.framework in Frameworks */,
-				7C817F5524308C7E0011FEFB /* SnapKit.framework in Frameworks */,
+				7CBE70CB2431FE52005449E8 /* CocoaAsyncSocket.framework in Frameworks */,
+				7CBE70CA2431FE52005449E8 /* Answers.framework in Frameworks */,
+				7CBE70CF2431FE52005449E8 /* SwiftyJSON.framework in Frameworks */,
+				7CBE70D02431FE52005449E8 /* SpaceTime.framework in Frameworks */,
+				7CBE70CD2431FE52005449E8 /* Crashlytics.framework in Frameworks */,
+				7CBE70CC2431FE52005449E8 /* Fabric.framework in Frameworks */,
+				7CBE70D12431FE52005449E8 /* MathUtil.framework in Frameworks */,
+				7CBE70CE2431FE52005449E8 /* MarqueeLabelSwift.framework in Frameworks */,
+				7CBE70D32431FE52005449E8 /* MarqueeLabel.framework in Frameworks */,
+				7CBE70D22431FE52005449E8 /* NotificationBanner.framework in Frameworks */,
+				7CBE70D42431FE52005449E8 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,17 +168,17 @@
 		D764E0AC214E5EC00070314E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7C817F4924308C7D0011FEFB /* Answers.framework */,
-				7C817F4E24308C7D0011FEFB /* CocoaAsyncSocket.framework */,
-				7C817F4D24308C7D0011FEFB /* Crashlytics.framework */,
-				7C817F4F24308C7D0011FEFB /* Fabric.framework */,
-				7C817F4C24308C7D0011FEFB /* MarqueeLabel.framework */,
-				7C817F5024308C7D0011FEFB /* MarqueeLabelSwift.framework */,
-				7C817F5124308C7D0011FEFB /* MathUtil.framework */,
-				7C817F5324308C7E0011FEFB /* NotificationBanner.framework */,
-				7C817F4A24308C7D0011FEFB /* SnapKit.framework */,
-				7C817F4B24308C7D0011FEFB /* SpaceTime.framework */,
-				7C817F5224308C7D0011FEFB /* SwiftyJSON.framework */,
+				7CBE70BF2431FE51005449E8 /* Answers.framework */,
+				7CBE70C02431FE52005449E8 /* CocoaAsyncSocket.framework */,
+				7CBE70C22431FE52005449E8 /* Crashlytics.framework */,
+				7CBE70C12431FE52005449E8 /* Fabric.framework */,
+				7CBE70C82431FE52005449E8 /* MarqueeLabel.framework */,
+				7CBE70C32431FE52005449E8 /* MarqueeLabelSwift.framework */,
+				7CBE70C62431FE52005449E8 /* MathUtil.framework */,
+				7CBE70C72431FE52005449E8 /* NotificationBanner.framework */,
+				7CBE70C92431FE52005449E8 /* SnapKit.framework */,
+				7CBE70C52431FE52005449E8 /* SpaceTime.framework */,
+				7CBE70C42431FE52005449E8 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
