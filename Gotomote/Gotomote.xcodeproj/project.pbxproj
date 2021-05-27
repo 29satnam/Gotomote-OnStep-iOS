@@ -3,21 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7CBE70CA2431FE52005449E8 /* Answers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70BF2431FE51005449E8 /* Answers.framework */; };
-		7CBE70CB2431FE52005449E8 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C02431FE52005449E8 /* CocoaAsyncSocket.framework */; };
-		7CBE70CC2431FE52005449E8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C12431FE52005449E8 /* Fabric.framework */; };
-		7CBE70CD2431FE52005449E8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C22431FE52005449E8 /* Crashlytics.framework */; };
-		7CBE70CE2431FE52005449E8 /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C32431FE52005449E8 /* MarqueeLabelSwift.framework */; };
-		7CBE70CF2431FE52005449E8 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C42431FE52005449E8 /* SwiftyJSON.framework */; };
-		7CBE70D02431FE52005449E8 /* SpaceTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C52431FE52005449E8 /* SpaceTime.framework */; };
-		7CBE70D12431FE52005449E8 /* MathUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C62431FE52005449E8 /* MathUtil.framework */; };
-		7CBE70D22431FE52005449E8 /* NotificationBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C72431FE52005449E8 /* NotificationBanner.framework */; };
-		7CBE70D32431FE52005449E8 /* MarqueeLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C82431FE52005449E8 /* MarqueeLabel.framework */; };
-		7CBE70D42431FE52005449E8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBE70C92431FE52005449E8 /* SnapKit.framework */; };
+		3D3B8417265F8FB600549D96 /* CocoaAsyncSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 3D3B8416265F8FB600549D96 /* CocoaAsyncSocket */; };
+		3D3B841A265F8FF400549D96 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 3D3B8419265F8FF400549D96 /* MarqueeLabel */; };
+		3D3B841D265F90EE00549D96 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3D3B841C265F90EE00549D96 /* SwiftyJSON */; };
+		3D3B8439265F989100549D96 /* NotificationBannerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D3B8438265F989100549D96 /* NotificationBannerSwift */; };
+		3DC647DA265F9A51009A16DA /* SpaceTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3B8431265F950F00549D96 /* SpaceTime.framework */; };
+		3DC647DB265F9A51009A16DA /* SpaceTime.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3B8431265F950F00549D96 /* SpaceTime.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3DC647E0265F9C50009A16DA /* MathUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC647DF265F9C50009A16DA /* MathUtil.framework */; };
+		3DC647E1265F9C50009A16DA /* MathUtil.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC647DF265F9C50009A16DA /* MathUtil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
 		D748C10F21C3AC2300456511 /* Bright Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = D748C10E21C3AC2300456511 /* Bright Stars.json */; };
 		D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */; };
@@ -68,18 +65,24 @@
 		D7E526DD214BD57F00376F5E /* LocationAndTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E526D4214BD57F00376F5E /* LocationAndTime.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3DC647DC265F9A51009A16DA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3DC647E1265F9C50009A16DA /* MathUtil.framework in Embed Frameworks */,
+				3DC647DB265F9A51009A16DA /* SpaceTime.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		7CBE70BF2431FE51005449E8 /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Answers.framework; path = Carthage/Build/iOS/Answers.framework; sourceTree = "<group>"; };
-		7CBE70C02431FE52005449E8 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
-		7CBE70C12431FE52005449E8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Carthage/Build/iOS/Fabric.framework; sourceTree = "<group>"; };
-		7CBE70C22431FE52005449E8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Carthage/Build/iOS/Crashlytics.framework; sourceTree = "<group>"; };
-		7CBE70C32431FE52005449E8 /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabelSwift.framework; path = Carthage/Build/iOS/MarqueeLabelSwift.framework; sourceTree = "<group>"; };
-		7CBE70C42431FE52005449E8 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		7CBE70C52431FE52005449E8 /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpaceTime.framework; path = Carthage/Build/iOS/SpaceTime.framework; sourceTree = "<group>"; };
-		7CBE70C62431FE52005449E8 /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MathUtil.framework; path = Carthage/Build/iOS/MathUtil.framework; sourceTree = "<group>"; };
-		7CBE70C72431FE52005449E8 /* NotificationBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBanner.framework; path = Carthage/Build/iOS/NotificationBanner.framework; sourceTree = "<group>"; };
-		7CBE70C82431FE52005449E8 /* MarqueeLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabel.framework; path = Carthage/Build/iOS/MarqueeLabel.framework; sourceTree = "<group>"; };
-		7CBE70C92431FE52005449E8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		3D3B8431265F950F00549D96 /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpaceTime.framework; path = "Carthage/Build/SpaceTime.xcframework/ios-arm64_armv7/SpaceTime.framework"; sourceTree = "<group>"; };
+		3DC647DF265F9C50009A16DA /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MathUtil.framework; path = "Carthage/Build/MathUtil.xcframework/ios-arm64_armv7/MathUtil.framework"; sourceTree = "<group>"; };
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D748C10E21C3AC2300456511 /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; };
 		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
@@ -139,17 +142,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CBE70CB2431FE52005449E8 /* CocoaAsyncSocket.framework in Frameworks */,
-				7CBE70CA2431FE52005449E8 /* Answers.framework in Frameworks */,
-				7CBE70CF2431FE52005449E8 /* SwiftyJSON.framework in Frameworks */,
-				7CBE70D02431FE52005449E8 /* SpaceTime.framework in Frameworks */,
-				7CBE70CD2431FE52005449E8 /* Crashlytics.framework in Frameworks */,
-				7CBE70CC2431FE52005449E8 /* Fabric.framework in Frameworks */,
-				7CBE70D12431FE52005449E8 /* MathUtil.framework in Frameworks */,
-				7CBE70CE2431FE52005449E8 /* MarqueeLabelSwift.framework in Frameworks */,
-				7CBE70D32431FE52005449E8 /* MarqueeLabel.framework in Frameworks */,
-				7CBE70D22431FE52005449E8 /* NotificationBanner.framework in Frameworks */,
-				7CBE70D42431FE52005449E8 /* SnapKit.framework in Frameworks */,
+				3DC647E0265F9C50009A16DA /* MathUtil.framework in Frameworks */,
+				3DC647DA265F9A51009A16DA /* SpaceTime.framework in Frameworks */,
+				3D3B841A265F8FF400549D96 /* MarqueeLabel in Frameworks */,
+				3D3B841D265F90EE00549D96 /* SwiftyJSON in Frameworks */,
+				3D3B8439265F989100549D96 /* NotificationBannerSwift in Frameworks */,
+				3D3B8417265F8FB600549D96 /* CocoaAsyncSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,17 +166,8 @@
 		D764E0AC214E5EC00070314E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7CBE70BF2431FE51005449E8 /* Answers.framework */,
-				7CBE70C02431FE52005449E8 /* CocoaAsyncSocket.framework */,
-				7CBE70C22431FE52005449E8 /* Crashlytics.framework */,
-				7CBE70C12431FE52005449E8 /* Fabric.framework */,
-				7CBE70C82431FE52005449E8 /* MarqueeLabel.framework */,
-				7CBE70C32431FE52005449E8 /* MarqueeLabelSwift.framework */,
-				7CBE70C62431FE52005449E8 /* MathUtil.framework */,
-				7CBE70C72431FE52005449E8 /* NotificationBanner.framework */,
-				7CBE70C92431FE52005449E8 /* SnapKit.framework */,
-				7CBE70C52431FE52005449E8 /* SpaceTime.framework */,
-				7CBE70C42431FE52005449E8 /* SwiftyJSON.framework */,
+				3DC647DF265F9C50009A16DA /* MathUtil.framework */,
+				3D3B8431265F950F00549D96 /* SpaceTime.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -339,13 +328,19 @@
 				D7E5267A214BD41D00376F5E /* Sources */,
 				D7E5267B214BD41D00376F5E /* Frameworks */,
 				D7E5267C214BD41D00376F5E /* Resources */,
-				D7F8419921A7CCD00098CFB5 /* ShellScript */,
+				3DC647DC265F9A51009A16DA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Gotomote;
+			packageProductDependencies = (
+				3D3B8416265F8FB600549D96 /* CocoaAsyncSocket */,
+				3D3B8419265F8FF400549D96 /* MarqueeLabel */,
+				3D3B841C265F90EE00549D96 /* SwiftyJSON */,
+				3D3B8438265F989100549D96 /* NotificationBannerSwift */,
+			);
 			productName = "OnStep Controller";
 			productReference = D7E5267E214BD41D00376F5E /* Gotomote.app */;
 			productType = "com.apple.product-type.application";
@@ -357,7 +352,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Silver Seahog";
 				TargetAttributes = {
 					D7E5267D214BD41D00376F5E = {
@@ -374,6 +369,12 @@
 				Base,
 			);
 			mainGroup = D7E52675214BD41D00376F5E;
+			packageReferences = (
+				3D3B8415265F8FB600549D96 /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */,
+				3D3B8418265F8FF400549D96 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
+				3D3B841B265F90EE00549D96 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				3D3B8437265F989100549D96 /* XCRemoteSwiftPackageReference "NotificationBanner" */,
+			);
 			productRefGroup = D7E5267F214BD41D00376F5E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -405,43 +406,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		D7F8419921A7CCD00098CFB5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SpaceTime.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MathUtil.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/CocoaAsyncSocket.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/NotificationBanner.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MarqueeLabel.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MarqueeLabelSwift.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftyJSON.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SpaceTime.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MathUtil.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CocoaAsyncSocket.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NotificationBanner.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MarqueeLabel.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MarqueeLabelSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run a2f20f059814a50908d7c7ff2fcc2d942f7b6e78 b4193a92461514a31bf34f278974b0439dd80d6fad5db4765830cfb7143d3584\n/usr/local/bin/carthage copy-frameworks\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D7E5267A214BD41D00376F5E /* Sources */ = {
@@ -526,6 +490,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -558,6 +523,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -587,6 +553,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -612,6 +579,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -621,8 +589,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 25DZLP69MU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -631,16 +599,18 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/MathUtil.xcframework/ios-arm64_armv7",
+					"$(PROJECT_DIR)/Carthage/Build/SpaceTime.xcframework/ios-arm64_armv7",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Gotomote/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = com.silverseahog.gotomote;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -651,8 +621,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 25DZLP69MU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -661,16 +631,18 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/MathUtil.xcframework/ios-arm64_armv7",
+					"$(PROJECT_DIR)/Carthage/Build/SpaceTime.xcframework/ios-arm64_armv7",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Gotomote/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = com.silverseahog.gotomote;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -698,6 +670,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3D3B8415265F8FB600549D96 /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/robbiehanson/CocoaAsyncSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.6.5;
+			};
+		};
+		3D3B8418265F8FF400549D96 /* XCRemoteSwiftPackageReference "MarqueeLabel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cbpowell/MarqueeLabel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.5;
+			};
+		};
+		3D3B841B265F90EE00549D96 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		3D3B8437265F989100549D96 /* XCRemoteSwiftPackageReference "NotificationBanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Daltron/NotificationBanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3D3B8416265F8FB600549D96 /* CocoaAsyncSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D3B8415265F8FB600549D96 /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */;
+			productName = CocoaAsyncSocket;
+		};
+		3D3B8419265F8FF400549D96 /* MarqueeLabel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D3B8418265F8FF400549D96 /* XCRemoteSwiftPackageReference "MarqueeLabel" */;
+			productName = MarqueeLabel;
+		};
+		3D3B841C265F90EE00549D96 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D3B841B265F90EE00549D96 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		3D3B8438265F989100549D96 /* NotificationBannerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D3B8437265F989100549D96 /* XCRemoteSwiftPackageReference "NotificationBanner" */;
+			productName = NotificationBannerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D7E52676214BD41D00376F5E /* Project object */;
 }

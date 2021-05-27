@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/mycandy/Desktop/OnStep-Controller-iOS/OnStep Controller/Gotomote.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

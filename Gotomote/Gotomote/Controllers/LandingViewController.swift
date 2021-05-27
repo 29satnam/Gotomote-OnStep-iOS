@@ -11,8 +11,7 @@ import CoreLocation
 import MathUtil
 import SwiftyJSON
 import CocoaAsyncSocket
-import NotificationBanner
-import Crashlytics
+import NotificationBannerSwift
 
 class LandingViewController: UIViewController, UIPopoverPresentationControllerDelegate, PopViewDelegate {
     var socketConnector: SocketDataManager!
@@ -378,7 +377,7 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             }
         case 9:
             if getText!.components(separatedBy: "#").count == 2 {
-                Crashlytics.sharedInstance().setUserIdentifier(getText!)
+                //Crashlytics.sharedInstance().setUserIdentifier(getText!)
             }
         default:
             print("def")

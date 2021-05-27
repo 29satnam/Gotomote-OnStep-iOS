@@ -9,7 +9,7 @@
 import UIKit
 import CocoaAsyncSocket
 import CoreLocation
-import NotificationBanner
+import NotificationBannerSwift
 
 class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
     var banner = StatusBarNotificationBanner(title: "", style: .success)

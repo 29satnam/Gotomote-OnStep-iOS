@@ -1,8 +1,2 @@
 github "DJBen/MathUtil" ~> 0.4.0
-github "SwiftyJSON/SwiftyJSON" ~> 4.0
 github "DJBen/SpaceTime"
-github "robbiehanson/CocoaAsyncSocket" "master"
-github "Daltron/NotificationBanner" "master"
-binary "https://building42.github.io/Specs/Carthage/iOS/Fabric.json"
-binary "https://building42.github.io/Specs/Carthage/iOS/Answers.json"
-binary "https://building42.github.io/Specs/Carthage/iOS/Crashlytics.json"

@@ -12,7 +12,8 @@
   "iOS" : [
     {
       "name" : "Fabric",
-      "hash" : "ffba0bef674c1c06dec8d272b65861811ab087cc0da6981e8be887dc676f3aa9"
+      "hash" : "ffba0bef674c1c06dec8d272b65861811ab087cc0da6981e8be887dc676f3aa9",
+      "linking" : "dynamic"
     }
   ]
 }

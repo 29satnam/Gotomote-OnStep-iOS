@@ -12,7 +12,7 @@ import CoreLocation
 import SpaceTime
 import MathUtil
 import CocoaAsyncSocket
-import NotificationBanner
+import NotificationBannerSwift
 
 class GotoStarViewController: UIViewController {
     var banner = StatusBarNotificationBanner(title: "", style: .success)

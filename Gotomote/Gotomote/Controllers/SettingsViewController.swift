@@ -9,7 +9,7 @@
 let addressPort:UserDefaults = UserDefaults.standard
 
 import UIKit
-import NotificationBanner
+import NotificationBannerSwift
 
 class SettingsViewController: UIViewController {
     var banner = StatusBarNotificationBanner(title: "", style: .success)

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    //     UINavigationBar.appearance().barStyle = .blackOpaque
    //     UINavigationBar.appearance().isTranslucent = false
         //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -80.0), for: .default)
-        Fabric.with([Crashlytics.self])
         return true
     }
 

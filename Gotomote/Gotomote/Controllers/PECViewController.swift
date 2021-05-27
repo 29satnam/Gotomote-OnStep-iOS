@@ -8,7 +8,7 @@
 
 import UIKit
 import CocoaAsyncSocket
-import NotificationBanner
+import NotificationBannerSwift
 
 class PECViewController: UIViewController {
     var banner = StatusBarNotificationBanner(title: "", style: .success)

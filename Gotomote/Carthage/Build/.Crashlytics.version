@@ -12,7 +12,8 @@
   "iOS" : [
     {
       "name" : "Crashlytics",
-      "hash" : "dfd158c21014f5fec76d2e50708e11b0722e6999915c5d4e6cafa8ffbf285c62"
+      "hash" : "dfd158c21014f5fec76d2e50708e11b0722e6999915c5d4e6cafa8ffbf285c62",
+      "linking" : "dynamic"
     }
   ]
 }

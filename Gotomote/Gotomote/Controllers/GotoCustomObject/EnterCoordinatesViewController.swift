@@ -11,7 +11,7 @@ import CoreLocation
 import MathUtil
 import SwiftyJSON
 import CocoaAsyncSocket
-import NotificationBanner
+import NotificationBannerSwift
 
 class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
 
