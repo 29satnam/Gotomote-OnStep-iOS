@@ -7,22 +7,26 @@
 //
 
 import UIKit
+import WebKit
 
-class ReadMeViewController: UIViewController, UIWebViewDelegate {
+class ReadMeViewController: UIViewController, WKNavigationDelegate {
 
-    @IBOutlet var webView: UIWebView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        webView.delegate = self
-        self.navigationItem.title = "ABOUT"
-        webView.loadRequest(URLRequest(url: URL(fileURLWithPath: Bundle.main.path(forResource: "readme", ofType: "html")!)))
+    @IBOutlet var webView: WKWebView!
+    
+    override func loadView() {
+        webView = WKWebView()
+        webView.navigationDelegate = self
+        view = webView
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        if navigationType == UIWebView.NavigationType.linkClicked {
-            UIApplication.shared.open(request.url!)
-        }
-        return true
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = "ABOUT"
+        //webView.loadRequest(URLRequest(url: URL(fileURLWithPath: Bundle.main.path(forResource: "readme", ofType: "html")!)))
+        
+        let url = URL(fileURLWithPath: Bundle.main.path(forResource: "readme", ofType: "html")!)
+        webView.load(URLRequest(url: url))
+        webView.allowsBackForwardNavigationGestures = true
     }
+    
 }

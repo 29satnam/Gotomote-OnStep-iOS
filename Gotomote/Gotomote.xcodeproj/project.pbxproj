@@ -18,6 +18,7 @@
 		3DEF66F5265FA11A0081CBA0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DEF66F4265FA11A0081CBA0 /* FirebaseAnalytics */; };
 		3DEF66F7265FA11A0081CBA0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DEF66F6265FA11A0081CBA0 /* FirebaseCrashlytics */; };
 		3DEF66F9265FA1910081CBA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DEF66F8265FA1910081CBA0 /* GoogleService-Info.plist */; };
+		3DEF66FB265FAD030081CBA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DEF66FA265FAD030081CBA0 /* LaunchScreen.storyboard */; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
 		D748C10F21C3AC2300456511 /* Bright Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = D748C10E21C3AC2300456511 /* Bright Stars.json */; };
 		D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */; };
@@ -87,6 +88,7 @@
 		3D3B8431265F950F00549D96 /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpaceTime.framework; path = "Carthage/Build/SpaceTime.xcframework/ios-arm64_armv7/SpaceTime.framework"; sourceTree = "<group>"; };
 		3DC647DF265F9C50009A16DA /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MathUtil.framework; path = "Carthage/Build/MathUtil.xcframework/ios-arm64_armv7/MathUtil.framework"; sourceTree = "<group>"; };
 		3DEF66F8265FA1910081CBA0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3DEF66FA265FAD030081CBA0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D748C10E21C3AC2300456511 /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; };
 		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
@@ -227,14 +229,15 @@
 		D7E52680214BD41D00376F5E /* Gotomote */ = {
 			isa = PBXGroup;
 			children = (
-				D7E526CA214BD52B00376F5E /* Space Time */,
 				D7E526C5214BD50B00376F5E /* Assets */,
+				D7E526CA214BD52B00376F5E /* Space Time */,
 				D7E526BE214BD4EE00376F5E /* Data Manager */,
 				D7E526A2214BD4BC00376F5E /* Controllers */,
 				D7E52681214BD41D00376F5E /* AppDelegate.swift */,
 				D7028C02214BD9F6007D6B7C /* Assets.xcassets */,
 				D7E52685214BD41D00376F5E /* Main.storyboard */,
 				D7E5268D214BD41E00376F5E /* Info.plist */,
+				3DEF66FA265FAD030081CBA0 /* LaunchScreen.storyboard */,
 				3DEF66F8265FA1910081CBA0 /* GoogleService-Info.plist */,
 			);
 			path = Gotomote;
@@ -403,6 +406,7 @@
 				D7E5269B214BD49600376F5E /* GALXY Galaxy.json in Resources */,
 				D7E526C8214BD51B00376F5E /* SFUIDisplay-Bold.ttf in Resources */,
 				D7E52687214BD41D00376F5E /* Main.storyboard in Resources */,
+				3DEF66FB265FAD030081CBA0 /* LaunchScreen.storyboard in Resources */,
 				D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */,
 				D748C10F21C3AC2300456511 /* Bright Stars.json in Resources */,
 				D7E526A1214BD49600376F5E /* Messier.json in Resources */,
@@ -620,9 +624,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 25DZLP69MU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -640,10 +643,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 4.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = Gotomote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -653,9 +657,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 25DZLP69MU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -673,11 +676,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = Gotomote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

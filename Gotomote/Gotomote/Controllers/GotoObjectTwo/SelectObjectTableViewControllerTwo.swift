@@ -12,7 +12,7 @@ import CoreLocation
 import SpaceTime
 import MathUtil
 
-class SelectObjectTableViewControllerTwo: UITableViewController {
+class SelectObjectTableViewControllerTwo: UITableViewController, UISearchControllerDelegate {
     
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -61,7 +61,8 @@ class SelectObjectTableViewControllerTwo: UITableViewController {
     
     func setupSearchController() {
         definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.barTintColor = .white
         searchController.searchBar.placeholder = "Search In " + vcTitle.capitalized
