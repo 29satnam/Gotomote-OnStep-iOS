@@ -11,7 +11,7 @@ import CocoaAsyncSocket
 import NotificationBannerSwift
 
 class TrackingViewController: UIViewController {
-    var banner = StatusBarNotificationBanner(title: "", style: .success)
+    var banner = FloatingNotificationBanner(title: "", style: .success)
 
     @IBOutlet var trSiderBtn: UIButton!
     @IBOutlet var trLunarBtn: UIButton!
@@ -36,7 +36,7 @@ class TrackingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        banner.bannerHeight = banner.bannerHeight + 5
+        
         
         addBtnProperties(button: trSiderBtn)
         addBtnProperties(button: trLunarBtn)
@@ -223,64 +223,64 @@ extension TrackingViewController: GCDAsyncSocketDelegate {
         case 1:
             print("Tag 1:", getText!) // cFullAct // OnTrack enable
             if getText! == "1" {
-                banner = StatusBarNotificationBanner(title: "Full compensation on successful.", style: .success)
+                banner = FloatingNotificationBanner(title: "Full compensation on successful.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Full compensation on failed.", style: .danger)
+                banner = FloatingNotificationBanner(title: "Full compensation on failed.", style: .danger)
                 banner.show()
             }
         case 2:
             print("Tag 2:", getText!) // cReftAct // turn refraction compensation on, defaults to base sidereal tracking rate
             if getText! == "1" {
-                banner = StatusBarNotificationBanner(title: "Turn refraction compensation on successful.", style: .success)
+                banner = FloatingNotificationBanner(title: "Turn refraction compensation on successful.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Turn refraction compensation on failed.", style: .danger)
+                banner = FloatingNotificationBanner(title: "Turn refraction compensation on failed.", style: .danger)
                 banner.show()
             }
         case 3:
             print("Tag 3:", getText!) // cDualAct // // turn on dual axis tracking
             if getText! == "1" {
-                banner = StatusBarNotificationBanner(title: "Turn on dual axis tracking successful", style: .success)
+                banner = FloatingNotificationBanner(title: "Turn on dual axis tracking successful", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Turn on dual axis tracking failed", style: .danger)
+                banner = FloatingNotificationBanner(title: "Turn on dual axis tracking failed", style: .danger)
                 banner.show()
             }
         case 4:
             print("Tag 4:", getText!) // cSingleAct // Track single axis (disable Dec tracking on Eq mounts)
             if getText! == "1" {
-                banner = StatusBarNotificationBanner(title: "Track single axis (disable Dec tracking on Eq mounts) successful.", style: .success)
+                banner = FloatingNotificationBanner(title: "Track single axis (disable Dec tracking on Eq mounts) successful.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Track single axis (disable Dec tracking on Eq mounts) failed.", style: .danger)
+                banner = FloatingNotificationBanner(title: "Track single axis (disable Dec tracking on Eq mounts) failed.", style: .danger)
                 banner.show()
             }
         case 5:
             print("Tag 5:", getText!) // cSingleAct // Track single axis (disable Dec tracking on Eq mounts)
             if getText! == "1" {
-                banner = StatusBarNotificationBanner(title: "Track refraction disable successful.", style: .success)
+                banner = FloatingNotificationBanner(title: "Track refraction disable successful.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Track refraction disable failed.", style: .danger)
+                banner = FloatingNotificationBanner(title: "Track refraction disable failed.", style: .danger)
                 banner.show()
             }
         case 6:
             print("Tag 6:", getText!) // tStopAct // Tracking disable
             if getText! == "1" {
-                banner = StatusBarNotificationBanner(title: "Tracking disable successful", style: .success)
+                banner = FloatingNotificationBanner(title: "Tracking disable successful", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Tracking disable failed.", style: .danger)
+                banner = FloatingNotificationBanner(title: "Tracking disable failed.", style: .danger)
                 banner.show()
             }
         case 7:
             print("Tag 7:", getText!) // tStartAct // Tracking enable
             if getText! == "1" {
-                banner = StatusBarNotificationBanner(title: "Tracking enable successful", style: .success)
+                banner = FloatingNotificationBanner(title: "Tracking enable successful", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Tracking enable failed.", style: .danger)
+                banner = FloatingNotificationBanner(title: "Tracking enable failed.", style: .danger)
                 banner.show()
             }
         default:
@@ -295,15 +295,15 @@ extension TrackingViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
+            let banner = FloatingNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)
-            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            banner = FloatingNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner = FloatingNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

@@ -129,7 +129,7 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
             
             if !(00...23).contains(Int(raHH.text!)!) || !(00...59).contains(Int(raMM.text!)!) || !(00...59).contains(Int(raSS.text!)!) || !(-90...90).contains(Int(decDD.text!)!) || !(00...59).contains(Int(decMM.text!)!) || !(00...59).contains(Int(decSS.text!)!) {
                 print("show error - Not in range")
-                let banner = StatusBarNotificationBanner(title: "Value(s) is out of range.", style: .danger)
+                let banner = FloatingNotificationBanner(title: "Value(s) is out of range.", style: .danger)
                 banner.show()
             } else {
                 if !(0...235959).contains(Int(raHH.text! + raMM.text! + raSS.text!)!) || !(-900000...900000).contains(Int(decDD.text! + decMM.text! + decSS.text!)!) {
@@ -158,7 +158,7 @@ class EnterCoordinatesViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         } else {
-            let banner = StatusBarNotificationBanner(title: "Textfields can't be empty.", style: .danger)
+            let banner = FloatingNotificationBanner(title: "Textfields can't be empty.", style: .danger)
             banner.show()
         }
     }
@@ -210,7 +210,7 @@ extension EnterCoordinatesViewController: GCDAsyncSocketDelegate {
             //   print(index)
             if index.isEmpty == false && index.count == 2 {
                 coordinatesToPass = index
-                let banner = StatusBarNotificationBanner(title: "RA and Dec values are accepted.", style: .success)
+                let banner = FloatingNotificationBanner(title: "RA and Dec values are accepted.", style: .success)
                 banner.show()
                 self.performSegue(withIdentifier: "gotoCustomObjectSyncSegue", sender: self)
               //  print("coordinatesToPass:", coordinatesToPass, "rightAscension:", rightAscension, "declination:", declination)
@@ -246,15 +246,15 @@ extension EnterCoordinatesViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
+            let banner = FloatingNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            let banner = FloatingNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            let banner = FloatingNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

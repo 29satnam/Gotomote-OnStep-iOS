@@ -11,7 +11,7 @@ import CocoaAsyncSocket
 import NotificationBannerSwift
 
 class PECViewController: UIViewController {
-    var banner = StatusBarNotificationBanner(title: "", style: .success)
+    var banner = FloatingNotificationBanner(title: "", style: .success)
 
     @IBOutlet var playBtn: UIButton!
     @IBOutlet var stopBtn: UIButton!
@@ -31,7 +31,7 @@ class PECViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     //    triggerConnection(cmd: ":$QZ?", setTag: 0)
-        banner.bannerHeight = banner.bannerHeight + 5
+        
 
         navigationItem.title = "PEC SETTINGS"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Bold", size: 11)!,NSAttributedString.Key.foregroundColor: UIColor.white, kCTKernAttributeName : 1.1] as? [NSAttributedString.Key : Any]
@@ -62,7 +62,7 @@ class PECViewController: UIViewController {
                 print("Not Available")
                 // disable buttons
             }
-            self.banner = StatusBarNotificationBanner(title: "Unsupported mount or err occured. :GU#=\(self.scopeStatus)", style: .success)
+            self.banner = FloatingNotificationBanner(title: "Unsupported mount or err occured. :GU#=\(self.scopeStatus)", style: .success)
             self.banner.show()
         }
     }
@@ -231,15 +231,15 @@ extension PECViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
+            let banner = FloatingNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)
-            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            banner = FloatingNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner = FloatingNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

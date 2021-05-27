@@ -11,7 +11,7 @@ import CocoaAsyncSocket
 import NotificationBannerSwift
 
 class GotoMRViewController: UIViewController {
-    var banner = StatusBarNotificationBanner(title: "", style: .success)
+    var banner = FloatingNotificationBanner(title: "", style: .success)
 
     var clientSocket: GCDAsyncSocket!
     var readerText: String = String()
@@ -31,7 +31,7 @@ class GotoMRViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        banner.bannerHeight = banner.bannerHeight + 5
+        
         
         addBtnProperties(button: fastestBtn)
         addBtnProperties(button: fasterBtn)
@@ -127,50 +127,50 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
             print("Tag 3:", getText!) // Fastest
             if getText! == "1" {
                 rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-                banner = StatusBarNotificationBanner(title: "Max rate is 2x faster.", style: .success)
+                banner = FloatingNotificationBanner(title: "Max rate is 2x faster.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Fastest command failed.", style: .warning)
+                banner = FloatingNotificationBanner(title: "Fastest command failed.", style: .warning)
                 banner.show()
             }
         case 4:
             print("Tag 4:", getText!) // Faster
             if getText! == "1" {
                 rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!/1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-                banner = StatusBarNotificationBanner(title: "Max rate is 1.5x faster.", style: .success)
+                banner = FloatingNotificationBanner(title: "Max rate is 1.5x faster.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Faster command failed.", style: .warning)
+                banner = FloatingNotificationBanner(title: "Faster command failed.", style: .warning)
                 banner.show()
             }
         case 5:
             print("Tag 5:", getText!) // Default
             if getText! == "1" {
                 rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-                banner = StatusBarNotificationBanner(title: "Max rate is at default.", style: .success)
+                banner = FloatingNotificationBanner(title: "Max rate is at default.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Default command failed.", style: .warning)
+                banner = FloatingNotificationBanner(title: "Default command failed.", style: .warning)
                 banner.show()
             }
         case 6:
             print("Tag 6:", getText!) // Slower
             if getText! == "1" {
                 rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*1.5/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-                banner = StatusBarNotificationBanner(title: "Max rate is 1.5x slower.", style: .success)
+                banner = FloatingNotificationBanner(title: "Max rate is 1.5x slower.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Slower command failed.", style: .warning)
+                banner = FloatingNotificationBanner(title: "Slower command failed.", style: .warning)
                 banner.show()
             }
         case 7:
             print("Tag 7:", getText!) // Slowest
             if getText! == "1" {
                 rateLabel.text = String(format: "%.02f", (((1.0/(Double(defaultRate)!*2.0/1000000.0))/(Double(stepsPerSec)!))/240.0)) + " deg/sec"
-                banner = StatusBarNotificationBanner(title: "Max rate is 2x slower.", style: .success)
+                banner = FloatingNotificationBanner(title: "Max rate is 2x slower.", style: .success)
                 banner.show()
             } else {
-                banner = StatusBarNotificationBanner(title: "Slowest command failed.", style: .warning)
+                banner = FloatingNotificationBanner(title: "Slowest command failed.", style: .warning)
                 banner.show()
             }
         default:
@@ -202,15 +202,15 @@ extension GotoMRViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
+            let banner = FloatingNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)
-            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            banner = FloatingNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner = FloatingNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

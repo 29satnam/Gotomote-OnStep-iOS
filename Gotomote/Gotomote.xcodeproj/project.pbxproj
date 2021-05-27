@@ -15,6 +15,9 @@
 		3DC647DB265F9A51009A16DA /* SpaceTime.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3B8431265F950F00549D96 /* SpaceTime.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3DC647E0265F9C50009A16DA /* MathUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC647DF265F9C50009A16DA /* MathUtil.framework */; };
 		3DC647E1265F9C50009A16DA /* MathUtil.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC647DF265F9C50009A16DA /* MathUtil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3DEF66F5265FA11A0081CBA0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DEF66F4265FA11A0081CBA0 /* FirebaseAnalytics */; };
+		3DEF66F7265FA11A0081CBA0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3DEF66F6265FA11A0081CBA0 /* FirebaseCrashlytics */; };
+		3DEF66F9265FA1910081CBA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DEF66F8265FA1910081CBA0 /* GoogleService-Info.plist */; };
 		D7028C03214BD9F6007D6B7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7028C02214BD9F6007D6B7C /* Assets.xcassets */; };
 		D748C10F21C3AC2300456511 /* Bright Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = D748C10E21C3AC2300456511 /* Bright Stars.json */; };
 		D756FE02219EDF30001F6DED /* EnterCoordinatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */; };
@@ -83,6 +86,7 @@
 /* Begin PBXFileReference section */
 		3D3B8431265F950F00549D96 /* SpaceTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpaceTime.framework; path = "Carthage/Build/SpaceTime.xcframework/ios-arm64_armv7/SpaceTime.framework"; sourceTree = "<group>"; };
 		3DC647DF265F9C50009A16DA /* MathUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MathUtil.framework; path = "Carthage/Build/MathUtil.xcframework/ios-arm64_armv7/MathUtil.framework"; sourceTree = "<group>"; };
+		3DEF66F8265FA1910081CBA0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7028C02214BD9F6007D6B7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D748C10E21C3AC2300456511 /* Bright Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Bright Stars.json"; sourceTree = "<group>"; };
 		D756FE01219EDF30001F6DED /* EnterCoordinatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinatesViewController.swift; sourceTree = "<group>"; };
@@ -142,10 +146,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DEF66F5265FA11A0081CBA0 /* FirebaseAnalytics in Frameworks */,
 				3DC647E0265F9C50009A16DA /* MathUtil.framework in Frameworks */,
 				3DC647DA265F9A51009A16DA /* SpaceTime.framework in Frameworks */,
 				3D3B841A265F8FF400549D96 /* MarqueeLabel in Frameworks */,
 				3D3B841D265F90EE00549D96 /* SwiftyJSON in Frameworks */,
+				3DEF66F7265FA11A0081CBA0 /* FirebaseCrashlytics in Frameworks */,
 				3D3B8439265F989100549D96 /* NotificationBannerSwift in Frameworks */,
 				3D3B8417265F8FB600549D96 /* CocoaAsyncSocket in Frameworks */,
 			);
@@ -229,6 +235,7 @@
 				D7028C02214BD9F6007D6B7C /* Assets.xcassets */,
 				D7E52685214BD41D00376F5E /* Main.storyboard */,
 				D7E5268D214BD41E00376F5E /* Info.plist */,
+				3DEF66F8265FA1910081CBA0 /* GoogleService-Info.plist */,
 			);
 			path = Gotomote;
 			sourceTree = "<group>";
@@ -329,6 +336,7 @@
 				D7E5267B214BD41D00376F5E /* Frameworks */,
 				D7E5267C214BD41D00376F5E /* Resources */,
 				3DC647DC265F9A51009A16DA /* Embed Frameworks */,
+				3DEF66F2265FA0900081CBA0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -340,6 +348,8 @@
 				3D3B8419265F8FF400549D96 /* MarqueeLabel */,
 				3D3B841C265F90EE00549D96 /* SwiftyJSON */,
 				3D3B8438265F989100549D96 /* NotificationBannerSwift */,
+				3DEF66F4265FA11A0081CBA0 /* FirebaseAnalytics */,
+				3DEF66F6265FA11A0081CBA0 /* FirebaseCrashlytics */,
 			);
 			productName = "OnStep Controller";
 			productReference = D7E5267E214BD41D00376F5E /* Gotomote.app */;
@@ -374,6 +384,7 @@
 				3D3B8418265F8FF400549D96 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 				3D3B841B265F90EE00549D96 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				3D3B8437265F989100549D96 /* XCRemoteSwiftPackageReference "NotificationBanner" */,
+				3DEF66F3265FA11A0081CBA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D7E5267F214BD41D00376F5E /* Products */;
 			projectDirPath = "";
@@ -402,10 +413,31 @@
 				D7648A3921B05D6A00C087EE /* readme.html in Resources */,
 				D7E5269C214BD49600376F5E /* BRTNB Bright Nebula.json in Resources */,
 				D7915BC421D228210034169D /* Messier2.json in Resources */,
+				3DEF66F9265FA1910081CBA0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DEF66F2265FA0900081CBA0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D7E5267A214BD41D00376F5E /* Sources */ = {
@@ -608,6 +640,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -640,6 +673,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.silverseahog.gotomote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -704,6 +739,14 @@
 				minimumVersion = 3.0.6;
 			};
 		};
+		3DEF66F3265FA11A0081CBA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -726,6 +769,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3D3B8437265F989100549D96 /* XCRemoteSwiftPackageReference "NotificationBanner" */;
 			productName = NotificationBannerSwift;
+		};
+		3DEF66F4265FA11A0081CBA0 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DEF66F3265FA11A0081CBA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		3DEF66F6265FA11A0081CBA0 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DEF66F3265FA11A0081CBA0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

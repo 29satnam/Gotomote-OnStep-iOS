@@ -303,8 +303,8 @@ extension LandingViewController: GCDAsyncSocketDelegate {
         case 1:
           //  print("Tag 1:", getText!)
             utcString = getText!
-            let banner = StatusBarNotificationBanner(title: "Fetched UTC Offset \(utcString.dropLast())", style: .success)
-            banner.bannerHeight = banner.bannerHeight + 5
+            let banner = FloatingNotificationBanner(title: "Fetched UTC Offset \(utcString.dropLast())", style: .success)
+            
             banner.show()
             self.performSegue(withIdentifier: "initialize", sender: self)
         case 2:
@@ -314,8 +314,8 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             print("inde", index.count)
             if index.count == 3 {
                 coordinatesToPass = index
-                let banner = StatusBarNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??"), Long:\(index[opt: 1] ?? "??"), UTC \(index[opt: 2] ?? "??")", style: .success)
-                banner.bannerHeight = banner.bannerHeight + 5
+                let banner = FloatingNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??"), Long:\(index[opt: 1] ?? "??"), UTC \(index[opt: 2] ?? "??")", style: .success)
+                
                 banner.show()
                 print(index) // ["+30.52", "+075.47", "+05:30"]
                 self.performSegue(withIdentifier: "objectListingTableView", sender: self)
@@ -369,8 +369,8 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             print("inde", index.count)
             if index.count == 3 {
                 coordinatesToPass = index
-                let banner = StatusBarNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??"), Long:\(index[opt: 1] ?? "??"), UTC \(index[opt: 2] ?? "??")", style: .success)
-                banner.bannerHeight = banner.bannerHeight + 5
+                let banner = FloatingNotificationBanner(title: "Fecthed Lat:\(index[opt: 0] ?? "??"), Long:\(index[opt: 1] ?? "??"), UTC \(index[opt: 2] ?? "??")", style: .success)
+                
                 banner.show()
                 print(index)
                 self.performSegue(withIdentifier: "objectListingTableViewTwo", sender: self)
@@ -407,18 +407,18 @@ extension LandingViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
-            banner.bannerHeight = banner.bannerHeight + 5
+            let banner = FloatingNotificationBanner(title: "Command processed.", style: .success)
+            
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
-            banner.bannerHeight = banner.bannerHeight + 5
+            let banner = FloatingNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            let banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
-            banner.bannerHeight = banner.bannerHeight + 5
+            let banner = FloatingNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            
             banner.show()
         }
     }

@@ -12,7 +12,7 @@ import CoreLocation
 import NotificationBannerSwift
 
 class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
-    var banner = StatusBarNotificationBanner(title: "", style: .success)
+    var banner = FloatingNotificationBanner(title: "", style: .success)
     @IBOutlet var segmentControl: TTSegmentedControl!
     
     var clientSocket: GCDAsyncSocket!
@@ -45,7 +45,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
                 print("No access")
-                banner = StatusBarNotificationBanner(title: "Couldn't determined the location.", style: .danger)
+                banner = FloatingNotificationBanner(title: "Couldn't determined the location.", style: .danger)
                 banner.show()
                 showLocationDisabledPopUp()
             case .authorizedAlways, .authorizedWhenInUse:
@@ -54,7 +54,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
             }
         } else {
             print("Location services are not enabled")
-            banner = StatusBarNotificationBanner(title: "Location services are not enabled.", style: .danger)
+            banner = FloatingNotificationBanner(title: "Location services are not enabled.", style: .danger)
             banner.show()
             showLocationDisabledPopUp()
         }
@@ -75,7 +75,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         
-        banner.bannerHeight = banner.bannerHeight + 5
+        
         
         setupUserInterface()
         
@@ -141,7 +141,7 @@ class OBSSiteViewController: UIViewController, CLLocationManagerDelegate {
                 print(utcHHTF.text, utcMMTF.text)
         //    }
             
-            banner = StatusBarNotificationBanner(title: "Location determined successfully.", style: .success)
+            banner = FloatingNotificationBanner(title: "Location determined successfully.", style: .success)
             banner.show()
             locationManager.stopUpdatingLocation()
 
@@ -397,7 +397,7 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
                     self.utcHHTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 0]
                     self.utcMMTF.text = index[opt: 3]?.components(separatedBy: ":")[opt: 1]
                 }
-                banner = StatusBarNotificationBanner(title: "Site data retrieved successfully.", style: .success)
+                banner = FloatingNotificationBanner(title: "Site data retrieved successfully.", style: .success)
                 banner.show()
             }
         case 1:
@@ -405,7 +405,7 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
             readerArray.append(getText!)
             print(readerArray.count, readerArray)
             if readerArray.count == 3 {
-                banner = StatusBarNotificationBanner(title: "Site data uploaded successfully.", style: .success)
+                banner = FloatingNotificationBanner(title: "Site data uploaded successfully.", style: .success)
                 banner.show()
             }
             
@@ -437,15 +437,15 @@ extension OBSSiteViewController: GCDAsyncSocketDelegate {
             print("Disconnected called:", err!.localizedDescription)
         } else if err != nil && String(err!.localizedDescription) == "Read operation timed out" { // Server Returned nothing upon request
             print("Disconnected called:", err!.localizedDescription)
-            let banner = StatusBarNotificationBanner(title: "Command processed.", style: .success)
+            let banner = FloatingNotificationBanner(title: "Command processed.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) == "Connection refused" { // wrong port or ip
             print("Disconnected called:", err!.localizedDescription)
-            banner = StatusBarNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
+            banner = FloatingNotificationBanner(title: "Unable to make connection, please check address & port.", style: .success)
             banner.show()
         } else if err != nil && String(err!.localizedDescription) != "Read operation timed out" && String(err!.localizedDescription) != "Socket closed by remote peer" {
             print("Disconnected called:", err!.localizedDescription) // Not nil, not timeout, not closed by server // Throws error like no connection..
-            banner = StatusBarNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
+            banner = FloatingNotificationBanner(title: "\(err!.localizedDescription)", style: .danger)
             banner.show()
         }
     }

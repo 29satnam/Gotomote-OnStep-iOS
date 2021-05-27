@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    //     UINavigationBar.appearance().barStyle = .blackOpaque
    //     UINavigationBar.appearance().isTranslucent = false
         //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -80.0), for: .default)
+        // Use the Firebase library to configure APIs.
+        FirebaseApp.configure()
         return true
     }
 

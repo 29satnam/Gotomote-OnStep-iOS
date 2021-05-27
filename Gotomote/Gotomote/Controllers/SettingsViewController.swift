@@ -12,7 +12,7 @@ import UIKit
 import NotificationBannerSwift
 
 class SettingsViewController: UIViewController {
-    var banner = StatusBarNotificationBanner(title: "", style: .success)
+    var banner = FloatingNotificationBanner(title: "", style: .success)
 
     @IBOutlet var ipAddTF: CustomTextField!
     @IBOutlet var portTF: CustomTextField!
@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        banner.bannerHeight = banner.bannerHeight + 5
+        
         
         addBtnProperties(button: uploadBtn)
         addTFProperties(tf: ipAddTF, placeholder: "192.168.0.1")
@@ -47,11 +47,11 @@ class SettingsViewController: UIViewController {
         if !ipAddTF.text!.isEmpty && !portTF.text!.isEmpty {
             addressPort.set("\(ipAddTF.text!):\(portTF.text!)", forKey: "addressPort")
             addressPort.synchronize()
-            banner = StatusBarNotificationBanner(title: "Address and port saved.", style: .success)
+            banner = FloatingNotificationBanner(title: "Address and port saved.", style: .success)
             banner.show()
         } else {
             print("address or port can't be empty.") // TODO
-            banner = StatusBarNotificationBanner(title: "Address or port textfields can't be empty.", style: .danger)
+            banner = FloatingNotificationBanner(title: "Address or port textfields can't be empty.", style: .danger)
             banner.show()
         }
     }
